@@ -27,6 +27,8 @@
 		7C3D135E2E26044F008604E7 /* BasedlyAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasedlyAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3D13742E260450008604E7 /* BasedlyAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasedlyAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3D137E2E260450008604E7 /* BasedlyAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BasedlyAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C641D282E26F700006C817C /* BasedlyAI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = BasedlyAI.xctestplan; path = "../../../../Volumes/X10 Pro/BasedlyAI.xctestplan"; sourceTree = "<group>"; };
+		7C8088E02E26FDAC00921890 /* BasedlyAIUITests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = BasedlyAIUITests.xctestplan; path = "../../../../Volumes/X10 Pro/BasedlyAIUITests.xctestplan"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -88,6 +90,8 @@
 		7C3D13552E26044F008604E7 = {
 			isa = PBXGroup;
 			children = (
+				7C8088E02E26FDAC00921890 /* BasedlyAIUITests.xctestplan */,
+				7C641D282E26F700006C817C /* BasedlyAI.xctestplan */,
 				7C3D13602E26044F008604E7 /* BasedlyAI */,
 				7C3D13772E260450008604E7 /* BasedlyAITests */,
 				7C3D13812E260450008604E7 /* BasedlyAIUITests */,
@@ -288,10 +292,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = V32QX8Q2VA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BasedlyAI/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -302,7 +307,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.ios2025;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -316,10 +321,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = V32QX8Q2VA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BasedlyAI/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -330,7 +336,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.ios2025;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -464,12 +470,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = V32QX8Q2VA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.BasedlyAITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.ios2025.BasedlyAITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -483,12 +489,12 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = V32QX8Q2VA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.BasedlyAITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.ios2025.BasedlyAITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -501,11 +507,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = V32QX8Q2VA;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.BasedlyAIUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.ios2025.BasedlyAIUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
@@ -518,11 +524,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = V32QX8Q2VA;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.BasedlyAIUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.colinilgen.basedlyai.ios2025.BasedlyAIUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
