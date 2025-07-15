@@ -94,6 +94,13 @@ class NavigationComponent extends BaseComponent {
                 background-color: rgba(0,0,0,0.1) !important;
                 backdrop-filter: blur(5px) !important;
                 border-radius: 8px !important;
+                /* Use global logo animations */
+                animation: logoGlow 3s ease-in-out infinite alternate !important;
+            }
+
+            .nav-logo .basedly-logo-container {
+                /* Use global logo float animation */
+                animation: logoFloat 4s ease-in-out infinite !important;
             }
 
             .nav-logo .basedly-logo-container:hover .basedly-logo {
@@ -214,10 +221,22 @@ class NavigationComponent extends BaseComponent {
     }
 
     initializeAnimations() {
-        // The global logo animations are already applied via CSS classes
-        // Additional GSAP animations can be added here if needed
+        // Ensure global logo animations are applied
+        const logo = document.querySelector('.nav-logo .basedly-logo');
+        const logoContainer = document.querySelector('.nav-logo .basedly-logo-container');
+        
+        if (logo) {
+            // Ensure global animations are applied
+            logo.style.animation = 'logoGlow 3s ease-in-out infinite alternate';
+        }
+        
+        if (logoContainer) {
+            // Ensure global float animation is applied
+            logoContainer.style.animation = 'logoFloat 4s ease-in-out infinite';
+        }
+
+        // Additional GSAP animations for enhanced interactivity
         if (typeof gsap !== 'undefined') {
-            const logo = document.querySelector('.nav-logo .basedly-logo');
             if (logo) {
                 // Enhanced hover animation
                 logo.addEventListener('mouseenter', () => {
