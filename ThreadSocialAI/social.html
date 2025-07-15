@@ -597,7 +597,7 @@
             const description = document.getElementById('trip-description').value;
             
             if (!name || !date || !location) {
-                alert('Please fill in all required fields');
+                console.log('Please fill in all required fields');
                 return;
             }
             
@@ -645,13 +645,13 @@
 
         // Invite friends
         function inviteFriends() {
-            alert('Invite friends to join your shopping trip!\n\nShare the trip link or invite them via email/SMS.');
+            console.log('Invite friends functionality');
         }
 
         // View trip details
         function viewTripDetails(tripId) {
             const trip = activeTrips.find(t => t.id === tripId);
-            alert(`Trip Details: ${trip.name}\n\nDate: ${trip.date}\nLocation: ${trip.location}\nDescription: ${trip.description}\n\nFriends: ${trip.friends.length} invited`);
+            console.log('Trip details:', trip);
         }
 
         // Share trip
@@ -672,7 +672,7 @@
                 .map(friend => friend.querySelector('span').textContent);
 
             if (!tripName || !tripDate || !tripLocation) {
-                alert('Please fill in trip details before sharing');
+                console.log('Please fill in trip details before sharing');
                 return;
             }
 
@@ -685,7 +685,7 @@
                     url: window.location.href
                 });
             } else {
-                alert(`Share this trip:\n\n${tripDetails}`);
+                console.log('Trip shared:', tripDetails);
             }
         }
 

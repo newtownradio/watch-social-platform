@@ -298,6 +298,11 @@
                     <div id="search-suggestions" style="position: absolute; top: 100%; left: 0; right: 0; background: var(--lux-dark-gray); border: 1px solid var(--lux-beige); max-height: 200px; overflow-y: auto; z-index: 1000; display: none;"></div>
                 </div>
                 
+                <!-- Search Results -->
+                <div id="search-results" style="max-width: 500px; margin: 0 auto 40px auto; padding: 20px; background: var(--lux-dark-gray); border: 2px solid var(--lux-beige); border-radius: 8px; display: none;">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+                
                 <!-- Search Filters and Brand Directory -->
                 <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-beige); padding: 40px; margin-bottom: 40px;">
                     <h3 style="color: var(--lux-white); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">BRAND DIRECTORY</h3>
@@ -559,14 +564,106 @@
         // Enhanced button functions
         function performSearch() {
             const searchInput = document.getElementById('search-input');
-            const query = searchInput.value.trim();
-            
-            if (query) {
-                showNotification(`🔍 Searching for "${query}"...`);
-                // The actual search functionality is handled by discovery.js
-            } else {
-                showNotification('🔍 Please enter a search term');
+            const query = searchInput.value.trim().toLowerCase();
+            const resultsContainer = document.getElementById('search-results');
+            if (!resultsContainer) return;
+            resultsContainer.innerHTML = '';
+            if (!query) {
+                resultsContainer.innerHTML = '<p style="color: var(--lux-beige); text-align:center;">Please enter a search term.</p>';
+                return;
             }
+            // Example deals data (should be replaced with real data source)
+            const deals = [
+                {
+                    brand: "CHANEL",
+                    description: "Exclusive Classic Flap Collection Drop",
+                    price: 8800,
+                    originalPrice: 11000,
+                    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Chanel_logo.svg/2560px-Chanel_logo.svg.png",
+                    category: "luxury_fashion",
+                    store: "Chanel Boutique",
+                    dealType: "Exclusive Drop"
+                },
+                {
+                    brand: "NIKE",
+                    description: "Air Jordan 1 Retro Restock Event",
+                    price: 180,
+                    originalPrice: 220,
+                    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Nike_Logo.svg/2560px-Nike_Logo.svg.png",
+                    category: "streetwear",
+                    store: "Nike Store",
+                    dealType: "Flash Sale"
+                },
+                {
+                    brand: "BALENCIAGA",
+                    description: "Triple S Sneakers Seasonal Collection",
+                    price: 1200,
+                    originalPrice: 1500,
+                    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Balenciaga_logo.svg/2560px-Balenciaga_logo.svg.png",
+                    category: "luxury_fashion",
+                    store: "Balenciaga",
+                    dealType: "Seasonal Sale"
+                },
+                {
+                    brand: "CARTIER",
+                    description: "Love Collection VIP Access Event",
+                    price: 6500,
+                    originalPrice: 8000,
+                    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cartier_logo.svg/2560px-Cartier_logo.svg.png",
+                    category: "jewelry_watches",
+                    store: "Cartier",
+                    dealType: "VIP Exclusive"
+                },
+                {
+                    brand: "GUCCI",
+                    description: "Dionysus Limited Edition Release",
+                    price: 2200,
+                    originalPrice: 2800,
+                    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/1960s_Gucci_Logo.svg/2560px-1960s_Gucci_Logo.svg.png",
+                    category: "luxury_fashion",
+                    store: "Gucci",
+                    dealType: "Limited Edition"
+                },
+                {
+                    brand: "ADIDAS",
+                    description: "Yeezy Boost 350 Restock Alert",
+                    price: 220,
+                    originalPrice: 250,
+                    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png",
+                    category: "streetwear",
+                    store: "Adidas Originals",
+                    dealType: "Restock Alert"
+                }
+            ];
+            const results = deals.filter(deal =>
+                deal.brand.toLowerCase().includes(query) ||
+                deal.description.toLowerCase().includes(query) ||
+                deal.category.toLowerCase().includes(query) ||
+                deal.store.toLowerCase().includes(query)
+            );
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<p style="color: var(--lux-beige); text-align:center;">No products found.</p>';
+                return;
+            }
+            // Render results
+            results.forEach(deal => {
+                const card = document.createElement('div');
+                card.style.cssText = 'background: var(--lux-dark-gray); border: 2px solid var(--lux-hot-pink); border-radius: 8px; padding: 24px; margin-bottom: 20px; display: flex; align-items: center; gap: 24px;';
+                card.innerHTML = `
+                    <img src="${deal.logo}" alt="${deal.brand}" style="width: 80px; height: 50px; object-fit: contain; background: #fff; border-radius: 6px; margin-right: 24px;">
+                    <div style="flex:1;">
+                        <h4 style="color: var(--lux-hot-pink); font-size: 20px; font-weight: 700; margin: 0 0 8px 0;">${deal.brand}</h4>
+                        <p style="color: var(--lux-white); font-size: 15px; margin: 0 0 8px 0;">${deal.description}</p>
+                        <div style="color: var(--lux-beige); font-size: 14px; margin-bottom: 8px;">${deal.category} | ${deal.store}</div>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="color: var(--lux-beige); font-size: 18px; font-weight: 700;">$${deal.price}</span>
+                            <span style="color: var(--lux-white); opacity: 0.6; text-decoration: line-through;">$${deal.originalPrice}</span>
+                            <span style="color: var(--lux-hot-pink); font-size: 12px; font-weight: 600; margin-left: 12px;">${deal.dealType}</span>
+                        </div>
+                    </div>
+                `;
+                resultsContainer.appendChild(card);
+            });
         }
 
         function searchQuickDiscovery() {
@@ -591,40 +688,9 @@
             }
         }
 
-        // Notification system
+        // Notification system - removed for better UX
         function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: var(--lux-hot-pink);
-                color: var(--lux-white);
-                padding: 16px 24px;
-                border-radius: 8px;
-                font-family: 'Space Grotesk', Arial, sans-serif;
-                font-weight: 600;
-                letter-spacing: 1px;
-                z-index: 10000;
-                max-width: 300px;
-                box-shadow: 0 4px 20px rgba(255, 171, 223, 0.3);
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-            `;
-            notification.textContent = message;
-            
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.transform = 'translateX(0)';
-            }, 100);
-            
-            setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
+            // Silent - no popups
         }
 
         // Enhanced filter functions

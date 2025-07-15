@@ -35,6 +35,40 @@ class SplashPageComponent extends BaseComponent {
             padding: 20px;
         `;
 
+        // Create animation container for GSAP hero clouds
+        const heroCloudAnim = document.createElement('div');
+        heroCloudAnim.id = 'hero-cloud-anim';
+        heroCloudAnim.style.cssText = `
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 20;
+        `;
+        // Add 3 large puffy clouds
+        for (let i = 0; i < 3; i++) {
+            const cloud = document.createElement('div');
+            cloud.className = 'gsap-puffy-cloud';
+            cloud.style.cssText = `
+                position: absolute;
+                bottom: ${20 + i * 30}px;
+                left: ${20 + i * 30}vw;
+                width: clamp(120px, 30vw, 220px);
+                height: clamp(60px, 12vw, 110px);
+                background: linear-gradient(135deg, #fff 80%, #FFABDF 100%);
+                border-radius: 50% 50% 60% 60% / 60% 60% 50% 50%;
+                opacity: 0.85;
+                box-shadow: 0 8px 32px 0 rgba(255,171,223,0.12), 0 1.5vw 2vw 0 #fff8;
+                filter: blur(0.5px) drop-shadow(0 0 16px #fff8);
+            `;
+            heroCloudAnim.appendChild(cloud);
+        }
+
         // Render hero content
         this.hero.render('splash-content', {
             title: 'BASEDLY',
@@ -115,6 +149,7 @@ class SplashPageComponent extends BaseComponent {
         });
 
         // Assemble the splash page
+        contentWrapper.appendChild(heroCloudAnim);
         contentWrapper.appendChild(navButtons);
         splashContainer.appendChild(animationContainer);
         splashContainer.appendChild(contentWrapper);
@@ -147,6 +182,21 @@ class SplashPageComponent extends BaseComponent {
                 ease: 'back.out(1.7)',
                 delay: 0.8
             });
+            // Animate clouds
+            if (document.querySelectorAll('.gsap-puffy-cloud').length) {
+                document.querySelectorAll('.gsap-puffy-cloud').forEach((el, i) => {
+                    gsap.to(el, {
+                        x: `+=${gsap.utils.random(-30, 30)}vw`,
+                        y: `+=${gsap.utils.random(-10, 10)}px`,
+                        opacity: gsap.utils.random(0.7, 1),
+                        repeat: -1,
+                        yoyo: true,
+                        duration: gsap.utils.random(5, 8),
+                        ease: 'sine.inOut',
+                        delay: i * 0.5
+                    });
+                });
+            }
         }
     }
 
@@ -183,6 +233,7 @@ class SplashPageComponent extends BaseComponent {
         if (typeof gsap !== 'undefined') {
             gsap.killTweensOf('#splash-content');
             gsap.killTweensOf('#splash-navigation button');
+            gsap.killTweensOf('.gsap-puffy-cloud'); // Kill clouds
         }
         
         // Destroy child components
