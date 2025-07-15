@@ -1,0 +1,9 @@
+"/Users/colinilgen/BasedlyAI/BasedlyAI/BasedlyAI/AppDelegate.swift":
+  objc-header: "/Users/colinilgen/BasedlyAI/BasedlyAI/build/BasedlyAI.build/Release-iphoneos/BasedlyAI.build/Objects-normal/arm64/BasedlyAI-Swift.h"
+  diagnostics: "/Users/colinilgen/BasedlyAI/BasedlyAI/build/BasedlyAI.build/Release-iphoneos/BasedlyAI.build/Objects-normal/arm64/BasedlyAI-master.dia"
+  dependencies: "/Users/colinilgen/BasedlyAI/BasedlyAI/build/BasedlyAI.build/Release-iphoneos/BasedlyAI.build/Objects-normal/arm64/BasedlyAI-master.d"
+  const-values: "/Users/colinilgen/BasedlyAI/BasedlyAI/build/BasedlyAI.build/Release-iphoneos/BasedlyAI.build/Objects-normal/arm64/BasedlyAI-master.swiftconstvalues"
+  swiftdoc: "/Users/colinilgen/BasedlyAI/BasedlyAI/build/BasedlyAI.build/Release-iphoneos/BasedlyAI.build/Objects-normal/arm64/BasedlyAI.swiftdoc"
+  swiftmodule: "/Users/colinilgen/BasedlyAI/BasedlyAI/build/BasedlyAI.build/Release-iphoneos/BasedlyAI.build/Objects-normal/arm64/BasedlyAI.swiftmodule"
+  swiftsourceinfo: "/Users/colinilgen/BasedlyAI/BasedlyAI/build/BasedlyAI.build/Release-iphoneos/BasedlyAI.build/Objects-normal/arm64/BasedlyAI.swiftsourceinfo"
+  abi-baseline-json: "/Users/colinilgen/BasedlyAI/BasedlyAI/build/BasedlyAI.build/Release-iphoneos/BasedlyAI.build/Objects-normal/arm64/BasedlyAI.abi.json"

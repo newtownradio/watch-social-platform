@@ -1,0 +1,10 @@
+version: "Apple Swift version 6.1.2 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)"
+options: "716cb2a248443e3506b714c5d6c474df434f4e0e7aaccec9454de285750b0053"
+build_start_time: [1752615984, 408596000]
+build_end_time: [1752615987, 409698000]
+inputs:
+  "/Users/colinilgen/BasedlyAI/BasedlyAI/BasedlyAI/AppDelegate.swift": [1752550607, 836990506]
+  "/Users/colinilgen/BasedlyAI/BasedlyAI/BasedlyAI/SceneDelegate.swift": [1752550607, 838083289]
+  "/Users/colinilgen/BasedlyAI/BasedlyAI/BasedlyAI/ViewController.swift": [1752613981, 38552506]
+  ? "/Users/colinilgen/BasedlyAI/BasedlyAI/build/BasedlyAI.build/Release-iphoneos/BasedlyAI.build/DerivedSources/GeneratedAssetSymbols.swift"
+  : [1752615984, 196321554]

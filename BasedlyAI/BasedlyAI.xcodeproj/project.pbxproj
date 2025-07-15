@@ -296,6 +296,7 @@
 				DEVELOPMENT_TEAM = V32QX8Q2VA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BasedlyAI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BasedlyAI;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -325,6 +326,7 @@
 				DEVELOPMENT_TEAM = V32QX8Q2VA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BasedlyAI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BasedlyAI;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

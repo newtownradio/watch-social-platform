@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Basedly">
+    <meta name="author" content="Basedly">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FF1493">
+    
+    <title>Basedly - Join the Community</title>
+    
+    <link rel="stylesheet" href="./output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --lux-hot-pink: #FFABDF;
+            --lux-beige: #F5F5DC;
+            --lux-black: #000;
+            --lux-white: #fff;
+            --lux-dark-gray: #111;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        body {
+            background: var(--lux-black);
+            color: var(--lux-white);
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .lux-button {
+            background: var(--lux-hot-pink);
+            color: var(--lux-black);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+        
+        .lux-button:hover {
+            background: var(--lux-white);
+            color: var(--lux-black);
+            border-color: var(--lux-white);
+        }
+        
+        .lux-button-secondary {
+            background: var(--lux-black);
+            color: var(--lux-white);
+            border: 2px solid var(--lux-white);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+        
+        .lux-button-secondary:hover {
+            background: var(--lux-white);
+            color: var(--lux-black);
+        }
+        
+        .lux-input {
+            background: var(--lux-black);
+            border: 2px solid var(--lux-hot-pink);
+            color: var(--lux-white);
+            padding: 16px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 16px;
+            border-radius: 0;
+        }
+        
+        .lux-input:focus {
+            outline: none;
+            border-color: var(--lux-white);
+        }
+        
+        @media (max-width: 768px) {
+            .lux-container {
+                padding: 0 16px !important;
+            }
+            
+            .lux-grid {
+                grid-template-columns: 1fr !important;
+                gap: 32px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="padding: 16px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
+        <div class="lux-container" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">BASEDLY</a>
+            
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="discovery.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">DISCOVERY</a>
+                <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDeals()">DEALS</a>
+                <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
+                <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
+                <a href="login.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">SIGN IN</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section style="background: var(--lux-black); padding: 80px 0; text-align: center;">
+        <div class="lux-container" style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+
+            <p style="font-size: 24px; color: var(--lux-white); margin-bottom: 48px; letter-spacing: 2px;">Experience the future of luxury shopping</p>
+        </div>
+    </section>
+
+    <!-- Why Choose LUX Section -->
+    <section style="background: var(--lux-black); border-top: 2px solid var(--lux-hot-pink); border-bottom: 2px solid var(--lux-hot-pink); padding: 80px 0;">
+        <div class="lux-container" style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+            <div style="text-align: center; margin-bottom: 64px;">
+                <h2 style="font-size: 48px; margin-bottom: 32px; color: var(--lux-hot-pink); font-weight: 900; letter-spacing: 2px;">WHY CHOOSE BASEDLY?</h2>
+                <p style="color: var(--lux-white); font-size: 20px; max-width: 600px; margin: 0 auto; letter-spacing: 1px; opacity: 0.9; line-height: 1.6;">Experience the future of luxury shopping with AI-powered discovery and exclusive access</p>
+            </div>
+            
+            <div class="lux-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 48px; margin-bottom: 64px;">
+                <!-- Benefits List -->
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-hot-pink); padding: 48px; border-radius: 0;">
+                    <h3 style="font-size: 24px; color: var(--lux-white); font-weight: 700; margin-bottom: 40px; text-align: center; letter-spacing: 2px;">KEY BENEFITS</h3>
+                    
+                    <div style="margin-bottom: 40px;">
+                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 32px;">
+                            <div style="width: 48px; height: 48px; background: var(--lux-hot-pink); display: flex; align-items: center; justify-content: center; border-radius: 0;">
+                                <span style="color: var(--lux-white); font-size: 20px; font-weight: bold;">1</span>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 8px;">AI-POWERED DISCOVERY</h4>
+                                <p style="color: var(--lux-white); font-size: 16px; line-height: 1.5; opacity: 0.8;">Our AI learns your style and finds deals you'll actually love</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 32px;">
+                            <div style="width: 48px; height: 48px; background: var(--lux-white); display: flex; align-items: center; justify-content: center; border-radius: 0;">
+                                <span style="color: var(--lux-black); font-size: 20px; font-weight: bold;">2</span>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 8px;">EXCLUSIVE ACCESS</h4>
+                                <p style="color: var(--lux-white); font-size: 16px; line-height: 1.5; opacity: 0.8;">VIP deals and limited drops from luxury brands worldwide</p>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 20px;">
+                            <div style="width: 48px; height: 48px; background: var(--lux-hot-pink); display: flex; align-items: center; justify-content: center; border-radius: 0;">
+                                <span style="color: var(--lux-white); font-size: 20px; font-weight: bold;">3</span>
+                            </div>
+                            <div>
+                                <h4 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 8px;">SOCIAL SHOPPING</h4>
+                                <p style="color: var(--lux-white); font-size: 16px; line-height: 1.5; opacity: 0.8;">Plan trips with friends and discover together</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Live Stats -->
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-white); padding: 48px; border-radius: 0;">
+                    <h3 style="font-size: 24px; color: var(--lux-white); font-weight: 700; margin-bottom: 40px; text-align: center; letter-spacing: 2px;">LIVE STATS</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                        <div style="text-align: center; padding: 24px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink);">
+                            <div style="font-size: 36px; font-weight: 900; color: var(--lux-hot-pink); margin-bottom: 12px;">2,847</div>
+                            <div style="color: var(--lux-white); font-size: 14px; font-weight: 600; letter-spacing: 1px;">ACTIVE DEALS</div>
+                        </div>
+                        <div style="text-align: center; padding: 24px; background: var(--lux-black); border: 2px solid var(--lux-white);">
+                            <div style="font-size: 36px; font-weight: 900; color: var(--lux-white); margin-bottom: 12px;">156</div>
+                            <div style="color: var(--lux-white); font-size: 14px; font-weight: 600; letter-spacing: 1px;">LUXURY BRANDS</div>
+                        </div>
+                        <div style="text-align: center; padding: 24px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink);">
+                            <div style="font-size: 36px; font-weight: 900; color: var(--lux-hot-pink); margin-bottom: 12px;">89</div>
+                            <div style="color: var(--lux-white); font-size: 14px; font-weight: 600; letter-spacing: 1px;">CITIES</div>
+                        </div>
+                        <div style="text-align: center; padding: 24px; background: var(--lux-black); border: 2px solid var(--lux-white);">
+                            <div style="font-size: 36px; font-weight: 900; color: var(--lux-white); margin-bottom: 12px;">24/7</div>
+                            <div style="color: var(--lux-white); font-size: 14px; font-weight: 600; letter-spacing: 1px;">LIVE UPDATES</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up Form -->
+    <section style="background: var(--lux-black); padding: 80px 0;">
+        <div class="lux-container" style="max-width: 600px; margin: 0 auto; padding: 0 32px;">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <h2 style="font-size: 36px; color: var(--lux-hot-pink); font-weight: 900; margin-bottom: 24px; letter-spacing: 2px;">CREATE YOUR ACCOUNT</h2>
+                <p style="color: var(--lux-white); font-size: 18px; opacity: 0.8; line-height: 1.6;">Join thousands of fashion-forward individuals who never miss a deal</p>
+            </div>
+            
+            <form style="background: var(--lux-dark-gray); border: 2px solid var(--lux-hot-pink); padding: 48px; border-radius: 0;">
+                <div style="margin-bottom: 24px;">
+                    <input type="text" class="lux-input" placeholder="Full Name" required>
+                </div>
+                <div style="margin-bottom: 24px;">
+                    <input type="email" class="lux-input" placeholder="Email Address" required>
+                </div>
+                <div style="margin-bottom: 24px;">
+                    <input type="password" class="lux-input" placeholder="Password" required>
+                </div>
+                <div style="margin-bottom: 32px;">
+                    <select class="lux-input" required>
+                        <option value="">Select your preferred style</option>
+                        <option value="luxury">Luxury & Designer</option>
+                        <option value="streetwear">Streetwear & Sneakers</option>
+                        <option value="accessories">Accessories & Jewelry</option>
+                        <option value="mixed">Mixed Style</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 32px;">
+                    <label style="display: flex; align-items: center; gap: 12px; color: var(--lux-white); font-size: 14px;">
+                        <input type="checkbox" required style="width: 18px; height: 18px;">
+                        I agree to receive exclusive deals and updates from Basedly
+                    </label>
+                </div>
+                <button type="submit" class="lux-button" style="width: 100%; padding: 20px; font-size: 18px;">JOIN BASEDLY NOW</button>
+            </form>
+            
+            <div style="text-align: center; margin-top: 32px;">
+                <p style="color: var(--lux-white); font-size: 14px; opacity: 0.7;">
+                    Already have an account? <a href="login.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600;">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('🎉 Welcome to Basedly! Your account has been created successfully. You\'ll receive exclusive deals and updates soon.');
+        });
+    </script>
+</body>
+</html> 

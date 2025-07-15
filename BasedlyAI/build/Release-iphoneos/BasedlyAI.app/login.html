@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Basedly">
+    <meta name="author" content="Basedly">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FF1493">
+    
+    <title>Basedly - Sign In</title>
+    
+    <link rel="stylesheet" href="./output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --lux-hot-pink: #FFABDF;
+            --lux-beige: #F5F5DC;
+            --lux-black: #000;
+            --lux-white: #fff;
+            --lux-dark-gray: #111;
+        }
+        
+        body {
+            background: var(--lux-black);
+            color: var(--lux-white);
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .lux-button {
+            background: var(--lux-hot-pink);
+            color: var(--lux-black);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+        
+        .lux-button:hover {
+            background: var(--lux-white);
+            color: var(--lux-black);
+            border-color: var(--lux-white);
+        }
+        
+        .lux-button-secondary {
+            background: var(--lux-black);
+            color: var(--lux-white);
+            border: 2px solid var(--lux-white);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+        }
+        
+        .lux-button-secondary:hover {
+            background: var(--lux-white);
+            color: var(--lux-black);
+        }
+        
+        .lux-input {
+            background: var(--lux-black);
+            border: 2px solid var(--lux-hot-pink);
+            color: var(--lux-white);
+            padding: 16px;
+            font-size: 16px;
+            width: 100%;
+            margin-bottom: 16px;
+            border-radius: 0;
+        }
+        
+        .lux-input:focus {
+            outline: none;
+            border-color: var(--lux-white);
+        }
+        
+        @media (max-width: 768px) {
+            .lux-container {
+                padding: 0 16px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav style="padding: 16px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
+        <div class="lux-container" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">BASEDLY</a>
+            
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="discovery.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">DISCOVERY</a>
+                <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">DEALS</a>
+                <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">PLAN</a>
+                <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">MEMBER</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section style="background: var(--lux-black); padding: 80px 0; text-align: center;">
+        <div class="lux-container" style="max-width: 1200px; margin: 0 auto; padding: 0 32px;">
+            <h1 style="font-size: 48px; color: var(--lux-hot-pink); font-weight: 900; margin-bottom: 24px; letter-spacing: 2px;">WELCOME BACK</h1>
+            <p style="font-size: 24px; color: var(--lux-white); margin-bottom: 48px; letter-spacing: 2px;">Sign in to access your exclusive deals and personalized recommendations</p>
+        </div>
+    </section>
+
+    <!-- Login Form -->
+    <section style="background: var(--lux-black); padding: 80px 0;">
+        <div class="lux-container" style="max-width: 500px; margin: 0 auto; padding: 0 32px;">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <h2 style="font-size: 36px; color: var(--lux-hot-pink); font-weight: 900; margin-bottom: 24px; letter-spacing: 2px;">SIGN IN</h2>
+                <p style="color: var(--lux-white); font-size: 18px; opacity: 0.8; line-height: 1.6;">Access your personalized shopping experience</p>
+            </div>
+            
+            <form id="loginForm" style="background: var(--lux-dark-gray); border: 2px solid var(--lux-hot-pink); padding: 48px; border-radius: 0;">
+                <div style="margin-bottom: 24px;">
+                    <input type="email" id="email" class="lux-input" placeholder="Email Address" required>
+                </div>
+                <div style="margin-bottom: 24px;">
+                    <input type="password" id="password" class="lux-input" placeholder="Password" required>
+                </div>
+                <div style="margin-bottom: 32px; display: flex; justify-content: space-between; align-items: center;">
+                    <label style="display: flex; align-items: center; gap: 12px; color: var(--lux-white); font-size: 14px;">
+                        <input type="checkbox" style="width: 18px; height: 18px;">
+                        Remember me
+                    </label>
+                    <a href="#" style="color: var(--lux-hot-pink); text-decoration: none; font-size: 14px; font-weight: 600;">Forgot Password?</a>
+                </div>
+                <button type="submit" class="lux-button" style="width: 100%; padding: 20px; font-size: 18px;">SIGN IN</button>
+                <div id="loginStatus" style="display: none; margin-top: 20px;"></div>
+            </form>
+            
+            <div style="text-align: center; margin-top: 32px;">
+                <p style="color: var(--lux-white); font-size: 14px; opacity: 0.7;">
+                    Don't have an account? <a href="signup.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600;">Create Account</a>
+                </p>
+            </div>
+            
+            <!-- Social Login Options -->
+            <div style="margin-top: 48px; text-align: center;">
+                <p style="color: var(--lux-white); font-size: 14px; opacity: 0.7; margin-bottom: 24px;">Or continue with</p>
+                <div style="display: flex; gap: 16px; justify-content: center;">
+                    <button class="lux-button-secondary" style="flex: 1; max-width: 200px; padding: 16px;">
+                        <span style="font-size: 14px;">GOOGLE</span>
+                    </button>
+                    <button class="lux-button-secondary" style="flex: 1; max-width: 200px; padding: 16px;">
+                        <span style="font-size: 14px;">APPLE</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="./components/utils/AuthManager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            if (window.authManager && window.authManager.isLoggedIn()) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const submitBtn = document.querySelector('button[type="submit"]');
+                const statusDiv = document.getElementById('loginStatus');
+                
+                // Show loading state
+                submitBtn.innerHTML = 'SIGNING IN...';
+                submitBtn.disabled = true;
+                statusDiv.innerHTML = '<p style="color: var(--lux-beige); text-align: center; margin: 0;">Signing you in...</p>';
+                statusDiv.style.display = 'block';
+                
+                // Use AuthManager for login
+                window.authManager.login(email, password)
+                    .then(user => {
+                        statusDiv.innerHTML = '<p style="color: var(--lux-hot-pink); text-align: center; margin: 0;">Welcome back, ' + user.name + '!</p>';
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1000);
+                    })
+                    .catch(error => {
+                        statusDiv.innerHTML = '<p style="color: #ff6b6b; text-align: center; margin: 0;">Invalid email or password. Please try again.</p>';
+                        submitBtn.innerHTML = 'SIGN IN';
+                        submitBtn.disabled = false;
+                    });
+            });
+        });
+        
+        // Navigation functions
+        function navigateToDiscovery() {
+            window.location.href = 'discovery.html';
+        }
+        
+        function navigateToDeals() {
+            window.location.href = 'deals.html';
+        }
+        
+        function navigateToSocial() {
+            window.location.href = 'social.html';
+        }
+        
+        function navigateToMember() {
+            window.location.href = 'member.html';
+        }
+    </script>
+</body>
+</html> 
