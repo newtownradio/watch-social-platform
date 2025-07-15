@@ -17,36 +17,41 @@ class HeroComponent extends BaseComponent {
             text-align: center;
         `;
 
-        const title = document.createElement('h1');
-        title.style.cssText = `
-            font-size: 64px; 
-            color: var(--lux-hot-pink); 
-            font-weight: 900; 
-            margin-bottom: 24px; 
-            letter-spacing: 4px;
+        // Create logo container with global animation classes
+        const logoContainer = document.createElement('div');
+        logoContainer.className = 'basedly-logo-container';
+        logoContainer.style.cssText = `
+            margin-bottom: clamp(30px, 8vw, 60px);
         `;
+
+        const title = document.createElement('h1');
+        title.className = 'basedly-logo';
         title.textContent = data.title || 'BASEDLY';
+
+        logoContainer.appendChild(title);
+        section.appendChild(logoContainer);
 
         const subtitle = document.createElement('p');
         subtitle.style.cssText = `
-            font-size: 20px; 
+            font-size: clamp(1rem, 3vw, 1.5rem); 
             color: var(--lux-white); 
             font-weight: 300; 
             letter-spacing: 2px; 
             margin-bottom: 32px;
+            opacity: 0.9;
         `;
         subtitle.textContent = data.subtitle || 'AI-Powered Shopping Discovery Platform';
 
         const description = document.createElement('p');
         description.style.cssText = `
-            font-size: 16px; 
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem); 
             color: var(--lux-white); 
             opacity: 0.9; 
             line-height: 1.6;
+            max-width: 600px;
         `;
         description.textContent = data.description || 'Our AI learns your style and finds hidden gems you\'ll love';
 
-        section.appendChild(title);
         section.appendChild(subtitle);
         section.appendChild(description);
         

@@ -2,7 +2,6 @@
 class SplashPageComponent extends BaseComponent {
     constructor(dataManager) {
         super(dataManager);
-        this.landingWeather = new LandingWeatherComponent(dataManager);
         this.hero = new HeroComponent(dataManager);
         this.isAnimationsActive = true;
     }
@@ -19,229 +18,372 @@ class SplashPageComponent extends BaseComponent {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            justify-content: center;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
             overflow: hidden;
+            cursor: pointer;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         `;
 
-        // Create content wrapper
-        const contentWrapper = document.createElement('div');
-        contentWrapper.id = 'splash-content';
-        contentWrapper.style.cssText = `
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 800px;
-            padding: 20px;
-        `;
-
-        // Create animation container for GSAP hero clouds
-        const heroCloudAnim = document.createElement('div');
-        heroCloudAnim.id = 'hero-cloud-anim';
-        heroCloudAnim.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 180px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            pointer-events: none;
-            z-index: 20;
-        `;
-        // Add 3 large puffy clouds
-        for (let i = 0; i < 3; i++) {
-            const cloud = document.createElement('div');
-            cloud.className = 'gsap-puffy-cloud';
-            cloud.style.cssText = `
-                position: absolute;
-                bottom: ${20 + i * 30}px;
-                left: ${20 + i * 30}vw;
-                width: clamp(120px, 30vw, 220px);
-                height: clamp(60px, 12vw, 110px);
-                background: linear-gradient(135deg, #fff 80%, #FFABDF 100%);
-                border-radius: 50% 50% 60% 60% / 60% 60% 50% 50%;
-                opacity: 0.85;
-                box-shadow: 0 8px 32px 0 rgba(255,171,223,0.12), 0 1.5vw 2vw 0 #fff8;
-                filter: blur(0.5px) drop-shadow(0 0 16px #fff8);
-            `;
-            heroCloudAnim.appendChild(cloud);
-        }
-
-        // Render hero content
-        this.hero.render('splash-content', {
-            title: 'BASEDLY',
-            subtitle: 'AI-Powered Shopping Discovery Platform',
-            description: 'Our AI learns your style and finds hidden gems you\'ll love'
+        // Add click/touch event to reload index page
+        splashContainer.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+        splashContainer.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            window.location.href = 'index.html';
         });
 
-        // Create animation container
-        const animationContainer = document.createElement('div');
-        animationContainer.id = 'splash-animations';
-        animationContainer.style.cssText = `
+        // Create cloud animation container
+        const cloudContainer = document.createElement('div');
+        cloudContainer.id = 'cloud-animation-container';
+        cloudContainer.style.cssText = `
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1;
             pointer-events: none;
+            z-index: 1;
         `;
 
-        // Render landing weather animations (no rainbow)
-        this.landingWeather.render('splash-animations');
-
-        // Add navigation buttons
-        const navButtons = document.createElement('div');
-        navButtons.id = 'splash-navigation';
-        navButtons.style.cssText = `
-            margin-top: 40px;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        `;
-
-        const pages = [
-            { name: 'discovery', label: 'DISCOVER', color: 'var(--lux-hot-pink)' },
-            { name: 'deals', label: 'DEALS', color: 'var(--lux-white)' },
-            { name: 'messages', label: 'MESSAGES', color: 'var(--lux-hot-pink)' },
-            { name: 'social', label: 'SOCIAL', color: 'var(--lux-white)' }
+        // Create 3 layers of clouds with enhanced 3D effects
+        const cloudLayers = [
+            { count: 5, size: 'large', zIndex: 1, opacity: 0.9, speed: 0.5 },
+            { count: 8, size: 'medium', zIndex: 2, opacity: 0.7, speed: 0.8 },
+            { count: 12, size: 'small', zIndex: 3, opacity: 0.5, speed: 1.2 }
         ];
 
-        pages.forEach(page => {
-            const button = document.createElement('button');
-            button.textContent = page.label;
-            button.setAttribute('data-navigate', page.name);
-            button.style.cssText = `
-                background: transparent;
-                border: 2px solid ${page.color};
-                color: ${page.color};
-                padding: 12px 24px;
-                font-family: 'Space Grotesk', Arial, sans-serif;
-                font-weight: 600;
-                font-size: 14px;
-                letter-spacing: 2px;
-                text-transform: uppercase;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                border-radius: 4px;
-                min-width: 120px;
-            `;
+        cloudLayers.forEach((layer, layerIndex) => {
+            for (let i = 0; i < layer.count; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = `cloud cloud-${layer.size}`;
+                cloud.style.cssText = `
+                    position: absolute;
+                    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,192,203,0.7) 100%);
+                    border-radius: 50px;
+                    box-shadow: 
+                        0 8px 32px rgba(255,255,255,0.3),
+                        inset 0 -4px 8px rgba(0,0,0,0.1),
+                        0 4px 16px rgba(255,192,203,0.4);
+                    opacity: ${layer.opacity};
+                    z-index: ${layer.zIndex};
+                    transform: translateZ(${layerIndex * 10}px);
+                    filter: blur(${layerIndex * 0.5}px);
+                    transition: all 0.3s ease;
+                `;
 
-            // Hover effects
-            button.addEventListener('mouseenter', () => {
-                button.style.background = page.color;
-                button.style.color = 'var(--lux-black)';
-                button.style.transform = 'translateY(-2px)';
-                button.style.boxShadow = `0 4px 12px rgba(255, 171, 223, 0.3)`;
-            });
+                // Set cloud size based on layer
+                const sizeMap = {
+                    large: { width: 'clamp(120px, 30vw, 220px)', height: 'clamp(60px, 12vw, 110px)' },
+                    medium: { width: 'clamp(80px, 20vw, 150px)', height: 'clamp(40px, 8vw, 75px)' },
+                    small: { width: 'clamp(50px, 12vw, 100px)', height: 'clamp(25px, 5vw, 50px)' }
+                };
 
-            button.addEventListener('mouseleave', () => {
-                button.style.background = 'transparent';
-                button.style.color = page.color;
-                button.style.transform = 'translateY(0)';
-                button.style.boxShadow = 'none';
-            });
+                cloud.style.width = sizeMap[layer.size].width;
+                cloud.style.height = sizeMap[layer.size].height;
 
-            navButtons.appendChild(button);
+                // Random positioning
+                cloud.style.left = `${Math.random() * 100}%`;
+                cloud.style.top = `${Math.random() * 100}%`;
+
+                cloudContainer.appendChild(cloud);
+            }
         });
 
-        // Assemble the splash page
-        contentWrapper.appendChild(heroCloudAnim);
-        contentWrapper.appendChild(navButtons);
-        splashContainer.appendChild(animationContainer);
-        splashContainer.appendChild(contentWrapper);
+        // Create hero content container
+        const heroContent = document.createElement('div');
+        heroContent.id = 'splash-hero-content';
+        heroContent.style.cssText = `
+            position: relative;
+            z-index: 15;
+            text-align: center;
+            padding: clamp(20px, 5vw, 40px);
+            max-width: 90vw;
+            width: 100%;
+        `;
+
+        // Create floating Basedly logo with enhanced animations
+        const logoContainer = document.createElement('div');
+        logoContainer.id = 'floating-logo';
+        logoContainer.style.cssText = `
+            margin-bottom: clamp(30px, 8vw, 60px);
+            animation: logoFloat 4s ease-in-out infinite;
+            transform-origin: center;
+            position: relative;
+            z-index: 20;
+        `;
+
+        const logo = document.createElement('div');
+        logo.innerHTML = 'BASEDLY';
+        logo.style.cssText = `
+            font-family: 'Arial Black', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 0%, #ffc0cb 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 
+                0 0 40px rgba(255,255,255,1),
+                0 0 80px rgba(255,192,203,0.8),
+                0 0 120px rgba(255,192,203,0.6),
+                2px 2px 4px rgba(0,0,0,0.8);
+            letter-spacing: clamp(3px, 1.5vw, 6px);
+            animation: logoGlow 3s ease-in-out infinite alternate;
+            filter: drop-shadow(0 8px 16px rgba(255,255,255,0.5));
+            position: relative;
+            z-index: 25;
+            text-align: center;
+            line-height: 1.2;
+            padding: clamp(10px, 3vw, 20px);
+            border-radius: 10px;
+            background-color: rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        `;
+
+        logoContainer.appendChild(logo);
+        heroContent.appendChild(logoContainer);
+
+        // Create subtitle
+        const subtitle = document.createElement('p');
+        subtitle.textContent = 'AI-Powered Shopping Discovery';
+        subtitle.style.cssText = `
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: #ffffff;
+            margin: clamp(15px, 4vw, 30px) 0;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        `;
+
+        heroContent.appendChild(subtitle);
+
+        // Create tap instruction
+        const tapInstruction = document.createElement('div');
+        tapInstruction.textContent = 'Tap anywhere to continue';
+        tapInstruction.style.cssText = `
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            color: rgba(255,255,255,0.7);
+            margin-top: clamp(20px, 6vw, 40px);
+            padding: clamp(10px, 3vw, 20px) clamp(20px, 5vw, 40px);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            animation: pulseGlow 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+        `;
+
+        heroContent.appendChild(tapInstruction);
+
+        // Add hover effect for tap instruction
+        tapInstruction.addEventListener('mouseenter', () => {
+            tapInstruction.style.background = 'rgba(255,255,255,0.2)';
+            tapInstruction.style.borderColor = 'rgba(255,255,255,0.5)';
+        });
+
+        tapInstruction.addEventListener('mouseleave', () => {
+            tapInstruction.style.background = 'rgba(255,255,255,0.1)';
+            tapInstruction.style.borderColor = 'rgba(255,255,255,0.3)';
+        });
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes logoFloat {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                25% { transform: translateY(-10px) rotate(1deg); }
+                50% { transform: translateY(-5px) rotate(-1deg); }
+                75% { transform: translateY(-15px) rotate(0.5deg); }
+            }
+
+            @keyframes logoGlow {
+                0% { 
+                    filter: drop-shadow(0 8px 16px rgba(255,255,255,0.5)) 
+                           drop-shadow(0 0 30px rgba(255,192,203,0.6))
+                           drop-shadow(0 0 50px rgba(255,255,255,0.4));
+                    text-shadow: 
+                        0 0 40px rgba(255,255,255,1),
+                        0 0 80px rgba(255,192,203,0.8),
+                        0 0 120px rgba(255,192,203,0.6),
+                        2px 2px 4px rgba(0,0,0,0.8);
+                }
+                100% { 
+                    filter: drop-shadow(0 12px 24px rgba(255,255,255,0.7)) 
+                           drop-shadow(0 0 40px rgba(255,192,203,0.9))
+                           drop-shadow(0 0 70px rgba(255,255,255,0.6));
+                    text-shadow: 
+                        0 0 50px rgba(255,255,255,1),
+                        0 0 100px rgba(255,192,203,0.9),
+                        0 0 150px rgba(255,192,203,0.7),
+                        2px 2px 4px rgba(0,0,0,0.8);
+                }
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @keyframes pulseGlow {
+                0%, 100% { 
+                    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+                }
+                50% { 
+                    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+                }
+            }
+
+            /* iOS-specific responsive optimizations */
+            @supports (-webkit-touch-callout: none) {
+                #splash-page {
+                    -webkit-overflow-scrolling: touch;
+                    -webkit-user-select: none;
+                    -webkit-touch-callout: none;
+                }
+                
+                .cloud {
+                    -webkit-transform: translateZ(0);
+                    -webkit-backface-visibility: hidden;
+                }
+            }
+
+            /* Responsive breakpoints for all iOS devices */
+            @media screen and (max-width: 428px) { /* iPhone 14 Pro Max */
+                #floating-logo {
+                    margin-bottom: 40px;
+                }
+            }
+
+            @media screen and (max-width: 390px) { /* iPhone 14, 13, 12 */
+                #floating-logo {
+                    margin-bottom: 35px;
+                }
+            }
+
+            @media screen and (max-width: 375px) { /* iPhone SE, 12 mini */
+                #floating-logo {
+                    margin-bottom: 30px;
+                }
+            }
+
+            @media screen and (max-width: 320px) { /* iPhone SE 1st gen */
+                #floating-logo {
+                    margin-bottom: 25px;
+                }
+            }
+
+            /* iPad responsive */
+            @media screen and (min-width: 768px) and (max-width: 1024px) {
+                #splash-page {
+                    padding: 40px;
+                }
+                
+                #floating-logo {
+                    margin-bottom: 60px;
+                }
+            }
+
+            /* Landscape orientation adjustments */
+            @media screen and (orientation: landscape) and (max-height: 500px) {
+                #splash-page {
+                    min-height: 100vh;
+                    padding: 20px;
+                }
+                
+                #floating-logo {
+                    margin-bottom: 20px;
+                }
+                
+                .cloud {
+                    display: none;
+                }
+            }
+        `;
+
+        document.head.appendChild(style);
+
+        // Add components to splash container
+        splashContainer.appendChild(cloudContainer);
+        splashContainer.appendChild(heroContent);
+
+        // Clear container and add splash page
+        container.innerHTML = '';
         container.appendChild(splashContainer);
 
-        // Initialize animations
-        this.initializeAnimations();
+        // Initialize GSAP animations for clouds
+        this.initCloudAnimations();
     }
 
-    initializeAnimations() {
-        if (!this.isAnimationsActive) return;
+    initCloudAnimations() {
+        if (typeof gsap === 'undefined') {
+            // Fallback animation if GSAP not loaded
+            this.fallbackCloudAnimation();
+            return;
+        }
 
-        // Initialize GSAP animations if available
-        if (typeof gsap !== 'undefined') {
-            // Animate content entrance
-            gsap.from('#splash-content', {
-                duration: 1.2,
-                y: 50,
-                opacity: 0,
-                ease: 'power2.out',
-                delay: 0.3
+        const clouds = document.querySelectorAll('.cloud');
+        
+        clouds.forEach((cloud, index) => {
+            const duration = 5 + Math.random() * 3; // 5-8 seconds
+            const delay = Math.random() * 2;
+            
+            gsap.set(cloud, {
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight
             });
 
-            // Animate navigation buttons
-            gsap.from('#splash-navigation button', {
-                duration: 0.8,
-                y: 30,
-                opacity: 0,
-                stagger: 0.1,
-                ease: 'back.out(1.7)',
-                delay: 0.8
+            gsap.to(cloud, {
+                x: `+=${(Math.random() - 0.5) * 200}`,
+                y: `+=${(Math.random() - 0.5) * 100}`,
+                rotation: Math.random() * 360,
+                duration: duration,
+                delay: delay,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true
             });
-            // Animate clouds
-            if (document.querySelectorAll('.gsap-puffy-cloud').length) {
-                document.querySelectorAll('.gsap-puffy-cloud').forEach((el, i) => {
-                    gsap.to(el, {
-                        x: `+=${gsap.utils.random(-30, 30)}vw`,
-                        y: `+=${gsap.utils.random(-10, 10)}px`,
-                        opacity: gsap.utils.random(0.7, 1),
-                        repeat: -1,
-                        yoyo: true,
-                        duration: gsap.utils.random(5, 8),
-                        ease: 'sine.inOut',
-                        delay: i * 0.5
-                    });
-                });
-            }
-        }
+        });
     }
 
-    // Method to toggle animations
-    toggleAnimations() {
-        this.isAnimationsActive = !this.isAnimationsActive;
-        const animationContainer = document.getElementById('splash-animations');
-        if (animationContainer) {
-            animationContainer.style.display = this.isAnimationsActive ? 'block' : 'none';
-        }
-    }
-
-    // Method to stop animations
-    stopAnimations() {
-        this.isAnimationsActive = false;
-        const animationContainer = document.getElementById('splash-animations');
-        if (animationContainer) {
-            animationContainer.style.display = 'none';
-        }
-    }
-
-    // Method to start animations
-    startAnimations() {
-        this.isAnimationsActive = true;
-        const animationContainer = document.getElementById('splash-animations');
-        if (animationContainer) {
-            animationContainer.style.display = 'block';
-        }
-        this.initializeAnimations();
+    fallbackCloudAnimation() {
+        const clouds = document.querySelectorAll('.cloud');
+        
+        clouds.forEach((cloud, index) => {
+            const keyframes = `
+                @keyframes cloudFloat${index} {
+                    0%, 100% { 
+                        transform: translate(${Math.random() * 100}px, ${Math.random() * 100}px) rotate(0deg); 
+                    }
+                    50% { 
+                        transform: translate(${Math.random() * 100}px, ${Math.random() * 100}px) rotate(180deg); 
+                    }
+                }
+            `;
+            
+            const style = document.createElement('style');
+            style.textContent = keyframes;
+            document.head.appendChild(style);
+            
+            cloud.style.animation = `cloudFloat${index} ${5 + Math.random() * 3}s ease-in-out infinite`;
+        });
     }
 
     destroy() {
-        // Clean up animations
-        if (typeof gsap !== 'undefined') {
-            gsap.killTweensOf('#splash-content');
-            gsap.killTweensOf('#splash-navigation button');
-            gsap.killTweensOf('.gsap-puffy-cloud'); // Kill clouds
-        }
-        
-        // Destroy child components
-        if (this.landingWeather) {
-            this.landingWeather.destroy();
-        }
-        if (this.hero) {
-            this.hero.destroy();
+        this.isAnimationsActive = false;
+        const splashPage = document.getElementById('splash-page');
+        if (splashPage) {
+            splashPage.remove();
         }
     }
 } 

@@ -76,6 +76,48 @@
             }
         }
         
+        @keyframes logoPuff {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg);
+                filter: drop-shadow(0 0 20px rgba(255, 171, 223, 0.6)) 
+                        drop-shadow(0 0 40px rgba(255, 171, 223, 0.4))
+                        drop-shadow(0 0 60px rgba(255, 171, 223, 0.2));
+            }
+            25% { 
+                transform: scale(1.05) rotate(1deg);
+                filter: drop-shadow(0 0 25px rgba(255, 171, 223, 0.8)) 
+                        drop-shadow(0 0 50px rgba(255, 171, 223, 0.6))
+                        drop-shadow(0 0 75px rgba(255, 171, 223, 0.4));
+            }
+            50% { 
+                transform: scale(1.03) rotate(-0.5deg);
+                filter: drop-shadow(0 0 30px rgba(255, 171, 223, 0.7)) 
+                        drop-shadow(0 0 60px rgba(255, 171, 223, 0.5))
+                        drop-shadow(0 0 90px rgba(255, 171, 223, 0.3));
+            }
+            75% { 
+                transform: scale(1.06) rotate(0.8deg);
+                filter: drop-shadow(0 0 35px rgba(255, 171, 223, 0.9)) 
+                        drop-shadow(0 0 70px rgba(255, 171, 223, 0.7))
+                        drop-shadow(0 0 105px rgba(255, 171, 223, 0.5));
+            }
+        }
+        
+        @keyframes logoGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 15px rgba(255, 171, 223, 0.8)) 
+                        drop-shadow(0 0 30px rgba(255, 171, 223, 0.6))
+                        drop-shadow(0 0 45px rgba(255, 171, 223, 0.4))
+                        brightness(1.1);
+            }
+            50% { 
+                filter: drop-shadow(0 0 25px rgba(255, 171, 223, 1)) 
+                        drop-shadow(0 0 50px rgba(255, 171, 223, 0.8))
+                        drop-shadow(0 0 75px rgba(255, 171, 223, 0.6))
+                        brightness(1.3);
+            }
+        }
+        
         /* Hero White Chain Animations */
         @keyframes heroWhiteChainShine {
             0% {
@@ -185,7 +227,7 @@
             width: 100%;
         }
         
-        /* iOS Optimizations */
+        /* iOS Optimizations - App Store Ready */
         @media (max-width: 768px) {
             nav {
                 padding: 8px 0 !important;
@@ -195,49 +237,139 @@
                 padding: 0 16px !important;
             }
             
-            nav > div > div:first-child {
-                font-size: 24px !important;
-                letter-spacing: 2px !important;
+            .puffy-logo {
+                font-size: 28px !important;
+                padding: 6px 12px !important;
             }
             
-            nav > div > div:last-child {
-                gap: 16px !important;
-            }
-            
-            nav > div > div:last-child > a {
-                font-size: 12px !important;
-                letter-spacing: 0.5px !important;
-                padding: 6px 8px !important;
-            }
-        }
-        
-        @media (max-width: 480px) {
             nav > div > div:last-child {
                 gap: 12px !important;
             }
             
             nav > div > div:last-child > a {
                 font-size: 11px !important;
+                letter-spacing: 0.5px !important;
                 padding: 4px 6px !important;
+            }
+            
+            /* Grid responsiveness */
+            .lux-grid {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+            }
+            
+            /* Section headers */
+            h2 {
+                font-size: 36px !important;
+                letter-spacing: 2px !important;
+            }
+            
+            /* Discovery grid */
+            #discovery .lux-container > div:last-child {
+                grid-template-columns: 1fr !important;
+                grid-template-rows: auto !important;
+            }
+            
+            /* Social grid */
+            #social .lux-container > div:last-child {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav > div > div:last-child {
+                gap: 8px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 10px !important;
+                padding: 3px 5px !important;
+            }
+            
+            .puffy-logo {
+                font-size: 24px !important;
+                padding: 4px 8px !important;
             }
             
             /* Hero section mobile optimizations */
             section[style*="min-height: 100vh"] {
-                padding: 20px 16px !important;
+                padding: 16px 12px !important;
             }
             
             section[style*="min-height: 100vh"] h1 {
-                font-size: 48px !important;
-                letter-spacing: 2px !important;
+                font-size: 40px !important;
+                letter-spacing: 1px !important;
             }
             
             section[style*="min-height: 100vh"] p {
-                font-size: 16px !important;
+                font-size: 14px !important;
             }
             
             section[style*="min-height: 100vh"] button {
-                padding: 16px 24px !important;
+                padding: 14px 20px !important;
+                font-size: 13px !important;
+            }
+            
+            /* Button groups */
+            section[style*="min-height: 100vh"] > div:last-child {
+                gap: 16px !important;
+            }
+            
+            /* Section headers */
+            h2 {
+                font-size: 28px !important;
+                letter-spacing: 1px !important;
+            }
+            
+            /* Grid items */
+            .lux-grid > div {
+                padding: 24px !important;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .puffy-logo {
+                font-size: 20px !important;
+                padding: 3px 6px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 9px !important;
+                padding: 2px 4px !important;
+            }
+            
+            section[style*="min-height: 100vh"] h1 {
+                font-size: 32px !important;
+            }
+            
+            section[style*="min-height: 100vh"] p {
+                font-size: 12px !important;
+            }
+            
+            section[style*="min-height: 100vh"] button {
+                padding: 12px 16px !important;
+                font-size: 12px !important;
+            }
+        }
+        
+        /* iPad Optimizations */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .puffy-logo {
+                font-size: 36px !important;
+                padding: 10px 20px !important;
+            }
+            
+            nav > div > div:last-child > a {
                 font-size: 14px !important;
+                padding: 8px 12px !important;
+            }
+            
+            section[style*="min-height: 100vh"] h1 {
+                font-size: 56px !important;
+            }
+            
+            section[style*="min-height: 100vh"] p {
+                font-size: 18px !important;
             }
         }
         
@@ -255,13 +387,70 @@
                 padding-bottom: max(40px, env(safe-area-inset-bottom));
             }
         }
+        
+        /* Touch-friendly interactions */
+        .lux-button, .lux-button-secondary {
+            min-height: 44px !important;
+            -webkit-tap-highlight-color: transparent !important;
+            touch-action: manipulation !important;
+        }
+        
+        /* Responsive grid classes */
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        @media (max-width: 768px) {
+            .responsive-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+        
+        /* Puffy logo enhancements */
+        .puffy-logo {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .puffy-logo::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, rgba(255, 171, 223, 0.3), rgba(255, 20, 147, 0.3));
+            border-radius: 14px;
+            z-index: -1;
+            animation: logoPuff 4s ease-in-out infinite;
+        }
+        
+        /* App Store optimization classes */
+        .app-store-optimized {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+        }
+        
+        .touch-target {
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
-<body>
+<body class="app-store-optimized">
     <!-- iOS-Optimized Navigation -->
     <nav style="padding: 12px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; -webkit-backdrop-filter: blur(10px);">
         <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <div style="font-family: 'Fredoka One', cursive; font-size: 32px; font-weight: 400; background: linear-gradient(135deg, #FFABDF, #FF1493); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255, 171, 223, 0.5), 0 0 20px rgba(255, 171, 223, 0.3), 0 0 30px rgba(255, 171, 223, 0.2); animation: logoTextFloat 3s ease-in-out infinite; position: relative; flex-shrink: 0; cursor: pointer;" onmouseover="this.style.animation='logoTextBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)'; this.style.filter='brightness(1.2) contrast(1.2) drop-shadow(0 0 15px rgba(255, 171, 223, 0.8)) drop-shadow(0 0 25px rgba(255, 171, 223, 0.6))';" onmouseout="this.style.animation='logoTextFloat 3s ease-in-out infinite'; this.style.filter='none';">Basedly</div>
+            <div class="basedly-logo-container" style="flex-shrink: 0; cursor: pointer; padding: 8px 16px; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';">
+                <div class="basedly-logo" style="font-size: 32px;">BASEDLY</div>
+            </div>
             
             <div style="display: flex; align-items: center; gap: 16px;">
                 <a href="discovery.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">DISCOVERY</a>
@@ -269,7 +458,18 @@
                 <a href="messages.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMessages()">MESSAGES</a>
                 <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
                 <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
-                <a href="login.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">SIGN IN</a>
+                <!-- Authentication Section -->
+                <div class="auth-button sign-in-button" style="display: flex; align-items: center;">
+                    <a href="login.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">SIGN IN</a>
+                </div>
+                
+                <!-- User Menu (shown when logged in) -->
+                <div class="user-menu" style="display: none; align-items: center; gap: 12px;">
+                    <div class="user-avatar" style="display: none; cursor: pointer;" onclick="navigateToProfile()">
+                        <!-- User avatar will be populated by AuthManager -->
+                    </div>
+                    <button class="sign-out-button" onclick="signOut()" style="background: none; border: none; color: var(--lux-hot-pink); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; cursor: pointer; transition: all 0.3s ease;">SIGN OUT</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -408,7 +608,15 @@
         </div>
     </section>
 
+    <script src="./components/utils/AuthManager.js"></script>
     <script>
+        // Initialize auth manager
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.authManager) {
+                window.authManager.updateAuthUI();
+            }
+        });
+        
         // Real-time data simulation with brand logos and descriptions
         let deals = [
             {

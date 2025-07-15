@@ -260,6 +260,19 @@
                 <a href="messages.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMessages()">MESSAGES</a>
                 <a href="social.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-bottom: 2px solid var(--lux-hot-pink); transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
                 <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
+                
+                <!-- Authentication Section -->
+                <div class="auth-button sign-in-button" style="display: flex; align-items: center;">
+                    <a href="login.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">SIGN IN</a>
+                </div>
+                
+                <!-- User Menu (shown when logged in) -->
+                <div class="user-menu" style="display: none; align-items: center; gap: 12px;">
+                    <div class="user-avatar" style="display: none; cursor: pointer;" onclick="navigateToProfile()">
+                        <!-- User avatar will be populated by AuthManager -->
+                    </div>
+                    <button class="sign-out-button" onclick="signOut()" style="background: none; border: none; color: var(--lux-hot-pink); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; cursor: pointer; transition: all 0.3s ease;">SIGN OUT</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -387,7 +400,15 @@
         </div>
     </main>
 
+    <script src="./components/utils/AuthManager.js"></script>
     <script>
+        // Initialize auth manager
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.authManager) {
+                window.authManager.updateAuthUI();
+            }
+        });
+        
         // Sample data
         let friends = [
             { id: 1, name: "Sarah", avatar: "S" },

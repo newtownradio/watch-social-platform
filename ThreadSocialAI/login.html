@@ -137,6 +137,7 @@
                     <a href="#" style="color: var(--lux-hot-pink); text-decoration: none; font-size: 14px; font-weight: 600;">Forgot Password?</a>
                 </div>
                 <button type="submit" class="lux-button" style="width: 100%; padding: 20px; font-size: 18px;">SIGN IN</button>
+                <div id="loginStatus" style="display: none; margin-top: 20px;"></div>
             </form>
             
             <div style="text-align: center; margin-top: 32px;">
@@ -160,26 +161,43 @@
         </div>
     </section>
 
+    <script src="./components/utils/AuthManager.js"></script>
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Simple validation
-            if (!email || !password) {
-                alert('Please fill in all fields');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            if (window.authManager && window.authManager.isLoggedIn()) {
+                window.location.href = 'index.html';
                 return;
             }
-            
-            // Simulate login process
-            console.log('Logging in with:', email);
-            
-            // Redirect to main app after successful login
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1000);
+
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const submitBtn = document.querySelector('button[type="submit"]');
+                const statusDiv = document.getElementById('loginStatus');
+                
+                // Show loading state
+                submitBtn.innerHTML = 'SIGNING IN...';
+                submitBtn.disabled = true;
+                statusDiv.innerHTML = '<p style="color: var(--lux-beige); text-align: center; margin: 0;">Signing you in...</p>';
+                statusDiv.style.display = 'block';
+                
+                // Use AuthManager for login
+                window.authManager.login(email, password)
+                    .then(user => {
+                        statusDiv.innerHTML = '<p style="color: var(--lux-hot-pink); text-align: center; margin: 0;">Welcome back, ' + user.name + '!</p>';
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 1000);
+                    })
+                    .catch(error => {
+                        statusDiv.innerHTML = '<p style="color: #ff6b6b; text-align: center; margin: 0;">Invalid email or password. Please try again.</p>';
+                        submitBtn.innerHTML = 'SIGN IN';
+                        submitBtn.disabled = false;
+                    });
+            });
         });
         
         // Navigation functions

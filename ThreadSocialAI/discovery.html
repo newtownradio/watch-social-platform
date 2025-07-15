@@ -277,6 +277,19 @@
                 <a href="messages.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMessages()">MESSAGES</a>
                 <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
                 <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
+                
+                <!-- Authentication Section -->
+                <div class="auth-button sign-in-button" style="display: flex; align-items: center;">
+                    <a href="login.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">SIGN IN</a>
+                </div>
+                
+                <!-- User Menu (shown when logged in) -->
+                <div class="user-menu" style="display: none; align-items: center; gap: 12px;">
+                    <div class="user-avatar" style="display: none; cursor: pointer;" onclick="navigateToProfile()">
+                        <!-- User avatar will be populated by AuthManager -->
+                    </div>
+                    <button class="sign-out-button" onclick="signOut()" style="background: none; border: none; color: var(--lux-hot-pink); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; cursor: pointer; transition: all 0.3s ease;">SIGN OUT</button>
+                </div>
             </div>
         </div>
     </nav>
@@ -506,11 +519,17 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./components/utils/AuthManager.js"></script>
     <!-- Discovery page functionality is handled by the modular components -->
     <script>
         // Simple discovery page functionality
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Discovery page loaded');
+            
+            // Initialize auth manager
+            if (window.authManager) {
+                window.authManager.updateAuthUI();
+            }
             
             // Add any discovery-specific functionality here
             const categoryButtons = document.querySelectorAll('[data-category]');
@@ -552,6 +571,7 @@
             const query = searchInput.value.trim().toLowerCase();
             const resultsContainer = document.getElementById('search-results');
             if (!resultsContainer) return;
+            resultsContainer.style.display = 'block';
             resultsContainer.innerHTML = '';
             if (!query) {
                 resultsContainer.innerHTML = '<p style="color: var(--lux-beige); text-align:center;">Please enter a search term.</p>';
@@ -650,6 +670,72 @@
                 resultsContainer.appendChild(card);
             });
         }
+
+        // Add event listeners for search functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Main search input
+            const searchInput = document.getElementById('search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    if (this.value.trim()) {
+                        performSearch();
+                    } else {
+                        const resultsContainer = document.getElementById('search-results');
+                        if (resultsContainer) {
+                            resultsContainer.style.display = 'none';
+                        }
+                    }
+                });
+                
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        performSearch();
+                    }
+                });
+            }
+            
+            // Brand directory search
+            const brandSearchInput = document.getElementById('brand-directory-search');
+            if (brandSearchInput) {
+                brandSearchInput.addEventListener('input', function() {
+                    searchBrandDirectory();
+                });
+                
+                brandSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchBrandDirectory();
+                    }
+                });
+            }
+            
+            // Quick discovery search
+            const quickSearchInput = document.getElementById('quick-discovery-search');
+            if (quickSearchInput) {
+                quickSearchInput.addEventListener('input', function() {
+                    searchQuickDiscovery();
+                });
+                
+                quickSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchQuickDiscovery();
+                    }
+                });
+            }
+            
+            // Event search
+            const eventSearchInput = document.getElementById('event-search-input');
+            if (eventSearchInput) {
+                eventSearchInput.addEventListener('input', function() {
+                    searchEvents();
+                });
+                
+                eventSearchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        searchEvents();
+                    }
+                });
+            }
+        });
 
         function searchBrandDirectory() {
             const searchInput = document.getElementById('brand-directory-search');
@@ -833,15 +919,46 @@
 
         function searchEvents() {
             const searchInput = document.getElementById('event-search-input');
-            const query = searchInput.value.trim();
+            const query = searchInput.value.trim().toLowerCase();
+            const resultsContainer = document.getElementById('event-search-results');
             
-            if (query) {
-                // Perform event search functionality here
-                console.log(`Searching events for: ${query}`);
-            } else {
-                // Handle empty search
-                console.log('Please enter an event search term');
+            if (!resultsContainer) return;
+            
+            // Sample events data
+            const events = [
+                { name: "Fashion Week LA", date: "March 15-20", location: "Los Angeles", category: "fashion", description: "Spring/Summer 2024 Collections" },
+                { name: "Luxury Watch Expo", date: "April 5-7", location: "New York", category: "watches", description: "Exclusive timepiece showcase" },
+                { name: "Streetwear Summit", date: "May 12-14", location: "Miami", category: "streetwear", description: "Urban fashion and culture festival" },
+                { name: "Jewelry Design Awards", date: "June 8-10", location: "Paris", category: "jewelry", description: "International jewelry design competition" },
+                { name: "Tech Fashion Fusion", date: "July 20-22", location: "San Francisco", category: "tech", description: "Wearable technology showcase" },
+                { name: "Sustainable Fashion Forum", date: "August 15-17", location: "London", category: "fashion", description: "Eco-friendly fashion innovation" }
+            ];
+            
+            const filteredEvents = events.filter(event =>
+                event.name.toLowerCase().includes(query) ||
+                event.location.toLowerCase().includes(query) ||
+                event.category.toLowerCase().includes(query) ||
+                event.description.toLowerCase().includes(query)
+            );
+            
+            resultsContainer.innerHTML = '';
+            
+            if (filteredEvents.length === 0) {
+                resultsContainer.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--lux-beige); padding: 40px;">No events found matching your search.</div>';
+                return;
             }
+            
+            filteredEvents.forEach(event => {
+                const eventCard = document.createElement('div');
+                eventCard.style.cssText = 'background: var(--lux-black); border: 2px solid var(--lux-hot-pink); padding: 20px; cursor: pointer; transition: all 0.3s ease;';
+                eventCard.innerHTML = `
+                    <h4 style="color: var(--lux-hot-pink); font-size: 16px; font-weight: 700; margin: 0 0 8px 0;">${event.name}</h4>
+                    <p style="color: var(--lux-white); font-size: 14px; margin: 0 0 8px 0;">${event.description}</p>
+                    <div style="color: var(--lux-beige); font-size: 12px; margin-bottom: 8px;">${event.date} • ${event.location}</div>
+                    <div style="color: var(--lux-white); opacity: 0.7; font-size: 12px; text-transform: uppercase;">${event.category}</div>
+                `;
+                resultsContainer.appendChild(eventCard);
+            });
         }
 
         // Enhanced filter functions
