@@ -1,0 +1,32 @@
+/* Basic styles for Thread Social */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+.lux-button {
+    background: #FFABDF;
+    color: #000;
+    border: none;
+    padding: 20px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lux-button-secondary {
+    background: transparent;
+    color: #FFABDF;
+    border: 2px solid #FFABDF;
+    padding: 20px 32px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}

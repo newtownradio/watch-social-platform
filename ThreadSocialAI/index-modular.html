@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    	<meta name="apple-mobile-web-app-title" content="Thread Social AI">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FF1493">
+    
+    	<title>Thread Social AI - AI-Powered Shopping Discovery</title>
+    
+    <link rel="stylesheet" href="./output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --lux-hot-pink: #FFABDF;
+            --lux-beige: #F5F5DC;
+            --lux-black: #000;
+            --lux-white: #fff;
+            --lux-dark-gray: #111;
+        }
+        
+        body, html {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--lux-black);
+            color: var(--lux-white);
+        }
+        
+        .nav-logo, .brand-title, h1, h2, h3 {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            letter-spacing: 2px;
+        }
+        
+        .lux-button, .lux-button-secondary {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .lux-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .new-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--lux-beige);
+            color: var(--lux-black);
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .lux-card {
+            position: relative;
+        }
+        
+        /* Navigation hover effects */
+        .lux-nav-link:hover {
+            color: var(--lux-hot-pink) !important;
+        }
+        
+        .lux-nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--lux-hot-pink);
+            transition: width 0.3s ease;
+        }
+        
+        .lux-nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* iOS Optimizations */
+        @media (max-width: 768px) {
+            nav {
+                padding: 8px 0 !important;
+            }
+            
+            nav > div {
+                padding: 0 16px !important;
+            }
+            
+            nav > div > div:first-child {
+                font-size: 24px !important;
+                letter-spacing: 2px !important;
+            }
+            
+            nav > div > div:last-child {
+                gap: 16px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 12px !important;
+                letter-spacing: 0.5px !important;
+                padding: 6px 8px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav > div > div:last-child {
+                gap: 12px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 11px !important;
+                padding: 4px 6px !important;
+            }
+            
+            /* Hero section mobile optimizations */
+            section[style*="min-height: 100vh"] {
+                padding: 20px 16px !important;
+            }
+            
+            section[style*="min-height: 100vh"] h1 {
+                font-size: 48px !important;
+                letter-spacing: 2px !important;
+            }
+            
+            section[style*="min-height: 100vh"] p {
+                font-size: 16px !important;
+            }
+            
+            section[style*="min-height: 100vh"] button {
+                padding: 16px 24px !important;
+                font-size: 14px !important;
+            }
+        }
+        
+        /* iOS Safe Area Support */
+        @supports (padding: max(0px)) {
+            nav {
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+            
+            section[style*="min-height: 100vh"] {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+                padding-top: max(40px, env(safe-area-inset-top));
+                padding-bottom: max(40px, env(safe-area-inset-bottom));
+            }
+        }
+
+        /* App Container */
+        #app-container {
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* Loading State */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--lux-black);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--lux-dark-gray);
+            border-top: 4px solid var(--lux-hot-pink);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Error State */
+        .error {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--lux-black);
+            color: var(--lux-white);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .error h2 {
+            color: var(--lux-hot-pink);
+            margin-bottom: 16px;
+        }
+
+        .error button {
+            background: var(--lux-hot-pink);
+            color: var(--lux-white);
+            border: none;
+            padding: 12px 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <!-- App Container -->
+    <div id="app-container">
+        <!-- Loading State -->
+        <div class="loading">
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Component Scripts -->
+    <script src="./components/DataManager.js"></script>
+    <script src="./components/UIComponentManager.js"></script>
+    <script src="./components/AppController.js"></script>
+    
+    <!-- Main Application Script -->
+    <script>
+        // Global application instance
+        let app;
+
+        // Initialize application when DOM is loaded
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                		console.log('Starting Thread Social Application...');
+                
+                // Create application instance
+                app = new AppController();
+                
+                // Initialize application
+                await app.initialize();
+                
+                		console.log('Thread Social Application started successfully');
+                
+            } catch (error) {
+                console.error('Failed to start application:', error);
+                showError('Failed to start application', error.message);
+            }
+        });
+
+        // Handle page visibility changes
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // Page is hidden, pause real-time updates
+                if (app && app.isInitialized) {
+                    app.stopRealTimeUpdates();
+                }
+            } else {
+                // Page is visible, resume real-time updates
+                if (app && app.isInitialized) {
+                    app.startRealTimeUpdates();
+                }
+            }
+        });
+
+        // Handle beforeunload
+        window.addEventListener('beforeunload', () => {
+            if (app && app.isInitialized) {
+                app.destroy();
+            }
+        });
+
+        // Handle popstate (back/forward navigation)
+        window.addEventListener('popstate', (event) => {
+            if (app && app.isInitialized && event.state && event.state.page) {
+                app.navigateToPage(event.state.page);
+            }
+        });
+
+        // Show error state
+        function showError(title, message) {
+            const container = document.getElementById('app-container');
+            container.innerHTML = `
+                <div class="error">
+                    <h2>${title}</h2>
+                    <p>${message}</p>
+                    <button onclick="location.reload()">Retry</button>
+                </div>
+            `;
+        }
+
+        // Global utility functions for iOS compatibility
+        		window.ThreadSocial = {
+            // Get application state for iOS
+            getState: () => {
+                return app ? app.getState() : null;
+            },
+
+            // Navigate to page from iOS
+            navigateToPage: (pageName) => {
+                if (app && app.isInitialized) {
+                    app.navigateToPage(pageName);
+                }
+            },
+
+            // Search from iOS
+            search: (query) => {
+                if (app && app.isInitialized) {
+                    app.handleSearch(query);
+                }
+            },
+
+            // Filter from iOS
+            filter: (filterType, filterValue) => {
+                if (app && app.isInitialized) {
+                    app.handleFilter(filterType, filterValue);
+                }
+            },
+
+            // Get deals for iOS
+            getDeals: () => {
+                return app ? app.dataManager.getDeals() : [];
+            },
+
+            // Get trending deals for iOS
+            getTrendingDeals: () => {
+                return app ? app.dataManager.getTrendingDeals() : [];
+            },
+
+            // Get activity feed for iOS
+            getActivityFeed: () => {
+                return app ? app.dataManager.getActivityFeed() : [];
+            },
+
+            // Export data for iOS
+            exportData: () => {
+                return app ? app.dataManager.exportForIOS() : null;
+            },
+
+            // Initialize iOS-specific features
+            initializeIOS: () => {
+                if (app && app.isInitialized) {
+                    // iOS-specific initialization
+                    console.log('iOS features initialized');
+                    
+                    // Add iOS-specific event listeners
+                    document.addEventListener('touchstart', () => {}, { passive: true });
+                    document.addEventListener('touchmove', () => {}, { passive: true });
+                    
+                    // Prevent zoom on double tap
+                    let lastTouchEnd = 0;
+                    document.addEventListener('touchend', (event) => {
+                        const now = (new Date()).getTime();
+                        if (now - lastTouchEnd <= 300) {
+                            event.preventDefault();
+                        }
+                        lastTouchEnd = now;
+                    }, false);
+                }
+            }
+        };
+
+        // Auto-initialize iOS features if on iOS
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(() => {
+                    		if (window.ThreadSocial) {
+			window.ThreadSocial.initializeIOS();
+		}
+                }, 1000);
+            });
+        }
+
+        // Development helpers
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            window.devMode = true;
+            		console.log('Thread Social running in development mode');
+            
+            // Add development tools
+            window.devTools = {
+                // Force refresh data
+                refreshData: () => {
+                    if (app && app.dataManager) {
+                        app.dataManager.simulateRealTimeUpdates();
+                        app.updateUI();
+                        console.log('Data refreshed');
+                    }
+                },
+
+                // Show application state
+                showState: () => {
+                    if (app) {
+                        console.log('Application State:', app.getState());
+                    }
+                },
+
+                // Navigate to test page
+                testPage: (pageName) => {
+                    if (app) {
+                        app.navigateToPage(pageName);
+                    }
+                },
+
+                // Simulate error
+                simulateError: () => {
+                    showError('Test Error', 'This is a test error message');
+                }
+            };
+        }
+    </script>
+</body>
+</html> 

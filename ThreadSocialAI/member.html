@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Thread Social">
+    <meta name="author" content="Thread Social">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FF1493">
+    
+    <title>Thread Social - Member Profile</title>
+    
+    <link rel="stylesheet" href="./dist/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --lux-hot-pink: #FFABDF;
+            --lux-beige: #F5F5DC;
+            --lux-black: #000;
+            --lux-white: #fff;
+            --lux-dark-gray: #111;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .lux-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        .lux-button {
+            background: var(--lux-hot-pink);
+            color: var(--lux-white);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .lux-button:hover {
+            background: var(--lux-beige);
+            color: var(--lux-black);
+            border-color: var(--lux-beige);
+        }
+        
+        .lux-button-secondary {
+            background: var(--lux-black);
+            color: var(--lux-beige);
+            border: 2px solid var(--lux-beige);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .lux-button-secondary:hover {
+            background: var(--lux-beige);
+            color: var(--lux-black);
+        }
+        
+        .lux-button-danger {
+            background: #dc2626;
+            color: var(--lux-white);
+            border: 2px solid #dc2626;
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .lux-button-danger:hover {
+            background: #b91c1c;
+            border-color: #b91c1c;
+        }
+        
+        .profile-card {
+            background: var(--lux-dark-gray);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 32px;
+            margin-bottom: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        .settings-card {
+            background: var(--lux-dark-gray);
+            border: 2px solid var(--lux-beige);
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .settings-card:hover {
+            border-color: var(--lux-hot-pink);
+            transform: translateY(-2px);
+        }
+        
+        .subscription-card {
+            background: var(--lux-dark-gray);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 32px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        .subscription-status {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--lux-hot-pink);
+            color: var(--lux-white);
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-label {
+            display: block;
+            color: var(--lux-white);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            background: var(--lux-black);
+            border: 2px solid var(--lux-beige);
+            color: var(--lux-white);
+            font-size: 16px;
+            outline: none;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: var(--lux-hot-pink);
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--lux-black);
+            border: 2px solid var(--lux-beige);
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 2px;
+            bottom: 2px;
+            background-color: var(--lux-beige);
+            transition: .4s;
+        }
+        
+        input:checked + .slider {
+            background-color: var(--lux-hot-pink);
+            border-color: var(--lux-hot-pink);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            background-color: var(--lux-white);
+        }
+        
+        /* iOS Optimizations */
+        @media (max-width: 768px) {
+            nav {
+                padding: 8px 0 !important;
+            }
+            
+            nav > div {
+                padding: 0 16px !important;
+            }
+            
+            nav > div > div:first-child {
+                font-size: 24px !important;
+                letter-spacing: 2px !important;
+            }
+            
+            nav > div > div:last-child {
+                gap: 8px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 10px !important;
+                padding: 4px 6px !important;
+                letter-spacing: 0.5px !important;
+            }
+            
+            .main-content {
+                padding: 20px 16px !important;
+            }
+            
+            .profile-card, .settings-card, .subscription-card {
+                padding: 20px !important;
+            }
+            
+            .lux-button, .lux-button-secondary, .lux-button-danger {
+                padding: 14px 24px !important;
+                font-size: 14px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav > div > div:last-child {
+                gap: 6px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 9px !important;
+                padding: 3px 5px !important;
+            }
+            
+            .main-content {
+                padding: 16px 12px !important;
+            }
+            
+            .profile-card, .settings-card, .subscription-card {
+                padding: 16px !important;
+            }
+            
+            .lux-button, .lux-button-secondary, .lux-button-danger {
+                padding: 12px 20px !important;
+                font-size: 12px !important;
+            }
+        }
+        
+        /* iOS Safe Area Support */
+        @supports (padding: max(0px)) {
+            nav {
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+            
+            .main-content {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+                padding-top: max(40px, env(safe-area-inset-top));
+                padding-bottom: max(40px, env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* iOS momentum scrolling */
+        .ios-scroll {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        
+        /* Prevent zoom on input focus */
+        input, textarea, select { font-size: 16px !important; }
+        
+        /* iOS button tap highlight removal */
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        /* iOS-specific animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .ios-animate {
+                transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-black text-white">
+    <!-- iOS-Optimized Navigation -->
+    <nav style="padding: 12px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; -webkit-backdrop-filter: blur(10px);">
+        <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">THREAD SOCIAL</a>
+            
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="discovery.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">DISCOVERY</a>
+                <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDeals()">DEALS</a>
+                <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
+                <a href="member.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-bottom: 2px solid var(--lux-hot-pink); transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content ios-scroll" style="background: var(--lux-black); min-height: 100vh; padding: 40px 20px;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <!-- Header -->
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h1 style="font-size: 48px; color: var(--lux-beige); font-weight: 900; margin-bottom: 24px; letter-spacing: 3px;">MEMBER PROFILE</h1>
+                <p style="font-size: 20px; color: var(--lux-white); margin-bottom: 40px; letter-spacing: 1px; opacity: 0.9;">Manage your profile, settings, and subscription</p>
+            </div>
+            
+            <!-- Profile Information -->
+            <div class="profile-card">
+                <h2 style="font-size: 32px; color: var(--lux-hot-pink); font-weight: 900; margin-bottom: 32px; text-align: center; letter-spacing: 2px;">PROFILE INFORMATION</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+                    <div class="form-group">
+                        <label class="form-label">First Name</label>
+                        <input type="text" id="firstName" class="form-input" value="Sarah" placeholder="Enter first name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Last Name</label>
+                        <input type="text" id="lastName" class="form-input" value="Chen" placeholder="Enter last name">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" id="email" class="form-input" value="sarah.chen@email.com" placeholder="Enter email address">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" id="phone" class="form-input" value="+1 (555) 123-4567" placeholder="Enter phone number">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Location</label>
+                    <input type="text" id="location" class="form-input" value="Beverly Hills, CA" placeholder="Enter your location">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Preferred Brands</label>
+                    <input type="text" id="preferredBrands" class="form-input" value="Chanel, Balenciaga, Saint Laurent" placeholder="Enter your favorite brands">
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="lux-button" onclick="saveProfile()">SAVE PROFILE</button>
+                </div>
+            </div>
+            
+            <!-- Shopping Preferences -->
+            <div class="profile-card">
+                <h2 style="font-size: 32px; color: var(--lux-beige); font-weight: 900; margin-bottom: 32px; text-align: center; letter-spacing: 2px;">SHOPPING PREFERENCES</h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+                    <div class="form-group">
+                        <label class="form-label">Budget Range</label>
+                        <select id="budgetRange" class="form-input">
+                            <option value="under-500">Under $500</option>
+                            <option value="500-1000">$500 - $1,000</option>
+                            <option value="1000-2500">$1,000 - $2,500</option>
+                            <option value="2500-5000">$2,500 - $5,000</option>
+                            <option value="5000-10000">$5,000 - $10,000</option>
+                            <option value="over-10000">Over $10,000</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Preferred Categories</label>
+                        <select id="preferredCategories" class="form-input" multiple>
+                            <option value="bags">Bags & Accessories</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="jewelry">Jewelry</option>
+                            <option value="watches">Watches</option>
+                            <option value="beauty">Beauty & Fragrance</option>
+                            <option value="home">Home & Lifestyle</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+                    <div class="form-group">
+                        <label class="form-label">Style Preferences</label>
+                        <select id="stylePreferences" class="form-input" multiple>
+                            <option value="minimalist">Minimalist</option>
+                            <option value="avant-garde">Avant-garde</option>
+                            <option value="classic">Classic</option>
+                            <option value="streetwear">Streetwear</option>
+                            <option value="bohemian">Bohemian</option>
+                            <option value="sporty">Sporty</option>
+                            <option value="elegant">Elegant</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Color Preferences</label>
+                        <select id="colorPreferences" class="form-input" multiple>
+                            <option value="black">Black</option>
+                            <option value="white">White</option>
+                            <option value="navy">Navy</option>
+                            <option value="beige">Beige</option>
+                            <option value="pink">Pink</option>
+                            <option value="red">Red</option>
+                            <option value="green">Green</option>
+                            <option value="purple">Purple</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 32px;">
+                    <div class="form-group">
+                        <label class="form-label">Shopping Frequency</label>
+                        <select id="shoppingFrequency" class="form-input">
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="quarterly">Quarterly</option>
+                            <option value="seasonally">Seasonally</option>
+                            <option value="annually">Annually</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Preferred Shopping Time</label>
+                        <select id="shoppingTime" class="form-input">
+                            <option value="morning">Morning</option>
+                            <option value="afternoon">Afternoon</option>
+                            <option value="evening">Evening</option>
+                            <option value="weekends">Weekends Only</option>
+                            <option value="anytime">Anytime</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Special Interests</label>
+                    <input type="text" id="specialInterests" class="form-input" value="Sustainable fashion, Limited editions, Vintage pieces" placeholder="Enter special interests (e.g., sustainable fashion, limited editions)">
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="lux-button" onclick="savePreferences()">SAVE PREFERENCES</button>
+                </div>
+            </div>
+            
+            <!-- Subscription Management -->
+            <div class="subscription-card">
+                <div class="subscription-status">ACTIVE</div>
+                <h2 style="font-size: 32px; color: var(--lux-beige); font-weight: 900; margin-bottom: 32px; text-align: center; letter-spacing: 2px;">SUBSCRIPTION</h2>
+                
+                <div style="background: var(--lux-black); padding: 24px; margin-bottom: 24px; border: 1px solid var(--lux-beige);">
+                    <h3 style="color: var(--lux-white); font-size: 24px; font-weight: 700; margin-bottom: 16px;">THREAD SOCIAL PREMIUM</h3>
+                    <p style="color: var(--lux-white); font-size: 16px; margin-bottom: 16px; opacity: 0.8;">Unlimited access to exclusive deals, VIP events, and personalized recommendations</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <span style="color: var(--lux-beige); font-size: 20px; font-weight: 900;">$29.99/month</span>
+                        <span style="color: var(--lux-white); font-size: 14px; opacity: 0.6;">Next billing: Jan 15, 2024</span>
+                    </div>
+                    <div style="display: flex; gap: 12px;">
+                        <button class="lux-button-secondary" onclick="manageBilling()" style="flex: 1; padding: 12px; font-size: 14px;">MANAGE BILLING</button>
+                        <button class="lux-button-secondary" onclick="changePlan()" style="flex: 1; padding: 12px; font-size: 14px;">CHANGE PLAN</button>
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="lux-button-danger" onclick="cancelSubscription()">CANCEL SUBSCRIPTION</button>
+                </div>
+            </div>
+            
+            <!-- Settings -->
+            <div>
+                <h2 style="font-size: 32px; color: var(--lux-beige); font-weight: 900; margin-bottom: 32px; text-align: center; letter-spacing: 2px;">SETTINGS</h2>
+                
+                <div class="settings-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 8px;">Push Notifications</h3>
+                            <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8; margin: 0;">Receive alerts for new deals and events</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="pushNotifications" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 8px;">Email Notifications</h3>
+                            <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8; margin: 0;">Get updates via email</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="emailNotifications" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 8px;">Location Services</h3>
+                            <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8; margin: 0;">Find deals and events near you</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="locationServices">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 8px;">Social Sharing</h3>
+                            <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8; margin: 0;">Share deals with friends</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="socialSharing" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="settings-card">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h3 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 8px;">Dark Mode</h3>
+                            <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8; margin: 0;">Use dark theme</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="darkMode" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 32px;">
+                    <button class="lux-button" onclick="saveSettings()">SAVE SETTINGS</button>
+                </div>
+            </div>
+            
+            <!-- Favorites Management -->
+            <div style="margin-top: 80px;">
+                <h2 style="font-size: 32px; color: var(--lux-hot-pink); font-weight: 900; margin-bottom: 32px; text-align: center; letter-spacing: 2px;">MY FAVORITES</h2>
+                
+                <!-- Favorites Navigation -->
+                <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 32px; flex-wrap: wrap;">
+                    <button class="lux-button-secondary" onclick="showFavoritesTab('designers')" id="tab-designers" style="padding: 12px 20px; font-size: 14px;">👔 DESIGNERS</button>
+                    <button class="lux-button-secondary" onclick="showFavoritesTab('deals')" id="tab-deals" style="padding: 12px 20px; font-size: 14px;">💎 DEALS</button>
+                    <button class="lux-button-secondary" onclick="showFavoritesTab('events')" id="tab-events" style="padding: 12px 20px; font-size: 14px;">🎉 EVENTS</button>
+                    <button class="lux-button-secondary" onclick="showFavoritesTab('trips')" id="tab-trips" style="padding: 12px 20px; font-size: 14px;">✈️ TRIPS</button>
+                </div>
+                
+                <!-- Favorites Content -->
+                <div id="favorites-content">
+                    <!-- Designers Tab -->
+                    <div id="favorites-designers" class="favorites-tab">
+                        <div class="profile-card">
+                            <h3 style="color: var(--lux-white); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">FAVORITE DESIGNERS</h3>
+                            <div id="favorite-designers-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px;">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            <div id="no-favorite-designers" style="text-align: center; padding: 40px; color: var(--lux-white); opacity: 0.7; display: none;">
+                                <div style="font-size: 48px; margin-bottom: 16px;">👔</div>
+                                <h4 style="font-size: 18px; margin-bottom: 8px;">No Favorite Designers</h4>
+                                <p style="font-size: 14px;">Visit the Discovery page to add designers to your favorites!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Deals Tab -->
+                    <div id="favorites-deals" class="favorites-tab" style="display: none;">
+                        <div class="profile-card">
+                            <h3 style="color: var(--lux-white); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">FAVORITE DEALS</h3>
+                            <div id="favorite-deals-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            <div id="no-favorite-deals" style="text-align: center; padding: 40px; color: var(--lux-white); opacity: 0.7; display: none;">
+                                <div style="font-size: 48px; margin-bottom: 16px;">💎</div>
+                                <h4 style="font-size: 18px; margin-bottom: 8px;">No Favorite Deals</h4>
+                                <p style="font-size: 14px;">Visit the Deals page to add items to your favorites!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Events Tab -->
+                    <div id="favorites-events" class="favorites-tab" style="display: none;">
+                        <div class="profile-card">
+                            <h3 style="color: var(--lux-white); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">FAVORITE EVENTS</h3>
+                            <div id="favorite-events-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            <div id="no-favorite-events" style="text-align: center; padding: 40px; color: var(--lux-white); opacity: 0.7; display: none;">
+                                <div style="font-size: 48px; margin-bottom: 16px;">🎉</div>
+                                <h4 style="font-size: 18px; margin-bottom: 8px;">No Favorite Events</h4>
+                                <p style="font-size: 14px;">Visit the Discovery page to add events to your favorites!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Trips Tab -->
+                    <div id="favorites-trips" class="favorites-tab" style="display: none;">
+                        <div class="profile-card">
+                            <h3 style="color: var(--lux-white); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">FAVORITE TRIPS</h3>
+                            <div id="favorite-trips-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px;">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                            <div id="no-favorite-trips" style="text-align: center; padding: 40px; color: var(--lux-white); opacity: 0.7; display: none;">
+                                <div style="font-size: 48px; margin-bottom: 16px;">✈️</div>
+                                <h4 style="font-size: 18px; margin-bottom: 8px;">No Favorite Trips</h4>
+                                <p style="font-size: 14px;">Visit the Social Planning page to add trips to your favorites!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div style="margin-top: 80px; padding-top: 60px; border-top: 1px solid var(--lux-beige); text-align: center;">
+                <h2 style="font-size: 32px; color: var(--lux-beige); font-weight: 900; margin-bottom: 40px; letter-spacing: 2px;">ACCOUNT ACTIONS</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; max-width: 600px; margin: 0 auto;">
+                    <button class="lux-button-secondary" onclick="exportData()" style="padding: 16px 24px; font-size: 14px; letter-spacing: 1px;">EXPORT DATA</button>
+                    <button class="lux-button-secondary" onclick="downloadInvoice()" style="padding: 16px 24px; font-size: 14px; letter-spacing: 1px;">DOWNLOAD INVOICE</button>
+                    <button class="lux-button-secondary" onclick="contactSupport()" style="padding: 16px 24px; font-size: 14px; letter-spacing: 1px;">CONTACT SUPPORT</button>
+                    <button class="lux-button-danger" onclick="deleteAccount()" style="padding: 16px 24px; font-size: 14px; letter-spacing: 1px; grid-column: 1 / -1; margin-top: 12px;">DELETE ACCOUNT</button>
+                </div>
+                
+                <div style="margin-top: 40px; padding: 24px; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px;">
+                    <p style="color: var(--lux-white); font-size: 14px; opacity: 0.7; margin: 0; line-height: 1.6;">
+                        Need help? Our support team is available 24/7 to assist you with any questions or concerns about your account.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./src/js/member.js"></script>
+</body>
+</html> 

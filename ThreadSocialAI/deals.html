@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Thread Social">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FF1493">
+    <meta name="description" content="Discover exclusive luxury deals and limited-time offers from premium brands">
+    <meta name="keywords" content="luxury, deals, shopping, fashion, premium brands, exclusive offers">
+    <meta name="author" content="Thread Social">
+    <meta property="og:title" content="Thread Social - Exclusive Deals">
+    <meta property="og:description" content="Discover exclusive deals and limited-time offers">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lux-app.com/deals">
+    <meta property="og:image" content="https://lux-app.com/assets/og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Thread Social - Exclusive Deals">
+    <meta name="twitter:description" content="Discover exclusive deals and limited-time offers">
+    
+    <title>Thread Social - Exclusive Deals</title>
+    
+    <link rel="stylesheet" href="./dist/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="./assets/app-icon-180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png">
+    <link rel="manifest" href="./manifest.json">
+    
+    <style>
+        :root {
+            --lux-hot-pink: #FFABDF;
+            --lux-beige: #F5F5DC;
+            --lux-black: #000;
+            --lux-white: #fff;
+            --lux-dark-gray: #111;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .lux-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        .new-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--lux-beige);
+            color: var(--lux-black);
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .lux-card {
+            position: relative;
+            background: var(--lux-black);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .lux-card:hover {
+            border-color: var(--lux-beige);
+            transform: translateY(-4px);
+        }
+        
+        .lux-button {
+            background: var(--lux-hot-pink);
+            color: var(--lux-white);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .lux-button:hover {
+            background: var(--lux-beige);
+            color: var(--lux-black);
+            border-color: var(--lux-beige);
+        }
+        
+        .lux-button-secondary {
+            background: var(--lux-black);
+            color: var(--lux-beige);
+            border: 2px solid var(--lux-beige);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .lux-button-secondary:hover {
+            background: var(--lux-beige);
+            color: var(--lux-black);
+        }
+        
+        .filter-button {
+            background: var(--lux-black);
+            color: var(--lux-white);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 12px 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .filter-button.active {
+            background: var(--lux-hot-pink);
+            color: var(--lux-white);
+        }
+        
+        .filter-button:hover {
+            background: var(--lux-hot-pink);
+            color: var(--lux-white);
+        }
+        
+        /* iOS Optimizations */
+        @media (max-width: 768px) {
+            nav {
+                padding: 8px 0 !important;
+            }
+            
+            nav > div {
+                padding: 0 16px !important;
+            }
+            
+            .filter-container {
+                flex-wrap: wrap !important;
+                gap: 8px !important;
+            }
+            
+            .filter-button {
+                font-size: 12px !important;
+                padding: 8px 12px !important;
+            }
+        }
+        
+        /* iOS Safe Area Support */
+        @supports (padding: max(0px)) {
+            nav {
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+            
+            .main-content {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+                padding-top: max(40px, env(safe-area-inset-top));
+                padding-bottom: max(40px, env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* iOS momentum scrolling */
+        .ios-scroll {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        
+        /* Prevent zoom on input focus */
+        input, textarea, select { font-size: 16px !important; }
+        
+        /* iOS button tap highlight removal */
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS-Optimized Navigation -->
+    <nav style="padding: 12px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; -webkit-backdrop-filter: blur(10px);">
+        <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">THREAD SOCIAL</a>
+            
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="discovery.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">DISCOVERY</a>
+                <a href="deals.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-bottom: 2px solid var(--lux-hot-pink); transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDeals()">DEALS</a>
+                <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
+                <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content ios-scroll" style="background: var(--lux-black); min-height: 100vh; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <!-- Header -->
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h1 style="font-size: 48px; color: var(--lux-hot-pink); font-weight: 900; margin-bottom: 24px; letter-spacing: 3px;">EXCLUSIVE DEALS</h1>
+                <p style="font-size: 20px; color: var(--lux-white); margin-bottom: 40px; letter-spacing: 1px; opacity: 0.9;">Discover limited-time offers from the world's most prestigious brands</p>
+                
+                <!-- Search Bar -->
+                <div style="max-width: 500px; margin: 0 auto 40px;">
+                    <input type="text" id="search-input" placeholder="Search brands, categories, or deals..." style="width: 100%; padding: 16px 20px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); font-size: 16px; border-radius: 0; outline: none;" onkeyup="searchDeals()">
+                </div>
+                
+                <!-- Compare Now Section -->
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-beige); padding: 32px; margin: 32px 0; text-align: center;">
+                    <h2 style="font-size: 28px; color: var(--lux-hot-pink); font-weight: 900; margin-bottom: 16px; letter-spacing: 2px;">🤖 COMPARE NOW</h2>
+                    <p style="color: var(--lux-white); font-size: 16px; margin-bottom: 24px; opacity: 0.9;">Select any item and our AI will find comparable products based on your preferences and location</p>
+                    
+                    <div style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                        <select id="compare-category" style="padding: 12px 16px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); font-size: 14px; border-radius: 0; outline: none; min-width: 150px;">
+                            <option value="">Select Category</option>
+                            <option value="bags">Bags & Accessories</option>
+                            <option value="shoes">Shoes</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="jewelry">Jewelry</option>
+                            <option value="watches">Watches</option>
+                            <option value="beauty">Beauty & Fragrance</option>
+                            <option value="home">Home & Lifestyle</option>
+                        </select>
+                        
+                        <select id="compare-brand" style="padding: 12px 16px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); font-size: 14px; border-radius: 0; outline: none; min-width: 150px;">
+                            <option value="">Select Brand</option>
+                            <option value="Chanel">Chanel</option>
+                            <option value="Balenciaga">Balenciaga</option>
+                            <option value="Saint Laurent">Saint Laurent</option>
+                            <option value="Hermès">Hermès</option>
+                            <option value="Louis Vuitton">Louis Vuitton</option>
+                            <option value="Gucci">Gucci</option>
+                            <option value="Prada">Prada</option>
+                            <option value="Fendi">Fendi</option>
+                            <option value="Bottega Veneta">Bottega Veneta</option>
+                            <option value="Celine">Celine</option>
+                        </select>
+                        
+                        <input type="text" id="compare-item" placeholder="Describe the item you want to compare..." style="padding: 12px 16px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); font-size: 14px; border-radius: 0; outline: none; min-width: 200px;">
+                        
+                        <button class="lux-button" onclick="generateComparisons()" style="padding: 12px 24px; font-size: 14px;">🔍 FIND COMPARABLES</button>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 16px; background: var(--lux-black); border: 1px solid var(--lux-beige); display: none;" id="comparison-status">
+                        <p style="color: var(--lux-beige); font-size: 14px; margin: 0;">🤖 AI is analyzing your preferences and finding the best comparable products...</p>
+                    </div>
+                </div>
+                
+                <!-- Filter Buttons -->
+                <div style="display: flex; justify-content: center; gap: 12px; margin-bottom: 40px; flex-wrap: wrap;">
+                    <button class="filter-button active" onclick="toggleCategorySelection('all')" data-category="all">ALL DEALS</button>
+                    <button class="filter-button" onclick="toggleCategorySelection('designers')" data-category="designers">DESIGNERS</button>
+                    <button class="filter-button" onclick="toggleCategorySelection('clothing')" data-category="clothing">CLOTHING</button>
+                    <button class="filter-button" onclick="toggleCategorySelection('shoes')" data-category="shoes">SHOES</button>
+                    <button class="filter-button" onclick="toggleCategorySelection('bags')" data-category="bags">BAGS</button>
+                    <button class="filter-button" onclick="toggleCategorySelection('accessories')" data-category="accessories">ACCESSORIES</button>
+                    <button class="filter-button" onclick="toggleCategorySelection('jewelry')" data-category="jewelry">JEWELRY</button>
+                    <button class="filter-button" onclick="filterDeals('trending')">TRENDING</button>
+                    <button class="filter-button" onclick="filterDeals('exclusive')">EXCLUSIVE</button>
+                    <button class="filter-button" onclick="filterDeals('favorites')">FAVORITES</button>
+                </div>
+            </div>
+            
+            <!-- Live Stats -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 60px;">
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-hot-pink); padding: 24px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 900; color: var(--lux-hot-pink); margin-bottom: 8px;">2,847</div>
+                    <div style="color: var(--lux-white); font-size: 14px; font-weight: 600; letter-spacing: 1px;">ACTIVE DEALS</div>
+                </div>
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-beige); padding: 24px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 900; color: var(--lux-beige); margin-bottom: 8px;">156</div>
+                    <div style="color: var(--lux-white); font-size: 14px; font-weight: 600; letter-spacing: 1px;">LUXURY BRANDS</div>
+                </div>
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-hot-pink); padding: 24px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 900; color: var(--lux-hot-pink); margin-bottom: 8px;">89</div>
+                    <div style="color: var(--lux-white); font-size: 14px; font-weight: 600; letter-spacing: 1px;">CITIES</div>
+                </div>
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-beige); padding: 24px; text-align: center;">
+                    <div style="font-size: 32px; font-weight: 900; color: var(--lux-beige); margin-bottom: 8px;">24/7</div>
+                    <div style="color: var(--lux-white); font-size: 14px; font-weight: 600; letter-spacing: 1px;">LIVE UPDATES</div>
+                </div>
+            </div>
+            
+            <!-- Deals Grid -->
+            <div id="deals-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+                <!-- Deals will be populated by JavaScript -->
+            </div>
+            
+            <!-- Load More Button -->
+            <div style="text-align: center; margin-top: 60px;">
+                <button class="lux-button" onclick="loadMoreDeals()" style="padding: 20px 40px; font-size: 16px;">LOAD MORE DEALS</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Comparison Modal -->
+    <div id="comparison-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 1000; overflow-y: auto;">
+        <div style="max-width: 1200px; margin: 40px auto; padding: 20px;">
+            <!-- Modal Header -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                <h2 style="font-size: 32px; color: var(--lux-hot-pink); font-weight: 900; letter-spacing: 2px;">🤖 AI COMPARISON RESULTS</h2>
+                <button onclick="closeComparisonModal()" style="background: none; border: none; color: var(--lux-white); font-size: 24px; cursor: pointer; padding: 8px;">✕</button>
+            </div>
+            
+            <!-- Original Item -->
+            <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-hot-pink); padding: 24px; margin-bottom: 32px;">
+                <h3 style="color: var(--lux-beige); font-size: 20px; font-weight: 700; margin-bottom: 16px;">ORIGINAL ITEM</h3>
+                <div id="original-item-display" style="display: flex; align-items: center; gap: 20px;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- AI Analysis -->
+            <div style="background: var(--lux-black); border: 1px solid var(--lux-beige); padding: 20px; margin-bottom: 32px;">
+                <h3 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 12px;">🤖 AI ANALYSIS</h3>
+                <div id="ai-analysis" style="color: var(--lux-white); font-size: 14px; line-height: 1.6; opacity: 0.9;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Comparable Products -->
+            <div>
+                <h3 style="color: var(--lux-beige); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">COMPARABLE PRODUCTS</h3>
+                <div id="comparable-products" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px;">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Comparison Table -->
+            <div style="margin-top: 40px;">
+                <h3 style="color: var(--lux-beige); font-size: 20px; font-weight: 700; margin-bottom: 20px;">DETAILED COMPARISON</h3>
+                <div style="overflow-x: auto;">
+                    <table id="comparison-table" style="width: 100%; border-collapse: collapse; background: var(--lux-black);">
+                        <thead>
+                            <tr style="background: var(--lux-dark-gray);">
+                                <th style="padding: 16px; text-align: left; color: var(--lux-hot-pink); font-weight: 700; border: 1px solid var(--lux-beige);">FEATURE</th>
+                                <th style="padding: 16px; text-align: left; color: var(--lux-hot-pink); font-weight: 700; border: 1px solid var(--lux-beige);">ORIGINAL</th>
+                                <th style="padding: 16px; text-align: left; color: var(--lux-hot-pink); font-weight: 700; border: 1px solid var(--lux-beige);">ALTERNATIVE 1</th>
+                                <th style="padding: 16px; text-align: left; color: var(--lux-hot-pink); font-weight: 700; border: 1px solid var(--lux-beige);">ALTERNATIVE 2</th>
+                                <th style="padding: 16px; text-align: left; color: var(--lux-hot-pink); font-weight: 700; border: 1px solid var(--lux-beige);">ALTERNATIVE 3</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparison-table-body">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Action Buttons -->
+            <div style="display: flex; justify-content: center; gap: 16px; margin-top: 40px;">
+                <button class="lux-button" onclick="saveComparison()" style="padding: 16px 32px; font-size: 16px;">💾 SAVE COMPARISON</button>
+                <button class="lux-button-secondary" onclick="shareComparison()" style="padding: 16px 32px; font-size: 16px;">📤 SHARE RESULTS</button>
+                <button class="lux-button-secondary" onclick="exportComparison()" style="padding: 16px 32px; font-size: 16px;">📄 EXPORT PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Real-time deals data with comprehensive SSENSE brands
+        let deals = [
+            // MAJOR LUXURY HOUSES
+            {
+                id: 1,
+                brand: "BALENCIAGA",
+                description: "Le Cagole XS Bag - Limited Edition",
+                price: 2200,
+                originalPrice: 2800,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Balenciaga_logo.svg/2560px-Balenciaga_logo.svg.png",
+                category: "designers",
+                trending: true,
+                exclusive: true,
+                store: "Balenciaga",
+                location: "SoHo, NYC",
+                dealType: "Limited Edition",
+                availableUntil: "2024-01-15",
+                discount: 21
+            },
+            {
+                id: 2,
+                brand: "SAINT LAURENT",
+                description: "Le 5 À 7 Hobo Bag - New Collection",
+                price: 1800,
+                originalPrice: 2400,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Saint_Laurent_logo.svg/2560px-Saint_Laurent_logo.svg.png",
+                category: "bags",
+                trending: true,
+                exclusive: false,
+                store: "Saint Laurent",
+                location: "Beverly Hills",
+                dealType: "New Collection",
+                availableUntil: "2024-01-20",
+                discount: 25
+            },
+            {
+                id: 3,
+                brand: "BOTTEGA VENETA",
+                description: "Cassette Bag - Seasonal Collection",
+                price: 3200,
+                originalPrice: 4000,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bottega_Veneta_logo.svg/2560px-Bottega_Veneta_logo.svg.png",
+                category: "bags",
+                trending: false,
+                exclusive: true,
+                store: "Bottega Veneta",
+                location: "Madison Avenue",
+                dealType: "Seasonal Sale",
+                availableUntil: "2024-01-25",
+                discount: 20
+            },
+            {
+                id: 4,
+                brand: "LOEWE",
+                description: "Puzzle Bag - Limited Release",
+                price: 2800,
+                originalPrice: 3500,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Loewe_logo.svg/2560px-Loewe_logo.svg.png",
+                category: "bags",
+                trending: true,
+                exclusive: true,
+                store: "Loewe",
+                location: "Rodeo Drive",
+                dealType: "Limited Release",
+                availableUntil: "2024-01-18",
+                discount: 20
+            },
+            {
+                id: 5,
+                brand: "JIL SANDER",
+                description: "Minimalist Tote - Designer Collection",
+                price: 1200,
+                originalPrice: 1600,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jil_Sander_logo.svg/2560px-Jil_Sander_logo.svg.png",
+                category: "designers",
+                trending: false,
+                exclusive: false,
+                store: "Jil Sander",
+                location: "SoHo, NYC",
+                dealType: "Designer Collection",
+                availableUntil: "2024-01-22",
+                discount: 25
+            },
+            {
+                id: 2,
+                brand: "SAINT LAURENT",
+                description: "Le 5 À 7 Hobo Bag - New Collection",
+                price: 1800,
+                originalPrice: 2400,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Saint_Laurent_logo.svg/2560px-Saint_Laurent_logo.svg.png",
+                category: "bags",
+                trending: true,
+                exclusive: false,
+                store: "Saint Laurent",
+                location: "Beverly Hills",
+                dealType: "New Collection",
+                availableUntil: "2024-01-20",
+                discount: 25
+            },
+            {
+                id: 3,
+                brand: "BOTTEGA VENETA",
+                description: "Cassette Bag - Seasonal Collection",
+                price: 3200,
+                originalPrice: 4000,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bottega_Veneta_logo.svg/2560px-Bottega_Veneta_logo.svg.png",
+                category: "bags",
+                trending: false,
+                exclusive: true,
+                store: "Bottega Veneta",
+                location: "Madison Avenue",
+                dealType: "Seasonal Sale",
+                availableUntil: "2024-01-25",
+                discount: 20
+            },
+            {
+                id: 4,
+                brand: "LOEWE",
+                description: "Puzzle Bag - Limited Release",
+                price: 2800,
+                originalPrice: 3500,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Loewe_logo.svg/2560px-Loewe_logo.svg.png",
+                category: "bags",
+                trending: true,
+                exclusive: true,
+                store: "Loewe",
+                location: "Rodeo Drive",
+                dealType: "Limited Release",
+                availableUntil: "2024-01-18",
+                discount: 20
+            },
+            {
+                id: 5,
+                brand: "JIL SANDER",
+                description: "Minimalist Tote - Designer Collection",
+                price: 1200,
+                originalPrice: 1600,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jil_Sander_logo.svg/2560px-Jil_Sander_logo.svg.png",
+                category: "designers",
+                trending: false,
+                exclusive: false,
+                store: "Jil Sander",
+                location: "SoHo, NYC",
+                dealType: "Designer Collection",
+                availableUntil: "2024-01-22",
+                discount: 25
+            },
+            // FOOTWEAR & SHOES
+            {
+                id: 6,
+                brand: "MAISON MARGIELA",
+                description: "Tabi Boots - Iconic Collection",
+                price: 1200,
+                originalPrice: 1500,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Maison_Margiela_logo.svg/2560px-Maison_Margiela_logo.svg.png",
+                category: "shoes",
+                trending: true,
+                exclusive: true,
+                store: "Maison Margiela",
+                location: "SoHo, NYC",
+                dealType: "Iconic Collection",
+                availableUntil: "2024-01-12",
+                discount: 20
+            },
+            {
+                id: 7,
+                brand: "BALENCIAGA",
+                description: "Triple S Sneakers - Seasonal Collection",
+                price: 1200,
+                originalPrice: 1500,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Balenciaga_logo.svg/2560px-Balenciaga_logo.svg.png",
+                category: "shoes",
+                trending: false,
+                exclusive: true,
+                store: "Balenciaga",
+                location: "Beverly Hills",
+                dealType: "Seasonal Sale",
+                availableUntil: "2024-01-20",
+                discount: 20
+            },
+            {
+                id: 8,
+                brand: "GUIDI",
+                description: "Back Zip Boots - Limited Edition",
+                price: 1800,
+                originalPrice: 2200,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Guidi_logo.svg/2560px-Guidi_logo.svg.png",
+                category: "shoes",
+                trending: true,
+                exclusive: true,
+                store: "Guidi",
+                location: "SoHo, NYC",
+                dealType: "Limited Edition",
+                availableUntil: "2024-01-14",
+                discount: 18
+            },
+            {
+                id: 9,
+                brand: "RICK OWENS",
+                description: "Geobasket Sneakers - New Collection",
+                price: 1400,
+                originalPrice: 1800,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Rick_Owens_logo.svg/2560px-Rick_Owens_logo.svg.png",
+                category: "shoes",
+                trending: true,
+                exclusive: false,
+                store: "Rick Owens",
+                location: "Beverly Hills",
+                dealType: "New Collection",
+                availableUntil: "2024-01-17",
+                discount: 22
+            },
+            {
+                id: 10,
+                brand: "COMME DES GARÇONS",
+                description: "Play Converse - Limited Release",
+                price: 180,
+                originalPrice: 220,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Comme_des_Garcons_logo.svg/2560px-Comme_des_Garcons_logo.svg.png",
+                category: "shoes",
+                trending: false,
+                exclusive: false,
+                store: "Comme des Garçons",
+                location: "SoHo, NYC",
+                dealType: "Limited Release",
+                availableUntil: "2024-01-19",
+                discount: 18
+            },
+            {
+                id: 7,
+                brand: "BALENCIAGA",
+                description: "Triple S Sneakers - Seasonal Collection",
+                price: 1200,
+                originalPrice: 1500,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Balenciaga_logo.svg/2560px-Balenciaga_logo.svg.png",
+                category: "shoes",
+                trending: false,
+                exclusive: true,
+                store: "Balenciaga",
+                location: "Beverly Hills",
+                dealType: "Seasonal Sale",
+                availableUntil: "2024-01-20",
+                discount: 20
+            },
+            {
+                id: 8,
+                brand: "CARTIER",
+                description: "Love Bracelet - VIP Access Event",
+                price: 6500,
+                originalPrice: 8000,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cartier_logo.svg/2560px-Cartier_logo.svg.png",
+                category: "jewelry",
+                trending: true,
+                exclusive: true,
+                store: "Cartier",
+                location: "Madison Avenue",
+                dealType: "VIP Exclusive",
+                availableUntil: "2024-01-12",
+                discount: 19
+            },
+            {
+                id: 9,
+                brand: "GUCCI",
+                description: "Dionysus Bag - Limited Edition Release",
+                price: 2200,
+                originalPrice: 2800,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/1960s_Gucci_Logo.svg/2560px-1960s_Gucci_Logo.svg.png",
+                category: "bags",
+                trending: false,
+                exclusive: true,
+                store: "Gucci",
+                location: "Rodeo Drive",
+                dealType: "Limited Edition",
+                availableUntil: "2024-01-18",
+                discount: 21
+            },
+            // CLOTHING & APPAREL
+            {
+                id: 11,
+                brand: "ACNE STUDIOS",
+                description: "Minimalist Blazer - Designer Collection",
+                price: 800,
+                originalPrice: 1100,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Acne_Studios_logo.svg/2560px-Acne_Studios_logo.svg.png",
+                category: "clothing",
+                trending: true,
+                exclusive: false,
+                store: "Acne Studios",
+                location: "SoHo, NYC",
+                dealType: "Designer Collection",
+                availableUntil: "2024-01-16",
+                discount: 27
+            },
+            {
+                id: 12,
+                brand: "ISABEL MARANT",
+                description: "Étoile Dress - Seasonal Collection",
+                price: 650,
+                originalPrice: 850,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Isabel_Marant_logo.svg/2560px-Isabel_Marant_logo.svg.png",
+                category: "clothing",
+                trending: false,
+                exclusive: false,
+                store: "Isabel Marant",
+                location: "Beverly Hills",
+                dealType: "Seasonal Collection",
+                availableUntil: "2024-01-19",
+                discount: 24
+            },
+            {
+                id: 13,
+                brand: "ALEXANDER MCQUEEN",
+                description: "Skull Scarf - Iconic Collection",
+                price: 450,
+                originalPrice: 600,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Alexander_McQueen_logo.svg/2560px-Alexander_McQueen_logo.svg.png",
+                category: "accessories",
+                trending: true,
+                exclusive: true,
+                store: "Alexander McQueen",
+                location: "Madison Avenue",
+                dealType: "Iconic Collection",
+                availableUntil: "2024-01-13",
+                discount: 25
+            },
+            {
+                id: 14,
+                brand: "GIVENCHY",
+                description: "4G Bag - Limited Edition",
+                price: 1600,
+                originalPrice: 2000,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Givenchy_logo.svg/2560px-Givenchy_logo.svg.png",
+                category: "bags",
+                trending: false,
+                exclusive: true,
+                store: "Givenchy",
+                location: "Rodeo Drive",
+                dealType: "Limited Edition",
+                availableUntil: "2024-01-21",
+                discount: 20
+            },
+            {
+                id: 15,
+                brand: "VALENTINO",
+                description: "Rockstud Pumps - New Collection",
+                price: 950,
+                originalPrice: 1200,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Valentino_logo.svg/2560px-Valentino_logo.svg.png",
+                category: "shoes",
+                trending: true,
+                exclusive: false,
+                store: "Valentino",
+                location: "SoHo, NYC",
+                dealType: "New Collection",
+                availableUntil: "2024-01-18",
+                discount: 21
+            },
+            // JEWELRY & ACCESSORIES
+            {
+                id: 16,
+                brand: "TIFFANY & CO.",
+                description: "Tiffany T Bracelet - Exclusive Collection",
+                price: 8500,
+                originalPrice: 11000,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Tiffany_%26_Co_logo.svg/2560px-Tiffany_%26_Co_logo.svg.png",
+                category: "jewelry",
+                trending: false,
+                exclusive: true,
+                store: "Tiffany & Co.",
+                location: "Fifth Avenue",
+                dealType: "Exclusive Collection",
+                availableUntil: "2024-01-21",
+                discount: 23
+            },
+            {
+                id: 17,
+                brand: "CARTIER",
+                description: "Love Bracelet - VIP Access Event",
+                price: 6500,
+                originalPrice: 8000,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cartier_logo.svg/2560px-Cartier_logo.svg.png",
+                category: "jewelry",
+                trending: true,
+                exclusive: true,
+                store: "Cartier",
+                location: "Madison Avenue",
+                dealType: "VIP Exclusive",
+                availableUntil: "2024-01-12",
+                discount: 19
+            },
+            {
+                id: 18,
+                brand: "GUCCI",
+                description: "Dionysus Bag - Limited Edition Release",
+                price: 2200,
+                originalPrice: 2800,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/1960s_Gucci_Logo.svg/2560px-1960s_Gucci_Logo.svg.png",
+                category: "bags",
+                trending: false,
+                exclusive: true,
+                store: "Gucci",
+                location: "Rodeo Drive",
+                dealType: "Limited Edition",
+                availableUntil: "2024-01-18",
+                discount: 21
+            },
+            {
+                id: 6,
+                brand: "ADIDAS",
+                description: "Yeezy Boost 350 Restock Alert",
+                price: 220,
+                originalPrice: 250,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png",
+                category: "shoes",
+                trending: true,
+                exclusive: false,
+                store: "Adidas Originals",
+                location: "Downtown LA",
+                dealType: "Restock Alert",
+                availableUntil: "2024-01-14",
+                discount: 12
+            },
+            {
+                id: 7,
+                brand: "LOUIS VUITTON",
+                description: "Neverfull Monogram Collection",
+                price: 1400,
+                originalPrice: 1800,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Louis_Vuitton_logo_and_wordmark.svg/2560px-Louis_Vuitton_logo_and_wordmark.svg.png",
+                category: "bags",
+                trending: true,
+                exclusive: false,
+                store: "Louis Vuitton",
+                location: "Fifth Avenue",
+                dealType: "Limited Time",
+                availableUntil: "2024-01-16",
+                discount: 22
+            },
+            {
+                id: 8,
+                brand: "ROLEX",
+                description: "Submariner Professional Series",
+                price: 8500,
+                originalPrice: 12000,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Rolex_logo.svg/2560px-Rolex_logo.svg.png",
+                category: "accessories",
+                trending: true,
+                exclusive: true,
+                store: "Rolex Boutique",
+                location: "Madison Avenue",
+                dealType: "VIP Access",
+                availableUntil: "2024-01-13",
+                discount: 29
+            },
+            {
+                id: 9,
+                brand: "PRADA",
+                description: "Re-Edition Nylon Collection Sale",
+                price: 950,
+                originalPrice: 1200,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Prada_logo.svg/2560px-Prada_logo.svg.png",
+                category: "bags",
+                trending: false,
+                exclusive: false,
+                store: "Prada",
+                location: "Rodeo Drive",
+                dealType: "Seasonal Sale",
+                availableUntil: "2024-01-19",
+                discount: 21
+            },
+            {
+                id: 10,
+                brand: "HERMÈS",
+                description: "Birkin Bag Exclusive Access",
+                price: 12000,
+                originalPrice: 15000,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Herm%C3%A8s_logo.svg/2560px-Herm%C3%A8s_logo.svg.png",
+                category: "bags",
+                trending: true,
+                exclusive: true,
+                store: "Hermès",
+                location: "Madison Avenue",
+                dealType: "Exclusive Access",
+                availableUntil: "2024-01-11",
+                discount: 20
+            },
+            {
+                id: 11,
+                brand: "OFF-WHITE",
+                description: "Jordan 1 Collaboration Drop",
+                price: 2800,
+                originalPrice: 3500,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Off-White_logo.svg/2560px-Off-White_logo.svg.png",
+                category: "shoes",
+                trending: true,
+                exclusive: true,
+                store: "Off-White",
+                location: "SoHo, NYC",
+                dealType: "Limited Drop",
+                availableUntil: "2024-01-17",
+                discount: 20
+            },
+            {
+                id: 12,
+                brand: "TIFFANY & CO.",
+                description: "Diamond Collection Showcase",
+                price: 8500,
+                originalPrice: 11000,
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Tiffany_%26_Co_logo.svg/2560px-Tiffany_%26_Co_logo.svg.png",
+                category: "accessories",
+                trending: false,
+                exclusive: true,
+                store: "Tiffany & Co.",
+                location: "Fifth Avenue",
+                dealType: "Exclusive Collection",
+                availableUntil: "2024-01-21",
+                discount: 23
+            }
+        ];
+
+        let currentFilter = 'all';
+        let displayedDeals = 6;
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserPreferences();
+            loadDeals();
+            startRealTimeUpdates();
+            
+            // Add data-category attributes to filter buttons
+            document.querySelectorAll('.filter-button').forEach(btn => {
+                const text = btn.textContent.toLowerCase();
+                if (text.includes('designers')) btn.setAttribute('data-category', 'designers');
+                else if (text.includes('clothing')) btn.setAttribute('data-category', 'clothing');
+                else if (text.includes('shoes')) btn.setAttribute('data-category', 'shoes');
+                else if (text.includes('bags')) btn.setAttribute('data-category', 'bags');
+                else if (text.includes('accessories')) btn.setAttribute('data-category', 'accessories');
+                else if (text.includes('jewelry')) btn.setAttribute('data-category', 'jewelry');
+            });
+        });
+
+        // Load deals
+        function loadDeals() {
+            const dealsGrid = document.getElementById('deals-grid');
+            dealsGrid.innerHTML = '';
+            
+            const dealsToShow = deals.slice(0, displayedDeals);
+            dealsToShow.forEach(deal => {
+                const dealCard = createDealCard(deal);
+                dealsGrid.appendChild(dealCard);
+            });
+        }
+
+        // Create deal card
+        function createDealCard(deal) {
+            const card = document.createElement('div');
+            card.className = 'lux-card lux-fade-in';
+            
+            const isNew = deal.trending && Math.random() > 0.7;
+            const isExclusive = deal.exclusive;
+            
+            card.innerHTML = `
+                ${isNew ? '<div class="new-indicator">NEW</div>' : ''}
+                ${isExclusive ? '<div style="position: absolute; top: 8px; left: 8px; background: var(--lux-beige); color: var(--lux-black); font-size: 10px; font-weight: bold; padding: 2px 6px; text-transform: uppercase; letter-spacing: 1px;">EXCLUSIVE</div>' : ''}
+                
+                <div style="text-align: center; margin-bottom: 24px;">
+                    <div style="width: 120px; height: 80px; margin: 0 auto; border-radius: 0; overflow: hidden; border: 2px solid var(--lux-hot-pink); background: var(--lux-white); display: flex; align-items: center; justify-content: center; padding: 8px;">
+                        <img src="${deal.logo}" alt="${deal.brand}" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+                    </div>
+                </div>
+                
+                <h3 style="color: var(--lux-white); font-size: 20px; font-weight: 700; margin-bottom: 12px; text-align: center;">${deal.brand}</h3>
+                <p style="color: var(--lux-white); font-size: 14px; margin-bottom: 20px; font-style: italic; opacity: 0.8; text-align: center; line-height: 1.4;">${deal.description}</p>
+                
+                <div style="text-align: center; margin-bottom: 16px;">
+                    <span style="font-size: 24px; font-weight: 900; color: var(--lux-beige);">$${deal.price.toLocaleString()}</span>
+                    <span style="font-size: 16px; color: var(--lux-white); text-decoration: line-through; margin-left: 8px; opacity: 0.6;">$${deal.originalPrice.toLocaleString()}</span>
+                </div>
+                
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <span style="background: var(--lux-hot-pink); color: var(--lux-white); padding: 6px 12px; font-size: 14px; font-weight: bold; letter-spacing: 1px;">${deal.discount}% OFF</span>
+                </div>
+                
+                <div style="margin-bottom: 24px;">
+                    <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8; text-align: center; margin-bottom: 4px;">${deal.store}</p>
+                    <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8; text-align: center; margin-bottom: 8px;">${deal.location}</p>
+                    <p style="color: var(--lux-beige); font-size: 12px; font-weight: 600; text-align: center; letter-spacing: 1px;">${deal.dealType}</p>
+                </div>
+                
+                <div style="display: flex; gap: 12px;">
+                    <button class="lux-button" style="flex: 1; padding: 12px; font-size: 12px;" onclick="getStoreInfo('${deal.store}')">STORE INFO</button>
+                    <button class="lux-button-secondary" style="flex: 1; padding: 12px; font-size: 12px;" onclick="shareDeal(${deal.id})">SHARE</button>
+                </div>
+                
+                <div style="text-align: center; margin-top: 16px;">
+                    <button class="favorite-btn" onclick="toggleDealFavorite(${deal.id})" style="background: none; border: none; font-size: 24px; cursor: pointer; padding: 8px; transition: all 0.3s ease;">
+                        ${isDealFavorited(deal.id) ? '❤️' : '🤍'}
+                    </button>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Filter deals
+        function filterDeals(category) {
+            currentFilter = category;
+            
+            // Update filter button states
+            document.querySelectorAll('.filter-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            let filteredDeals = deals;
+            
+            if (category === 'trending') {
+                filteredDeals = deals.filter(deal => deal.trending);
+            } else if (category === 'exclusive') {
+                filteredDeals = deals.filter(deal => deal.exclusive);
+            } else if (category === 'favorites') {
+                filteredDeals = deals.filter(deal => isDealFavorited(deal.id));
+            } else if (category !== 'all') {
+                filteredDeals = deals.filter(deal => deal.category === category);
+            }
+            
+            const dealsGrid = document.getElementById('deals-grid');
+            dealsGrid.innerHTML = '';
+            
+            filteredDeals.forEach(deal => {
+                const dealCard = createDealCard(deal);
+                dealsGrid.appendChild(dealCard);
+            });
+        }
+
+        // Search deals
+        function searchDeals() {
+            const searchInput = document.getElementById('search-input');
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            let filteredDeals = deals;
+            
+            if (searchTerm) {
+                filteredDeals = deals.filter(deal => 
+                    deal.brand.toLowerCase().includes(searchTerm) ||
+                    deal.description.toLowerCase().includes(searchTerm) ||
+                    deal.category.toLowerCase().includes(searchTerm) ||
+                    deal.store.toLowerCase().includes(searchTerm) ||
+                    deal.dealType.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            const dealsGrid = document.getElementById('deals-grid');
+            dealsGrid.innerHTML = '';
+            
+            filteredDeals.forEach(deal => {
+                const dealCard = createDealCard(deal);
+                dealsGrid.appendChild(dealCard);
+            });
+        }
+
+        // Load more deals
+        function loadMoreDeals() {
+            displayedDeals += 6;
+            loadDeals();
+        }
+
+        // Get store information
+        function getStoreInfo(storeName) {
+            alert(`📍 ${storeName}\n\nVisit the store to take advantage of this exclusive deal!\n\nWe help you discover deals - you shop directly with the brand.`);
+        }
+
+        // Share deal
+        function shareDeal(dealId) {
+            const deal = deals.find(d => d.id === dealId);
+            if (deal && navigator.share) {
+                navigator.share({
+                    title: `${deal.brand} - ${deal.discount}% OFF`,
+                    text: `Check out this exclusive ${deal.brand} deal: ${deal.description} - ${deal.discount}% off!`,
+                    url: window.location.href
+                });
+            } else {
+                alert(`Share this ${deal.brand} deal with friends!\n\n${deal.description}\n${deal.discount}% OFF - $${deal.price}`);
+            }
+        }
+
+        // Toggle deal favorite
+        function toggleDealFavorite(dealId) {
+            const deal = deals.find(d => d.id === dealId);
+            if (deal) {
+                deal.favorite = !deal.favorite;
+                const favoriteBtn = document.querySelector(`.favorite-btn[onclick="toggleDealFavorite(${dealId})"]`);
+                favoriteBtn.innerHTML = deal.favorite ? '❤️' : '🤍';
+                filterDeals('favorites'); // Re-apply favorites filter to update the grid
+            }
+        }
+
+        // Check if a deal is favorited
+        function isDealFavorited(dealId) {
+            const deal = deals.find(d => d.id === dealId);
+            return deal ? deal.favorite : false;
+        }
+
+        // Real-time updates
+        function startRealTimeUpdates() {
+            setInterval(() => {
+                // Simulate price changes
+                deals.forEach(deal => {
+                    if (Math.random() > 0.9) {
+                        const priceChange = Math.floor(Math.random() * 100) - 50;
+                        deal.price = Math.max(deal.price + priceChange, deal.price * 0.8);
+                        deal.discount = Math.round(((deal.originalPrice - deal.price) / deal.originalPrice) * 100);
+                    }
+                });
+                
+                // Update trending status
+                deals.forEach(deal => {
+                    if (Math.random() > 0.8) {
+                        deal.trending = !deal.trending;
+                    }
+                });
+                
+                // Reload deals if no filter is active
+                if (currentFilter === 'all') {
+                    loadDeals();
+                }
+            }, 10000); // Update every 10 seconds
+        }
+
+        // Navigation functions (example, replace with actual navigation logic if needed)
+        function navigateToDiscovery() {
+            window.location.href = 'discovery.html';
+        }
+
+        function navigateToDeals() {
+            window.location.href = 'deals.html';
+        }
+
+        function navigateToSocial() {
+            window.location.href = 'social.html';
+        }
+
+        function navigateToMember() {
+            window.location.href = 'member.html';
+        }
+
+        // AI Comparison System
+        let userPreferences = {};
+        let currentComparison = null;
+
+        // Load user preferences
+        function loadUserPreferences() {
+            const saved = localStorage.getItem('luxUserPreferences');
+            if (saved) {
+                userPreferences = JSON.parse(saved);
+            } else {
+                userPreferences = {
+                    budgetRange: '1000-2500',
+                    preferredCategories: ['bags', 'shoes', 'clothing'],
+                    stylePreferences: ['minimalist', 'classic'],
+                    colorPreferences: ['black', 'white', 'beige'],
+                    shoppingFrequency: 'monthly',
+                    shoppingTime: 'afternoon',
+                    specialInterests: 'Sustainable fashion, Limited editions, Vintage pieces',
+                    preferredBrands: 'Chanel, Balenciaga, Saint Laurent'
+                };
+            }
+        }
+
+        // Generate AI comparisons
+        function generateComparisons() {
+            const category = document.getElementById('compare-category').value;
+            const brand = document.getElementById('compare-brand').value;
+            const itemDescription = document.getElementById('compare-item').value;
+
+            if (!category && !brand && !itemDescription) {
+                alert('Please select a category, brand, or describe an item to compare.');
+                return;
+            }
+
+            // Show loading status
+            const statusDiv = document.getElementById('comparison-status');
+            statusDiv.style.display = 'block';
+            statusDiv.innerHTML = '<p style="color: var(--lux-beige); font-size: 14px; margin: 0;">🤖 AI is analyzing your preferences and finding the best comparable products...</p>';
+
+            // Simulate AI processing
+            setTimeout(() => {
+                const comparison = generateAIComparison(category, brand, itemDescription);
+                displayComparisonResults(comparison);
+                statusDiv.style.display = 'none';
+            }, 2000);
+        }
+
+        // Generate AI comparison data
+        function generateAIComparison(category, brand, itemDescription) {
+            const originalItem = createOriginalItem(category, brand, itemDescription);
+            const comparableProducts = findComparableProducts(originalItem);
+            const aiAnalysis = generateAIAnalysis(originalItem, comparableProducts);
+
+            return {
+                original: originalItem,
+                comparables: comparableProducts,
+                analysis: aiAnalysis
+            };
+        }
+
+        // Create original item based on user input
+        function createOriginalItem(category, brand, itemDescription) {
+            const basePrice = getRandomPriceInRange(userPreferences.budgetRange);
+            const originalPrice = Math.round(basePrice * 1.3);
+            const discount = Math.round(((originalPrice - basePrice) / originalPrice) * 100);
+
+            return {
+                id: 'original-' + Date.now(),
+                brand: brand || 'Luxury Brand',
+                name: itemDescription || `${category} Item`,
+                category: category || 'luxury',
+                price: basePrice,
+                originalPrice: originalPrice,
+                discount: discount,
+                description: itemDescription || `Premium ${category} from ${brand || 'luxury brand'}`,
+                store: 'Flagship Store',
+                location: 'Beverly Hills, CA',
+                dealType: 'Limited Time',
+                logo: 'https://via.placeholder.com/120x80/FFABDF/000000?text=BRAND',
+                features: {
+                    material: 'Premium Leather',
+                    style: 'Classic',
+                    color: 'Black',
+                    size: 'Standard',
+                    quality: 'Luxury Grade'
+                }
+            };
+        }
+
+        // Find comparable products based on AI analysis
+        function findComparableProducts(originalItem) {
+            const comparables = [];
+            const categories = userPreferences.preferredCategories || ['bags', 'shoes', 'clothing'];
+            
+            // Generate 3 comparable products
+            for (let i = 0; i < 3; i++) {
+                const category = categories[Math.floor(Math.random() * categories.length)];
+                const comparable = generateComparableProduct(originalItem, category, i + 1);
+                comparables.push(comparable);
+            }
+
+            return comparables;
+        }
+
+        // Generate a comparable product
+        function generateComparableProduct(originalItem, category, index) {
+            const brands = ['Chanel', 'Balenciaga', 'Saint Laurent', 'Hermès', 'Louis Vuitton', 'Gucci', 'Prada', 'Fendi'];
+            const brand = brands[Math.floor(Math.random() * brands.length)];
+            const basePrice = originalItem.price * (0.8 + Math.random() * 0.4); // ±20% price variation
+            const originalPrice = Math.round(basePrice * 1.25);
+            const discount = Math.round(((originalPrice - basePrice) / originalPrice) * 100);
+
+            return {
+                id: `comparable-${index}`,
+                brand: brand,
+                name: `${category.charAt(0).toUpperCase() + category.slice(1)} Alternative ${index}`,
+                category: category,
+                price: Math.round(basePrice),
+                originalPrice: originalPrice,
+                discount: discount,
+                description: `Premium ${category} alternative with similar quality and style`,
+                store: `${brand} Boutique`,
+                location: 'Los Angeles, CA',
+                dealType: 'Exclusive',
+                logo: `https://via.placeholder.com/120x80/FFABDF/000000?text=${brand}`,
+                features: {
+                    material: 'Premium Materials',
+                    style: userPreferences.stylePreferences?.[0] || 'Classic',
+                    color: userPreferences.colorPreferences?.[0] || 'Black',
+                    size: 'Standard',
+                    quality: 'Luxury Grade'
+                },
+                matchScore: Math.round(70 + Math.random() * 30) // 70-100% match
+            };
+        }
+
+        // Generate AI analysis
+        function generateAIAnalysis(originalItem, comparables) {
+            const budgetMatch = userPreferences.budgetRange ? `Your budget range (${userPreferences.budgetRange}) aligns well with these options.` : '';
+            const categoryMatch = userPreferences.preferredCategories ? `Based on your preferred categories (${userPreferences.preferredCategories.join(', ')}), I've found alternatives that match your style.` : '';
+            const brandMatch = userPreferences.preferredBrands ? `Considering your favorite brands (${userPreferences.preferredBrands}), these alternatives offer similar luxury and quality.` : '';
+
+            return `
+                <p><strong>Analysis Summary:</strong> I've analyzed your preferences and found ${comparables.length} comparable products that match your style and budget requirements.</p>
+                <p><strong>Budget Analysis:</strong> ${budgetMatch}</p>
+                <p><strong>Category Match:</strong> ${categoryMatch}</p>
+                <p><strong>Brand Preferences:</strong> ${brandMatch}</p>
+                <p><strong>Recommendation:</strong> All alternatives offer similar quality and luxury appeal while providing different style options within your preferred parameters.</p>
+            `;
+        }
+
+        // Display comparison results
+        function displayComparisonResults(comparison) {
+            currentComparison = comparison;
+            
+            // Display original item
+            const originalDisplay = document.getElementById('original-item-display');
+            originalDisplay.innerHTML = `
+                <div style="width: 120px; height: 80px; border: 2px solid var(--lux-hot-pink); background: var(--lux-white); display: flex; align-items: center; justify-content: center; padding: 8px;">
+                    <img src="${comparison.original.logo}" alt="${comparison.original.brand}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                </div>
+                <div style="flex: 1;">
+                    <h4 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin: 0 0 8px 0;">${comparison.original.brand}</h4>
+                    <p style="color: var(--lux-white); font-size: 14px; margin: 0 0 8px 0; opacity: 0.8;">${comparison.original.name}</p>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <span style="color: var(--lux-beige); font-size: 20px; font-weight: 900;">$${comparison.original.price.toLocaleString()}</span>
+                        <span style="color: var(--lux-white); font-size: 14px; text-decoration: line-through; opacity: 0.6;">$${comparison.original.originalPrice.toLocaleString()}</span>
+                        <span style="background: var(--lux-hot-pink); color: var(--lux-white); padding: 4px 8px; font-size: 12px; font-weight: 600;">${comparison.original.discount}% OFF</span>
+                    </div>
+                </div>
+            `;
+
+            // Display AI analysis
+            document.getElementById('ai-analysis').innerHTML = comparison.analysis;
+
+            // Display comparable products
+            const comparablesContainer = document.getElementById('comparable-products');
+            comparablesContainer.innerHTML = comparison.comparables.map(product => `
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-beige); padding: 24px; position: relative;">
+                    <div style="position: absolute; top: 12px; right: 12px; background: var(--lux-hot-pink); color: var(--lux-white); padding: 4px 8px; font-size: 12px; font-weight: 600;">${product.matchScore}% MATCH</div>
+                    
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="width: 120px; height: 80px; margin: 0 auto; border: 2px solid var(--lux-beige); background: var(--lux-white); display: flex; align-items: center; justify-content: center; padding: 8px;">
+                            <img src="${product.logo}" alt="${product.brand}" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                        </div>
+                    </div>
+                    
+                    <h4 style="color: var(--lux-white); font-size: 18px; font-weight: 700; margin-bottom: 8px; text-align: center;">${product.brand}</h4>
+                    <p style="color: var(--lux-white); font-size: 14px; margin-bottom: 16px; text-align: center; opacity: 0.8;">${product.name}</p>
+                    
+                    <div style="text-align: center; margin-bottom: 16px;">
+                        <span style="color: var(--lux-beige); font-size: 20px; font-weight: 900;">$${product.price.toLocaleString()}</span>
+                        <span style="color: var(--lux-white); font-size: 14px; text-decoration: line-through; margin-left: 8px; opacity: 0.6;">$${product.originalPrice.toLocaleString()}</span>
+                    </div>
+                    
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <span style="background: var(--lux-beige); color: var(--lux-black); padding: 6px 12px; font-size: 12px; font-weight: 600;">${product.discount}% OFF</span>
+                    </div>
+                    
+                    <div style="display: flex; gap: 8px;">
+                        <button class="lux-button" style="flex: 1; padding: 10px; font-size: 12px;" onclick="getStoreInfo('${product.store}')">STORE INFO</button>
+                        <button class="lux-button-secondary" style="flex: 1; padding: 10px; font-size: 12px;" onclick="addToFavorites('${product.id}')">❤️ FAVORITE</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Generate comparison table
+            generateComparisonTable(comparison);
+
+            // Show modal
+            document.getElementById('comparison-modal').style.display = 'block';
+        }
+
+        // Generate comparison table
+        function generateComparisonTable(comparison) {
+            const tableBody = document.getElementById('comparison-table-body');
+            const allProducts = [comparison.original, ...comparison.comparables];
+            
+            const features = [
+                { name: 'Price', key: 'price', format: (val) => `$${val.toLocaleString()}` },
+                { name: 'Original Price', key: 'originalPrice', format: (val) => `$${val.toLocaleString()}` },
+                { name: 'Discount', key: 'discount', format: (val) => `${val}%` },
+                { name: 'Brand', key: 'brand', format: (val) => val },
+                { name: 'Category', key: 'category', format: (val) => val },
+                { name: 'Store', key: 'store', format: (val) => val },
+                { name: 'Location', key: 'location', format: (val) => val },
+                { name: 'Material', key: 'features.material', format: (val) => val },
+                { name: 'Style', key: 'features.style', format: (val) => val },
+                { name: 'Color', key: 'features.color', format: (val) => val }
+            ];
+
+            tableBody.innerHTML = features.map(feature => `
+                <tr>
+                    <td style="padding: 12px; color: var(--lux-white); font-weight: 600; border: 1px solid var(--lux-beige);">${feature.name}</td>
+                    ${allProducts.map(product => {
+                        const value = getNestedValue(product, feature.key);
+                        return `<td style="padding: 12px; color: var(--lux-white); border: 1px solid var(--lux-beige);">${feature.format(value)}</td>`;
+                    }).join('')}
+                </tr>
+            `).join('');
+        }
+
+        // Helper function to get nested object values
+        function getNestedValue(obj, path) {
+            return path.split('.').reduce((current, key) => current?.[key], obj) || 'N/A';
+        }
+
+        // Get random price in user's budget range
+        function getRandomPriceInRange(budgetRange) {
+            const ranges = {
+                'under-500': [100, 500],
+                '500-1000': [500, 1000],
+                '1000-2500': [1000, 2500],
+                '2500-5000': [2500, 5000],
+                '5000-10000': [5000, 10000],
+                'over-10000': [10000, 20000]
+            };
+            
+            const range = ranges[budgetRange] || [1000, 2500];
+            return Math.round(range[0] + Math.random() * (range[1] - range[0]));
+        }
+
+        // Close comparison modal
+        function closeComparisonModal() {
+            document.getElementById('comparison-modal').style.display = 'none';
+        }
+
+        // Save comparison
+        function saveComparison() {
+            if (currentComparison) {
+                const savedComparisons = JSON.parse(localStorage.getItem('savedComparisons') || '[]');
+                savedComparisons.push({
+                    ...currentComparison,
+                    savedAt: new Date().toISOString(),
+                    id: 'comparison-' + Date.now()
+                });
+                localStorage.setItem('savedComparisons', JSON.stringify(savedComparisons));
+                alert('Comparison saved successfully! You can view it in your saved comparisons.');
+            }
+        }
+
+        // Share comparison
+        function shareComparison() {
+            if (currentComparison && navigator.share) {
+                navigator.share({
+                    title: 'AI Product Comparison - Thread Social',
+                    text: `Check out this AI-generated comparison of ${currentComparison.original.brand} products!`,
+                    url: window.location.href
+                });
+            } else {
+                alert('Share this comparison with friends!\n\nAI found comparable products based on your preferences.');
+            }
+        }
+
+        // Export comparison
+        function exportComparison() {
+            if (currentComparison) {
+                const comparisonData = {
+                    original: currentComparison.original,
+                    comparables: currentComparison.comparables,
+                    analysis: currentComparison.analysis,
+                    exportedAt: new Date().toISOString()
+                };
+                
+                const dataStr = JSON.stringify(comparisonData, null, 2);
+                const dataBlob = new Blob([dataStr], { type: 'application/json' });
+                const url = URL.createObjectURL(dataBlob);
+                
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `comparison-${Date.now()}.json`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                
+                alert('Comparison exported successfully!');
+            }
+        }
+
+        // Multi-category selection and search
+        let selectedCategories = new Set();
+        let multiCategoryResults = [];
+
+        // Toggle category selection
+        function toggleCategorySelection(category) {
+            if (category === 'all') {
+                selectedCategories.clear();
+                updateCategoryButtons();
+                loadDeals(); // Show all deals
+                return;
+            }
+            
+            if (selectedCategories.has(category)) {
+                selectedCategories.delete(category);
+            } else {
+                selectedCategories.add(category);
+            }
+            updateCategoryButtons();
+            searchByMultipleCategories();
+        }
+
+        // Update category button states
+        function updateCategoryButtons() {
+            document.querySelectorAll('.filter-button').forEach(btn => {
+                const category = btn.getAttribute('data-category');
+                if (category === 'all') {
+                    if (selectedCategories.size === 0) {
+                        btn.style.background = 'var(--lux-hot-pink)';
+                        btn.style.color = 'var(--lux-white)';
+                        btn.style.borderColor = 'var(--lux-hot-pink)';
+                    } else {
+                        btn.style.background = 'var(--lux-black)';
+                        btn.style.color = 'var(--lux-beige)';
+                        btn.style.borderColor = 'var(--lux-beige)';
+                    }
+                } else if (category && selectedCategories.has(category)) {
+                    btn.style.background = 'var(--lux-hot-pink)';
+                    btn.style.color = 'var(--lux-white)';
+                    btn.style.borderColor = 'var(--lux-hot-pink)';
+                } else {
+                    btn.style.background = 'var(--lux-black)';
+                    btn.style.color = 'var(--lux-beige)';
+                    btn.style.borderColor = 'var(--lux-beige)';
+                }
+            });
+        }
+
+        // Search by multiple categories
+        function searchByMultipleCategories() {
+            if (selectedCategories.size === 0) {
+                loadDeals(); // Show all deals if no categories selected
+                return;
+            }
+
+            // Filter deals by selected categories
+            const filteredDeals = deals.filter(deal => selectedCategories.has(deal.category));
+            
+            // Apply AI preference filtering
+            const aiFilteredDeals = applyAIPreferenceFiltering(filteredDeals);
+            
+            // Display results
+            displayMultiCategoryResults(aiFilteredDeals);
+            
+            // Show notification
+            const categoryList = Array.from(selectedCategories).join(', ');
+            showNotification(`🔍 Found ${aiFilteredDeals.length} products matching categories: ${categoryList}`);
+        }
+
+        // Apply AI preference filtering
+        function applyAIPreferenceFiltering(deals) {
+            if (!userPreferences) return deals;
+
+            return deals.filter(deal => {
+                let score = 0;
+                
+                // Budget matching
+                if (userPreferences.budgetRange) {
+                    const [min, max] = getBudgetRange(userPreferences.budgetRange);
+                    if (deal.price >= min && deal.price <= max) {
+                        score += 3;
+                    }
+                }
+                
+                // Category matching
+                if (userPreferences.preferredCategories?.includes(deal.category)) {
+                    score += 2;
+                }
+                
+                // Brand matching
+                const preferredBrands = userPreferences.preferredBrands?.toLowerCase().split(', ') || [];
+                if (preferredBrands.some(brand => deal.brand.toLowerCase().includes(brand))) {
+                    score += 2;
+                }
+                
+                return score > 0;
+            }).sort((a, b) => {
+                const scoreA = calculatePreferenceScore(a);
+                const scoreB = calculatePreferenceScore(b);
+                return scoreB - scoreA;
+            });
+        }
+
+        // Calculate preference score
+        function calculatePreferenceScore(deal) {
+            if (!userPreferences) return 0;
+            
+            let score = 0;
+            
+            // Budget matching
+            if (userPreferences.budgetRange) {
+                const [min, max] = getBudgetRange(userPreferences.budgetRange);
+                if (deal.price >= min && deal.price <= max) {
+                    score += 3;
+                }
+            }
+            
+            // Category matching
+            if (userPreferences.preferredCategories?.includes(deal.category)) {
+                score += 2;
+            }
+            
+            // Brand matching
+            const preferredBrands = userPreferences.preferredBrands?.toLowerCase().split(', ') || [];
+            if (preferredBrands.some(brand => deal.brand.toLowerCase().includes(brand))) {
+                score += 2;
+            }
+            
+            return score;
+        }
+
+        // Get budget range
+        function getBudgetRange(budgetRange) {
+            const ranges = {
+                'under-500': [0, 500],
+                '500-1000': [500, 1000],
+                '1000-2500': [1000, 2500],
+                '2500-5000': [2500, 5000],
+                '5000-10000': [5000, 10000],
+                'over-10000': [10000, 999999]
+            };
+            return ranges[budgetRange] || [0, 999999];
+        }
+
+        // Display multi-category results
+        function displayMultiCategoryResults(filteredDeals) {
+            const dealsGrid = document.getElementById('deals-grid');
+            dealsGrid.innerHTML = '';
+            
+            if (filteredDeals.length === 0) {
+                dealsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px; color: var(--lux-white); opacity: 0.7;">
+                        <div style="font-size: 64px; margin-bottom: 24px;">🔍</div>
+                        <h3 style="font-size: 24px; margin-bottom: 12px;">No Products Found</h3>
+                        <p style="font-size: 16px; line-height: 1.5;">Try selecting different categories or adjusting your preferences.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            filteredDeals.forEach(deal => {
+                const dealCard = createDealCard(deal);
+                dealsGrid.appendChild(dealCard);
+            });
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--lux-hot-pink);
+                color: var(--lux-white);
+                padding: 12px 20px;
+                border-radius: 8px;
+                font-size: 14px;
+                font-weight: 600;
+                z-index: 1000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 

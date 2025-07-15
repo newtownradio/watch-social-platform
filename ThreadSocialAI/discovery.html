@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Thread Social">
+    <meta name="author" content="Thread Social">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FF1493">
+    
+    <title>Thread Social - Discovery</title>
+    
+    <link rel="stylesheet" href="./dist/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --lux-hot-pink: #FFABDF;
+            --lux-beige: #F5F5DC;
+            --lux-black: #000;
+            --lux-white: #fff;
+            --lux-dark-gray: #111;
+        }
+        
+        body, html {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+        }
+        
+        .nav-logo, .brand-title, h1, h2, h3 {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            letter-spacing: 2px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .lux-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        .lux-button {
+            background: var(--lux-hot-pink);
+            color: var(--lux-white);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .lux-button:hover {
+            background: var(--lux-beige);
+            color: var(--lux-black);
+            border-color: var(--lux-beige);
+        }
+        
+        .lux-button-secondary {
+            background: var(--lux-black);
+            color: var(--lux-beige);
+            border: 2px solid var(--lux-beige);
+            padding: 16px 32px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .lux-button-secondary:hover {
+            background: var(--lux-beige);
+            color: var(--lux-black);
+        }
+        
+        .activity-card {
+            background: var(--lux-dark-gray);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .activity-card:hover {
+            border-color: var(--lux-beige);
+            transform: translateY(-2px);
+        }
+        
+        .event-card {
+            background: var(--lux-dark-gray);
+            border: 2px solid var(--lux-beige);
+            padding: 24px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .event-card:hover {
+            border-color: var(--lux-hot-pink);
+            transform: translateY(-2px);
+        }
+        
+        .favorite-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--lux-black);
+            border: 2px solid var(--lux-beige);
+            color: var(--lux-beige);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .favorite-btn.favorited {
+            background: var(--lux-beige);
+            color: var(--lux-black);
+        }
+        
+        .favorite-btn:hover {
+            background: var(--lux-beige);
+            color: var(--lux-black);
+        }
+        
+        .share-btn {
+            background: var(--lux-hot-pink);
+            color: var(--lux-white);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 8px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .share-btn:hover {
+            background: var(--lux-beige);
+            color: var(--lux-black);
+            border-color: var(--lux-beige);
+        }
+        
+        /* iOS Optimizations */
+        @media (max-width: 768px) {
+            nav {
+                padding: 8px 0 !important;
+            }
+            
+            nav > div {
+                padding: 0 16px !important;
+            }
+            
+            nav > div > div:first-child {
+                font-size: 24px !important;
+                letter-spacing: 2px !important;
+            }
+            
+            nav > div > div:last-child {
+                gap: 12px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 11px !important;
+                padding: 6px 8px !important;
+                letter-spacing: 0.5px !important;
+            }
+            
+            .main-content {
+                padding: 20px 16px !important;
+            }
+            
+            .activity-card, .event-card {
+                padding: 16px !important;
+            }
+            
+            .lux-button, .lux-button-secondary {
+                padding: 14px 24px !important;
+                font-size: 14px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav > div > div:last-child {
+                gap: 8px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 10px !important;
+                padding: 4px 6px !important;
+            }
+            
+            .main-content {
+                padding: 16px 12px !important;
+            }
+            
+            .activity-card, .event-card {
+                padding: 12px !important;
+            }
+            
+            .lux-button, .lux-button-secondary {
+                padding: 12px 20px !important;
+                font-size: 12px !important;
+            }
+        }
+        
+        /* iOS Safe Area Support */
+        @supports (padding: max(0px)) {
+            nav {
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+            
+            .main-content {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+                padding-top: max(40px, env(safe-area-inset-top));
+                padding-bottom: max(40px, env(safe-area-inset-bottom));
+            }
+        }
+        
+        /* iOS momentum scrolling */
+        .ios-scroll {
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+        
+        /* Prevent zoom on input focus */
+        input, textarea, select { font-size: 16px !important; }
+        
+        /* iOS button tap highlight removal */
+        button, a {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        /* iOS-specific animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .ios-animate {
+                transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-black text-white">
+    <!-- iOS-Optimized Navigation -->
+    <nav style="padding: 12px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; -webkit-backdrop-filter: blur(10px);">
+        <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">THREAD SOCIAL</a>
+            
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="discovery.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-bottom: 2px solid var(--lux-hot-pink); transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">DISCOVERY</a>
+                <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDeals()">DEALS</a>
+                <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
+                <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content ios-scroll" style="background: var(--lux-black); min-height: 100vh; padding: 40px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <!-- Header -->
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h1 style="font-size: 48px; color: var(--lux-beige); font-weight: 900; margin-bottom: 24px; letter-spacing: 3px;">SOCIAL DISCOVERY</h1>
+                <p style="font-size: 20px; color: var(--lux-white); margin-bottom: 40px; letter-spacing: 1px; opacity: 0.9;">Discover events with friends and share your shopping experiences</p>
+                
+                <!-- Search Bar -->
+                <div style="max-width: 500px; margin: 0 auto 40px auto;">
+                    <div style="position: relative; display: flex; align-items: center;">
+                        <input type="text" id="search-input" placeholder="Search by designer or product..." style="width: 100%; padding: 16px 20px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); font-size: 16px; outline: none; font-family: inherit;" class="lux-input">
+                        <button onclick="performSearch()" style="position: absolute; right: 8px; background: var(--lux-hot-pink); color: var(--lux-white); border: none; padding: 12px 16px; cursor: pointer; font-size: 16px;">🔍</button>
+                    </div>
+                    <div id="search-suggestions" style="position: absolute; top: 100%; left: 0; right: 0; background: var(--lux-dark-gray); border: 1px solid var(--lux-beige); max-height: 200px; overflow-y: auto; z-index: 1000; display: none;"></div>
+                </div>
+                
+                <!-- Search Filters and Brand Directory -->
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-beige); padding: 40px; margin-bottom: 40px;">
+                    <h3 style="color: var(--lux-white); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">BRAND DIRECTORY</h3>
+                    
+                    <!-- Brand Directory Search Bar -->
+                    <div style="margin-bottom: 32px;">
+                        <div style="position: relative; max-width: 500px; margin: 0 auto;">
+                            <input type="text" id="brand-directory-search" placeholder="Search brands by name, specialty, or category..." class="lux-input" style="width: 100%; padding: 16px 20px; padding-right: 60px; font-size: 16px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); outline: none; font-family: inherit;">
+                            <button onclick="searchBrandDirectory()" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: var(--lux-beige); color: var(--lux-black); border: none; padding: 8px 12px; cursor: pointer; font-size: 14px; border-radius: 4px;">🔍</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Filter Options -->
+                    <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 32px;">
+                        <button class="lux-button-secondary" onclick="filterByCategory('all')" style="padding: 12px 20px; font-size: 14px;">ALL BRANDS</button>
+                        <button class="lux-button-secondary" onclick="filterByCategory('favorites')" style="padding: 12px 20px; font-size: 14px;">❤️ FAVORITES</button>
+                    </div>
+                    
+                    <!-- Alphabetical Navigation -->
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; padding: 20px; background: var(--lux-black); border: 1px solid var(--lux-beige);">
+                        <button onclick="filterByLetter('A')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">A</button>
+                        <button onclick="filterByLetter('B')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">B</button>
+                        <button onclick="filterByLetter('C')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">C</button>
+                        <button onclick="filterByLetter('D')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">D</button>
+                        <button onclick="filterByLetter('E')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">E</button>
+                        <button onclick="filterByLetter('F')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">F</button>
+                        <button onclick="filterByLetter('G')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">G</button>
+                        <button onclick="filterByLetter('H')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">H</button>
+                        <button onclick="filterByLetter('I')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">I</button>
+                        <button onclick="filterByLetter('J')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">J</button>
+                        <button onclick="filterByLetter('K')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">K</button>
+                        <button onclick="filterByLetter('L')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">L</button>
+                        <button onclick="filterByLetter('M')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">M</button>
+                        <button onclick="filterByLetter('N')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">N</button>
+                        <button onclick="filterByLetter('O')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">O</button>
+                        <button onclick="filterByLetter('P')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">P</button>
+                        <button onclick="filterByLetter('Q')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">Q</button>
+                        <button onclick="filterByLetter('R')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">R</button>
+                        <button onclick="filterByLetter('S')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">S</button>
+                        <button onclick="filterByLetter('T')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">T</button>
+                        <button onclick="filterByLetter('U')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">U</button>
+                        <button onclick="filterByLetter('V')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">V</button>
+                        <button onclick="filterByLetter('W')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">W</button>
+                        <button onclick="filterByLetter('X')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">X</button>
+                        <button onclick="filterByLetter('Y')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">Y</button>
+                        <button onclick="filterByLetter('Z')" class="letter-btn" style="background: var(--lux-black); color: var(--lux-beige); border: 1px solid var(--lux-beige); padding: 8px 12px; font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; min-width: 32px;">Z</button>
+                    </div>
+                    
+                    <!-- Brand Grid -->
+                    <div id="brand-directory" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                        <!-- Brands will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Quick Discovery Section -->
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-hot-pink); padding: 40px; margin-bottom: 40px;">
+                    <h3 style="color: var(--lux-white); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">QUICK DISCOVERY</h3>
+                    
+                    <!-- Quick Discovery Search Bar -->
+                    <div style="margin-bottom: 32px;">
+                        <div style="position: relative; max-width: 500px; margin: 0 auto;">
+                            <input type="text" id="quick-discovery-search" placeholder="Search deals by brand, category, or keyword..." class="lux-input" style="width: 100%; padding: 16px 20px; padding-right: 60px; font-size: 16px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); outline: none; font-family: inherit;">
+                            <button onclick="searchQuickDiscovery()" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: var(--lux-hot-pink); color: var(--lux-white); border: none; padding: 8px 12px; cursor: pointer; font-size: 14px; border-radius: 4px;">🔍</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Category Buttons -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 32px;">
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('clothing')" style="padding: 12px 16px; font-size: 14px;">👕 CLOTHING</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('bags')" style="padding: 12px 16px; font-size: 14px;">👜 BAGS</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('shoes')" style="padding: 12px 16px; font-size: 14px;">👠 SHOES</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('jewelry')" style="padding: 12px 16px; font-size: 14px;">💍 JEWELRY</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('accessories')" style="padding: 12px 16px; font-size: 14px;">🕶️ ACCESSORIES</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('watches')" style="padding: 12px 16px; font-size: 14px;">⌚ WATCHES</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('beauty')" style="padding: 12px 16px; font-size: 14px;">💄 BEAUTY</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('home')" style="padding: 12px 16px; font-size: 14px;">🏠 HOME</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('tech')" style="padding: 12px 16px; font-size: 14px;">📱 TECH</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('outdoor')" style="padding: 12px 16px; font-size: 14px;">🏔️ OUTDOOR</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('sports')" style="padding: 12px 16px; font-size: 14px;">⚽ SPORTS</button>
+                        <button class="lux-button-secondary" onclick="filterQuickDiscovery('vintage')" style="padding: 12px 16px; font-size: 14px;">🕰️ VINTAGE</button>
+                    </div>
+                    
+                    <!-- Quick Discovery Results -->
+                    <div id="quick-discovery-results" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px;">
+                        <!-- Results will be populated by JavaScript -->
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 24px;">
+                        <button class="lux-button" onclick="viewAllCategories()" style="padding: 12px 24px; font-size: 14px;">VIEW ALL CATEGORIES</button>
+                    </div>
+                </div>
+                
+                <!-- Multi-Category Selection Interface -->
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-hot-pink); padding: 40px; margin-bottom: 40px;">
+                    <h3 style="color: var(--lux-white); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">MULTI-CATEGORY SELECTION</h3>
+                    
+                    <!-- Category Selection Buttons -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px;">
+                        <button class="lux-button-secondary" onclick="toggleCategory('luxury_fashion')" id="cat-luxury_fashion" style="padding: 16px 20px; font-size: 14px; font-family: 'Space Grotesk', Arial, sans-serif;">👔 LUXURY FASHION</button>
+                        <button class="lux-button-secondary" onclick="toggleCategory('jewelry_watches')" id="cat-jewelry_watches" style="padding: 16px 20px; font-size: 14px; font-family: 'Space Grotesk', Arial, sans-serif;">💍 JEWELRY & WATCHES</button>
+                        <button class="lux-button-secondary" onclick="toggleCategory('streetwear')" id="cat-streetwear" style="padding: 16px 20px; font-size: 14px; font-family: 'Space Grotesk', Arial, sans-serif;">👟 STREETWEAR</button>
+                        <button class="lux-button-secondary" onclick="toggleCategory('contemporary')" id="cat-contemporary" style="padding: 16px 20px; font-size: 14px; font-family: 'Space Grotesk', Arial, sans-serif;">🎨 CONTEMPORARY</button>
+                        <button class="lux-button-secondary" onclick="toggleCategory('beauty')" id="cat-beauty" style="padding: 16px 20px; font-size: 14px; font-family: 'Space Grotesk', Arial, sans-serif;">💄 BEAUTY</button>
+                        <button class="lux-button-secondary" onclick="toggleCategory('outdoor')" id="cat-outdoor" style="padding: 16px 20px; font-size: 14px; font-family: 'Space Grotesk', Arial, sans-serif;">🏔️ OUTDOOR</button>
+                        <button class="lux-button-secondary" onclick="toggleCategory('tech')" id="cat-tech" style="padding: 16px 20px; font-size: 14px; font-family: 'Space Grotesk', Arial, sans-serif;">📱 TECH</button>
+                    </div>
+                    
+                    <!-- Quick Selection Presets -->
+                    <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;">
+                        <button class="lux-button" onclick="selectMultipleCategories(['luxury_fashion', 'jewelry_watches'])" style="padding: 12px 20px; font-size: 12px; font-family: 'Space Grotesk', Arial, sans-serif;">💎 LUXURY BUNDLE</button>
+                        <button class="lux-button" onclick="selectMultipleCategories(['streetwear', 'contemporary'])" style="padding: 12px 20px; font-size: 12px; font-family: 'Space Grotesk', Arial, sans-serif;">🎯 STREET STYLE</button>
+                        <button class="lux-button" onclick="selectMultipleCategories(['outdoor', 'tech'])" style="padding: 12px 20px; font-size: 12px; font-family: 'Space Grotesk', Arial, sans-serif;">🏔️ ADVENTURE</button>
+                        <button class="lux-button-secondary" onclick="clearCategoryFilters()" style="padding: 12px 20px; font-size: 12px; font-family: 'Space Grotesk', Arial, sans-serif;">🔄 CLEAR ALL</button>
+                    </div>
+                    
+                    <!-- Selected Categories Display -->
+                    <div id="selected-categories-display" style="text-align: center; min-height: 20px;">
+                        <p style="color: var(--lux-beige); font-size: 14px; font-family: 'Space Grotesk', Arial, sans-serif;">Select categories to filter products</p>
+                    </div>
+                </div>
+                
+                <!-- Friend Activity Section -->
+                <div id="friend-activity" style="margin-bottom: 60px;">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
+                        <h2 style="font-size: 32px; color: var(--lux-hot-pink); font-weight: 900; letter-spacing: 2px; margin: 0;">FRIEND ACTIVITY</h2>
+                        <div style="width: 12px; height: 12px; background: var(--lux-beige); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                        <span style="color: var(--lux-beige); font-size: 16px; font-weight: bold; letter-spacing: 2px;">LIVE</span>
+                    </div>
+                    
+                    <div id="friend-activity" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px;">
+                        <!-- Friend activity will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Expanded Friend Activity (Hidden by default) -->
+                    <div id="expanded-friend-activity" style="display: none; margin-top: 32px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                            <!-- Additional friend activities will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Friend Activity Controls -->
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 32px; flex-wrap: wrap;">
+                        <button class="lux-button" onclick="openTrendingSection()" style="padding: 16px 32px; font-size: 16px;">🔥 TRENDING NOW</button>
+                        <button class="lux-button-secondary" onclick="openUpcomingEvents()" style="padding: 16px 32px; font-size: 16px;">📅 UPCOMING EVENTS</button>
+                        <button class="lux-button-secondary" id="toggle-friend-activity" onclick="toggleFriendActivity()" style="padding: 16px 32px; font-size: 16px;">👥 SEE MORE ACTIVITY</button>
+                    </div>
+                </div>
+                
+                <!-- Trending Deals Section -->
+                <div id="trending" style="margin-bottom: 60px;">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
+                        <h2 style="font-size: 32px; color: var(--lux-beige); font-weight: 900; letter-spacing: 2px; margin: 0;">🔥 TRENDING DEALS</h2>
+                        <div style="width: 12px; height: 12px; background: var(--lux-hot-pink); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                        <span style="color: var(--lux-hot-pink); font-size: 16px; font-weight: bold; letter-spacing: 2px;">HOT</span>
+                    </div>
+                    
+                    <div id="trending-deals" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                        <!-- Trending deals will be populated by JavaScript -->
+                    </div>
+                    
+                    <!-- Expanded Trending Deals (Hidden by default) -->
+                    <div id="expanded-trending-deals" style="display: none; margin-top: 32px;">
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                            <!-- Additional trending deals will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Trending Controls -->
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 32px; flex-wrap: wrap;">
+                        <button class="lux-button-secondary" id="toggle-trending" onclick="toggleTrendingDeals()" style="padding: 16px 32px; font-size: 16px;">🔥 SEE MORE TRENDING</button>
+                        <button class="lux-button-secondary" onclick="refreshTrending()" style="padding: 16px 32px; font-size: 16px;">🔄 REFRESH</button>
+                    </div>
+                </div>
+                
+                <!-- Upcoming Events Section -->
+                <div style="margin-bottom: 60px;">
+                    <h2 style="font-size: 32px; color: var(--lux-beige); font-weight: 900; margin-bottom: 32px; text-align: center; letter-spacing: 2px;">UPCOMING EVENTS</h2>
+                    
+                    <div id="upcoming-events" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
+                        <!-- Events will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Event Search Section -->
+                <div style="background: var(--lux-dark-gray); border: 2px solid var(--lux-beige); padding: 40px; margin-bottom: 40px;">
+                    <h3 style="color: var(--lux-hot-pink); font-size: 24px; font-weight: 700; margin-bottom: 24px; text-align: center;">SEARCH EVENTS</h3>
+                    <div style="margin-bottom: 32px;">
+                        <div style="position: relative; max-width: 500px; margin: 0 auto;">
+                            <input type="text" id="event-search-input" placeholder="Search events by name, location, or keyword..." class="lux-input" style="width: 100%; padding: 16px 20px; padding-right: 60px; font-size: 16px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); outline: none; font-family: inherit;">
+                            <button onclick="searchEvents()" style="position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: var(--lux-hot-pink); color: var(--lux-white); border: none; padding: 8px 12px; cursor: pointer; font-size: 14px; border-radius: 4px;">🔍</button>
+                        </div>
+                    </div>
+                    <div id="event-search-results" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px;">
+                        <!-- Event results will be populated by JavaScript -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./src/js/discovery.js"></script>
+    
+    <script>
+        // Navigation functions
+        function navigateToDiscovery() {
+            showNotification('🔍 Navigating to Discovery...');
+            setTimeout(() => {
+                window.location.href = 'discovery.html';
+            }, 500);
+        }
+
+        function navigateToDeals() {
+            showNotification('💰 Navigating to Deals...');
+            setTimeout(() => {
+                window.location.href = 'deals.html';
+            }, 500);
+        }
+
+        function navigateToSocial() {
+            showNotification('👥 Navigating to Social Planning...');
+            setTimeout(() => {
+                window.location.href = 'social.html';
+            }, 500);
+        }
+
+        function navigateToMember() {
+            showNotification('👤 Navigating to Member Profile...');
+            setTimeout(() => {
+                window.location.href = 'member.html';
+            }, 500);
+        }
+
+        // Enhanced button functions
+        function performSearch() {
+            const searchInput = document.getElementById('search-input');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                showNotification(`🔍 Searching for "${query}"...`);
+                // The actual search functionality is handled by discovery.js
+            } else {
+                showNotification('🔍 Please enter a search term');
+            }
+        }
+
+        function searchQuickDiscovery() {
+            const searchInput = document.getElementById('quick-discovery-search');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                showNotification(`🔍 Quick searching for "${query}"...`);
+            } else {
+                showNotification('🔍 Please enter a search term for quick discovery');
+            }
+        }
+
+        function searchEvents() {
+            const searchInput = document.getElementById('event-search-input');
+            const query = searchInput.value.trim();
+            
+            if (query) {
+                showNotification(`📅 Searching events for "${query}"...`);
+            } else {
+                showNotification('📅 Please enter an event search term');
+            }
+        }
+
+        // Notification system
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--lux-hot-pink);
+                color: var(--lux-white);
+                padding: 16px 24px;
+                border-radius: 8px;
+                font-family: 'Space Grotesk', Arial, sans-serif;
+                font-weight: 600;
+                letter-spacing: 1px;
+                z-index: 10000;
+                max-width: 300px;
+                box-shadow: 0 4px 20px rgba(255, 171, 223, 0.3);
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Enhanced filter functions
+        function filterByCategory(category) {
+            showNotification(`📂 Filtering by ${category}...`);
+            // The actual filtering is handled by discovery.js
+        }
+
+        function filterByLetter(letter) {
+            showNotification(`🔤 Filtering brands starting with "${letter}"...`);
+            // The actual filtering is handled by discovery.js
+        }
+
+        function filterQuickDiscovery(category) {
+            showNotification(`🔍 Quick discovery: ${category}...`);
+            // The actual filtering is handled by discovery.js
+        }
+
+        function viewAllCategories() {
+            showNotification('📂 Viewing all categories...');
+            // The actual functionality is handled by discovery.js
+        }
+
+        // Enhanced toggle functions
+        function toggleFriendActivity() {
+            showNotification('👥 Toggling friend activity...');
+            // The actual functionality is handled by discovery.js
+        }
+
+        function toggleTrendingDeals() {
+            showNotification('🔥 Toggling trending deals...');
+            // The actual functionality is handled by discovery.js
+        }
+
+        function refreshTrending() {
+            showNotification('🔄 Refreshing trending deals...');
+            // The actual functionality is handled by discovery.js
+        }
+
+        function openTrendingSection() {
+            showNotification('🔥 Opening trending section...');
+            const trendingSection = document.getElementById('trending');
+            if (trendingSection) {
+                trendingSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function openUpcomingEvents() {
+            showNotification('📅 Opening upcoming events...');
+            const eventsSection = document.querySelector('#upcoming-events');
+            if (eventsSection) {
+                eventsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html> 

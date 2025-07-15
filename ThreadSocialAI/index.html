@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Thread Social">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FF1493">
+    
+    <title>Thread Social - AI-Powered Shopping Discovery</title>
+    
+    <link rel="stylesheet" href="./dist/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --lux-hot-pink: #FFABDF;
+            --lux-beige: #F5F5DC;
+            --lux-black: #000;
+            --lux-white: #fff;
+            --lux-dark-gray: #111;
+        }
+        
+        body, html {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+        }
+        
+        .nav-logo, .brand-title, h1, h2, h3 {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            letter-spacing: 2px;
+        }
+        
+        .lux-button, .lux-button-secondary {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .lux-fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .new-indicator {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--lux-beige);
+            color: var(--lux-black);
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .lux-card {
+            position: relative;
+        }
+        
+        /* Navigation hover effects */
+        .lux-nav-link:hover {
+            color: var(--lux-hot-pink) !important;
+        }
+        
+        .lux-nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--lux-hot-pink);
+            transition: width 0.3s ease;
+        }
+        
+        .lux-nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* iOS Optimizations */
+        @media (max-width: 768px) {
+            nav {
+                padding: 8px 0 !important;
+            }
+            
+            nav > div {
+                padding: 0 16px !important;
+            }
+            
+            nav > div > div:first-child {
+                font-size: 24px !important;
+                letter-spacing: 2px !important;
+            }
+            
+            nav > div > div:last-child {
+                gap: 16px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 12px !important;
+                letter-spacing: 0.5px !important;
+                padding: 6px 8px !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav > div > div:last-child {
+                gap: 12px !important;
+            }
+            
+            nav > div > div:last-child > a {
+                font-size: 11px !important;
+                padding: 4px 6px !important;
+            }
+            
+            /* Hero section mobile optimizations */
+            section[style*="min-height: 100vh"] {
+                padding: 20px 16px !important;
+            }
+            
+            section[style*="min-height: 100vh"] h1 {
+                font-size: 48px !important;
+                letter-spacing: 2px !important;
+            }
+            
+            section[style*="min-height: 100vh"] p {
+                font-size: 16px !important;
+            }
+            
+            section[style*="min-height: 100vh"] button {
+                padding: 16px 24px !important;
+                font-size: 14px !important;
+            }
+        }
+        
+        /* iOS Safe Area Support */
+        @supports (padding: max(0px)) {
+            nav {
+                padding-left: max(12px, env(safe-area-inset-left));
+                padding-right: max(12px, env(safe-area-inset-right));
+            }
+            
+            section[style*="min-height: 100vh"] {
+                padding-left: max(20px, env(safe-area-inset-left));
+                padding-right: max(20px, env(safe-area-inset-right));
+                padding-top: max(40px, env(safe-area-inset-top));
+                padding-bottom: max(40px, env(safe-area-inset-bottom));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS-Optimized Navigation -->
+    <nav style="padding: 12px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; -webkit-backdrop-filter: blur(10px);">
+        <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; flex-shrink: 0;">THREAD SOCIAL</div>
+            
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="discovery.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">DISCOVERY</a>
+                <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDeals()">DEALS</a>
+                <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
+                <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Simplified Hero Section - iOS Optimized -->
+    <section style="background: var(--lux-black); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 20px; text-align: center;">
+        <!-- Hero Section -->
+        <div style="text-align: center; padding: 80px 20px; margin-bottom: 80px;">
+            <h1 style="font-size: 64px; color: var(--lux-hot-pink); font-weight: 900; margin-bottom: 24px; letter-spacing: 4px;">THREAD SOCIAL</h1>
+            <p style="font-size: 20px; color: var(--lux-white); font-weight: 300; letter-spacing: 2px; margin-bottom: 32px;">Discover exclusive deals from the world's most prestigious brands</p>
+            <p style="font-size: 16px; color: var(--lux-white); opacity: 0.9; line-height: 1.6;">Our AI learns your style and finds hidden gems you'll love</p>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div style="display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 300px; margin-bottom: 60px;">
+            <button class="lux-button" style="padding: 20px 32px; font-size: 16px; font-weight: 700; letter-spacing: 2px; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">START DISCOVERING</button>
+            <button class="lux-button-secondary" style="padding: 20px 32px; font-size: 16px; font-weight: 700; letter-spacing: 2px; -webkit-tap-highlight-color: transparent;" onclick="navigateToSignup()">JOIN THREAD SOCIAL</button>
+        </div>
+        
+        <!-- Quick Access Buttons -->
+        <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap;">
+            <button class="lux-button-secondary" style="padding: 16px 24px; font-size: 14px; font-weight: 700; letter-spacing: 1px; -webkit-tap-highlight-color: transparent;" onclick="openTrendingNow()">🔥 TRENDING NOW</button>
+            <button class="lux-button-secondary" style="padding: 16px 24px; font-size: 14px; font-weight: 700; letter-spacing: 1px; -webkit-tap-highlight-color: transparent;" onclick="openFriendActivity()">👥 FRIEND ACTIVITY</button>
+        </div>
+        
+        <!-- Trust Indicators -->
+        <div style="display: flex; flex-direction: column; gap: 20px; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 10px; height: 10px; background: var(--lux-hot-pink); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                <span style="color: var(--lux-white); font-size: 16px; font-weight: 600; letter-spacing: 1px;">LIVE UPDATES</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 10px; height: 10px; background: var(--lux-beige); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                <span style="color: var(--lux-white); font-size: 16px; font-weight: 600; letter-spacing: 1px;">AI POWERED</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <div style="width: 10px; height: 10px; background: var(--lux-hot-pink); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                <span style="color: var(--lux-white); font-size: 16px; font-weight: 600; letter-spacing: 1px;">EXCLUSIVE ACCESS</span>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Live Discovery Section - Mondrian Style -->
+    <section id="discovery" class="lux-py-32" style="background: var(--lux-black); border-top: 4px solid var(--lux-hot-pink);">
+        <div class="lux-container" style="max-width: 1200px; margin: 0 auto; padding: 0;">
+            <!-- Section Header -->
+            <div style="background: var(--lux-black); border-bottom: 4px solid var(--lux-hot-pink); padding: 60px 32px; text-align: center;">
+                <h2 style="font-size: 48px; margin-bottom: 24px; color: var(--lux-hot-pink); font-weight: 900; letter-spacing: 3px;">LIVE DISCOVERY</h2>
+                <p style="color: var(--lux-white); font-size: 20px; max-width: 700px; margin: 0 auto; letter-spacing: 1px; opacity: 0.9; line-height: 1.6;">Real-time luxury deals and exclusive drops from the world's most prestigious brands</p>
+            </div>
+            
+            <!-- Main Discovery Grid - Mondrian Layout -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 0; min-height: 600px;">
+                <!-- Top Left: Trending Deals Header -->
+                <div style="background: var(--lux-black); border-right: 4px solid var(--lux-hot-pink); border-bottom: 4px solid var(--lux-hot-pink); padding: 40px; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
+                        <h3 style="color: var(--lux-hot-pink); font-size: 32px; font-weight: 900; letter-spacing: 2px; margin: 0;">TRENDING NOW</h3>
+                        <div style="width: 12px; height: 12px; background: var(--lux-beige); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                        <span style="color: var(--lux-beige); font-size: 16px; font-weight: bold; letter-spacing: 2px;">LIVE</span>
+                    </div>
+                    <div id="trending-deals" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <!-- Trending deals will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Top Right: Friend Activity -->
+                <div style="background: var(--lux-black); border-bottom: 4px solid var(--lux-hot-pink); padding: 40px; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
+                        <h3 style="color: var(--lux-beige); font-size: 32px; font-weight: 900; letter-spacing: 2px; margin: 0;">FRIEND ACTIVITY</h3>
+                        <div id="live-indicator" style="width: 12px; height: 12px; background: var(--lux-hot-pink); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                        <span style="color: var(--lux-hot-pink); font-size: 16px; font-weight: bold; letter-spacing: 2px;">LIVE</span>
+                    </div>
+                    <div id="activity-feed" style="display: flex; flex-direction: column; gap: 16px;">
+                        <!-- Activity items will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Bottom Left: Quick Discovery -->
+                <div style="background: var(--lux-dark-gray); border-right: 4px solid var(--lux-hot-pink); padding: 40px; display: flex; flex-direction: column; justify-content: center;">
+                    <div style="text-align: center; margin-bottom: 32px;">
+                        <h3 style="color: var(--lux-beige); font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px;">QUICK DISCOVERY</h3>
+                        <p style="color: var(--lux-white); font-size: 16px; opacity: 0.8;">Explore deals by category</p>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('designers')" onmouseover="this.style.background='var(--lux-hot-pink)'; this.style.color='var(--lux-white)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">DESIGNERS</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('clothing')" onmouseover="this.style.background='var(--lux-beige)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">CLOTHING</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('shoes')" onmouseover="this.style.background='var(--lux-hot-pink)'; this.style.color='var(--lux-white)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">SHOES</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('bags')" onmouseover="this.style.background='var(--lux-beige)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">BAGS</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('accessories')" onmouseover="this.style.background='var(--lux-hot-pink)'; this.style.color='var(--lux-white)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">ACCESSORIES</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('jewelry')" onmouseover="this.style.background='var(--lux-beige)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">JEWELRY</button>
+                    </div>
+                </div>
+                
+                <!-- Bottom Right: Call to Action -->
+                <div style="background: var(--lux-black); padding: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                    <div style="text-align: center;">
+                        <p style="font-size: 20px; color: var(--lux-beige); font-weight: 700; letter-spacing: 2px; margin-bottom: 24px;">EXPLORE MORE</p>
+                        <button class="lux-button" style="padding: 20px 32px; font-size: 16px; font-weight: 700; letter-spacing: 2px; margin-bottom: 16px;" onclick="navigateToSignup()">JOIN THREAD SOCIAL</button>
+                        <p style="font-size: 14px; color: var(--lux-white); opacity: 0.6; letter-spacing: 1px;">Get exclusive access to premium deals</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Social Planning Section - Mondrian Style -->
+    <section id="social" class="lux-py-32" style="background: var(--lux-black); border-top: 4px solid var(--lux-beige);">
+        <div class="lux-container" style="max-width: 1200px; margin: 0 auto; padding: 0;">
+            <!-- Section Header -->
+            <div style="background: var(--lux-black); border-bottom: 4px solid var(--lux-beige); padding: 60px 32px; text-align: center;">
+                <h2 style="font-size: 48px; margin-bottom: 24px; color: var(--lux-beige); font-weight: 900; letter-spacing: 3px;">PLAN SOCIAL SHOPPING</h2>
+                <p style="color: var(--lux-white); font-size: 20px; max-width: 700px; margin: 0 auto; letter-spacing: 1px; opacity: 0.9; line-height: 1.6;">Connect with friends and plan the perfect shopping experience together</p>
+            </div>
+            
+            <!-- Main Social Grid - 2 Simple Boxes -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 400px;">
+                <!-- Left: Create Trip -->
+                <div style="background: var(--lux-dark-gray); border-right: 4px solid var(--lux-beige); padding: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <h3 style="color: var(--lux-beige); font-size: 32px; font-weight: 900; letter-spacing: 2px; margin-bottom: 24px;">👥 CREATE TRIP</h3>
+                    <p style="color: var(--lux-white); font-size: 18px; line-height: 1.6; margin-bottom: 40px; max-width: 300px;">Plan shopping trips with friends and get AI-optimized routes</p>
+                    <button class="lux-button" style="padding: 16px 24px; font-size: 14px; font-weight: 700; letter-spacing: 1px;" onclick="createShoppingTrip()">CREATE TRIP</button>
+                </div>
+                
+                <!-- Right: View Events -->
+                <div style="background: var(--lux-black); padding: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <h3 style="color: var(--lux-hot-pink); font-size: 32px; font-weight: 900; letter-spacing: 2px; margin-bottom: 24px;">📅 VIEW EVENTS</h3>
+                    <p style="color: var(--lux-white); font-size: 18px; line-height: 1.6; margin-bottom: 40px; max-width: 300px;">Discover upcoming shopping events and exclusive experiences</p>
+                    <button class="lux-button-secondary" style="padding: 20px 40px; font-size: 16px; font-weight: 700; letter-spacing: 1px;" onclick="viewAllEvents()">VIEW EVENTS</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Real-time data simulation with brand logos and descriptions
+        let deals = [
+            {
+                id: 1,
+                brand: "CHANEL",
+                description: "Exclusive Classic Flap Collection Drop",
+                price: 8800,
+                originalPrice: 11000,
+                logo: getBrandLogo("CHANEL"),
+                category: "luxury_fashion",
+                trending: true,
+                store: "Chanel Boutique",
+                location: "SoHo, NYC",
+                dealType: "Exclusive Drop",
+                availableUntil: "2024-01-15",
+                realTimeLink: "https://www.chanel.com/us/fashion/p/AS1234Y12345/classic-flap-bag-black-caviar-leather-gold-tone-metal.html"
+            },
+            {
+                id: 2,
+                brand: "NIKE",
+                description: "Air Jordan 1 Retro Restock Event",
+                price: 180,
+                originalPrice: 220,
+                logo: getBrandLogo("NIKE"),
+                category: "streetwear",
+                trending: true,
+                store: "Nike Store",
+                location: "Multiple Locations",
+                dealType: "Flash Sale",
+                availableUntil: "2024-01-10",
+                realTimeLink: "https://www.nike.com/t/air-jordan-1-retro-high-og-shoes-Pz6fZ9"
+            },
+            {
+                id: 3,
+                brand: "BALENCIAGA",
+                description: "Triple S Sneakers Seasonal Collection",
+                price: 1200,
+                originalPrice: 1500,
+                logo: getBrandLogo("BALENCIAGA"),
+                category: "luxury_fashion",
+                trending: false,
+                store: "Balenciaga",
+                location: "Beverly Hills",
+                dealType: "Seasonal Sale",
+                availableUntil: "2024-01-20",
+                realTimeLink: "https://www.balenciaga.com/en-us/triple-s-sneaker_cod1161x05.html"
+            },
+            {
+                id: 4,
+                brand: "CARTIER",
+                description: "Love Collection VIP Access Event",
+                price: 6500,
+                originalPrice: 8000,
+                logo: getBrandLogo("CARTIER"),
+                category: "jewelry_watches",
+                trending: true,
+                store: "Cartier",
+                location: "Madison Avenue",
+                dealType: "VIP Exclusive",
+                availableUntil: "2024-01-12",
+                realTimeLink: "https://www.cartier.com/en-us/collections/jewelry/collections/love/love-bracelet.html"
+            },
+            {
+                id: 5,
+                brand: "GUCCI",
+                description: "Dionysus Limited Edition Release",
+                price: 2200,
+                originalPrice: 2800,
+                logo: getBrandLogo("GUCCI"),
+                category: "luxury_fashion",
+                trending: false,
+                store: "Gucci",
+                location: "Rodeo Drive",
+                dealType: "Limited Edition",
+                availableUntil: "2024-01-18",
+                realTimeLink: "https://www.gucci.com/us/en/pr/women/for-women/handbags-for-women/shoulder-bags-for-women/dionysus-small-shoulder-bag-p-476195I9X0N1000"
+            },
+            {
+                id: 6,
+                brand: "ADIDAS",
+                description: "Yeezy Boost 350 Restock Alert",
+                price: 220,
+                originalPrice: 250,
+                logo: getBrandLogo("ADIDAS"),
+                category: "streetwear",
+                trending: true,
+                store: "Adidas Originals",
+                location: "Downtown LA",
+                dealType: "Restock Alert",
+                availableUntil: "2024-01-14",
+                realTimeLink: "https://www.adidas.com/us/yeezy-boost-350-v2-shoes/GY3534.html"
+            },
+            {
+                id: 7,
+                brand: "LOUIS VUITTON",
+                description: "Neverfull Monogram Collection",
+                price: 1400,
+                originalPrice: 1800,
+                logo: getBrandLogo("LOUIS VUITTON"),
+                category: "luxury_fashion",
+                trending: true,
+                store: "Louis Vuitton",
+                location: "Fifth Avenue",
+                dealType: "Limited Time",
+                availableUntil: "2024-01-16",
+                realTimeLink: "https://us.louisvuitton.com/eng-us/products/neverfull-mm-monogram-canvas-nvprod1160007v"
+            },
+            {
+                id: 8,
+                brand: "ROLEX",
+                description: "Submariner Professional Series",
+                price: 8500,
+                originalPrice: 12000,
+                logo: getBrandLogo("ROLEX"),
+                category: "jewelry_watches",
+                trending: true,
+                store: "Rolex Boutique",
+                location: "Madison Avenue",
+                dealType: "VIP Access",
+                availableUntil: "2024-01-13",
+                realTimeLink: "https://www.rolex.com/watches/submariner/m126610ln-0001.html"
+            },
+            {
+                id: 9,
+                brand: "PRADA",
+                description: "Re-Edition Nylon Collection Sale",
+                price: 950,
+                originalPrice: 1200,
+                logo: getBrandLogo("PRADA"),
+                category: "luxury_fashion",
+                trending: false,
+                store: "Prada",
+                location: "Rodeo Drive",
+                dealType: "Seasonal Sale",
+                availableUntil: "2024-01-19",
+                realTimeLink: "https://www.prada.com/us/en/p/women/bags/shoulder-bags/products.re_edition_2005_nylon_mini_bag.1BH133_2A7M_F0002.html"
+            }
+        ];
+
+        // Multi-category selection state
+        let selectedCategories = new Set();
+        let filteredDeals = [...deals];
+
+        // Function to toggle category selection
+        function toggleCategory(category) {
+            if (selectedCategories.has(category)) {
+                selectedCategories.delete(category);
+            } else {
+                selectedCategories.add(category);
+            }
+            refreshProductData();
+        }
+
+        // Function to refresh product data based on selected categories
+        function refreshProductData() {
+            if (selectedCategories.size === 0) {
+                // Show all deals if no categories selected
+                filteredDeals = [...deals];
+            } else {
+                // Filter deals by selected categories
+                filteredDeals = deals.filter(deal => selectedCategories.has(deal.category));
+            }
+            
+            // Update the display
+            loadDeals();
+            showNotification(`🔄 Refreshed: ${filteredDeals.length} deals from ${selectedCategories.size > 0 ? selectedCategories.size + ' categories' : 'all categories'}`);
+        }
+
+        // Function to select multiple categories
+        function selectMultipleCategories(categories) {
+            selectedCategories.clear();
+            categories.forEach(category => selectedCategories.add(category));
+            refreshProductData();
+        }
+
+        // Function to clear all category filters
+        function clearCategoryFilters() {
+            selectedCategories.clear();
+            refreshProductData();
+        }
+
+        let activityFeed = [
+            "Sarah discovered 20% off at Chanel Boutique",
+            "Mike found exclusive Balenciaga drop",
+            "Emma shared Cartier VIP event",
+            "Alex discovered new Gucci collection",
+            "Lisa found limited Nike restock"
+        ];
+
+        let upcomingEvents = [
+            {
+                name: "Chanel VIP Shopping Event",
+                date: "Jan 15, 2024",
+                location: "SoHo, NYC",
+                description: "Exclusive access to new collection"
+            },
+            {
+                name: "Balenciaga Private Sale",
+                date: "Jan 18, 2024",
+                location: "Beverly Hills",
+                description: "Invitation-only seasonal sale"
+            },
+            {
+                name: "Cartier Jewelry Showcase",
+                date: "Jan 20, 2024",
+                location: "Madison Avenue",
+                description: "Limited edition pieces on display"
+            }
+        ];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDeals();
+            loadActivityFeed();
+            loadTrendingDeals();
+            loadUpcomingEvents();
+            startRealTimeUpdates();
+        });
+
+        // Load deals
+        function loadDeals() {
+            const dealsGrid = document.getElementById('deals-grid');
+            dealsGrid.innerHTML = '';
+            
+            filteredDeals.forEach(deal => {
+                const dealCard = createDealCard(deal);
+                dealsGrid.appendChild(dealCard);
+            });
+        }
+
+        // Create deal card
+        function createDealCard(deal) {
+            const card = document.createElement('div');
+            card.className = 'lux-card lux-text-center lux-fade-in';
+            
+            const discount = Math.round(((deal.originalPrice - deal.price) / deal.originalPrice) * 100);
+            const isNew = deal.trending && Math.random() > 0.7; // 30% chance for trending items to show as new
+            
+            card.innerHTML = `
+                ${isNew ? '<div class="new-indicator">NEW</div>' : ''}
+                <div class="lux-mb-16">
+                    <div style="width: 120px; height: 80px; margin: 0 auto; border-radius: 0; overflow: hidden; border: 2px solid var(--lux-hot-pink); background: var(--lux-white); display: flex; align-items: center; justify-content: center; padding: 8px;">
+                        <img src="${deal.logo}" alt="${deal.brand}" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
+                    </div>
+                </div>
+                <h3 class="lux-text-xl lux-font-bold lux-mb-8" style="color: var(--lux-white);">${deal.brand}</h3>
+                <p style="color: var(--lux-white); font-size: 14px; margin-bottom: 32px; font-style: italic; opacity: 0.8;">${deal.description}</p>
+                <div class="lux-mb-8">
+                    <span class="lux-text-lg" style="color: var(--lux-beige);">$${deal.price}</span>
+                    <span class="lux-text-sm" style="color: var(--lux-white); text-decoration: line-through; margin-left: 8px; opacity: 0.6;">$${deal.originalPrice}</span>
+                </div>
+                <div class="lux-mb-8">
+                    <span style="background: var(--lux-hot-pink); color: var(--lux-white); padding: 4px 8px; font-size: 12px; font-weight: bold;">${discount}% OFF</span>
+                </div>
+                <div class="lux-mb-16">
+                    <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8;">${deal.store}</p>
+                    <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8;">${deal.location}</p>
+                    <p class="lux-text-sm" style="color: var(--lux-beige);">${deal.dealType}</p>
+                </div>
+                <button class="lux-button" onclick="getStoreInfo('${deal.store}')">GET STORE INFO</button>
+            `;
+            
+            return card;
+        }
+
+        // Load activity feed
+        function loadActivityFeed() {
+            const feed = document.getElementById('activity-feed');
+            feed.innerHTML = '';
+            
+            activityFeed.forEach(activity => {
+                const item = document.createElement('div');
+                item.style.background = 'var(--lux-black)';
+                item.style.border = '1px solid var(--lux-beige)';
+                item.style.padding = '16px';
+                item.style.marginBottom = '12px';
+                item.style.borderRadius = '0';
+                item.innerHTML = `
+                    <p style="color: var(--lux-white); opacity: 0.9; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">${activity}</p>
+                    <small style="color: var(--lux-hot-pink); font-size: 12px; font-weight: 600;">${new Date().toLocaleTimeString()}</small>
+                `;
+                feed.appendChild(item);
+            });
+        }
+
+        // Load trending deals
+        function loadTrendingDeals() {
+            const trendingGrid = document.getElementById('trending-deals');
+            trendingGrid.innerHTML = '';
+            
+            const trendingDeals = deals.filter(deal => deal.trending);
+            trendingDeals.forEach(deal => {
+                const dealCard = createDealCard(deal);
+                trendingGrid.appendChild(dealCard);
+            });
+        }
+
+        // Load upcoming events
+        function loadUpcomingEvents() {
+            const eventsContainer = document.getElementById('upcoming-events');
+            eventsContainer.innerHTML = '';
+            
+            upcomingEvents.forEach(event => {
+                const eventElement = document.createElement('div');
+                eventElement.className = 'lux-mb-16';
+                eventElement.innerHTML = `
+                    <h4 class="lux-text-lg lux-font-bold" style="color: var(--lux-white);">${event.name}</h4>
+                    <p class="lux-beige-text lux-text-sm">${event.date} • ${event.location}</p>
+                    <p class="lux-beige-text lux-text-sm">${event.description}</p>
+                `;
+                eventsContainer.appendChild(eventElement);
+            });
+        }
+
+        // Search deals
+        function searchDeals(category = null) {
+            const searchInput = document.getElementById('search-input');
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            let filteredDeals = deals;
+            
+            if (category) {
+                filteredDeals = deals.filter(deal => deal.category === category);
+            } else if (searchTerm) {
+                filteredDeals = deals.filter(deal => 
+                    deal.brand.toLowerCase().includes(searchTerm) ||
+                    deal.description.toLowerCase().includes(searchTerm) ||
+                    deal.category.toLowerCase().includes(searchTerm) ||
+                    deal.store.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            const dealsGrid = document.getElementById('deals-grid');
+            dealsGrid.innerHTML = '';
+            
+            filteredDeals.forEach(deal => {
+                const dealCard = createDealCard(deal);
+                dealsGrid.appendChild(dealCard);
+            });
+        }
+
+        // Navigation Functions
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function navigateToDiscovery() {
+            window.location.href = 'discovery.html';
+        }
+
+        function navigateToDeals() {
+            window.location.href = 'deals.html';
+        }
+
+        function navigateToSocial() {
+            window.location.href = 'social.html';
+        }
+
+        function navigateToMember() {
+            window.location.href = 'member.html';
+        }
+
+        function navigateToSignup() {
+            window.location.href = 'signup.html';
+        }
+
+        // Enhanced AI Functions
+        function getAIRecommendations() {
+            showNotification('🤖 AI is analyzing your style preferences and finding personalized deals just for you!');
+            setTimeout(() => {
+                window.location.href = 'discovery.html#trending';
+            }, 2000);
+        }
+
+        function tryVoiceSearch() {
+            showNotification('🎤 "Listening... Try saying: Show me luxury bags under $2000"');
+            setTimeout(() => {
+                window.location.href = 'discovery.html';
+            }, 3000);
+        }
+
+        function getStoreInfo(storeName) {
+            showNotification(`📍 ${storeName}\n\nVisit the store to take advantage of this exclusive deal!\n\nWe help you discover deals - you shop directly with the brand.`);
+        }
+
+        function createShoppingTrip() {
+            showNotification('👥 Creating a shopping trip with friends!\n\n• Share deals with your group\n• Get AI-optimized routes\n• Plan the perfect shopping day');
+            setTimeout(() => {
+                window.location.href = 'social.html';
+            }, 2000);
+        }
+
+        function viewAllEvents() {
+            showNotification('📅 Viewing all upcoming luxury events and exclusive shopping experiences!');
+            setTimeout(() => {
+                window.location.href = 'discovery.html#friend-activity';
+            }, 1500);
+        }
+
+        // Quick Access Functions
+        function openTrendingNow() {
+            showNotification('🔥 Opening trending deals...');
+            setTimeout(() => {
+                window.location.href = 'discovery.html#trending';
+            }, 1000);
+        }
+
+        function openFriendActivity() {
+            showNotification('👥 Opening friend activity...');
+            setTimeout(() => {
+                window.location.href = 'discovery.html#friend-activity';
+            }, 1000);
+        }
+
+        // Notification system
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--lux-hot-pink);
+                color: var(--lux-white);
+                padding: 16px 24px;
+                border-radius: 8px;
+                font-family: 'Space Grotesk', Arial, sans-serif;
+                font-weight: 600;
+                letter-spacing: 1px;
+                z-index: 10000;
+                max-width: 300px;
+                box-shadow: 0 4px 20px rgba(255, 171, 223, 0.3);
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Real-time updates
+        function startRealTimeUpdates() {
+            setInterval(() => {
+                // Simulate new activity with brand mentions
+                const newActivities = [
+                    "Sarah discovered 30% off Louis Vuitton collection",
+                    "Mike found exclusive Rolex VIP access",
+                    "Emma shared Hermès exclusive event",
+                    "Alex discovered new Off-White collaboration",
+                    "Lisa found limited Tiffany & Co. showcase",
+                    "VIP access granted to Chanel exclusive drop",
+                    "Flash sale started on Balenciaga seasonal collection",
+                    "Limited edition Gucci release in 5 minutes",
+                    "New Prada collection spotted",
+                    "Cartier VIP event alert"
+                ];
+                
+                const randomActivity = newActivities[Math.floor(Math.random() * newActivities.length)];
+                activityFeed.unshift(randomActivity);
+                activityFeed = activityFeed.slice(0, 5); // Keep only 5 items
+                loadActivityFeed();
+                
+                // Update trending status and prices dynamically
+                deals.forEach(deal => {
+                    if (Math.random() > 0.7) {
+                        deal.trending = !deal.trending;
+                    }
+                    // Occasionally update prices to simulate real-time changes
+                    if (Math.random() > 0.9) {
+                        const priceChange = Math.floor(Math.random() * 100) - 50; // -50 to +50
+                        deal.price = Math.max(deal.price + priceChange, deal.price * 0.8); // Don't go below 80% of original
+                    }
+                });
+                loadTrendingDeals();
+                loadDeals(); // Refresh main deals grid
+                
+            }, 5000); // Update every 5 seconds
+        }
+
+        // Brand Logos Dictionary - Centralized brand assets
+        const brandLogos = {
+            // Luxury Fashion Houses
+            "CHANEL": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Chanel_logo.svg/2560px-Chanel_logo.svg.png",
+            "LOUIS VUITTON": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Louis_Vuitton_logo_and_wordmark.svg/2560px-Louis_Vuitton_logo_and_wordmark.svg.png",
+            "GUCCI": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/1960s_Gucci_Logo.svg/2560px-1960s_Gucci_Logo.svg.png",
+            "HERMÈS": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Herm%C3%A8s_logo.svg/2560px-Herm%C3%A8s_logo.svg.png",
+            "PRADA": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Prada_logo.svg/2560px-Prada_logo.svg.png",
+            "BALENCIAGA": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Balenciaga_logo.svg/2560px-Balenciaga_logo.svg.png",
+            "SAINT LAURENT": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Saint_Laurent_logo.svg/2560px-Saint_Laurent_logo.svg.png",
+            "CELINE": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Celine_logo.svg/2560px-Celine_logo.svg.png",
+            "FENDI": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Fendi_logo.svg/2560px-Fendi_logo.svg.png",
+            "BOTTEGA VENETA": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bottega_Veneta_logo.svg/2560px-Bottega_Veneta_logo.svg.png",
+            
+            // Luxury Jewelry & Watches
+            "CARTIER": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Cartier_logo.svg/2560px-Cartier_logo.svg.png",
+            "ROLEX": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Rolex_logo.svg/2560px-Rolex_logo.svg.png",
+            "TIFFANY & CO.": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Tiffany_%26_Co_logo.svg/2560px-Tiffany_%26_Co_logo.svg.png",
+            "VAN CLEEF & ARPELS": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Van_Cleef_%26_Arpels_logo.svg/2560px-Van_Cleef_%26_Arpels_logo.svg.png",
+            "BULGARI": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bulgari_logo.svg/2560px-Bulgari_logo.svg.png",
+            "PATEK PHILIPPE": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Patek_Philippe_logo.svg/2560px-Patek_Philippe_logo.svg.png",
+            "AUDEMARS PIGUET": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Audemars_Piguet_logo.svg/2560px-Audemars_Piguet_logo.svg.png",
+            "VACHERON CONSTANTIN": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Vacheron_Constantin_logo.svg/2560px-Vacheron_Constantin_logo.svg.png",
+            
+            // Streetwear & Sneakers
+            "NIKE": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Nike_Logo.svg/2560px-Nike_Logo.svg.png",
+            "ADIDAS": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png",
+            "OFF-WHITE": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Off-White_logo.svg/2560px-Off-White_logo.svg.png",
+            "SUPREME": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Supreme_logo.svg/2560px-Supreme_logo.svg.png",
+            "PALACE": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Palace_logo.svg/2560px-Palace_logo.svg.png",
+            "STONE ISLAND": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Stone_Island_logo.svg/2560px-Stone_Island_logo.svg.png",
+            "COMME DES GARÇONS": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Comme_des_Garcons_logo.svg/2560px-Comme_des_Garcons_logo.svg.png",
+            
+            // Contemporary Luxury
+            "ACNE STUDIOS": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Acne_Studios_logo.svg/2560px-Acne_Studios_logo.svg.png",
+            "ISABEL MARANT": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Isabel_Marant_logo.svg/2560px-Isabel_Marant_logo.svg.png",
+            "MAISON MARGIELA": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Maison_Margiela_logo.svg/2560px-Maison_Margiela_logo.svg.png",
+            "JIL SANDER": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jil_Sander_logo.svg/2560px-Jil_Sander_logo.svg.png",
+            "THE ROW": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/The_Row_logo.svg/2560px-The_Row_logo.svg.png",
+            
+            // Beauty & Fragrance
+            "DIOR": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Dior_logo.svg/2560px-Dior_logo.svg.png",
+            "CHANEL BEAUTY": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Chanel_Beauty_logo.svg/2560px-Chanel_Beauty_logo.svg.png",
+            "TOM FORD": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Tom_Ford_logo.svg/2560px-Tom_Ford_logo.svg.png",
+            "BYREDO": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Byredo_logo.svg/2560px-Byredo_logo.svg.png",
+            "LE LABO": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Le_Labo_logo.svg/2560px-Le_Labo_logo.svg.png",
+            
+            // Outdoor & Performance
+            "ARC'TERYX": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Arcteryx_logo.svg/2560px-Arcteryx_logo.svg.png",
+            "PATAGONIA": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Patagonia_logo.svg/2560px-Patagonia_logo.svg.png",
+            "THE NORTH FACE": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/The_North_Face_logo.svg/2560px-The_North_Face_logo.svg.png",
+            "MONCLER": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Moncler_logo.svg/2560px-Moncler_logo.svg.png",
+            "CANADA GOOSE": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Canada_Goose_logo.svg/2560px-Canada_Goose_logo.svg.png",
+            
+            // Tech & Lifestyle
+            "APPLE": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Apple_logo.svg/2560px-Apple_logo.svg.png",
+            "SAMSUNG": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Samsung_logo.svg/2560px-Samsung_logo.svg.png",
+            "SONY": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Sony_logo.svg/2560px-Sony_logo.svg.png",
+            "BOSE": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bose_logo.svg/2560px-Bose_logo.svg.png",
+            "BANG & OLUFSEN": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Bang_%26_Olufsen_logo.svg/2560px-Bang_%26_Olufsen_logo.svg.png"
+        };
+
+        // Brand Categories Dictionary
+        const brandCategories = {
+            "luxury_fashion": ["CHANEL", "LOUIS VUITTON", "GUCCI", "HERMÈS", "PRADA", "BALENCIAGA", "SAINT LAURENT", "CELINE", "FENDI", "BOTTEGA VENETA"],
+            "jewelry_watches": ["CARTIER", "ROLEX", "TIFFANY & CO.", "VAN CLEEF & ARPELS", "BULGARI", "PATEK PHILIPPE", "AUDEMARS PIGUET", "VACHERON CONSTANTIN"],
+            "streetwear": ["NIKE", "ADIDAS", "OFF-WHITE", "SUPREME", "PALACE", "STONE ISLAND", "COMME DES GARÇONS"],
+            "contemporary": ["ACNE STUDIOS", "ISABEL MARANT", "MAISON MARGIELA", "JIL SANDER", "THE ROW"],
+            "beauty": ["DIOR", "CHANEL BEAUTY", "TOM FORD", "BYREDO", "LE LABO"],
+            "outdoor": ["ARC'TERYX", "PATAGONIA", "THE NORTH FACE", "MONCLER", "CANADA GOOSE"],
+            "tech": ["APPLE", "SAMSUNG", "SONY", "BOSE", "BANG & OLUFSEN"]
+        };
+
+        // Function to get brand logo
+        function getBrandLogo(brandName) {
+            return brandLogos[brandName.toUpperCase()] || "https://via.placeholder.com/120x80/333/fff?text=" + encodeURIComponent(brandName);
+        }
+
+        // Function to get brands by category
+        function getBrandsByCategory(category) {
+            return brandCategories[category] || [];
+        }
+
+        // Function to get all brands
+        function getAllBrands() {
+            return Object.keys(brandLogos);
+        }
+    </script>
+</body>
+</html> 
