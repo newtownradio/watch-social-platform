@@ -105,44 +105,19 @@ class SplashPageComponent extends BaseComponent {
             width: 100%;
         `;
 
-        // Create floating Basedly logo with enhanced animations
+        // Create floating Basedly logo with proper animation classes
         const logoContainer = document.createElement('div');
+        logoContainer.className = 'basedly-logo-container';
         logoContainer.id = 'floating-logo';
         logoContainer.style.cssText = `
             margin-bottom: clamp(30px, 8vw, 60px);
-            animation: logoFloat 4s ease-in-out infinite;
-            transform-origin: center;
             position: relative;
             z-index: 20;
         `;
 
-        const logo = document.createElement('div');
-        logo.innerHTML = 'BASEDLY';
-        logo.style.cssText = `
-            font-family: 'Arial Black', sans-serif;
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, #ffffff 0%, #ffc0cb 50%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 
-                0 0 40px rgba(255,255,255,1),
-                0 0 80px rgba(255,192,203,0.8),
-                0 0 120px rgba(255,192,203,0.6),
-                2px 2px 4px rgba(0,0,0,0.8);
-            letter-spacing: clamp(3px, 1.5vw, 6px);
-            animation: logoGlow 3s ease-in-out infinite alternate;
-            filter: drop-shadow(0 8px 16px rgba(255,255,255,0.5));
-            position: relative;
-            z-index: 25;
-            text-align: center;
-            line-height: 1.2;
-            padding: clamp(10px, 3vw, 20px);
-            border-radius: 10px;
-            background-color: rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px);
-        `;
+        const logo = document.createElement('h1');
+        logo.className = 'basedly-logo';
+        logo.textContent = 'BASEDLY';
 
         logoContainer.appendChild(logo);
         heroContent.appendChild(logoContainer);
@@ -194,36 +169,6 @@ class SplashPageComponent extends BaseComponent {
         // Add CSS animations
         const style = document.createElement('style');
         style.textContent = `
-            @keyframes logoFloat {
-                0%, 100% { transform: translateY(0px) rotate(0deg); }
-                25% { transform: translateY(-10px) rotate(1deg); }
-                50% { transform: translateY(-5px) rotate(-1deg); }
-                75% { transform: translateY(-15px) rotate(0.5deg); }
-            }
-
-            @keyframes logoGlow {
-                0% { 
-                    filter: drop-shadow(0 8px 16px rgba(255,255,255,0.5)) 
-                           drop-shadow(0 0 30px rgba(255,192,203,0.6))
-                           drop-shadow(0 0 50px rgba(255,255,255,0.4));
-                    text-shadow: 
-                        0 0 40px rgba(255,255,255,1),
-                        0 0 80px rgba(255,192,203,0.8),
-                        0 0 120px rgba(255,192,203,0.6),
-                        2px 2px 4px rgba(0,0,0,0.8);
-                }
-                100% { 
-                    filter: drop-shadow(0 12px 24px rgba(255,255,255,0.7)) 
-                           drop-shadow(0 0 40px rgba(255,192,203,0.9))
-                           drop-shadow(0 0 70px rgba(255,255,255,0.6));
-                    text-shadow: 
-                        0 0 50px rgba(255,255,255,1),
-                        0 0 100px rgba(255,192,203,0.9),
-                        0 0 150px rgba(255,192,203,0.7),
-                        2px 2px 4px rgba(0,0,0,0.8);
-                }
-            }
-
             @keyframes fadeInUp {
                 from {
                     opacity: 0;
@@ -321,28 +266,41 @@ class SplashPageComponent extends BaseComponent {
         container.innerHTML = '';
         container.appendChild(splashContainer);
 
-        // Initialize GSAP animations for clouds
-        this.initCloudAnimations();
+        // Initialize GSAP animations for clouds with proper timing
+        setTimeout(() => {
+            this.initCloudAnimations();
+        }, 100);
     }
 
     initCloudAnimations() {
+        // Check if GSAP is available
         if (typeof gsap === 'undefined') {
-            // Fallback animation if GSAP not loaded
+            console.log('GSAP not available, using fallback cloud animations');
             this.fallbackCloudAnimation();
             return;
         }
 
+        console.log('Initializing GSAP cloud animations');
         const clouds = document.querySelectorAll('.cloud');
+        
+        if (clouds.length === 0) {
+            console.log('No clouds found for animation');
+            return;
+        }
+
+        console.log(`Found ${clouds.length} clouds to animate`);
         
         clouds.forEach((cloud, index) => {
             const duration = 5 + Math.random() * 3; // 5-8 seconds
             const delay = Math.random() * 2;
             
+            // Set initial position
             gsap.set(cloud, {
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * window.innerHeight
             });
 
+            // Create floating animation
             gsap.to(cloud, {
                 x: `+=${(Math.random() - 0.5) * 200}`,
                 y: `+=${(Math.random() - 0.5) * 100}`,

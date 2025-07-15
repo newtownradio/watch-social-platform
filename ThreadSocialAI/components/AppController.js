@@ -5,7 +5,7 @@ class AppController {
     constructor() {
         this.dataManager = new DataManager();
         this.componentManager = new ComponentManager(this.dataManager);
-        this.currentPage = 'home';
+        this.currentPage = 'splash';
         this.isInitialized = false;
         this.realTimeInterval = null;
     }
@@ -28,7 +28,7 @@ class AppController {
             this.startRealTimeUpdates();
             
             // Render initial page
-            this.renderPage('home');
+            this.renderPage('splash');
             
             this.isInitialized = true;
             console.log('BubliAI Application initialized successfully');
