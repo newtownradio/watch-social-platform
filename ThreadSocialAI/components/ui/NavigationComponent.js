@@ -184,7 +184,7 @@ class NavigationComponent extends BaseComponent {
             }
 
             .logo-container:hover {
-                transform: scale(1.05);
+                transform: scale(1.02);
             }
 
             .basedly-logo {
@@ -198,14 +198,63 @@ class NavigationComponent extends BaseComponent {
             }
 
             .logo-text {
-                font-family: 'Inter', sans-serif;
-                font-weight: 700;
-                font-size: 1.5rem;
-                background: linear-gradient(135deg, #FFFFFF, #F8F9FA);
+                font-family: 'Fredoka One', cursive;
+                font-weight: 400;
+                font-size: 1.8rem;
+                background: linear-gradient(135deg, #FFABDF, #FF1493);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
-                letter-spacing: 0.5px;
+                letter-spacing: 1px;
+                text-shadow: 
+                    0 0 10px rgba(255, 171, 223, 0.5),
+                    0 0 20px rgba(255, 171, 223, 0.3),
+                    0 0 30px rgba(255, 171, 223, 0.2);
+                animation: logoTextFloat 3s ease-in-out infinite;
+                position: relative;
+            }
+
+            @keyframes logoTextFloat {
+                0%, 100% { 
+                    transform: translateY(0px) rotate(0deg); 
+                    filter: brightness(1) contrast(1);
+                }
+                25% { 
+                    transform: translateY(-2px) rotate(0.5deg); 
+                    filter: brightness(1.1) contrast(1.1);
+                }
+                50% { 
+                    transform: translateY(-1px) rotate(-0.3deg); 
+                    filter: brightness(1.05) contrast(1.05);
+                }
+                75% { 
+                    transform: translateY(-3px) rotate(0.2deg); 
+                    filter: brightness(1.15) contrast(1.15);
+                }
+            }
+
+            .logo-container:hover .logo-text {
+                animation: logoTextBounce 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                filter: 
+                    brightness(1.2) 
+                    contrast(1.2)
+                    drop-shadow(0 0 15px rgba(255, 171, 223, 0.8))
+                    drop-shadow(0 0 25px rgba(255, 171, 223, 0.6));
+            }
+
+            @keyframes logoTextBounce {
+                0%, 100% { 
+                    transform: scale(1) rotate(0deg); 
+                }
+                25% { 
+                    transform: scale(1.1) rotate(-1deg); 
+                }
+                50% { 
+                    transform: scale(1.15) rotate(1deg); 
+                }
+                75% { 
+                    transform: scale(1.2) rotate(-0.5deg); 
+                }
             }
 
             .nav-menu {
