@@ -38,7 +38,7 @@ class RainbowCloudsComponent extends BaseComponent {
                 to bottom,
                 #ff0000 0%,
                 #ff8000 16.66%,
-                #ffff00 33.33%,
+                #FFABDF 33.33%,
                 #00ff00 50%,
                 #0080ff 66.66%,
                 #8000ff 83.33%,

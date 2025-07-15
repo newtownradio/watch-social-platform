@@ -201,7 +201,7 @@ class NavigationComponent extends BaseComponent {
                 font-family: 'Inter', sans-serif;
                 font-weight: 700;
                 font-size: 1.5rem;
-                background: linear-gradient(135deg, #4A90E2, #357ABD);
+                background: linear-gradient(135deg, #FFFFFF, #F8F9FA);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;

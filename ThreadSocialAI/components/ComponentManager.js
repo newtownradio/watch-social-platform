@@ -13,9 +13,10 @@ class ComponentManager {
         this.components.hero = new HeroComponent(this.dataManager);
         this.components.dealCard = new DealCardComponent(this.dataManager);
         this.components.searchBar = new SearchBarComponent(this.dataManager);
-        this.components.rainbowClouds = new RainbowCloudsComponent(this.dataManager);
+        this.components.weatherAnimation = new WeatherAnimationComponent(this.dataManager);
 
         // Initialize page components
+        this.components.splashPage = new SplashPageComponent(this.dataManager);
         this.components.discoveryPage = new DiscoveryPageComponent(this.dataManager);
         this.components.messagesPage = new MessagesPageComponent(this.dataManager);
 
@@ -32,9 +33,9 @@ class ComponentManager {
         this.components.hero.render(containerId, data);
     }
 
-    // Render rainbow animation
-    renderRainbow(containerId) {
-        this.components.rainbowClouds.render(containerId);
+    // Render weather animation
+    renderWeather(containerId) {
+        this.components.weatherAnimation.render(containerId);
     }
 
     // Render a specific page
@@ -50,13 +51,11 @@ class ComponentManager {
         // Clear container
         container.innerHTML = '';
 
-        // Render navigation
-        this.renderNavigation(containerId);
-
         // Render page content based on page name
         switch (pageName) {
             case 'home':
-                this.renderHomePage(containerId, data);
+            case 'splash':
+                this.renderSplashPage(containerId, data);
                 break;
             case 'discovery':
                 this.renderDiscoveryPage(containerId, data);
@@ -74,41 +73,28 @@ class ComponentManager {
                 this.renderMemberPage(containerId, data);
                 break;
             default:
-                this.renderHomePage(containerId, data);
+                this.renderSplashPage(containerId, data);
         }
 
         this.currentPage = pageName;
     }
 
-    // Render home page
-    renderHomePage(containerId, data = {}) {
+    // Render splash page (home page with animations)
+    renderSplashPage(containerId, data = {}) {
         const container = document.getElementById(containerId);
         if (!container) return;
 
-        // Create main content container
-        const mainContent = document.createElement('div');
-        mainContent.id = 'main-content';
-        mainContent.style.cssText = `
-            margin-top: 80px;
-        `;
-
-        // Render hero
-        this.components.hero.render('main-content', {
-            title: 'BASEDLY',
-            subtitle: 'AI-Powered Shopping Discovery Platform',
-            description: 'Our AI learns your style and finds hidden gems you\'ll love'
-        });
-
-        // Render rainbow animation
-        this.components.rainbowClouds.render('main-content');
-
-        container.appendChild(mainContent);
+        // Render the splash page component
+        this.components.splashPage.render(containerId, data);
     }
 
     // Render discovery page
     renderDiscoveryPage(containerId, data = {}) {
         const container = document.getElementById(containerId);
         if (!container) return;
+
+        // Render navigation
+        this.renderNavigation(containerId);
 
         // Create main content container
         const mainContent = document.createElement('div');
@@ -125,6 +111,9 @@ class ComponentManager {
     renderDealsPage(containerId, data = {}) {
         const container = document.getElementById(containerId);
         if (!container) return;
+
+        // Render navigation
+        this.renderNavigation(containerId);
 
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';
@@ -171,6 +160,9 @@ class ComponentManager {
         const container = document.getElementById(containerId);
         if (!container) return;
 
+        // Render navigation
+        this.renderNavigation(containerId);
+
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';
         mainContent.style.cssText = `
@@ -185,6 +177,9 @@ class ComponentManager {
     renderSocialPage(containerId, data = {}) {
         const container = document.getElementById(containerId);
         if (!container) return;
+
+        // Render navigation
+        this.renderNavigation(containerId);
 
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';
@@ -225,6 +220,9 @@ class ComponentManager {
     renderMemberPage(containerId, data = {}) {
         const container = document.getElementById(containerId);
         if (!container) return;
+
+        // Render navigation
+        this.renderNavigation(containerId);
 
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';

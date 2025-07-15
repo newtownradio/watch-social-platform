@@ -36,7 +36,7 @@
             letter-spacing: 2px;
         }
         
-        /* Gold Chain Brand Typography */
+        /* White Chain Brand Typography */
         .brand-logo-text {
             font-family: 'Fredoka One', cursive;
             font-weight: 400;
@@ -44,39 +44,39 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             background: linear-gradient(135deg, 
-                #FFD700 0%, 
-                #FFA500 15%, 
-                #FFD700 30%, 
-                #FFF8DC 45%, 
-                #FFD700 60%, 
-                #FFA500 75%, 
-                #FFD700 90%, 
-                #FFF8DC 100%);
+                #FFFFFF 0%, 
+                #F8F9FA 15%, 
+                #FFFFFF 30%, 
+                #E9ECEF 45%, 
+                #FFFFFF 60%, 
+                #F8F9FA 75%, 
+                #FFFFFF 90%, 
+                #E9ECEF 100%);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-shadow: 
-                0 0 0 #B8860B,
+                0 0 0 #FFFFFF,
                 0 1px 2px rgba(0,0,0,0.8),
                 0 2px 4px rgba(0,0,0,0.6),
                 0 4px 8px rgba(0,0,0,0.4),
                 0 8px 16px rgba(0,0,0,0.3),
                 0 16px 32px rgba(0,0,0,0.2),
                 0 32px 64px rgba(0,0,0,0.1),
-                0 0 20px rgba(255, 215, 0, 0.5),
-                0 0 40px rgba(255, 215, 0, 0.3),
-                0 0 60px rgba(255, 215, 0, 0.2),
-                0 0 80px rgba(255, 215, 0, 0.1),
-                0 0 100px rgba(255, 215, 0, 0.05);
+                0 0 20px rgba(255, 255, 255, 0.5),
+                0 0 40px rgba(255, 255, 255, 0.3),
+                0 0 60px rgba(255, 255, 255, 0.2),
+                0 0 80px rgba(255, 255, 255, 0.1),
+                0 0 100px rgba(255, 255, 255, 0.05);
             filter: 
-                drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))
-                drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))
-                drop-shadow(0 0 30px rgba(255, 215, 0, 0.4))
+                drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))
+                drop-shadow(0 0 20px rgba(255, 255, 255, 0.6))
+                drop-shadow(0 0 30px rgba(255, 255, 255, 0.4))
                 brightness(1.1)
                 contrast(1.2);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            animation: goldChainShine 3s ease-in-out infinite alternate, goldChainFloat 4s ease-in-out infinite;
+            animation: whiteChainShine 3s ease-in-out infinite alternate, whiteChainFloat 4s ease-in-out infinite;
             position: relative;
         }
         
@@ -89,13 +89,13 @@
             bottom: -2px;
             background: linear-gradient(45deg, 
                 transparent 30%, 
-                rgba(255, 215, 0, 0.3) 50%, 
+                rgba(255, 255, 255, 0.3) 50%, 
                 transparent 70%);
             background-size: 200% 200%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: goldChainReflection 2s ease-in-out infinite;
+            animation: whiteChainReflection 2s ease-in-out infinite;
             z-index: -1;
         }
         
@@ -107,46 +107,46 @@
             right: 0;
             bottom: 0;
             background: radial-gradient(ellipse at center, 
-                rgba(255, 215, 0, 0.2) 0%, 
+                rgba(255, 255, 255, 0.2) 0%, 
                 transparent 70%);
             border-radius: 50%;
             filter: blur(10px);
-            animation: goldChainGlow 2.5s ease-in-out infinite alternate;
+            animation: whiteChainGlow 2.5s ease-in-out infinite alternate;
             z-index: -2;
         }
         
         .brand-logo-text:hover {
             transform: scale(1.05) rotate(1deg);
             filter: 
-                drop-shadow(0 0 15px rgba(255, 215, 0, 1))
-                drop-shadow(0 0 30px rgba(255, 215, 0, 0.8))
-                drop-shadow(0 0 45px rgba(255, 215, 0, 0.6))
+                drop-shadow(0 0 15px rgba(255, 255, 255, 1))
+                drop-shadow(0 0 30px rgba(255, 255, 255, 0.8))
+                drop-shadow(0 0 45px rgba(255, 255, 255, 0.6))
                 brightness(1.3)
                 contrast(1.4);
-            animation: goldChainBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: whiteChainBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
         
-        @keyframes goldChainShine {
+        @keyframes whiteChainShine {
             0% {
                 background-position: 0% 50%;
                 filter: 
-                    drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))
-                    drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))
+                    drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))
+                    drop-shadow(0 0 20px rgba(255, 255, 255, 0.6))
                     brightness(1.1)
                     contrast(1.2);
             }
             100% {
                 background-position: 100% 50%;
                 filter: 
-                    drop-shadow(0 0 15px rgba(255, 215, 0, 1))
-                    drop-shadow(0 0 30px rgba(255, 215, 0, 0.8))
-                    drop-shadow(0 0 45px rgba(255, 215, 0, 0.6))
+                    drop-shadow(0 0 15px rgba(255, 255, 255, 1))
+                    drop-shadow(0 0 30px rgba(255, 255, 255, 0.8))
+                    drop-shadow(0 0 45px rgba(255, 255, 255, 0.6))
                     brightness(1.3)
                     contrast(1.4);
             }
         }
         
-        @keyframes goldChainFloat {
+        @keyframes whiteChainFloat {
             0%, 100% { 
                 transform: translateY(0px) rotate(0deg); 
             }
@@ -161,7 +161,7 @@
             }
         }
         
-        @keyframes goldChainReflection {
+        @keyframes whiteChainReflection {
             0%, 100% {
                 background-position: 0% 50%;
                 opacity: 0.3;
@@ -172,7 +172,7 @@
             }
         }
         
-        @keyframes goldChainGlow {
+        @keyframes whiteChainGlow {
             0% {
                 opacity: 0.2;
                 transform: scale(1);
@@ -183,7 +183,7 @@
             }
         }
         
-        @keyframes goldChainBounce {
+        @keyframes whiteChainBounce {
             0%, 100% { 
                 transform: scale(1.05) rotate(1deg); 
             }
@@ -384,17 +384,7 @@
             margin-top: 16px;
         }
 
-        /* Cartoon Rainbow Cloud Animation */
-        .rainbow-clouds {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
+
         
         .cloud {
             position: absolute;
@@ -506,14 +496,14 @@
                 to bottom,
                 #ff0000 0%,
                 #ff8000 12%,
-                #ffff00 24%,
+                #FFABDF 24%,
                 #00ff00 36%,
                 #0080ff 48%,
                 #8000ff 60%,
                 #ff0080 72%,
                 #ff0000 84%,
                 #ff8000 96%,
-                #ffff00 100%
+                #FFABDF 100%
             );
             opacity: 0.3;
             animation: cartoonRainbow 5s ease-in-out infinite alternate;
@@ -567,14 +557,14 @@
         
         .particle:nth-child(1) { background: #ff0000; left: 5%; animation-delay: 0s; }
         .particle:nth-child(2) { background: #ff8000; left: 15%; animation-delay: 1s; }
-        .particle:nth-child(3) { background: #ffff00; left: 25%; animation-delay: 2s; }
+        .particle:nth-child(3) { background: #FFABDF; left: 25%; animation-delay: 2s; }
         .particle:nth-child(4) { background: #00ff00; left: 35%; animation-delay: 3s; }
         .particle:nth-child(5) { background: #0080ff; left: 45%; animation-delay: 4s; }
         .particle:nth-child(6) { background: #8000ff; left: 55%; animation-delay: 5s; }
         .particle:nth-child(7) { background: #ff0080; left: 65%; animation-delay: 0s; }
         .particle:nth-child(8) { background: #ff0000; left: 75%; animation-delay: 1s; }
         .particle:nth-child(9) { background: #ff8000; left: 85%; animation-delay: 2s; }
-        .particle:nth-child(10) { background: #ffff00; left: 95%; animation-delay: 3s; }
+        .particle:nth-child(10) { background: #FFABDF; left: 95%; animation-delay: 3s; }
         
         @keyframes cartoonParticleFloat {
             0% {
@@ -601,27 +591,7 @@
     </style>
 </head>
 <body>
-    <!-- Cartoon Rainbow Clouds Animation -->
-    <div class="rainbow-clouds">
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
-        <div class="cloud cloud3"></div>
-        <div class="cloud cloud4"></div>
-        <div class="cloud cloud5"></div>
-        <div class="rainbow"></div>
-        <div class="rainbow-particles">
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-            <div class="particle"></div>
-        </div>
-    </div>
+
 
     <!-- App Container -->
     <div id="app-container">
@@ -641,7 +611,9 @@
     <script src="./components/ui/HeroComponent.js"></script>
     <script src="./components/ui/DealCardComponent.js"></script>
     <script src="./components/ui/SearchBarComponent.js"></script>
-    <script src="./components/ui/RainbowCloudsComponent.js"></script>
+    <script src="./components/ui/WeatherAnimationComponent.js"></script>
+    <script src="./components/ui/LandingWeatherComponent.js"></script>
+    <script src="./components/pages/SplashPageComponent.js"></script>
     <script src="./components/pages/DiscoveryPageComponent.js"></script>
     <script src="./components/pages/MessagesPageComponent.js"></script>
     <script src="./components/ComponentManager.js"></script>

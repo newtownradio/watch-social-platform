@@ -1094,14 +1094,14 @@ class UIComponentManager {
                                 to bottom,
                                 #ff0000 0%,
                                 #ff8000 12%,
-                                #ffff00 24%,
+                                #FFABDF 24%,
                                 #00ff00 36%,
                                 #0080ff 48%,
                                 #8000ff 60%,
                                 #ff0080 72%,
                                 #ff0000 84%,
                                 #ff8000 96%,
-                                #ffff00 100%
+                                #FFABDF 100%
                             );
                             opacity: 0.3;
                             animation: cartoonRainbow 5s ease-in-out infinite alternate;
@@ -1155,14 +1155,14 @@ class UIComponentManager {
                         
                         .particle:nth-child(1) { background: #ff0000; left: 5%; animation-delay: 0s; }
                         .particle:nth-child(2) { background: #ff8000; left: 15%; animation-delay: 1s; }
-                        .particle:nth-child(3) { background: #ffff00; left: 25%; animation-delay: 2s; }
+                        .particle:nth-child(3) { background: #FFABDF; left: 25%; animation-delay: 2s; }
                         .particle:nth-child(4) { background: #00ff00; left: 35%; animation-delay: 3s; }
                         .particle:nth-child(5) { background: #0080ff; left: 45%; animation-delay: 4s; }
                         .particle:nth-child(6) { background: #8000ff; left: 55%; animation-delay: 5s; }
                         .particle:nth-child(7) { background: #ff0080; left: 65%; animation-delay: 0s; }
                         .particle:nth-child(8) { background: #ff0000; left: 75%; animation-delay: 1s; }
                         .particle:nth-child(9) { background: #ff8000; left: 85%; animation-delay: 2s; }
-                        .particle:nth-child(10) { background: #ffff00; left: 95%; animation-delay: 3s; }
+                        .particle:nth-child(10) { background: #FFABDF; left: 95%; animation-delay: 3s; }
                         
                         @keyframes cartoonParticleFloat {
                             0% {
