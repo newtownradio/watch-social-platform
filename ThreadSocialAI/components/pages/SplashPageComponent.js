@@ -151,31 +151,34 @@ class SplashPageComponent extends BaseComponent {
             /* Hero title styles for splash page */
             .hero-title {
                 font-family: 'Inter', 'Space Grotesk', Arial, sans-serif;
-                font-size: clamp(2.5rem, 8vw, 5rem);
+                font-size: clamp(3rem, 10vw, 7rem);
                 font-weight: 900;
                 background: linear-gradient(135deg, #ffffff 0%, #ffc0cb 50%, #ffffff 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
                 text-shadow: 
-                    0 0 40px rgba(255,255,255,1),
-                    0 0 80px rgba(255,192,203,0.8),
-                    0 0 120px rgba(255,192,203,0.6),
-                    2px 2px 4px rgba(0,0,0,0.8);
+                    0 0 50px rgba(255,255,255,1),
+                    0 0 100px rgba(255,192,203,0.8),
+                    0 0 150px rgba(255,192,203,0.6),
+                    3px 3px 6px rgba(0,0,0,0.8);
                 letter-spacing: clamp(2px, 1vw, 4px);
                 animation: heroTitleGlow 3s ease-in-out infinite alternate;
-                filter: drop-shadow(0 8px 16px rgba(255,255,255,0.5));
+                filter: drop-shadow(0 12px 24px rgba(255,255,255,0.6));
                 position: relative;
                 z-index: 25;
                 text-align: center;
                 line-height: 1.1;
-                padding: clamp(10px, 3vw, 20px);
-                border-radius: 10px;
-                background-color: rgba(0,0,0,0.3);
-                backdrop-filter: blur(5px);
-                margin-bottom: clamp(20px, 5vw, 40px);
+                padding: clamp(20px, 5vw, 40px);
+                border-radius: 20px;
+                background-color: rgba(0,0,0,0.5);
+                backdrop-filter: blur(15px);
+                margin-bottom: clamp(30px, 8vw, 60px);
                 transform: translateZ(0);
                 transition: all 0.3s ease;
+                max-width: 95vw;
+                word-wrap: break-word;
+                hyphens: auto;
             }
 
             .hero-title:hover {
@@ -212,37 +215,37 @@ class SplashPageComponent extends BaseComponent {
             /* Responsive breakpoints for all iOS devices */
             @media screen and (max-width: 428px) { /* iPhone 14 Pro Max */
                 #floating-hero {
-                    margin-bottom: 40px;
+                    margin-bottom: 50px;
                 }
                 .hero-title {
-                    font-size: clamp(2rem, 7vw, 3.5rem);
+                    font-size: clamp(2.5rem, 8vw, 4rem);
                 }
             }
 
             @media screen and (max-width: 390px) { /* iPhone 14, 13, 12 */
                 #floating-hero {
-                    margin-bottom: 35px;
+                    margin-bottom: 45px;
                 }
                 .hero-title {
-                    font-size: clamp(1.8rem, 6.5vw, 3rem);
+                    font-size: clamp(2.2rem, 7.5vw, 3.5rem);
                 }
             }
 
             @media screen and (max-width: 375px) { /* iPhone SE, 12 mini */
                 #floating-hero {
-                    margin-bottom: 30px;
+                    margin-bottom: 40px;
                 }
                 .hero-title {
-                    font-size: clamp(1.6rem, 6vw, 2.8rem);
+                    font-size: clamp(2rem, 7vw, 3.2rem);
                 }
             }
 
             @media screen and (max-width: 320px) { /* iPhone SE 1st gen */
                 #floating-hero {
-                    margin-bottom: 25px;
+                    margin-bottom: 35px;
                 }
                 .hero-title {
-                    font-size: clamp(1.4rem, 5.5vw, 2.5rem);
+                    font-size: clamp(1.8rem, 6.5vw, 2.8rem);
                 }
             }
 
@@ -253,10 +256,10 @@ class SplashPageComponent extends BaseComponent {
                 }
                 
                 #floating-hero {
-                    margin-bottom: 60px;
+                    margin-bottom: 70px;
                 }
                 .hero-title {
-                    font-size: clamp(3rem, 9vw, 4.5rem);
+                    font-size: clamp(4rem, 11vw, 5.5rem);
                 }
             }
 
@@ -268,10 +271,10 @@ class SplashPageComponent extends BaseComponent {
                 }
                 
                 #floating-hero {
-                    margin-bottom: 20px;
+                    margin-bottom: 25px;
                 }
                 .hero-title {
-                    font-size: clamp(1.5rem, 5vw, 2.5rem);
+                    font-size: clamp(2rem, 6vw, 3rem);
                 }
                 
                 /* Cloud elements removed */
@@ -280,7 +283,7 @@ class SplashPageComponent extends BaseComponent {
             /* Large desktop screens */
             @media screen and (min-width: 1200px) {
                 .hero-title {
-                    font-size: clamp(4rem, 10vw, 6rem);
+                    font-size: clamp(5rem, 12vw, 8rem);
                 }
             }
         `;
