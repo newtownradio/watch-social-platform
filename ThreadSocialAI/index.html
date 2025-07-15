@@ -56,22 +56,38 @@
         <nav id="navigation"></nav>
         
         <!-- Main Content Area -->
-        <main id="main-content">
+        <main id="app-container">
             <!-- Content will be dynamically loaded here -->
         </main>
     </div>
 
-    <!-- Scripts -->
+    <!-- Component Scripts -->
+    <script src="/components/utils/BaseComponent.js"></script>
+    <script src="/components/ui/NavigationComponent.js"></script>
+    <script src="/components/ui/HeroComponent.js"></script>
+    <script src="/components/ui/SearchBarComponent.js"></script>
+    <script src="/components/ui/DealCardComponent.js"></script>
+    <script src="/components/ui/WeatherAnimationComponent.js"></script>
+    <script src="/components/pages/SplashPageComponent.js"></script>
+    <script src="/components/pages/DiscoveryPageComponent.js"></script>
+    <script src="/components/pages/MessagesPageComponent.js"></script>
+    <script src="/components/pages/SocialPageComponent.js"></script>
+    <script src="/components/pages/MemberPageComponent.js"></script>
+    <script src="/components/ComponentManager.js"></script>
+    <script src="/components/DataManager.js"></script>
+    <script src="/components/AppController.js"></script>
     <script src="/components/utils/AuthManager.js"></script>
+
     <script>
-        // Show app after loading
+        // Initialize the app when everything is loaded
         window.addEventListener('load', function() {
             setTimeout(() => {
                 document.getElementById('loading-screen').style.display = 'none';
                 document.getElementById('app').classList.remove('hidden');
                 
-                // Redirect to modular version for full functionality
-                window.location.href = '/index-modular.html';
+                // Initialize the app
+                const app = new AppController();
+                app.initialize();
             }, 1000);
         });
     </script>

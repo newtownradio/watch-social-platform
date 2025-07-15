@@ -43,7 +43,8 @@ class ComponentManager {
 
     // Render a specific page
     renderPage(pageName, containerId, data = {}) {
-        console.log(`Rendering page: ${pageName}`);
+        console.log(`ComponentManager: Rendering page: ${pageName}`);
+        console.log(`ComponentManager: Container ID: ${containerId}`);
         
         const container = document.getElementById(containerId);
         if (!container) {
@@ -54,32 +55,45 @@ class ComponentManager {
         // Clear container
         container.innerHTML = '';
 
+        // Always render navigation first (except for splash page)
+        if (pageName !== 'splash' && pageName !== 'home') {
+            this.renderNavigation('navigation');
+        }
+
         // Render page content based on page name
         switch (pageName) {
             case 'home':
             case 'splash':
+                console.log('ComponentManager: Rendering SPLASH page');
                 this.renderSplashPage(containerId, data);
                 break;
             case 'discovery':
+                console.log('ComponentManager: Rendering DISCOVERY page');
                 this.renderDiscoveryPage(containerId, data);
                 break;
             case 'deals':
+                console.log('ComponentManager: Rendering DEALS page');
                 this.renderDealsPage(containerId, data);
                 break;
             case 'messages':
+                console.log('ComponentManager: Rendering MESSAGES page');
                 this.renderMessagesPage(containerId, data);
                 break;
             case 'social':
+                console.log('ComponentManager: Rendering SOCIAL page');
                 this.renderSocialPage(containerId, data);
                 break;
             case 'member':
+                console.log('ComponentManager: Rendering MEMBER page');
                 this.renderMemberPage(containerId, data);
                 break;
             default:
+                console.log('ComponentManager: Rendering DEFAULT SPLASH page');
                 this.renderSplashPage(containerId, data);
         }
 
         this.currentPage = pageName;
+        console.log(`ComponentManager: Current page set to: ${this.currentPage}`);
     }
 
     // Render splash page (home page with animations)
@@ -96,9 +110,6 @@ class ComponentManager {
         const container = document.getElementById(containerId);
         if (!container) return;
 
-        // Render navigation
-        this.renderNavigation(containerId);
-
         // Create main content container
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';
@@ -114,9 +125,6 @@ class ComponentManager {
     renderDealsPage(containerId, data = {}) {
         const container = document.getElementById(containerId);
         if (!container) return;
-
-        // Render navigation
-        this.renderNavigation(containerId);
 
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';
@@ -163,9 +171,6 @@ class ComponentManager {
         const container = document.getElementById(containerId);
         if (!container) return;
 
-        // Render navigation
-        this.renderNavigation(containerId);
-
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';
         mainContent.style.cssText = `
@@ -180,9 +185,6 @@ class ComponentManager {
     renderSocialPage(containerId, data = {}) {
         const container = document.getElementById(containerId);
         if (!container) return;
-
-        // Render navigation
-        this.renderNavigation(containerId);
 
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';
@@ -223,9 +225,6 @@ class ComponentManager {
     renderMemberPage(containerId, data = {}) {
         const container = document.getElementById(containerId);
         if (!container) return;
-
-        // Render navigation
-        this.renderNavigation(containerId);
 
         const mainContent = document.createElement('div');
         mainContent.id = 'main-content';

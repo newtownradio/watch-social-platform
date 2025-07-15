@@ -27,8 +27,18 @@ class AppController {
             // Start real-time updates
             this.startRealTimeUpdates();
             
-            // Render initial page
-            this.renderPage('splash');
+            // Check for URL parameters that might override default page
+            const urlParams = new URLSearchParams(window.location.search);
+            const pageParam = urlParams.get('page');
+            
+            console.log('URL page parameter:', pageParam);
+            console.log('Default page should be: splash');
+            
+            // Render initial page - always start with splash unless explicitly overridden
+            const initialPage = pageParam || 'splash';
+            console.log('Rendering initial page:', initialPage);
+            
+            this.renderPage(initialPage);
             
             this.isInitialized = true;
             console.log('BubliAI Application initialized successfully');
@@ -49,6 +59,12 @@ class AppController {
                 const page = e.target.getAttribute('data-navigate');
                 this.navigateToPage(page);
             }
+        });
+
+        // Global navigation event listener
+        document.addEventListener('navigate', (e) => {
+            const page = e.detail.page;
+            this.navigateToPage(page);
         });
 
         // Search functionality
