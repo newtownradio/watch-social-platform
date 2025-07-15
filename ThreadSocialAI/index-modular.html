@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    	<meta name="apple-mobile-web-app-title" content="Thread Social AI">
+    	<meta name="apple-mobile-web-app-title" content="Basedly">
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#FF1493">
     
-    	<title>Thread Social AI - AI-Powered Shopping Discovery</title>
+    	<title>Basedly - AI-Powered Shopping Discovery</title>
     
     <link rel="stylesheet" href="./output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@400;700;900&family=Fredoka+One:wght@400&family=Bubblegum+Sans:wght@400&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -32,8 +32,170 @@
         }
         
         .nav-logo, .brand-title, h1, h2, h3 {
-            font-family: 'Space Grotesk', Arial, sans-serif;
+            font-family: 'Inter', 'Space Grotesk', Arial, sans-serif;
             letter-spacing: 2px;
+        }
+        
+        /* Gold Chain Brand Typography */
+        .brand-logo-text {
+            font-family: 'Fredoka One', cursive;
+            font-weight: 400;
+            font-size: 36px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, 
+                #FFD700 0%, 
+                #FFA500 15%, 
+                #FFD700 30%, 
+                #FFF8DC 45%, 
+                #FFD700 60%, 
+                #FFA500 75%, 
+                #FFD700 90%, 
+                #FFF8DC 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 
+                0 0 0 #B8860B,
+                0 1px 2px rgba(0,0,0,0.8),
+                0 2px 4px rgba(0,0,0,0.6),
+                0 4px 8px rgba(0,0,0,0.4),
+                0 8px 16px rgba(0,0,0,0.3),
+                0 16px 32px rgba(0,0,0,0.2),
+                0 32px 64px rgba(0,0,0,0.1),
+                0 0 20px rgba(255, 215, 0, 0.5),
+                0 0 40px rgba(255, 215, 0, 0.3),
+                0 0 60px rgba(255, 215, 0, 0.2),
+                0 0 80px rgba(255, 215, 0, 0.1),
+                0 0 100px rgba(255, 215, 0, 0.05);
+            filter: 
+                drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))
+                drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))
+                drop-shadow(0 0 30px rgba(255, 215, 0, 0.4))
+                brightness(1.1)
+                contrast(1.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: goldChainShine 3s ease-in-out infinite alternate, goldChainFloat 4s ease-in-out infinite;
+            position: relative;
+        }
+        
+        .brand-logo-text::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(255, 215, 0, 0.3) 50%, 
+                transparent 70%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: goldChainReflection 2s ease-in-out infinite;
+            z-index: -1;
+        }
+        
+        .brand-logo-text::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 215, 0, 0.2) 0%, 
+                transparent 70%);
+            border-radius: 50%;
+            filter: blur(10px);
+            animation: goldChainGlow 2.5s ease-in-out infinite alternate;
+            z-index: -2;
+        }
+        
+        .brand-logo-text:hover {
+            transform: scale(1.05) rotate(1deg);
+            filter: 
+                drop-shadow(0 0 15px rgba(255, 215, 0, 1))
+                drop-shadow(0 0 30px rgba(255, 215, 0, 0.8))
+                drop-shadow(0 0 45px rgba(255, 215, 0, 0.6))
+                brightness(1.3)
+                contrast(1.4);
+            animation: goldChainBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        @keyframes goldChainShine {
+            0% {
+                background-position: 0% 50%;
+                filter: 
+                    drop-shadow(0 0 10px rgba(255, 215, 0, 0.8))
+                    drop-shadow(0 0 20px rgba(255, 215, 0, 0.6))
+                    brightness(1.1)
+                    contrast(1.2);
+            }
+            100% {
+                background-position: 100% 50%;
+                filter: 
+                    drop-shadow(0 0 15px rgba(255, 215, 0, 1))
+                    drop-shadow(0 0 30px rgba(255, 215, 0, 0.8))
+                    drop-shadow(0 0 45px rgba(255, 215, 0, 0.6))
+                    brightness(1.3)
+                    contrast(1.4);
+            }
+        }
+        
+        @keyframes goldChainFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+            }
+            25% { 
+                transform: translateY(-2px) rotate(0.5deg); 
+            }
+            50% { 
+                transform: translateY(-1px) rotate(-0.3deg); 
+            }
+            75% { 
+                transform: translateY(-3px) rotate(0.2deg); 
+            }
+        }
+        
+        @keyframes goldChainReflection {
+            0%, 100% {
+                background-position: 0% 50%;
+                opacity: 0.3;
+            }
+            50% {
+                background-position: 100% 50%;
+                opacity: 0.7;
+            }
+        }
+        
+        @keyframes goldChainGlow {
+            0% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
+        }
+        
+        @keyframes goldChainBounce {
+            0%, 100% { 
+                transform: scale(1.05) rotate(1deg); 
+            }
+            25% { 
+                transform: scale(1.15) rotate(-0.5deg); 
+            }
+            50% { 
+                transform: scale(1.1) rotate(0.8deg); 
+            }
+            75% { 
+                transform: scale(1.2) rotate(-0.3deg); 
+            }
         }
         
         .lux-button, .lux-button-secondary {
@@ -221,9 +383,246 @@
             cursor: pointer;
             margin-top: 16px;
         }
+
+        /* Cartoon Rainbow Cloud Animation */
+        .rainbow-clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .cloud {
+            position: absolute;
+            background: #ffffff;
+            border: 3px solid #e0e0e0;
+            border-radius: 50px;
+            box-shadow: 
+                0 0 0 2px #ffffff,
+                0 4px 8px rgba(0,0,0,0.1),
+                inset 0 2px 4px rgba(255,255,255,0.8);
+            animation: cartoonFloat 6s ease-in-out infinite;
+        }
+        
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: #ffffff;
+            border: 3px solid #e0e0e0;
+            border-radius: 50px;
+            box-shadow: 
+                0 0 0 2px #ffffff,
+                0 2px 4px rgba(0,0,0,0.1),
+                inset 0 1px 2px rgba(255,255,255,0.8);
+        }
+        
+        .cloud::before {
+            width: 70px;
+            height: 70px;
+            top: -35px;
+            left: 15px;
+        }
+        
+        .cloud::after {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            right: 15px;
+        }
+        
+        .cloud1 {
+            width: 120px;
+            height: 50px;
+            top: 15%;
+            left: -120px;
+            animation-delay: 0s;
+        }
+        
+        .cloud2 {
+            width: 100px;
+            height: 40px;
+            top: 35%;
+            right: -100px;
+            animation-delay: 2s;
+        }
+        
+        .cloud3 {
+            width: 140px;
+            height: 55px;
+            top: 55%;
+            left: -140px;
+            animation-delay: 4s;
+        }
+        
+        .cloud4 {
+            width: 110px;
+            height: 45px;
+            top: 75%;
+            right: -110px;
+            animation-delay: 1s;
+        }
+        
+        .cloud5 {
+            width: 90px;
+            height: 35px;
+            top: 25%;
+            left: -90px;
+            animation-delay: 3s;
+        }
+        
+        @keyframes cartoonFloat {
+            0%, 100% {
+                transform: translateX(0px) translateY(0px) rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+            25% {
+                transform: translateX(30px) translateY(-15px) rotate(3deg) scale(1.05);
+                opacity: 1;
+            }
+            50% {
+                transform: translateX(60px) translateY(-8px) rotate(-2deg) scale(1.1);
+                opacity: 0.9;
+            }
+            75% {
+                transform: translateX(30px) translateY(-20px) rotate(2deg) scale(1.05);
+                opacity: 1;
+            }
+        }
+        
+        .rainbow {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 200px;
+            border-radius: 200px 200px 0 0;
+            background: linear-gradient(
+                to bottom,
+                #ff0000 0%,
+                #ff8000 12%,
+                #ffff00 24%,
+                #00ff00 36%,
+                #0080ff 48%,
+                #8000ff 60%,
+                #ff0080 72%,
+                #ff0000 84%,
+                #ff8000 96%,
+                #ffff00 100%
+            );
+            opacity: 0.3;
+            animation: cartoonRainbow 5s ease-in-out infinite alternate;
+            border: 4px solid #ffffff;
+            box-shadow: 
+                0 0 20px rgba(255,255,255,0.3),
+                0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .rainbow::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            background: var(--lux-black);
+            border-radius: 192px 192px 0 0;
+        }
+        
+        @keyframes cartoonRainbow {
+            0% {
+                opacity: 0.2;
+                transform: translate(-50%, -50%) scale(0.9) rotate(-2deg);
+            }
+            50% {
+                opacity: 0.4;
+                transform: translate(-50%, -50%) scale(1.05) rotate(1deg);
+            }
+            100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1.1) rotate(-1deg);
+            }
+        }
+        
+        .rainbow-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 8px currentColor;
+            animation: cartoonParticleFloat 8s linear infinite;
+        }
+        
+        .particle:nth-child(1) { background: #ff0000; left: 5%; animation-delay: 0s; }
+        .particle:nth-child(2) { background: #ff8000; left: 15%; animation-delay: 1s; }
+        .particle:nth-child(3) { background: #ffff00; left: 25%; animation-delay: 2s; }
+        .particle:nth-child(4) { background: #00ff00; left: 35%; animation-delay: 3s; }
+        .particle:nth-child(5) { background: #0080ff; left: 45%; animation-delay: 4s; }
+        .particle:nth-child(6) { background: #8000ff; left: 55%; animation-delay: 5s; }
+        .particle:nth-child(7) { background: #ff0080; left: 65%; animation-delay: 0s; }
+        .particle:nth-child(8) { background: #ff0000; left: 75%; animation-delay: 1s; }
+        .particle:nth-child(9) { background: #ff8000; left: 85%; animation-delay: 2s; }
+        .particle:nth-child(10) { background: #ffff00; left: 95%; animation-delay: 3s; }
+        
+        @keyframes cartoonParticleFloat {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) rotate(36deg) scale(1);
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1.2);
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(10vh) rotate(324deg) scale(1);
+            }
+            100% {
+                transform: translateY(-50px) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Cartoon Rainbow Clouds Animation -->
+    <div class="rainbow-clouds">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        <div class="cloud cloud3"></div>
+        <div class="cloud cloud4"></div>
+        <div class="cloud cloud5"></div>
+        <div class="rainbow"></div>
+        <div class="rainbow-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
     <!-- App Container -->
     <div id="app-container">
         <!-- Loading State -->
@@ -232,9 +631,23 @@
         </div>
     </div>
 
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
     <!-- Component Scripts -->
+    <!-- Component System -->
+    <script src="./components/utils/BaseComponent.js"></script>
+    <script src="./components/ui/NavigationComponent.js"></script>
+    <script src="./components/ui/HeroComponent.js"></script>
+    <script src="./components/ui/DealCardComponent.js"></script>
+    <script src="./components/ui/SearchBarComponent.js"></script>
+    <script src="./components/ui/RainbowCloudsComponent.js"></script>
+    <script src="./components/pages/DiscoveryPageComponent.js"></script>
+    <script src="./components/pages/MessagesPageComponent.js"></script>
+    <script src="./components/ComponentManager.js"></script>
+    
+    <!-- Core System -->
     <script src="./components/DataManager.js"></script>
-    <script src="./components/UIComponentManager.js"></script>
     <script src="./components/AppController.js"></script>
     
     <!-- Main Application Script -->
@@ -245,7 +658,7 @@
         // Initialize application when DOM is loaded
         document.addEventListener('DOMContentLoaded', async () => {
             try {
-                		console.log('Starting Thread Social Application...');
+                		        console.log('Starting Basedly Application...');
                 
                 // Create application instance
                 app = new AppController();
@@ -253,13 +666,95 @@
                 // Initialize application
                 await app.initialize();
                 
-                		console.log('Thread Social Application started successfully');
+                // Initialize GSAP animations for puffy logo
+                initializePuffyLogoAnimations();
+                
+                		        console.log('Basedly Application started successfully');
                 
             } catch (error) {
                 console.error('Failed to start application:', error);
                 showError('Failed to start application', error.message);
             }
         });
+
+        // GSAP Puffy Logo Animations
+        function initializePuffyLogoAnimations() {
+            // Wait for GSAP to load
+            if (typeof gsap !== 'undefined') {
+                const logo = document.querySelector('.brand-logo-text');
+                if (logo) {
+                    // Initial animation
+                    gsap.fromTo(logo, 
+                        { 
+                            scale: 0.8, 
+                            rotation: -5,
+                            opacity: 0 
+                        },
+                        { 
+                            scale: 1, 
+                            rotation: 0,
+                            opacity: 1, 
+                            duration: 1.5, 
+                            ease: "elastic.out(1, 0.3)",
+                            delay: 0.5
+                        }
+                    );
+
+                    // Continuous floating animation
+                    gsap.to(logo, {
+                        y: -5,
+                        rotation: 1,
+                        duration: 2,
+                        ease: "power2.inOut",
+                        yoyo: true,
+                        repeat: -1
+                    });
+
+                    // Hover animations
+                    logo.addEventListener('mouseenter', () => {
+                        gsap.to(logo, {
+                            scale: 1.15,
+                            rotation: 3,
+                            duration: 0.3,
+                            ease: "back.out(1.7)"
+                        });
+                        
+                        // Add extra glow effect
+                        gsap.to(logo, {
+                            filter: "drop-shadow(0 0 50px rgba(255, 20, 147, 1)) brightness(1.3)",
+                            duration: 0.3
+                        });
+                    });
+
+                    logo.addEventListener('mouseleave', () => {
+                        gsap.to(logo, {
+                            scale: 1,
+                            rotation: 0,
+                            duration: 0.5,
+                            ease: "elastic.out(1, 0.3)"
+                        });
+                        
+                        // Reset glow effect
+                        gsap.to(logo, {
+                            filter: "drop-shadow(0 0 20px rgba(255, 20, 147, 0.8))",
+                            duration: 0.3
+                        });
+                    });
+
+                    // Click animation
+                    logo.addEventListener('click', () => {
+                        gsap.to(logo, {
+                            scale: 0.9,
+                            rotation: -2,
+                            duration: 0.1,
+                            ease: "power2.out",
+                            yoyo: true,
+                            repeat: 1
+                        });
+                    });
+                }
+            }
+        }
 
         // Handle page visibility changes
         document.addEventListener('visibilitychange', () => {
@@ -303,7 +798,7 @@
         }
 
         // Global utility functions for iOS compatibility
-        		window.ThreadSocial = {
+        		window.Basedly = {
             // Get application state for iOS
             getState: () => {
                 return app ? app.getState() : null;
@@ -377,8 +872,8 @@
         if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
             document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
-                    		if (window.ThreadSocial) {
-			window.ThreadSocial.initializeIOS();
+                    		if (window.Basedly) {
+			window.Basedly.initializeIOS();
 		}
                 }, 1000);
             });
@@ -387,7 +882,7 @@
         // Development helpers
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
             window.devMode = true;
-            		console.log('Thread Social running in development mode');
+            		        console.log('Basedly running in development mode');
             
             // Add development tools
             window.devTools = {

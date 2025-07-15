@@ -12,7 +12,7 @@
     
     <title>Thread Social - Discovery</title>
     
-    <link rel="stylesheet" href="./dist/output.css">
+    <link rel="stylesheet" href="./output.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -269,11 +269,12 @@
     <!-- iOS-Optimized Navigation -->
     <nav style="padding: 12px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; -webkit-backdrop-filter: blur(10px);">
         <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">THREAD SOCIAL</a>
+            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">BASEDLY</a>
             
             <div style="display: flex; align-items: center; gap: 16px;">
                 <a href="discovery.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-bottom: 2px solid var(--lux-hot-pink); transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">DISCOVERY</a>
                 <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDeals()">DEALS</a>
+                <a href="messages.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMessages()">MESSAGES</a>
                 <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
                 <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
             </div>
@@ -500,7 +501,23 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="./src/js/discovery.js"></script>
+    <!-- Discovery page functionality is handled by the modular components -->
+    <script>
+        // Simple discovery page functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Discovery page loaded');
+            
+            // Add any discovery-specific functionality here
+            const categoryButtons = document.querySelectorAll('[data-category]');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    console.log('Category selected:', category);
+                    // Add category filtering logic here
+                });
+            });
+        });
+    </script>
     
     <script>
         // Navigation functions
@@ -515,6 +532,13 @@
             showNotification('💰 Navigating to Deals...');
             setTimeout(() => {
                 window.location.href = 'deals.html';
+            }, 500);
+        }
+
+        function navigateToMessages() {
+            showNotification('💬 Navigating to Messages...');
+            setTimeout(() => {
+                window.location.href = 'messages.html';
             }, 500);
         }
 

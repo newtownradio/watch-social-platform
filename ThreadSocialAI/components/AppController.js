@@ -4,7 +4,7 @@
 class AppController {
     constructor() {
         this.dataManager = new DataManager();
-        this.uiManager = new UIComponentManager(this.dataManager);
+        this.componentManager = new ComponentManager(this.dataManager);
         this.currentPage = 'home';
         this.isInitialized = false;
         this.realTimeInterval = null;
@@ -18,8 +18,8 @@ class AppController {
             // Initialize data
             this.dataManager.initializeData();
             
-            // Initialize UI components
-            this.uiManager.initializeComponents();
+            // Initialize component manager
+            this.componentManager.initializeComponents();
             
             // Set up event listeners
             this.setupEventListeners();
@@ -35,7 +35,8 @@ class AppController {
             
         } catch (error) {
             console.error('Error initializing application:', error);
-            this.uiManager.components.notification.show('Error initializing application');
+            // Commented out notification popups to remove navigation impediments
+            // this.uiManager.components.notification.show('Error initializing application');
         }
     }
 
@@ -94,7 +95,7 @@ class AppController {
         this.renderPage(pageName);
         
         // Show notification
-        this.uiManager.components.notification.show(`Navigated to ${pageName}`);
+        // this.uiManager.components.notification.show(`Navigated to ${pageName}`);
     }
 
     // Render a specific page
@@ -110,8 +111,8 @@ class AppController {
         // Clear container
         container.innerHTML = '';
         
-        // Render the page using UI manager
-        this.uiManager.renderPage(pageName, 'app-container', data);
+        // Render the page using component manager
+        this.componentManager.renderPage(pageName, 'app-container', data);
         
         // Post-render setup
         this.setupPageSpecificEvents(pageName);
@@ -125,6 +126,9 @@ class AppController {
                 break;
             case 'deals':
                 this.setupDealsEvents();
+                break;
+            case 'messages':
+                this.setupMessagesEvents();
                 break;
             case 'social':
                 this.setupSocialEvents();
@@ -195,6 +199,35 @@ class AppController {
         }
     }
 
+    // Messages page events
+    setupMessagesEvents() {
+        // Message card clicks
+        const messageCards = document.querySelectorAll('.message-card');
+        messageCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                const messageId = card.getAttribute('data-message-id');
+                this.handleMessageClick(messageId);
+            });
+        });
+
+        // Filter buttons
+        const filterButtons = document.querySelectorAll('[data-message-filter]');
+        filterButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const filterType = e.target.getAttribute('data-message-filter');
+                this.filterMessages(filterType);
+            });
+        });
+
+        // Compose button
+        const composeButton = document.querySelector('[data-compose-message]');
+        if (composeButton) {
+            composeButton.addEventListener('click', () => {
+                this.composeMessage();
+            });
+        }
+    }
+
     // Member page events
     setupMemberEvents() {
         // Profile update form
@@ -220,7 +253,7 @@ class AppController {
         console.log(`Searching for: ${query}`);
         
         if (!query.trim()) {
-            this.uiManager.components.notification.show('Please enter a search term');
+            // this.uiManager.components.notification.show('Please enter a search term');
             return;
         }
 
@@ -230,7 +263,7 @@ class AppController {
         // Update UI with search results
         this.displaySearchResults(searchResults);
         
-        this.uiManager.components.notification.show(`Found ${searchResults.length} results for "${query}"`);
+        // this.uiManager.components.notification.show(`Found ${searchResults.length} results for "${query}"`);
     }
 
     // Search deals by query
@@ -248,19 +281,63 @@ class AppController {
 
     // Display search results
     displaySearchResults(results) {
-        const container = document.getElementById('search-results');
-        if (!container) return;
-
-        container.innerHTML = '';
+        const searchResultsContainer = document.getElementById('search-results-container');
+        const dealsGrid = document.getElementById('deals-grid');
         
+        if (!searchResultsContainer || !dealsGrid) return;
+
         if (results.length === 0) {
-            container.innerHTML = '<p style="color: var(--lux-white); text-align: center;">No results found</p>';
+            // Hide search results, show regular deals
+            searchResultsContainer.style.display = 'none';
+            dealsGrid.style.display = 'grid';
+            // this.uiManager.components.notification.show('No search results found');
             return;
         }
 
-        results.forEach(deal => {
-            this.uiManager.components.dealCard.render(deal, 'search-results');
-        });
+        // Hide regular deals, show search results
+        dealsGrid.style.display = 'none';
+        searchResultsContainer.style.display = 'block';
+
+        // Format results for search results component
+        const formattedResults = results.map(deal => ({
+            type: 'deal',
+            ...deal
+        }));
+
+        // Render search results with lazy loading
+        this.uiManager.components.searchResults.render(
+            formattedResults, 
+            'search-results-container',
+            () => this.loadMoreSearchResults(results)
+        );
+
+        // this.uiManager.components.notification.show(`Found ${results.length} results`);
+    }
+
+    // Load more search results
+    loadMoreSearchResults(originalResults) {
+        // Simulate loading more results
+        // this.uiManager.components.notification.show('Loading more results...');
+        
+        setTimeout(() => {
+            // In a real app, this would fetch more results from the server
+            const additionalResults = originalResults.slice(0, 3); // Simulate 3 more results
+            const currentResults = document.querySelectorAll('#search-results-grid > div').length;
+            
+            if (currentResults < originalResults.length) {
+                const remainingResults = originalResults.slice(currentResults, currentResults + 3);
+                const formattedResults = remainingResults.map(deal => ({
+                    type: 'deal',
+                    ...deal
+                }));
+                
+                formattedResults.forEach(result => {
+                    this.uiManager.components.searchResults.renderSearchResultCard(result, 'search-results-grid');
+                });
+                
+                // this.uiManager.components.notification.show('More results loaded');
+            }
+        }, 1000);
     }
 
     // Handle filter changes
@@ -282,7 +359,7 @@ class AppController {
         }
         
         this.displayFilteredDeals(filteredDeals);
-        this.uiManager.components.notification.show(`Filtered by ${filterType}: ${filterValue}`);
+        // this.uiManager.components.notification.show(`Filtered by ${filterType}: ${filterValue}`);
     }
 
     // Filter by price range
@@ -334,14 +411,14 @@ class AppController {
         // Add to user activity
         this.dataManager.addActivity(`Viewed ${deal.brand} deal: ${deal.description}`);
         
-        this.uiManager.components.notification.show(`Opening ${deal.brand} deal...`);
+        // this.uiManager.components.notification.show(`Opening ${deal.brand} deal...`);
     }
 
     // Filter by category
     filterByCategory(category) {
         const deals = this.dataManager.getDealsByCategory(category);
         this.displayFilteredDeals(deals);
-        this.uiManager.components.notification.show(`Filtered by category: ${category}`);
+        // this.uiManager.components.notification.show(`Filtered by category: ${category}`);
     }
 
     // Filter by price
@@ -349,26 +426,26 @@ class AppController {
         const deals = this.dataManager.getDeals();
         const filteredDeals = this.filterByPriceRange(deals, priceRange);
         this.displayFilteredDeals(filteredDeals);
-        this.uiManager.components.notification.show(`Filtered by price: ${priceRange}`);
+        // this.uiManager.components.notification.show(`Filtered by price: ${priceRange}`);
     }
 
     // Filter by brand
     filterByBrand(brand) {
         const deals = this.dataManager.getDealsByBrand(brand);
         this.displayFilteredDeals(deals);
-        this.uiManager.components.notification.show(`Filtered by brand: ${brand}`);
+        // this.uiManager.components.notification.show(`Filtered by brand: ${brand}`);
     }
 
     // Refresh trending deals
     refreshTrendingDeals() {
         const trendingDeals = this.dataManager.getTrendingDeals();
         this.displayFilteredDeals(trendingDeals);
-        this.uiManager.components.notification.show('Refreshed trending deals');
+        // this.uiManager.components.notification.show('Refreshed trending deals');
     }
 
     // Create shopping trip
     createShoppingTrip() {
-        this.uiManager.components.notification.show('Creating shopping trip with friends...');
+        // this.uiManager.components.notification.show('Creating shopping trip with friends...');
         setTimeout(() => {
             this.navigateToPage('social');
         }, 2000);
@@ -376,7 +453,7 @@ class AppController {
 
     // View all events
     viewAllEvents() {
-        this.uiManager.components.notification.show('Viewing all upcoming events...');
+        // this.uiManager.components.notification.show('Viewing all upcoming events...');
         setTimeout(() => {
             this.navigateToPage('discovery');
         }, 1500);
@@ -393,7 +470,7 @@ class AppController {
             ...profileData
         };
         
-        this.uiManager.components.notification.show('Profile updated successfully');
+        // this.uiManager.components.notification.show('Profile updated successfully');
     }
 
     // Export user data
@@ -404,10 +481,61 @@ class AppController {
         
         const link = document.createElement('a');
         link.href = URL.createObjectURL(dataBlob);
-        link.download = 'bubli-ai-user-data.json';
+        link.download = 'basedly-user-data.json';
         link.click();
         
-        this.uiManager.components.notification.show('User data exported successfully');
+        // this.uiManager.components.notification.show('User data exported successfully');
+    }
+
+    // Handle message click
+    handleMessageClick(messageId) {
+        console.log(`Message clicked: ${messageId}`);
+        
+        // Mark message as read
+        const messageCard = document.querySelector(`[data-message-id="${messageId}"]`);
+        if (messageCard) {
+            const indicator = messageCard.querySelector('.unread-indicator');
+            if (indicator) {
+                indicator.remove();
+                messageCard.classList.remove('unread');
+            }
+        }
+        
+        // this.uiManager.components.notification.show('Message opened');
+    }
+
+    // Filter messages
+    filterMessages(filterType) {
+        console.log(`Filtering messages by: ${filterType}`);
+        
+        const messageCards = document.querySelectorAll('.message-card');
+        messageCards.forEach(card => {
+            let show = true;
+            
+            switch (filterType) {
+                case 'unread':
+                    show = card.classList.contains('unread');
+                    break;
+                case 'deals':
+                    show = card.querySelector('.message-sender').textContent.includes('DEAL') || 
+                           card.querySelector('.message-subject').textContent.includes('Deal');
+                    break;
+                case 'community':
+                    show = !card.querySelector('.message-sender').textContent.includes('DEAL') && 
+                           !card.querySelector('.message-subject').textContent.includes('Deal');
+                    break;
+            }
+            
+            card.style.display = show ? 'block' : 'none';
+        });
+        
+        // this.uiManager.components.notification.show(`Messages filtered by: ${filterType}`);
+    }
+
+    // Compose new message
+    composeMessage() {
+        console.log('Composing new message...');
+        // this.uiManager.components.notification.show('Compose message feature coming soon!');
     }
 
     // Start real-time updates
