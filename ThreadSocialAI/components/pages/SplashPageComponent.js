@@ -36,62 +36,7 @@ class SplashPageComponent extends BaseComponent {
             window.location.href = 'index.html';
         });
 
-        // Create cloud animation container
-        const cloudContainer = document.createElement('div');
-        cloudContainer.id = 'cloud-animation-container';
-        cloudContainer.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        `;
-
-        // Create 3 layers of clouds with enhanced 3D effects
-        const cloudLayers = [
-            { count: 5, size: 'large', zIndex: 1, opacity: 0.9, speed: 0.5 },
-            { count: 8, size: 'medium', zIndex: 2, opacity: 0.7, speed: 0.8 },
-            { count: 12, size: 'small', zIndex: 3, opacity: 0.5, speed: 1.2 }
-        ];
-
-        cloudLayers.forEach((layer, layerIndex) => {
-            for (let i = 0; i < layer.count; i++) {
-                const cloud = document.createElement('div');
-                cloud.className = `cloud cloud-${layer.size}`;
-                cloud.style.cssText = `
-                    position: absolute;
-                    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,192,203,0.7) 100%);
-                    border-radius: 50px;
-                    box-shadow: 
-                        0 8px 32px rgba(255,255,255,0.3),
-                        inset 0 -4px 8px rgba(0,0,0,0.1),
-                        0 4px 16px rgba(255,192,203,0.4);
-                    opacity: ${layer.opacity};
-                    z-index: ${layer.zIndex};
-                    transform: translateZ(${layerIndex * 10}px);
-                    filter: blur(${layerIndex * 0.5}px);
-                    transition: all 0.3s ease;
-                `;
-
-                // Set cloud size based on layer
-                const sizeMap = {
-                    large: { width: 'clamp(120px, 30vw, 220px)', height: 'clamp(60px, 12vw, 110px)' },
-                    medium: { width: 'clamp(80px, 20vw, 150px)', height: 'clamp(40px, 8vw, 75px)' },
-                    small: { width: 'clamp(50px, 12vw, 100px)', height: 'clamp(25px, 5vw, 50px)' }
-                };
-
-                cloud.style.width = sizeMap[layer.size].width;
-                cloud.style.height = sizeMap[layer.size].height;
-
-                // Random positioning
-                cloud.style.left = `${Math.random() * 100}%`;
-                cloud.style.top = `${Math.random() * 100}%`;
-
-                cloudContainer.appendChild(cloud);
-            }
-        });
+        // Cloud animation container removed - keeping clean background
 
         // Create hero content container
         const heroContent = document.createElement('div');
@@ -329,9 +274,7 @@ class SplashPageComponent extends BaseComponent {
                     font-size: clamp(1.5rem, 5vw, 2.5rem);
                 }
                 
-                .cloud {
-                    display: none;
-                }
+                /* Cloud elements removed */
             }
 
             /* Large desktop screens */
@@ -345,83 +288,16 @@ class SplashPageComponent extends BaseComponent {
         document.head.appendChild(style);
 
         // Add components to splash container
-        splashContainer.appendChild(cloudContainer);
         splashContainer.appendChild(heroContent);
 
         // Clear container and add splash page
         container.innerHTML = '';
         container.appendChild(splashContainer);
 
-        // Initialize GSAP animations for clouds with proper timing
-        setTimeout(() => {
-            this.initCloudAnimations();
-        }, 100);
+        // Cloud animations removed - keeping clean background
     }
 
-    initCloudAnimations() {
-        // Check if GSAP is available
-        if (typeof gsap === 'undefined') {
-            console.log('GSAP not available, using fallback cloud animations');
-            this.fallbackCloudAnimation();
-            return;
-        }
-
-        console.log('Initializing GSAP cloud animations');
-        const clouds = document.querySelectorAll('.cloud');
-        
-        if (clouds.length === 0) {
-            console.log('No clouds found for animation');
-            return;
-        }
-
-        console.log(`Found ${clouds.length} clouds to animate`);
-        
-        clouds.forEach((cloud, index) => {
-            const duration = 5 + Math.random() * 3; // 5-8 seconds
-            const delay = Math.random() * 2;
-            
-            // Set initial position
-            gsap.set(cloud, {
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight
-            });
-
-            // Create floating animation
-            gsap.to(cloud, {
-                x: `+=${(Math.random() - 0.5) * 200}`,
-                y: `+=${(Math.random() - 0.5) * 100}`,
-                rotation: Math.random() * 360,
-                duration: duration,
-                delay: delay,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true
-            });
-        });
-    }
-
-    fallbackCloudAnimation() {
-        const clouds = document.querySelectorAll('.cloud');
-        
-        clouds.forEach((cloud, index) => {
-            const keyframes = `
-                @keyframes cloudFloat${index} {
-                    0%, 100% { 
-                        transform: translate(${Math.random() * 100}px, ${Math.random() * 100}px) rotate(0deg); 
-                    }
-                    50% { 
-                        transform: translate(${Math.random() * 100}px, ${Math.random() * 100}px) rotate(180deg); 
-                    }
-                }
-            `;
-            
-            const style = document.createElement('style');
-            style.textContent = keyframes;
-            document.head.appendChild(style);
-            
-            cloud.style.animation = `cloudFloat${index} ${5 + Math.random() * 3}s ease-in-out infinite`;
-        });
-    }
+    // Cloud animation methods removed
 
     destroy() {
         this.isAnimationsActive = false;
