@@ -7,9 +7,10 @@ set -e  # Exit on any error
 
 echo "🚀 Starting Basedly.AI iOS App Build and Submission Process..."
 
-# Configuration
-PROJECT_NAME="ThreadSocialAI"
-SCHEME_NAME="ThreadSocialAI"
+# Configuration - Updated to match actual project structure
+PROJECT_NAME="BasedlyAI"
+SCHEME_NAME="BasedlyAI"
+PROJECT_PATH="BasedlyAI/BasedlyAI.xcodeproj"
 ARCHIVE_NAME="BasedlyAI.xcarchive"
 IPA_NAME="BasedlyAI.ipa"
 EXPORT_PATH="./build"
@@ -48,20 +49,62 @@ check_xcode() {
     print_success "Xcode command line tools found"
 }
 
-# Check if we're in the right directory
+# Check if we're in the right directory and project exists
 check_directory() {
     print_status "Checking project structure..."
-    if [ ! -f "${PROJECT_NAME}.xcodeproj/project.pbxproj" ]; then
-        print_error "${PROJECT_NAME}.xcodeproj not found. Please run this script from the project root directory."
+    if [ ! -f "${PROJECT_PATH}/project.pbxproj" ]; then
+        print_error "${PROJECT_PATH} not found. Please run this script from the project root directory."
         exit 1
     fi
     print_success "Project structure verified"
 }
 
+# Copy web app files to iOS project (excluding problematic files)
+copy_web_files() {
+    print_status "Copying web app files to iOS project..."
+    
+    # Create web directory in iOS project if it doesn't exist
+    mkdir -p "${PROJECT_NAME}/BasedlyAI/web"
+    
+    # Remove any existing web files to avoid conflicts
+    rm -rf "${PROJECT_NAME}/BasedlyAI/web"/*
+    
+    # Copy only the web files we need, explicitly excluding iOS-specific files
+    print_status "Copying HTML files..."
+    cp ThreadSocialAI/*.html "${PROJECT_NAME}/BasedlyAI/web/" 2>/dev/null || true
+    
+    print_status "Copying CSS files..."
+    cp ThreadSocialAI/*.css "${PROJECT_NAME}/BasedlyAI/web/" 2>/dev/null || true
+    
+    print_status "Copying JavaScript files..."
+    cp ThreadSocialAI/*.js "${PROJECT_NAME}/BasedlyAI/web/" 2>/dev/null || true
+    
+    print_status "Copying assets directory..."
+    cp -r ThreadSocialAI/assets "${PROJECT_NAME}/BasedlyAI/web/" 2>/dev/null || true
+    
+    print_status "Copying components directory..."
+    cp -r ThreadSocialAI/components "${PROJECT_NAME}/BasedlyAI/web/" 2>/dev/null || true
+    
+    print_status "Copying manifest and favicon..."
+    cp ThreadSocialAI/manifest.json "${PROJECT_NAME}/BasedlyAI/web/" 2>/dev/null || true
+    cp ThreadSocialAI/favicon.ico "${PROJECT_NAME}/BasedlyAI/web/" 2>/dev/null || true
+    
+    # Explicitly remove any iOS-specific files that might have been copied
+    print_status "Removing iOS-specific files from web directory..."
+    rm -f "${PROJECT_NAME}/BasedlyAI/web/AppDelegate.swift" 2>/dev/null || true
+    rm -f "${PROJECT_NAME}/BasedlyAI/web/SceneDelegate.swift" 2>/dev/null || true
+    rm -f "${PROJECT_NAME}/BasedlyAI/web/ViewController.swift" 2>/dev/null || true
+    rm -f "${PROJECT_NAME}/BasedlyAI/web/Info.plist" 2>/dev/null || true
+    rm -f "${PROJECT_NAME}/BasedlyAI/web/Base.lproj" 2>/dev/null || true
+    rm -f "${PROJECT_NAME}/BasedlyAI/web/BubliAI.xcdatamodeld" 2>/dev/null || true
+    
+    print_success "Web app files copied to iOS project"
+}
+
 # Clean previous builds
 clean_builds() {
     print_status "Cleaning previous builds..."
-    xcodebuild clean -project "${PROJECT_NAME}.xcodeproj" -scheme "${SCHEME_NAME}" -configuration Release
+    xcodebuild clean -project "${PROJECT_PATH}" -scheme "${SCHEME_NAME}" -configuration Release
     rm -rf "${EXPORT_PATH}"
     mkdir -p "${EXPORT_PATH}"
     print_success "Build directory cleaned"
@@ -71,7 +114,7 @@ clean_builds() {
 build_archive() {
     print_status "Building archive..."
     xcodebuild archive \
-        -project "${PROJECT_NAME}.xcodeproj" \
+        -project "${PROJECT_PATH}" \
         -scheme "${SCHEME_NAME}" \
         -configuration Release \
         -archivePath "${EXPORT_PATH}/${ARCHIVE_NAME}" \
@@ -79,7 +122,8 @@ build_archive() {
         CODE_SIGN_STYLE="Automatic" \
         DEVELOPMENT_TEAM="${TEAM_ID}" \
         PROVISIONING_PROFILE_SPECIFIER="" \
-        -allowProvisioningUpdates
+        -allowProvisioningUpdates \
+        -allowProvisioningDeviceRegistration
     
     if [ $? -eq 0 ]; then
         print_success "Archive built successfully"
@@ -95,7 +139,9 @@ export_ipa() {
     xcodebuild -exportArchive \
         -archivePath "${EXPORT_PATH}/${ARCHIVE_NAME}" \
         -exportPath "${EXPORT_PATH}" \
-        -exportOptionsPlist "exportOptions.plist"
+        -exportOptionsPlist "exportOptions.plist" \
+        -allowProvisioningUpdates \
+        -allowProvisioningDeviceRegistration
     
     if [ $? -eq 0 ]; then
         print_success "IPA exported successfully"
@@ -144,6 +190,9 @@ main() {
     # Check prerequisites
     check_xcode
     check_directory
+    
+    # Copy web files to iOS project
+    copy_web_files
     
     # Check for required environment variables
     if [ -z "$APP_STORE_USERNAME" ] || [ -z "$APP_STORE_PASSWORD" ] || [ -z "$TEAM_ID" ]; then
