@@ -189,6 +189,37 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes heroTitleGlow {
+            0% { 
+                filter: drop-shadow(0 8px 16px rgba(255,255,255,0.5)) 
+                       drop-shadow(0 0 30px rgba(255,192,203,0.6))
+                       drop-shadow(0 0 50px rgba(255,255,255,0.4));
+                text-shadow: 
+                    0 0 40px rgba(255,255,255,1),
+                    0 0 80px rgba(255,192,203,0.8),
+                    0 0 120px rgba(255,192,203,0.6),
+                    2px 2px 4px rgba(0,0,0,0.8);
+            }
+            100% { 
+                filter: drop-shadow(0 12px 24px rgba(255,255,255,0.7)) 
+                       drop-shadow(0 0 40px rgba(255,192,203,0.9))
+                       drop-shadow(0 0 70px rgba(255,255,255,0.6));
+                text-shadow: 
+                    0 0 50px rgba(255,255,255,1),
+                    0 0 100px rgba(255,192,203,0.9),
+                    0 0 150px rgba(255,192,203,0.7),
+                    2px 2px 4px rgba(0,0,0,0.8);
+            }
+        }
+
+        .hero-title:hover {
+            transform: scale(1.02) translateZ(0);
+            filter: 
+                drop-shadow(0 12px 24px rgba(255,255,255,0.7)) 
+                drop-shadow(0 0 40px rgba(255,192,203,0.9))
+                drop-shadow(0 0 70px rgba(255,255,255,0.6));
+        }
         
         .new-indicator {
             position: absolute;
@@ -478,6 +509,8 @@
     <section style="background: var(--lux-black); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 20px; text-align: center;">
         <!-- Hero Section -->
         <div style="text-align: center; padding: 80px 20px; margin-bottom: 80px;">
+            <!-- Hero Title -->
+            <h1 class="hero-title" style="font-family: 'Inter', 'Space Grotesk', Arial, sans-serif; font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; background: linear-gradient(135deg, #ffffff 0%, #ffc0cb 50%, #ffffff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 50px rgba(255,255,255,1), 0 0 100px rgba(255,192,203,0.8), 0 0 150px rgba(255,192,203,0.6), 3px 3px 6px rgba(0,0,0,0.8); letter-spacing: clamp(2px, 1vw, 4px); animation: heroTitleGlow 3s ease-in-out infinite alternate; filter: drop-shadow(0 12px 24px rgba(255,255,255,0.6)); position: relative; z-index: 25; text-align: center; line-height: 1.1; padding: clamp(20px, 5vw, 40px); border-radius: 20px; background-color: rgba(0,0,0,0.5); backdrop-filter: blur(15px); margin-bottom: clamp(30px, 8vw, 60px); transform: translateZ(0); transition: all 0.3s ease;">The Future of Shopping</h1>
 
             <p style="font-size: 20px; color: var(--lux-white); font-weight: 300; letter-spacing: 2px; margin-bottom: 32px;">Discover exclusive deals from the world's most coveted brands</p>
             <p style="font-size: 16px; color: var(--lux-white); opacity: 0.9; line-height: 1.6;">Our AI learns your style and finds hidden gems you'll love</p>

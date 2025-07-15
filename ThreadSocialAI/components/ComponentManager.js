@@ -19,6 +19,9 @@ class ComponentManager {
         this.components.splashPage = new SplashPageComponent(this.dataManager);
         this.components.discoveryPage = new DiscoveryPageComponent(this.dataManager);
         this.components.messagesPage = new MessagesPageComponent(this.dataManager);
+        this.components.socialPage = new SocialPageComponent(this.dataManager);
+        this.components.memberPage = new MemberPageComponent(this.dataManager);
+        this.components.dealsPage = new DealsPageComponent(this.dataManager);
 
         console.log('ComponentManager initialized with all components');
     }
