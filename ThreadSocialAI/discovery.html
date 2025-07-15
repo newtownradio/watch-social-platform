@@ -527,38 +527,23 @@
     <script>
         // Navigation functions
         function navigateToDiscovery() {
-            showNotification('🔍 Navigating to Discovery...');
-            setTimeout(() => {
-                window.location.href = 'discovery.html';
-            }, 500);
+            window.location.href = 'discovery.html';
         }
 
         function navigateToDeals() {
-            showNotification('💰 Navigating to Deals...');
-            setTimeout(() => {
-                window.location.href = 'deals.html';
-            }, 500);
+            window.location.href = 'deals.html';
         }
 
         function navigateToMessages() {
-            showNotification('💬 Navigating to Messages...');
-            setTimeout(() => {
-                window.location.href = 'messages.html';
-            }, 500);
+            window.location.href = 'messages.html';
         }
 
         function navigateToSocial() {
-            showNotification('👥 Navigating to Social Planning...');
-            setTimeout(() => {
-                window.location.href = 'social.html';
-            }, 500);
+            window.location.href = 'social.html';
         }
 
         function navigateToMember() {
-            showNotification('👤 Navigating to Member Profile...');
-            setTimeout(() => {
-                window.location.href = 'member.html';
-            }, 500);
+            window.location.href = 'member.html';
         }
 
         // Enhanced button functions
@@ -673,23 +658,59 @@
             
             if (!brandDirectory) return;
             
-            // Sample brand data
+            // Comprehensive brand data with more categories
             const brands = [
-                { name: "CHANEL", category: "luxury_fashion", specialty: "Haute Couture", description: "French luxury fashion house" },
-                { name: "GUCCI", category: "luxury_fashion", specialty: "Contemporary Luxury", description: "Italian luxury brand" },
-                { name: "HERMÈS", category: "luxury_fashion", specialty: "Leather Goods", description: "French luxury goods manufacturer" },
-                { name: "LOUIS VUITTON", category: "luxury_fashion", specialty: "Leather Goods", description: "French fashion house" },
-                { name: "BALENCIAGA", category: "luxury_fashion", specialty: "Contemporary Fashion", description: "Spanish luxury fashion house" },
-                { name: "CARTIER", category: "jewelry_watches", specialty: "Fine Jewelry", description: "French luxury jewelry and watch manufacturer" },
-                { name: "ROLEX", category: "jewelry_watches", specialty: "Luxury Watches", description: "Swiss luxury watch manufacturer" },
-                { name: "NIKE", category: "streetwear", specialty: "Athletic Wear", description: "American athletic footwear and apparel" },
-                { name: "ADIDAS", category: "streetwear", specialty: "Athletic Wear", description: "German athletic apparel and footwear" },
-                { name: "SUPREME", category: "streetwear", specialty: "Streetwear", description: "American skateboarding lifestyle brand" },
-                { name: "OFF-WHITE", category: "streetwear", specialty: "Contemporary Streetwear", description: "Italian luxury streetwear brand" },
-                { name: "BOTTEGA VENETA", category: "luxury_fashion", specialty: "Leather Goods", description: "Italian luxury fashion house" },
-                { name: "SAINT LAURENT", category: "luxury_fashion", specialty: "Contemporary Luxury", description: "French luxury fashion house" },
-                { name: "DIOR", category: "luxury_fashion", specialty: "Haute Couture", description: "French luxury goods company" },
-                { name: "PRADA", category: "luxury_fashion", specialty: "Contemporary Luxury", description: "Italian luxury fashion house" }
+                // Luxury Fashion
+                { name: "CHANEL", category: "luxury_fashion", specialty: "Haute Couture", description: "French luxury fashion house", priceRange: "$1K-$50K" },
+                { name: "GUCCI", category: "luxury_fashion", specialty: "Contemporary Luxury", description: "Italian luxury brand", priceRange: "$500-$15K" },
+                { name: "HERMÈS", category: "luxury_fashion", specialty: "Leather Goods", description: "French luxury goods manufacturer", priceRange: "$2K-$100K" },
+                { name: "LOUIS VUITTON", category: "luxury_fashion", specialty: "Leather Goods", description: "French fashion house", priceRange: "$800-$25K" },
+                { name: "BALENCIAGA", category: "luxury_fashion", specialty: "Contemporary Fashion", description: "Spanish luxury fashion house", priceRange: "$600-$8K" },
+                { name: "BOTTEGA VENETA", category: "luxury_fashion", specialty: "Leather Goods", description: "Italian luxury fashion house", priceRange: "$1K-$12K" },
+                { name: "SAINT LAURENT", category: "luxury_fashion", specialty: "Contemporary Luxury", description: "French luxury fashion house", priceRange: "$400-$8K" },
+                { name: "DIOR", category: "luxury_fashion", specialty: "Haute Couture", description: "French luxury goods company", priceRange: "$800-$20K" },
+                { name: "PRADA", category: "luxury_fashion", specialty: "Contemporary Luxury", description: "Italian luxury fashion house", priceRange: "$600-$15K" },
+                { name: "FENDI", category: "luxury_fashion", specialty: "Leather Goods", description: "Italian luxury fashion house", priceRange: "$800-$18K" },
+                
+                // Jewelry & Watches
+                { name: "CARTIER", category: "jewelry_watches", specialty: "Fine Jewelry", description: "French luxury jewelry and watch manufacturer", priceRange: "$2K-$500K" },
+                { name: "ROLEX", category: "jewelry_watches", specialty: "Luxury Watches", description: "Swiss luxury watch manufacturer", priceRange: "$5K-$500K" },
+                { name: "TIFFANY & CO.", category: "jewelry_watches", specialty: "Fine Jewelry", description: "American luxury jewelry and specialty retailer", priceRange: "$200-$2M" },
+                { name: "BVLGARI", category: "jewelry_watches", specialty: "Luxury Jewelry", description: "Italian luxury jewelry and watches", priceRange: "$1K-$1M" },
+                { name: "VAN CLEEF & ARPELS", category: "jewelry_watches", specialty: "Fine Jewelry", description: "French luxury jewelry and watch manufacturer", priceRange: "$3K-$2M" },
+                { name: "OMEGA", category: "jewelry_watches", specialty: "Luxury Watches", description: "Swiss luxury watch manufacturer", priceRange: "$2K-$100K" },
+                { name: "PATEK PHILIPPE", category: "jewelry_watches", specialty: "Luxury Watches", description: "Swiss luxury watch manufacturer", priceRange: "$20K-$2M" },
+                
+                // Streetwear
+                { name: "NIKE", category: "streetwear", specialty: "Athletic Wear", description: "American athletic footwear and apparel", priceRange: "$50-$500" },
+                { name: "ADIDAS", category: "streetwear", specialty: "Athletic Wear", description: "German athletic apparel and footwear", priceRange: "$40-$400" },
+                { name: "SUPREME", category: "streetwear", specialty: "Streetwear", description: "American skateboarding lifestyle brand", priceRange: "$30-$2K" },
+                { name: "OFF-WHITE", category: "streetwear", specialty: "Contemporary Streetwear", description: "Italian luxury streetwear brand", priceRange: "$200-$5K" },
+                { name: "PALACE", category: "streetwear", specialty: "Streetwear", description: "British skateboarding and clothing brand", priceRange: "$50-$1K" },
+                { name: "BAPE", category: "streetwear", specialty: "Streetwear", description: "Japanese streetwear brand", priceRange: "$100-$2K" },
+                { name: "STUSSY", category: "streetwear", specialty: "Streetwear", description: "American clothing brand", priceRange: "$30-$300" },
+                
+                // Contemporary
+                { name: "ACNE STUDIOS", category: "contemporary", specialty: "Contemporary Fashion", description: "Swedish fashion house", priceRange: "$200-$2K" },
+                { name: "COMME DES GARÇONS", category: "contemporary", specialty: "Avant-Garde Fashion", description: "Japanese fashion label", priceRange: "$300-$5K" },
+                { name: "ISSEY MIYAKE", category: "contemporary", specialty: "Contemporary Fashion", description: "Japanese fashion designer", priceRange: "$400-$3K" },
+                { name: "YOHJI YAMAMOTO", category: "contemporary", specialty: "Avant-Garde Fashion", description: "Japanese fashion designer", priceRange: "$500-$8K" },
+                
+                // Beauty
+                { name: "CHANEL BEAUTY", category: "beauty", specialty: "Luxury Cosmetics", description: "French luxury beauty brand", priceRange: "$30-$500" },
+                { name: "DIOR BEAUTY", category: "beauty", specialty: "Luxury Cosmetics", description: "French luxury beauty brand", priceRange: "$25-$400" },
+                { name: "TOM FORD BEAUTY", category: "beauty", specialty: "Luxury Cosmetics", description: "American luxury beauty brand", priceRange: "$40-$600" },
+                { name: "LA MER", category: "beauty", specialty: "Luxury Skincare", description: "American luxury skincare brand", priceRange: "$100-$2K" },
+                
+                // Outdoor
+                { name: "PATAGONIA", category: "outdoor", specialty: "Outdoor Gear", description: "American outdoor clothing company", priceRange: "$50-$800" },
+                { name: "THE NORTH FACE", category: "outdoor", specialty: "Outdoor Gear", description: "American outdoor recreation company", priceRange: "$40-$600" },
+                { name: "ARC'TERYX", category: "outdoor", specialty: "Outdoor Gear", description: "Canadian outdoor clothing company", priceRange: "$100-$1K" },
+                
+                // Tech
+                { name: "APPLE", category: "tech", specialty: "Consumer Electronics", description: "American technology company", priceRange: "$200-$6K" },
+                { name: "SAMSUNG", category: "tech", specialty: "Consumer Electronics", description: "South Korean technology company", priceRange: "$100-$4K" },
+                { name: "SONY", category: "tech", specialty: "Consumer Electronics", description: "Japanese technology company", priceRange: "$50-$3K" }
             ];
             
             const filteredBrands = brands.filter(brand =>
@@ -714,7 +735,10 @@
                     <h4 style="color: var(--lux-hot-pink); font-size: 18px; font-weight: 700; margin: 0 0 8px 0;">${brand.name}</h4>
                     <p style="color: var(--lux-white); font-size: 14px; margin: 0 0 8px 0;">${brand.description}</p>
                     <div style="color: var(--lux-beige); font-size: 12px; margin-bottom: 8px;">${brand.specialty}</div>
-                    <div style="color: var(--lux-white); opacity: 0.7; font-size: 12px; text-transform: uppercase;">${brand.category}</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+                        <div style="color: var(--lux-white); opacity: 0.7; font-size: 12px; text-transform: uppercase;">${brand.category}</div>
+                        <div style="color: var(--lux-hot-pink); font-size: 12px; font-weight: 600;">${brand.priceRange}</div>
+                    </div>
                 `;
                 brandDirectory.appendChild(brandCard);
             });
@@ -727,18 +751,51 @@
             
             if (!resultsContainer) return;
             
-            // Sample quick discovery data
+            // Comprehensive quick discovery data
             const quickDeals = [
-                { brand: "CHANEL", item: "Classic Flap Bag", price: 8800, category: "bags", discount: "20% OFF" },
-                { brand: "NIKE", item: "Air Jordan 1 Retro", price: 180, category: "shoes", discount: "Flash Sale" },
-                { brand: "GUCCI", item: "Dionysus Bag", price: 2200, category: "bags", discount: "Limited Time" },
-                { brand: "CARTIER", item: "Love Bracelet", price: 6500, category: "jewelry", discount: "VIP Access" },
-                { brand: "BALENCIAGA", item: "Triple S Sneakers", price: 1200, category: "shoes", discount: "Seasonal Sale" },
-                { brand: "HERMÈS", item: "Birkin Bag", price: 12000, category: "bags", discount: "Exclusive" },
-                { brand: "ROLEX", item: "Submariner Watch", price: 8500, category: "watches", discount: "Limited Stock" },
-                { brand: "ADIDAS", item: "Yeezy Boost 350", price: 220, category: "shoes", discount: "Restock Alert" },
-                { brand: "LOUIS VUITTON", item: "Neverfull Bag", price: 1400, category: "bags", discount: "New Arrival" },
-                { brand: "SUPREME", item: "Box Logo Hoodie", price: 180, category: "clothing", discount: "Drop Alert" }
+                // Luxury Fashion
+                { brand: "CHANEL", item: "Classic Flap Bag", price: 8800, category: "bags", discount: "20% OFF", originalPrice: 11000 },
+                { brand: "GUCCI", item: "Dionysus Bag", price: 2200, category: "bags", discount: "Limited Time", originalPrice: 2800 },
+                { brand: "HERMÈS", item: "Birkin Bag", price: 12000, category: "bags", discount: "Exclusive", originalPrice: 15000 },
+                { brand: "LOUIS VUITTON", item: "Neverfull Bag", price: 1400, category: "bags", discount: "New Arrival", originalPrice: 1600 },
+                { brand: "BALENCIAGA", item: "Hourglass Bag", price: 1800, category: "bags", discount: "Seasonal Sale", originalPrice: 2200 },
+                { brand: "SAINT LAURENT", item: "Loulou Bag", price: 1600, category: "bags", discount: "Flash Sale", originalPrice: 2000 },
+                { brand: "DIOR", item: "Lady Dior Bag", price: 5500, category: "bags", discount: "VIP Access", originalPrice: 6500 },
+                { brand: "PRADA", item: "Re-Edition Bag", price: 1200, category: "bags", discount: "Restock Alert", originalPrice: 1400 },
+                
+                // Shoes
+                { brand: "NIKE", item: "Air Jordan 1 Retro", price: 180, category: "shoes", discount: "Flash Sale", originalPrice: 220 },
+                { brand: "BALENCIAGA", item: "Triple S Sneakers", price: 1200, category: "shoes", discount: "Seasonal Sale", originalPrice: 1500 },
+                { brand: "ADIDAS", item: "Yeezy Boost 350", price: 220, category: "shoes", discount: "Restock Alert", originalPrice: 250 },
+                { brand: "OFF-WHITE", item: "Nike Air Force 1", price: 800, category: "shoes", discount: "Limited Edition", originalPrice: 1000 },
+                { brand: "GUCCI", item: "Ace Sneakers", price: 650, category: "shoes", discount: "New Arrival", originalPrice: 750 },
+                { brand: "LOUIS VUITTON", item: "Trainer Sneakers", price: 1100, category: "shoes", discount: "Exclusive", originalPrice: 1300 },
+                
+                // Jewelry & Watches
+                { brand: "CARTIER", item: "Love Bracelet", price: 6500, category: "jewelry", discount: "VIP Access", originalPrice: 7500 },
+                { brand: "ROLEX", item: "Submariner Watch", price: 8500, category: "watches", discount: "Limited Stock", originalPrice: 9500 },
+                { brand: "TIFFANY & CO.", item: "Tiffany T Bracelet", price: 1200, category: "jewelry", discount: "New Collection", originalPrice: 1400 },
+                { brand: "BVLGARI", item: "Serpenti Watch", price: 3500, category: "watches", discount: "Seasonal Sale", originalPrice: 4200 },
+                { brand: "VAN CLEEF & ARPELS", item: "Alhambra Necklace", price: 2800, category: "jewelry", discount: "Exclusive", originalPrice: 3200 },
+                { brand: "OMEGA", item: "Speedmaster Watch", price: 4200, category: "watches", discount: "Limited Time", originalPrice: 4800 },
+                
+                // Clothing
+                { brand: "SUPREME", item: "Box Logo Hoodie", price: 180, category: "clothing", discount: "Drop Alert", originalPrice: 220 },
+                { brand: "OFF-WHITE", item: "Arrows Hoodie", price: 450, category: "clothing", discount: "Flash Sale", originalPrice: 550 },
+                { brand: "BALENCIAGA", item: "Hourglass Hoodie", price: 1200, category: "clothing", discount: "New Arrival", originalPrice: 1400 },
+                { brand: "SAINT LAURENT", item: "Teddy Jacket", price: 2800, category: "clothing", discount: "Seasonal Sale", originalPrice: 3200 },
+                { brand: "GUCCI", item: "Ace T-Shirt", price: 350, category: "clothing", discount: "Limited Time", originalPrice: 420 },
+                
+                // Beauty
+                { brand: "CHANEL BEAUTY", item: "Rouge Allure Lipstick Set", price: 180, category: "beauty", discount: "Gift Set", originalPrice: 220 },
+                { brand: "DIOR BEAUTY", item: "Capture Totale Serum", price: 120, category: "beauty", discount: "New Formula", originalPrice: 140 },
+                { brand: "TOM FORD BEAUTY", item: "Private Blend Perfume", price: 280, category: "beauty", discount: "Limited Edition", originalPrice: 320 },
+                { brand: "LA MER", item: "Moisturizing Cream", price: 350, category: "beauty", discount: "Jumbo Size", originalPrice: 420 },
+                
+                // Tech
+                { brand: "APPLE", item: "iPhone 15 Pro", price: 999, category: "tech", discount: "Trade-in Bonus", originalPrice: 1199 },
+                { brand: "SAMSUNG", item: "Galaxy S24 Ultra", price: 1200, category: "tech", discount: "Pre-order Bonus", originalPrice: 1400 },
+                { brand: "SONY", item: "WH-1000XM5 Headphones", price: 350, category: "tech", discount: "Flash Sale", originalPrice: 400 }
             ];
             
             const filteredDeals = quickDeals.filter(deal =>
@@ -761,8 +818,12 @@
                 dealCard.innerHTML = `
                     <h4 style="color: var(--lux-hot-pink); font-size: 16px; font-weight: 700; margin: 0 0 8px 0;">${deal.brand}</h4>
                     <p style="color: var(--lux-white); font-size: 14px; margin: 0 0 8px 0;">${deal.item}</p>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="color: var(--lux-beige); font-size: 16px; font-weight: 700;">$${deal.price}</span>
+                    <div style="color: var(--lux-beige); font-size: 12px; margin-bottom: 8px; text-transform: uppercase;">${deal.category}</div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="color: var(--lux-beige); font-size: 16px; font-weight: 700;">$${deal.price}</span>
+                            ${deal.originalPrice ? `<span style="color: var(--lux-white); opacity: 0.6; text-decoration: line-through; font-size: 14px;">$${deal.originalPrice}</span>` : ''}
+                        </div>
                         <span style="color: var(--lux-hot-pink); font-size: 12px; font-weight: 600; background: var(--lux-black); padding: 4px 8px; border: 1px solid var(--lux-hot-pink);">${deal.discount}</span>
                     </div>
                 `;
@@ -775,56 +836,52 @@
             const query = searchInput.value.trim();
             
             if (query) {
-                showNotification(`📅 Searching events for "${query}"...`);
+                // Perform event search functionality here
+                console.log(`Searching events for: ${query}`);
             } else {
-                showNotification('📅 Please enter an event search term');
+                // Handle empty search
+                console.log('Please enter an event search term');
             }
-        }
-
-        // Notification system - removed for better UX
-        function showNotification(message) {
-            // Silent - no popups
         }
 
         // Enhanced filter functions
         function filterByCategory(category) {
-            showNotification(`📂 Filtering by ${category}...`);
             // The actual filtering is handled by discovery.js
+            console.log(`Filtering by ${category}`);
         }
 
         function filterByLetter(letter) {
-            showNotification(`🔤 Filtering brands starting with "${letter}"...`);
             // The actual filtering is handled by discovery.js
+            console.log(`Filtering brands starting with "${letter}"`);
         }
 
         function filterQuickDiscovery(category) {
-            showNotification(`🔍 Quick discovery: ${category}...`);
             // The actual filtering is handled by discovery.js
+            console.log(`Quick discovery: ${category}`);
         }
 
         function viewAllCategories() {
-            showNotification('📂 Viewing all categories...');
             // The actual functionality is handled by discovery.js
+            console.log('Viewing all categories');
         }
 
         // Enhanced toggle functions
         function toggleFriendActivity() {
-            showNotification('👥 Toggling friend activity...');
             // The actual functionality is handled by discovery.js
+            console.log('Toggling friend activity');
         }
 
         function toggleTrendingDeals() {
-            showNotification('🔥 Toggling trending deals...');
             // The actual functionality is handled by discovery.js
+            console.log('Toggling trending deals');
         }
 
         function refreshTrending() {
-            showNotification('🔄 Refreshing trending deals...');
             // The actual functionality is handled by discovery.js
+            console.log('Refreshing trending deals');
         }
 
         function openTrendingSection() {
-            showNotification('🔥 Opening trending section...');
             const trendingSection = document.getElementById('trending');
             if (trendingSection) {
                 trendingSection.scrollIntoView({ behavior: 'smooth' });
@@ -832,10 +889,95 @@
         }
 
         function openUpcomingEvents() {
-            showNotification('📅 Opening upcoming events...');
             const eventsSection = document.querySelector('#upcoming-events');
             if (eventsSection) {
                 eventsSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Multi-category selection functions
+        let selectedCategories = [];
+
+        function toggleCategory(category) {
+            const button = document.getElementById(`cat-${category}`);
+            const display = document.getElementById('selected-categories-display');
+            
+            if (selectedCategories.includes(category)) {
+                // Remove category
+                selectedCategories = selectedCategories.filter(cat => cat !== category);
+                button.classList.remove('lux-button');
+                button.classList.add('lux-button-secondary');
+            } else {
+                // Add category
+                selectedCategories.push(category);
+                button.classList.remove('lux-button-secondary');
+                button.classList.add('lux-button');
+            }
+            
+            updateCategoryDisplay();
+            filterBySelectedCategories();
+        }
+
+        function selectMultipleCategories(categories) {
+            // Clear all first
+            clearCategoryFilters();
+            
+            // Select the specified categories
+            categories.forEach(category => {
+                selectedCategories.push(category);
+                const button = document.getElementById(`cat-${category}`);
+                if (button) {
+                    button.classList.remove('lux-button-secondary');
+                    button.classList.add('lux-button');
+                }
+            });
+            
+            updateCategoryDisplay();
+            filterBySelectedCategories();
+        }
+
+        function clearCategoryFilters() {
+            selectedCategories = [];
+            const buttons = document.querySelectorAll('[id^="cat-"]');
+            buttons.forEach(button => {
+                button.classList.remove('lux-button');
+                button.classList.add('lux-button-secondary');
+            });
+            
+            updateCategoryDisplay();
+            filterBySelectedCategories();
+        }
+
+        function updateCategoryDisplay() {
+            const display = document.getElementById('selected-categories-display');
+            if (selectedCategories.length === 0) {
+                display.innerHTML = '<p style="color: var(--lux-beige); font-size: 14px; font-family: \'Space Grotesk\', Arial, sans-serif;">Select categories to filter products</p>';
+            } else {
+                const categoryNames = selectedCategories.map(cat => {
+                    const names = {
+                        'luxury_fashion': 'Luxury Fashion',
+                        'jewelry_watches': 'Jewelry & Watches',
+                        'streetwear': 'Streetwear',
+                        'contemporary': 'Contemporary',
+                        'beauty': 'Beauty',
+                        'outdoor': 'Outdoor',
+                        'tech': 'Tech'
+                    };
+                    return names[cat] || cat;
+                });
+                display.innerHTML = `<p style="color: var(--lux-hot-pink); font-size: 14px; font-family: 'Space Grotesk', Arial, sans-serif;">Selected: ${categoryNames.join(', ')}</p>`;
+            }
+        }
+
+        function filterBySelectedCategories() {
+            if (selectedCategories.length === 0) {
+                // Show all brands and deals
+                searchBrandDirectory();
+                searchQuickDiscovery();
+            } else {
+                // Filter based on selected categories
+                console.log('Filtering by categories:', selectedCategories);
+                // This would integrate with the search functions to filter results
             }
         }
     </script>
