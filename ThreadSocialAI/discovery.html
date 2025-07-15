@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Thread Social">
-    <meta name="author" content="Thread Social">
+    <meta name="apple-mobile-web-app-title" content="Basedly">
+    <meta name="author" content="Basedly">
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#FF1493">
     
-    <title>Thread Social - Discovery</title>
+    <title>Basedly - Discovery</title>
     
     <link rel="stylesheet" href="./output.css">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
@@ -666,15 +666,108 @@
             });
         }
 
+        function searchBrandDirectory() {
+            const searchInput = document.getElementById('brand-directory-search');
+            const query = searchInput.value.trim().toLowerCase();
+            const brandDirectory = document.getElementById('brand-directory');
+            
+            if (!brandDirectory) return;
+            
+            // Sample brand data
+            const brands = [
+                { name: "CHANEL", category: "luxury_fashion", specialty: "Haute Couture", description: "French luxury fashion house" },
+                { name: "GUCCI", category: "luxury_fashion", specialty: "Contemporary Luxury", description: "Italian luxury brand" },
+                { name: "HERMÈS", category: "luxury_fashion", specialty: "Leather Goods", description: "French luxury goods manufacturer" },
+                { name: "LOUIS VUITTON", category: "luxury_fashion", specialty: "Leather Goods", description: "French fashion house" },
+                { name: "BALENCIAGA", category: "luxury_fashion", specialty: "Contemporary Fashion", description: "Spanish luxury fashion house" },
+                { name: "CARTIER", category: "jewelry_watches", specialty: "Fine Jewelry", description: "French luxury jewelry and watch manufacturer" },
+                { name: "ROLEX", category: "jewelry_watches", specialty: "Luxury Watches", description: "Swiss luxury watch manufacturer" },
+                { name: "NIKE", category: "streetwear", specialty: "Athletic Wear", description: "American athletic footwear and apparel" },
+                { name: "ADIDAS", category: "streetwear", specialty: "Athletic Wear", description: "German athletic apparel and footwear" },
+                { name: "SUPREME", category: "streetwear", specialty: "Streetwear", description: "American skateboarding lifestyle brand" },
+                { name: "OFF-WHITE", category: "streetwear", specialty: "Contemporary Streetwear", description: "Italian luxury streetwear brand" },
+                { name: "BOTTEGA VENETA", category: "luxury_fashion", specialty: "Leather Goods", description: "Italian luxury fashion house" },
+                { name: "SAINT LAURENT", category: "luxury_fashion", specialty: "Contemporary Luxury", description: "French luxury fashion house" },
+                { name: "DIOR", category: "luxury_fashion", specialty: "Haute Couture", description: "French luxury goods company" },
+                { name: "PRADA", category: "luxury_fashion", specialty: "Contemporary Luxury", description: "Italian luxury fashion house" }
+            ];
+            
+            const filteredBrands = brands.filter(brand =>
+                brand.name.toLowerCase().includes(query) ||
+                brand.category.toLowerCase().includes(query) ||
+                brand.specialty.toLowerCase().includes(query) ||
+                brand.description.toLowerCase().includes(query)
+            );
+            
+            // Clear and populate results
+            brandDirectory.innerHTML = '';
+            
+            if (filteredBrands.length === 0) {
+                brandDirectory.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--lux-beige); padding: 40px;">No brands found matching your search.</div>';
+                return;
+            }
+            
+            filteredBrands.forEach(brand => {
+                const brandCard = document.createElement('div');
+                brandCard.style.cssText = 'background: var(--lux-black); border: 2px solid var(--lux-beige); padding: 24px; cursor: pointer; transition: all 0.3s ease;';
+                brandCard.innerHTML = `
+                    <h4 style="color: var(--lux-hot-pink); font-size: 18px; font-weight: 700; margin: 0 0 8px 0;">${brand.name}</h4>
+                    <p style="color: var(--lux-white); font-size: 14px; margin: 0 0 8px 0;">${brand.description}</p>
+                    <div style="color: var(--lux-beige); font-size: 12px; margin-bottom: 8px;">${brand.specialty}</div>
+                    <div style="color: var(--lux-white); opacity: 0.7; font-size: 12px; text-transform: uppercase;">${brand.category}</div>
+                `;
+                brandDirectory.appendChild(brandCard);
+            });
+        }
+
         function searchQuickDiscovery() {
             const searchInput = document.getElementById('quick-discovery-search');
-            const query = searchInput.value.trim();
+            const query = searchInput.value.trim().toLowerCase();
+            const resultsContainer = document.getElementById('quick-discovery-results');
             
-            if (query) {
-                showNotification(`🔍 Quick searching for "${query}"...`);
-            } else {
-                showNotification('🔍 Please enter a search term for quick discovery');
+            if (!resultsContainer) return;
+            
+            // Sample quick discovery data
+            const quickDeals = [
+                { brand: "CHANEL", item: "Classic Flap Bag", price: 8800, category: "bags", discount: "20% OFF" },
+                { brand: "NIKE", item: "Air Jordan 1 Retro", price: 180, category: "shoes", discount: "Flash Sale" },
+                { brand: "GUCCI", item: "Dionysus Bag", price: 2200, category: "bags", discount: "Limited Time" },
+                { brand: "CARTIER", item: "Love Bracelet", price: 6500, category: "jewelry", discount: "VIP Access" },
+                { brand: "BALENCIAGA", item: "Triple S Sneakers", price: 1200, category: "shoes", discount: "Seasonal Sale" },
+                { brand: "HERMÈS", item: "Birkin Bag", price: 12000, category: "bags", discount: "Exclusive" },
+                { brand: "ROLEX", item: "Submariner Watch", price: 8500, category: "watches", discount: "Limited Stock" },
+                { brand: "ADIDAS", item: "Yeezy Boost 350", price: 220, category: "shoes", discount: "Restock Alert" },
+                { brand: "LOUIS VUITTON", item: "Neverfull Bag", price: 1400, category: "bags", discount: "New Arrival" },
+                { brand: "SUPREME", item: "Box Logo Hoodie", price: 180, category: "clothing", discount: "Drop Alert" }
+            ];
+            
+            const filteredDeals = quickDeals.filter(deal =>
+                deal.brand.toLowerCase().includes(query) ||
+                deal.item.toLowerCase().includes(query) ||
+                deal.category.toLowerCase().includes(query)
+            );
+            
+            // Clear and populate results
+            resultsContainer.innerHTML = '';
+            
+            if (filteredDeals.length === 0) {
+                resultsContainer.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--lux-beige); padding: 40px;">No deals found matching your search.</div>';
+                return;
             }
+            
+            filteredDeals.forEach(deal => {
+                const dealCard = document.createElement('div');
+                dealCard.style.cssText = 'background: var(--lux-black); border: 2px solid var(--lux-hot-pink); padding: 20px; cursor: pointer; transition: all 0.3s ease;';
+                dealCard.innerHTML = `
+                    <h4 style="color: var(--lux-hot-pink); font-size: 16px; font-weight: 700; margin: 0 0 8px 0;">${deal.brand}</h4>
+                    <p style="color: var(--lux-white); font-size: 14px; margin: 0 0 8px 0;">${deal.item}</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="color: var(--lux-beige); font-size: 16px; font-weight: 700;">$${deal.price}</span>
+                        <span style="color: var(--lux-hot-pink); font-size: 12px; font-weight: 600; background: var(--lux-black); padding: 4px 8px; border: 1px solid var(--lux-hot-pink);">${deal.discount}</span>
+                    </div>
+                `;
+                resultsContainer.appendChild(dealCard);
+            });
         }
 
         function searchEvents() {
