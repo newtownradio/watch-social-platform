@@ -131,12 +131,25 @@ jobs:
         echo "=== Build completed successfully ==="
         ls -la build/Release-iphoneos/BasedlyAI.app/ || echo "App bundle not found"
         
-    - name: Create Simple IPA (for testing)
+    - name: Create Archive
       run: |
         cd BasedlyAI
-        mkdir -p build/ipa
-        cp -r build/Release-iphoneos/BasedlyAI.app build/ipa/
-        cd build/ipa
-        zip -r BasedlyAI.ipa BasedlyAI.app
-        echo "=== Created test IPA ==="
-        ls -la BasedlyAI.ipa 
+        # Create archive using target instead of scheme
+        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive IPHONEOS_DEPLOYMENT_TARGET=18.2 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO archive
+        
+    - name: Export IPA
+      run: |
+        cd BasedlyAI
+        xcodebuild -exportArchive -archivePath BasedlyAI.xcarchive -exportPath ./build -exportOptionsPlist exportOptions.plist
+        
+    - name: Verify IPA Creation
+      run: |
+        cd BasedlyAI
+        echo "=== IPA created successfully ==="
+        ls -la build/BasedlyAI.ipa
+        file build/BasedlyAI.ipa
+        
+    - name: Upload to App Store Connect
+      run: |
+        cd BasedlyAI
+        xcrun altool --upload-app --type ios --file build/BasedlyAI.ipa --username ${{ secrets.APPLE_ID }} --password ${{ secrets.APP_SPECIFIC_PASSWORD }} 
