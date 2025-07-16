@@ -19,10 +19,35 @@ jobs:
       with:
         xcode-version: 'latest-stable'
         
-    - name: List available schemes
+    - name: List available schemes and targets
       run: |
         cd BasedlyAI
+        echo "=== Available Schemes ==="
         xcodebuild -list
+        echo "=== Project Structure ==="
+        ls -la
+        
+    - name: Create export options
+      run: |
+        cd BasedlyAI
+        cat > exportOptions.plist << 'EOF'
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+        <plist version="1.0">
+        <dict>
+            <key>method</key>
+            <string>app-store</string>
+            <key>signingStyle</key>
+            <string>automatic</string>
+            <key>stripSwiftSymbols</key>
+            <true/>
+            <key>uploadBitcode</key>
+            <false/>
+            <key>uploadSymbols</key>
+            <true/>
+        </dict>
+        </plist>
+        EOF
         
     - name: Build and Archive
       run: |
