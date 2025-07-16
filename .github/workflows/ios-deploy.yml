@@ -123,7 +123,7 @@ jobs:
     - name: Build and Archive (no signing)
       run: |
         cd BasedlyAI
-        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive IPHONEOS_DEPLOYMENT_TARGET=18.2 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO archive
+        xcodebuild -project BasedlyAI.xcodeproj -scheme BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive IPHONEOS_DEPLOYMENT_TARGET=18.2 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO archive
         
     - name: Export IPA (no signing)
       run: |
