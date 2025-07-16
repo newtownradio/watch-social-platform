@@ -23,6 +23,7 @@ class NavigationComponent extends BaseComponent {
                         <a href="#" class="nav-link" data-navigate="deals">DEALS</a>
                         <a href="#" class="nav-link" data-navigate="messages">MESSAGES</a>
                         <a href="#" class="nav-link" data-navigate="social">SOCIAL</a>
+                        <a href="#" class="nav-link" data-navigate="photos">📸 PHOTOS</a>
                         <a href="#" class="nav-link" data-navigate="plan">PLAN</a>
                     </div>
                     

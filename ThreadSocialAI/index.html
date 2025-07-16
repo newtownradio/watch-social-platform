@@ -7,11 +7,14 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Basedly">
     <meta name="format-detection" content="telephone=no">
-    <meta name="theme-color" content="#FF1493">
+    <meta name="theme-color" content="#FFABDF">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     
     <title>Basedly - AI-Powered Shopping Discovery</title>
     
-    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="./output.css?v=3">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
     
     <style>
@@ -193,22 +196,22 @@
         @keyframes heroTitleGlow {
             0% { 
                 filter: drop-shadow(0 8px 16px rgba(255,255,255,0.5)) 
-                       drop-shadow(0 0 30px rgba(255,192,203,0.6))
+                       drop-shadow(0 0 30px rgba(30,58,138,0.6))
                        drop-shadow(0 0 50px rgba(255,255,255,0.4));
                 text-shadow: 
                     0 0 40px rgba(255,255,255,1),
-                    0 0 80px rgba(255,192,203,0.8),
-                    0 0 120px rgba(255,192,203,0.6),
+                    0 0 80px rgba(30,58,138,0.8),
+                    0 0 120px rgba(30,58,138,0.6),
                     2px 2px 4px rgba(0,0,0,0.8);
             }
             100% { 
                 filter: drop-shadow(0 12px 24px rgba(255,255,255,0.7)) 
-                       drop-shadow(0 0 40px rgba(255,192,203,0.9))
+                       drop-shadow(0 0 40px rgba(30,58,138,0.9))
                        drop-shadow(0 0 70px rgba(255,255,255,0.6));
                 text-shadow: 
                     0 0 50px rgba(255,255,255,1),
-                    0 0 100px rgba(255,192,203,0.9),
-                    0 0 150px rgba(255,192,203,0.7),
+                    0 0 100px rgba(30,58,138,0.9),
+                    0 0 150px rgba(30,58,138,0.7),
                     2px 2px 4px rgba(0,0,0,0.8);
             }
         }
@@ -488,6 +491,7 @@
                 <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDeals()">DEALS</a>
                 <a href="messages.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMessages()">MESSAGES</a>
                 <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
+                <a href="polaroids.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToPolaroids()">📸 PHOTOS</a>
                 <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
                 <!-- Authentication Section -->
                 <div class="auth-button sign-in-button" style="display: flex; align-items: center;">
@@ -562,8 +566,8 @@
                 <div style="background: var(--lux-black); border-right: 4px solid var(--lux-hot-pink); border-bottom: 4px solid var(--lux-hot-pink); padding: 40px; display: flex; flex-direction: column; justify-content: center;">
                     <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
                         <h3 style="color: var(--lux-hot-pink); font-size: 32px; font-weight: 900; letter-spacing: 2px; margin: 0;">TRENDING NOW</h3>
-                        <div style="width: 12px; height: 12px; background: var(--lux-beige); border-radius: 50%; animation: pulse 2s infinite;"></div>
-                        <span style="color: var(--lux-beige); font-size: 16px; font-weight: bold; letter-spacing: 2px;">LIVE</span>
+                        <div style="width: 12px; height: 12px; background: var(--lux-white); border-radius: 50%; animation: pulse 2s infinite;"></div>
+                        <span style="color: var(--lux-white); font-size: 16px; font-weight: bold; letter-spacing: 2px;">LIVE</span>
                     </div>
                     <div id="trending-deals" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
                         <!-- Trending deals will be populated by JavaScript -->
@@ -573,7 +577,7 @@
                 <!-- Top Right: Friend Activity -->
                 <div style="background: var(--lux-black); border-bottom: 4px solid var(--lux-hot-pink); padding: 40px; display: flex; flex-direction: column; justify-content: center;">
                     <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
-                        <h3 style="color: var(--lux-beige); font-size: 32px; font-weight: 900; letter-spacing: 2px; margin: 0;">FRIEND ACTIVITY</h3>
+                        <h3 style="color: var(--lux-white); font-size: 32px; font-weight: 900; letter-spacing: 2px; margin: 0;">FRIEND ACTIVITY</h3>
                         <div id="live-indicator" style="width: 12px; height: 12px; background: var(--lux-hot-pink); border-radius: 50%; animation: pulse 2s infinite;"></div>
                         <span style="color: var(--lux-hot-pink); font-size: 16px; font-weight: bold; letter-spacing: 2px;">LIVE</span>
                     </div>
@@ -585,24 +589,24 @@
                 <!-- Bottom Left: Quick Discovery -->
                 <div style="background: var(--lux-dark-gray); border-right: 4px solid var(--lux-hot-pink); padding: 40px; display: flex; flex-direction: column; justify-content: center;">
                     <div style="text-align: center; margin-bottom: 32px;">
-                        <h3 style="color: var(--lux-beige); font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px;">QUICK DISCOVERY</h3>
+                        <h3 style="color: var(--lux-white); font-size: 28px; font-weight: 900; letter-spacing: 2px; margin-bottom: 16px;">QUICK DISCOVERY</h3>
                         <p style="color: var(--lux-white); font-size: 16px; opacity: 0.8;">Explore deals by category</p>
                     </div>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('designers')" onmouseover="this.style.background='var(--lux-hot-pink)'; this.style.color='var(--lux-white)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">DESIGNERS</button>
-                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('clothing')" onmouseover="this.style.background='var(--lux-beige)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">CLOTHING</button>
-                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('shoes')" onmouseover="this.style.background='var(--lux-hot-pink)'; this.style.color='var(--lux-white)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">SHOES</button>
-                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('bags')" onmouseover="this.style.background='var(--lux-beige)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">BAGS</button>
-                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('accessories')" onmouseover="this.style.background='var(--lux-hot-pink)'; this.style.color='var(--lux-white)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">ACCESSORIES</button>
-                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-beige); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('jewelry')" onmouseover="this.style.background='var(--lux-beige)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">JEWELRY</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('designers')" onmouseover="this.style.background='var(--lux-hot-pink)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">DESIGNERS</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-white); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('clothing')" onmouseover="this.style.background='var(--lux-white)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">CLOTHING</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('shoes')" onmouseover="this.style.background='var(--lux-hot-pink)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">SHOES</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-white); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('bags')" onmouseover="this.style.background='var(--lux-white)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">BAGS</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-hot-pink); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('accessories')" onmouseover="this.style.background='var(--lux-hot-pink)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">ACCESSORIES</button>
+                        <button class="lux-button" style="padding: 16px; font-size: 12px; font-weight: 700; letter-spacing: 1px; background: var(--lux-black); border: 2px solid var(--lux-white); color: var(--lux-white); transition: all 0.3s ease; min-height: 50px; display: flex; align-items: center; justify-content: center;" onclick="searchDeals('jewelry')" onmouseover="this.style.background='var(--lux-white)'; this.style.color='var(--lux-black)';" onmouseout="this.style.background='var(--lux-black)'; this.style.color='var(--lux-white)';">JEWELRY</button>
                     </div>
                 </div>
                 
                 <!-- Bottom Right: Call to Action -->
                 <div style="background: var(--lux-black); padding: 40px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
                     <div style="text-align: center;">
-                        <p style="font-size: 20px; color: var(--lux-beige); font-weight: 700; letter-spacing: 2px; margin-bottom: 24px;">EXPLORE MORE</p>
+                        <p style="font-size: 20px; color: var(--lux-white); font-weight: 700; letter-spacing: 2px; margin-bottom: 24px;">EXPLORE MORE</p>
                         <button class="lux-button" style="padding: 20px 32px; font-size: 16px; font-weight: 700; letter-spacing: 2px; margin-bottom: 16px;" onclick="navigateToSignup()">JOIN BASEDLY</button>
                         <p style="font-size: 14px; color: var(--lux-white); opacity: 0.6; letter-spacing: 1px;">Get exclusive access to premium deals</p>
                     </div>
@@ -614,19 +618,19 @@
 
 
     <!-- Social Planning Section - Mondrian Style -->
-    <section id="social" class="lux-py-32" style="background: var(--lux-black); border-top: 4px solid var(--lux-beige);">
+    <section id="social" class="lux-py-32" style="background: var(--lux-black); border-top: 4px solid var(--lux-white);">
         <div class="lux-container" style="max-width: 1200px; margin: 0 auto; padding: 0;">
             <!-- Section Header -->
-            <div style="background: var(--lux-black); border-bottom: 4px solid var(--lux-beige); padding: 60px 32px; text-align: center;">
-                <h2 style="font-size: 48px; margin-bottom: 24px; color: var(--lux-beige); font-weight: 900; letter-spacing: 3px;">PLAN SOCIAL SHOPPING</h2>
+            <div style="background: var(--lux-black); border-bottom: 4px solid var(--lux-white); padding: 60px 32px; text-align: center;">
+                <h2 style="font-size: 48px; margin-bottom: 24px; color: var(--lux-white); font-weight: 900; letter-spacing: 3px;">PLAN SOCIAL SHOPPING</h2>
                 <p style="color: var(--lux-white); font-size: 20px; max-width: 700px; margin: 0 auto; letter-spacing: 1px; opacity: 0.9; line-height: 1.6;">Connect with friends and plan the perfect shopping experience together</p>
             </div>
             
             <!-- Main Social Grid - 2 Simple Boxes -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 400px;">
                 <!-- Left: Create Trip -->
-                <div style="background: var(--lux-dark-gray); border-right: 4px solid var(--lux-beige); padding: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                    <h3 style="color: var(--lux-beige); font-size: 32px; font-weight: 900; letter-spacing: 2px; margin-bottom: 24px;">👥 CREATE TRIP</h3>
+                <div style="background: var(--lux-dark-gray); border-right: 4px solid var(--lux-white); padding: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <h3 style="color: var(--lux-white); font-size: 32px; font-weight: 900; letter-spacing: 2px; margin-bottom: 24px;">👥 CREATE TRIP</h3>
                     <p style="color: var(--lux-white); font-size: 18px; line-height: 1.6; margin-bottom: 40px; max-width: 300px;">Plan shopping trips with friends and get AI-optimized routes</p>
                     <button class="lux-button" style="padding: 16px 24px; font-size: 14px; font-weight: 700; letter-spacing: 1px;" onclick="createShoppingTrip()">CREATE TRIP</button>
                 </div>
@@ -641,12 +645,75 @@
         </div>
     </section>
 
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="./components/utils/AuthManager.js"></script>
     <script>
-        // Initialize auth manager
+        // Initialize auth manager and GSAP animations
         document.addEventListener('DOMContentLoaded', function() {
             if (window.authManager) {
                 window.authManager.updateAuthUI();
+            }
+            
+            // GSAP Animations for Basedly Logo
+            if (typeof gsap !== 'undefined') {
+                const logo = document.querySelector('.basedly-logo');
+                const logoText = document.querySelector('.basedly-logo-text');
+                const logoContainer = document.querySelector('.basedly-logo-container');
+                
+                if (logo && logoText && logoContainer) {
+                    // Initial animation
+                    gsap.fromTo([logo, logoText], 
+                        { opacity: 0, y: -20, scale: 0.8 },
+                        { opacity: 1, y: 0, scale: 1, duration: 1, ease: "back.out(1.7)" }
+                    );
+                    
+                    // Hover animations
+                    logoContainer.addEventListener('mouseenter', () => {
+                        gsap.to([logo, logoText], {
+                            scale: 1.1,
+                            rotation: 5,
+                            duration: 0.3,
+                            ease: "power2.out"
+                        });
+                    });
+                    
+                    logoContainer.addEventListener('mouseleave', () => {
+                        gsap.to([logo, logoText], {
+                            scale: 1,
+                            rotation: 0,
+                            duration: 0.3,
+                            ease: "power2.out"
+                        });
+                    });
+                    
+                    // Continuous floating animation
+                    gsap.to(logoContainer, {
+                        y: -10,
+                        duration: 2,
+                        ease: "power1.inOut",
+                        yoyo: true,
+                        repeat: -1
+                    });
+                }
+                
+                // Hero title animation
+                const heroTitle = document.querySelector('.hero-title');
+                if (heroTitle) {
+                    gsap.fromTo(heroTitle,
+                        { opacity: 0, y: 50, scale: 0.9 },
+                        { opacity: 1, y: 0, scale: 1, duration: 1.5, ease: "power3.out", delay: 0.5 }
+                    );
+                }
+                
+                // Button animations
+                const buttons = document.querySelectorAll('.lux-button, .lux-button-secondary');
+                buttons.forEach((button, index) => {
+                    gsap.fromTo(button,
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out", delay: 1 + (index * 0.1) }
+                    );
+                });
             }
         });
         
@@ -891,23 +958,23 @@
             card.innerHTML = `
                 ${isNew ? '<div class="new-indicator">NEW</div>' : ''}
                 <div class="lux-mb-16">
-                    <div style="width: 120px; height: 80px; margin: 0 auto; border-radius: 0; overflow: hidden; border: 2px solid var(--lux-hot-pink); background: var(--lux-white); display: flex; align-items: center; justify-content: center; padding: 8px;">
+                    <div style="width: 120px; height: 80px; margin: 0 auto; border-radius: 0; overflow: hidden; border: 2px solid var(--lux-blue); background: var(--lux-white); display: flex; align-items: center; justify-content: center; padding: 8px;">
                         <img src="${deal.logo}" alt="${deal.brand}" style="max-width: 100%; max-height: 100%; object-fit: contain; display: block;">
                     </div>
                 </div>
                 <h3 class="lux-text-xl lux-font-bold lux-mb-8" style="color: var(--lux-white);">${deal.brand}</h3>
                 <p style="color: var(--lux-white); font-size: 14px; margin-bottom: 32px; font-style: italic; opacity: 0.8;">${deal.description}</p>
                 <div class="lux-mb-8">
-                    <span class="lux-text-lg" style="color: var(--lux-beige);">$${deal.price}</span>
+                    <span class="lux-text-lg" style="color: var(--lux-white);">$${deal.price}</span>
                     <span class="lux-text-sm" style="color: var(--lux-white); text-decoration: line-through; margin-left: 8px; opacity: 0.6;">$${deal.originalPrice}</span>
                 </div>
                 <div class="lux-mb-8">
-                    <span style="background: var(--lux-hot-pink); color: var(--lux-white); padding: 4px 8px; font-size: 12px; font-weight: bold;">${discount}% OFF</span>
+                    <span style="background: var(--lux-blue); color: var(--lux-white); padding: 4px 8px; font-size: 12px; font-weight: bold;">${discount}% OFF</span>
                 </div>
                 <div class="lux-mb-16">
                     <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8;">${deal.store}</p>
                     <p style="color: var(--lux-white); font-size: 14px; opacity: 0.8;">${deal.location}</p>
-                    <p class="lux-text-sm" style="color: var(--lux-beige);">${deal.dealType}</p>
+                    <p class="lux-text-sm" style="color: var(--lux-white);">${deal.dealType}</p>
                 </div>
                 <button class="lux-button" onclick="getStoreInfo('${deal.store}')">GET STORE INFO</button>
             `;
@@ -923,13 +990,13 @@
             activityFeed.forEach(activity => {
                 const item = document.createElement('div');
                 item.style.background = 'var(--lux-black)';
-                item.style.border = '1px solid var(--lux-beige)';
+                item.style.border = '1px solid var(--lux-white)';
                 item.style.padding = '16px';
                 item.style.marginBottom = '12px';
                 item.style.borderRadius = '0';
                 item.innerHTML = `
                     <p style="color: var(--lux-white); opacity: 0.9; font-size: 14px; line-height: 1.4; margin-bottom: 8px;">${activity}</p>
-                    <small style="color: var(--lux-hot-pink); font-size: 12px; font-weight: 600;">${new Date().toLocaleTimeString()}</small>
+                    <small style="color: var(--lux-blue); font-size: 12px; font-weight: 600;">${new Date().toLocaleTimeString()}</small>
                 `;
                 feed.appendChild(item);
             });
@@ -957,8 +1024,8 @@
                 eventElement.className = 'lux-mb-16';
                 eventElement.innerHTML = `
                     <h4 class="lux-text-lg lux-font-bold" style="color: var(--lux-white);">${event.name}</h4>
-                    <p class="lux-beige-text lux-text-sm">${event.date} • ${event.location}</p>
-                    <p class="lux-beige-text lux-text-sm">${event.description}</p>
+                    <p class="lux-white-text lux-text-sm">${event.date} • ${event.location}</p>
+                    <p class="lux-white-text lux-text-sm">${event.description}</p>
                 `;
                 eventsContainer.appendChild(eventElement);
             });
@@ -1013,6 +1080,10 @@
 
         function navigateToMember() {
             window.location.href = 'member.html';
+        }
+
+        function navigateToPolaroids() {
+            window.location.href = 'polaroids.html';
         }
 
         function navigateToSignup() {

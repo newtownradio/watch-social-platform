@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-title" content="Basedly">
     <meta name="author" content="Basedly">
     <meta name="format-detection" content="telephone=no">
-    <meta name="theme-color" content="#FF1493">
+    <meta name="theme-color" content="#1E3A8A">
     
     <title>Basedly - Join the Community</title>
     
@@ -16,11 +16,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --lux-hot-pink: #FFABDF;
-            --lux-beige: #F5F5DC;
-            --lux-black: #000;
+            --lux-blue: #1E3A8A;
+            --lux-blue-dark: #1E40AF;
+            --lux-blue-light: #3B82F6;
             --lux-white: #fff;
+            --lux-black: #000;
             --lux-dark-gray: #111;
+            --lux-gray: #666;
         }
         
         @keyframes pulse {
@@ -37,9 +39,9 @@
         }
         
         .lux-button {
-            background: var(--lux-hot-pink);
-            color: var(--lux-black);
-            border: 2px solid var(--lux-hot-pink);
+            background: var(--lux-blue);
+            color: var(--lux-white);
+            border: 2px solid var(--lux-blue);
             padding: 16px 32px;
             font-weight: 700;
             letter-spacing: 2px;
@@ -75,7 +77,7 @@
         
         .lux-input {
             background: var(--lux-black);
-            border: 2px solid var(--lux-hot-pink);
+            border: 2px solid var(--lux-blue);
             color: var(--lux-white);
             padding: 16px;
             font-size: 16px;
@@ -103,16 +105,16 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav style="padding: 16px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
+    <nav style="padding: 16px 0; border-bottom: 2px solid var(--lux-blue); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;">
         <div class="lux-container" style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 32px;">
-            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">BASEDLY</a>
+            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-blue); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">BASEDLY</a>
             
             <div style="display: flex; align-items: center; gap: 16px;">
                 <a href="discovery.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">DISCOVERY</a>
                 <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDeals()">DEALS</a>
                 <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
                 <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
-                <a href="login.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">SIGN IN</a>
+                <a href="login.html" style="color: var(--lux-blue); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">SIGN IN</a>
             </div>
         </div>
     </nav>
