@@ -19,15 +19,29 @@ jobs:
       with:
         xcode-version: 'latest-stable'
         
+    - name: Debug project structure
+      run: |
+        echo "=== Root Directory ==="
+        ls -la
+        echo "=== BasedlyAI Directory ==="
+        ls -la BasedlyAI/
+        echo "=== Xcode Project ==="
+        ls -la BasedlyAI/BasedlyAI.xcodeproj/
+        echo "=== App Contents ==="
+        ls -la BasedlyAI/BasedlyAI/
+        
     - name: List available schemes and targets
       run: |
         cd BasedlyAI
         echo "=== Available Schemes ==="
-        xcodebuild -list
-        echo "=== Project Structure ==="
-        ls -la
-        echo "=== Web Resources ==="
-        ls -la BasedlyAI/web/
+        xcodebuild -list -project BasedlyAI.xcodeproj
+        echo "=== Build Configurations ==="
+        xcodebuild -showBuildSettings -project BasedlyAI.xcodeproj -target BasedlyAI
+        
+    - name: Try simple build first
+      run: |
+        cd BasedlyAI
+        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Debug build
         
     - name: Create export options
       run: |
@@ -51,7 +65,7 @@ jobs:
         </plist>
         EOF
         
-    - name: Build and Archive
+    - name: Build and Archive (if simple build succeeds)
       run: |
         cd BasedlyAI
         xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive archive
