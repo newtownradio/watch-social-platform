@@ -19,6 +19,11 @@ jobs:
       with:
         xcode-version: '15.4'
         
+    - name: Force Xcode version
+      run: |
+        sudo xcode-select --switch /Applications/Xcode_15.4.app
+        xcodebuild -version
+        
     - name: Debug Xcode version
       run: |
         echo "=== Xcode Version ==="
