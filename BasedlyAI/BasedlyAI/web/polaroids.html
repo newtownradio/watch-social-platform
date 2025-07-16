@@ -14,7 +14,7 @@
     
     <title>Polaroids - Basedly</title>
     
-    <link rel="stylesheet" href="./output.css?v=4">
+    <link rel="stylesheet" href="./output.css?v=3">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
     
     <style>
@@ -820,7 +820,6 @@
                 <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">DEALS</a>
                 <a href="messages.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">MESSAGES</a>
                 <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">PLAN</a>
-                <a href="polaroids.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent; border-bottom: 2px solid var(--lux-hot-pink);">PHOTOS</a>
                 <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">MEMBER</a>
                 <!-- Authentication Section -->
                 <div class="auth-button sign-in-button" style="display: flex; align-items: center;">
@@ -852,22 +851,13 @@
     <script>
         // Initialize auth manager and polaroids page
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('DOM loaded, initializing components...');
-            
             if (window.authManager) {
                 window.authManager.updateAuthUI();
             }
             
             // Initialize polaroids page
             window.polaroidsPage = new PolaroidsPageComponent();
-            console.log('PolaroidsPageComponent created:', window.polaroidsPage);
-            
-            // Initialize the component
-            window.polaroidsPage.initialize().then(() => {
-                console.log('PolaroidsPageComponent initialized successfully');
-            }).catch(error => {
-                console.error('Error initializing PolaroidsPageComponent:', error);
-            });
+            window.polaroidsPage.initialize();
             
             // GSAP Animations for polaroid cards
             if (typeof gsap !== 'undefined') {

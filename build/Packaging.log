@@ -1,0 +1,736 @@
+2025-07-16 02:27:40 +0000 [MT] Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x117374e90; archive(resolved)="<IDEArchive: 0x111890080>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team(resolved)="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	Chain (15, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x117374e90; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionProcessingPipelineContext: 0x1173f8d80; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x1173d6710; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x11191af50; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x1271e6d80; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x1271e5fc0; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x1271e0280; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x1271e15c0; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x1271e13b0; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x141b9e870; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x141b99d20; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x1118bd610; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="<IDEProvisioningBasicTeam: 0x141cc3e20; teamID='V32QX8Q2VA', teamName='(null)'>">
+	<IDEDistributionContext: 0x1118bc9a0; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="(null)">
+	<IDEDistributionContext: 0x14071c180; archive = "<IDEArchive: 0x111890080>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x12718f110>", team="(null)">
+	<IDEDistributionContext: 0x111891190; archive = "<IDEArchive: 0x111890080>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x117374e90>
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionCreateDestRootStep
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionCopyItemStep
+2025-07-16 02:27:40 +0000 [MT] Running /usr/bin/ditto '-V' '/Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app' '/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app'
+2025-07-16 02:27:40 +0000  >>> Copying /Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app 
+2025-07-16 02:27:40 +0000  copying file ./favicon-16x16.png ... 
+2025-07-16 02:27:40 +0000  520 bytes for ./favicon-16x16.png
+2025-07-16 02:27:40 +0000  copying file ./_CodeSignature/CodeResources ... 
+2025-07-16 02:27:40 +0000  12947 bytes for ./_CodeSignature/CodeResources
+2025-07-16 02:27:40 +0000  copying file ./DiscoveryPageComponent.js ... 
+2025-07-16 02:27:40 +0000  6722 bytes for ./DiscoveryPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./generate_basedly_icons.html ... 
+2025-07-16 02:27:40 +0000  11549 bytes for ./generate_basedly_icons.html
+2025-07-16 02:27:40 +0000  copying file ./preview.html ... 
+2025-07-16 02:27:40 +0000  3745 bytes for ./preview.html
+2025-07-16 02:27:40 +0000  copying file ./UIComponentManager.js ... 
+2025-07-16 02:27:40 +0000  67544 bytes for ./UIComponentManager.js
+2025-07-16 02:27:40 +0000  copying file ./legal.html ... 
+2025-07-16 02:27:40 +0000  17716 bytes for ./legal.html
+2025-07-16 02:27:40 +0000  copying file ./index.html ... 
+2025-07-16 02:27:40 +0000  66071 bytes for ./index.html
+2025-07-16 02:27:40 +0000  copying file ./polaroids.html ... 
+2025-07-16 02:27:40 +0000  28630 bytes for ./polaroids.html
+2025-07-16 02:27:40 +0000  copying file ./AuthManager.js ... 
+2025-07-16 02:27:40 +0000  5116 bytes for ./AuthManager.js
+2025-07-16 02:27:40 +0000  copying file ./AppController.js ... 
+2025-07-16 02:27:40 +0000  20932 bytes for ./AppController.js
+2025-07-16 02:27:40 +0000  copying file ./NavigationComponent.js ... 
+2025-07-16 02:27:40 +0000  9220 bytes for ./NavigationComponent.js
+2025-07-16 02:27:40 +0000  copying file ./deals.html ... 
+2025-07-16 02:27:40 +0000  81878 bytes for ./deals.html
+2025-07-16 02:27:40 +0000  copying file ./MessagesPageComponent.js ... 
+2025-07-16 02:27:40 +0000  8499 bytes for ./MessagesPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./SearchBarComponent.js ... 
+2025-07-16 02:27:40 +0000  3485 bytes for ./SearchBarComponent.js
+2025-07-16 02:27:40 +0000  copying file ./RainbowCloudsComponent.js ... 
+2025-07-16 02:27:40 +0000  2700 bytes for ./RainbowCloudsComponent.js
+2025-07-16 02:27:40 +0000  copying file ./login.html ... 
+2025-07-16 02:27:40 +0000  10776 bytes for ./login.html
+2025-07-16 02:27:40 +0000  copying file ./index-modular.html ... 
+2025-07-16 02:27:40 +0000  31669 bytes for ./index-modular.html
+2025-07-16 02:27:40 +0000  copying file ./Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib ... 
+2025-07-16 02:27:40 +0000  960 bytes for ./Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib
+2025-07-16 02:27:40 +0000  copying file ./Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib ... 
+2025-07-16 02:27:40 +0000  1225 bytes for ./Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib
+2025-07-16 02:27:40 +0000  copying file ./Base.lproj/Main.storyboardc/Info.plist ... 
+2025-07-16 02:27:40 +0000  258 bytes for ./Base.lproj/Main.storyboardc/Info.plist
+2025-07-16 02:27:40 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib ... 
+2025-07-16 02:27:40 +0000  1225 bytes for ./Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib
+2025-07-16 02:27:40 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2025-07-16 02:27:40 +0000  924 bytes for ./Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2025-07-16 02:27:40 +0000  copying file ./Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2025-07-16 02:27:40 +0000  258 bytes for ./Base.lproj/LaunchScreen.storyboardc/Info.plist
+2025-07-16 02:27:40 +0000  copying file ./SocialPageComponent.js ... 
+2025-07-16 02:27:40 +0000  6981 bytes for ./SocialPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./social.html ... 
+2025-07-16 02:27:40 +0000  45810 bytes for ./social.html
+2025-07-16 02:27:40 +0000  copying file ./test.html ... 
+2025-07-16 02:27:40 +0000  6 bytes for ./test.html
+2025-07-16 02:27:40 +0000  copying file ./BaseComponent.js ... 
+2025-07-16 02:27:40 +0000  2379 bytes for ./BaseComponent.js
+2025-07-16 02:27:40 +0000  copying file ./discovery.html ... 
+2025-07-16 02:27:40 +0000  73770 bytes for ./discovery.html
+2025-07-16 02:27:40 +0000  copying file ./HeroComponent.js ... 
+2025-07-16 02:27:40 +0000  7767 bytes for ./HeroComponent.js
+2025-07-16 02:27:40 +0000  copying file ./messages.html ... 
+2025-07-16 02:27:40 +0000  22240 bytes for ./messages.html
+2025-07-16 02:27:40 +0000  copying file ./BasedlyAI ... 
+2025-07-16 02:27:40 +0000  109648 bytes for ./BasedlyAI
+2025-07-16 02:27:40 +0000  copying file ./member.html ... 
+2025-07-16 02:27:40 +0000  37559 bytes for ./member.html
+2025-07-16 02:27:40 +0000  copying file ./app-icon-180.png ... 
+2025-07-16 02:27:40 +0000  5891 bytes for ./app-icon-180.png
+2025-07-16 02:27:40 +0000  copying file ./DealCardComponent.js ... 
+2025-07-16 02:27:40 +0000  4187 bytes for ./DealCardComponent.js
+2025-07-16 02:27:40 +0000  copying file ./DataManager.js ... 
+2025-07-16 02:27:40 +0000  16277 bytes for ./DataManager.js
+2025-07-16 02:27:40 +0000  copying file ./MemberPageComponent.js ... 
+2025-07-16 02:27:40 +0000  12986 bytes for ./MemberPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./LandingWeatherComponent.js ... 
+2025-07-16 02:27:40 +0000  12789 bytes for ./LandingWeatherComponent.js
+2025-07-16 02:27:40 +0000  copying file ./basedly-icon-white-blue.svg ... 
+2025-07-16 02:27:40 +0000  1 bytes for ./basedly-icon-white-blue.svg
+2025-07-16 02:27:40 +0000  copying file ./DealsPageComponent.js ... 
+2025-07-16 02:27:40 +0000  19887 bytes for ./DealsPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./embedded.mobileprovision ... 
+2025-07-16 02:27:40 +0000  12314 bytes for ./embedded.mobileprovision
+2025-07-16 02:27:40 +0000  copying file ./SplashPageComponent.js ... 
+2025-07-16 02:27:40 +0000  11248 bytes for ./SplashPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./output.css ... 
+2025-07-16 02:27:40 +0000  4042 bytes for ./output.css
+2025-07-16 02:27:40 +0000  copying file ./convert-icon.html ... 
+2025-07-16 02:27:40 +0000  860 bytes for ./convert-icon.html
+2025-07-16 02:27:40 +0000  copying file ./ComponentManager.js ... 
+2025-07-16 02:27:40 +0000  9211 bytes for ./ComponentManager.js
+2025-07-16 02:27:40 +0000  copying file ./share.html ... 
+2025-07-16 02:27:40 +0000  12849 bytes for ./share.html
+2025-07-16 02:27:40 +0000  copying file ./Info.plist ... 
+2025-07-16 02:27:40 +0000  1761 bytes for ./Info.plist
+2025-07-16 02:27:40 +0000  copying file ./signup.html ... 
+2025-07-16 02:27:40 +0000  15220 bytes for ./signup.html
+2025-07-16 02:27:40 +0000  copying file ./PkgInfo ... 
+2025-07-16 02:27:40 +0000  8 bytes for ./PkgInfo
+2025-07-16 02:27:40 +0000  copying file ./favicon-32x32.png ... 
+2025-07-16 02:27:40 +0000  892 bytes for ./favicon-32x32.png
+2025-07-16 02:27:40 +0000  copying file ./PolaroidsPageComponent.js ... 
+2025-07-16 02:27:40 +0000  24481 bytes for ./PolaroidsPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./WeatherAnimationComponent.js ... 
+2025-07-16 02:27:40 +0000  18523 bytes for ./WeatherAnimationComponent.js
+2025-07-16 02:27:40 +0000 [MT] /usr/bin/ditto exited with 0
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionEmbedProfileStep
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionInfoPlistStep
+2025-07-16 02:27:40 +0000 [MT] Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionItemRemovalStep
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionAppThinningPlistStep
+2025-07-16 02:27:40 +0000 [MT] Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionSymbolsStep
+2025-07-16 02:27:40 +0000 [MT] Writing /var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Symbols/C08AFFB9-0259-34FE-A693-C84A5A18A9D8.symbols
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionCopyAppleProvidedContentStep
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionAppThinningStep
+2025-07-16 02:27:40 +0000 [MT] Skipping step: IDEDistributionAppThinningStep because it said so
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionArchThinningStep
+2025-07-16 02:27:40 +0000 [MT] Item /Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app doesn't have the entitlement com.apple.developer.web-browser-engine.host enabled, returning ["arm64e"]
+2025-07-16 02:27:40 +0000 [MT] Archs to thin for item /Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app are ["arm64e"]
+2025-07-16 02:27:40 +0000 [MT] Running /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo '/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app/BasedlyAI' '-verify_arch' 'arm64e'
+2025-07-16 02:27:40 +0000 [MT] /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo exited with 1
+2025-07-16 02:27:40 +0000 [MT] Skipping architecture thinning for item "BasedlyAI" because arch "arm64e" wasn't found
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionODRStep
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionStripXattrsStep
+2025-07-16 02:27:40 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionCodesignStep
+2025-07-16 02:27:40 +0000 [MT] Entitlements for <IDEDistributionItem: 0x1118d4290; bundleID='com.colinilgen.basedlyai.ios2025', path='<DVTFilePath:0x1118918c0:'/Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x1118d2490; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x117325c30; name='Apple Development: Colin Ilgen (CHA3482CG6)', hash='523439517C26028593DD792E880D264DD91F369D', serialNumber='389BC78EFD4F157D80C599C55E8C6FC', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-07-16 00:16:39 +0000''>', entitlements='{
+    "application-identifier" = "V32QX8Q2VA.com.colinilgen.basedlyai.ios2025";
+    "com.apple.developer.team-identifier" = V32QX8Q2VA;
+    "get-task-allow" = 1;
+}', teamID='V32QX8Q2VA', identifier='com.colinilgen.basedlyai.ios2025', executablePath='<DVTFilePath:0x1406aa220:'/Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app/BasedlyAI'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "V32QX8Q2VA.com.colinilgen.basedlyai.ios2025";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = V32QX8Q2VA;
+    "get-task-allow" = 0;
+}
+2025-07-16 02:27:40 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2025-07-16 02:27:40 +0000 [MT] Entitlements for <IDEDistributionItem: 0x1118d4290; bundleID='com.colinilgen.basedlyai.ios2025', path='<DVTFilePath:0x1118918c0:'/Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x1118d2490; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x117306490; name='Apple Development: Colin Ilgen (CHA3482CG6)', hash='523439517C26028593DD792E880D264DD91F369D', serialNumber='389BC78EFD4F157D80C599C55E8C6FC', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-07-16 00:16:39 +0000''>', entitlements='{
+    "application-identifier" = "V32QX8Q2VA.com.colinilgen.basedlyai.ios2025";
+    "com.apple.developer.team-identifier" = V32QX8Q2VA;
+    "get-task-allow" = 1;
+}', teamID='V32QX8Q2VA', identifier='com.colinilgen.basedlyai.ios2025', executablePath='<DVTFilePath:0x1406aa220:'/Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app/BasedlyAI'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "V32QX8Q2VA.com.colinilgen.basedlyai.ios2025";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = V32QX8Q2VA;
+    "get-task-allow" = 0;
+}
+2025-07-16 02:27:40 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x1118d4290; bundleID='com.colinilgen.basedlyai.ios2025', path='<DVTFilePath:0x1118918c0:'/Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x1118d2490; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x117306490; name='Apple Development: Colin Ilgen (CHA3482CG6)', hash='523439517C26028593DD792E880D264DD91F369D', serialNumber='389BC78EFD4F157D80C599C55E8C6FC', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2025-07-16 00:16:39 +0000''>', entitlements='{
+    "application-identifier" = "V32QX8Q2VA.com.colinilgen.basedlyai.ios2025";
+    "com.apple.developer.team-identifier" = V32QX8Q2VA;
+    "get-task-allow" = 1;
+}', teamID='V32QX8Q2VA', identifier='com.colinilgen.basedlyai.ios2025', executablePath='<DVTFilePath:0x1406aa220:'/Users/colinilgen/BasedlyAI/build/BasedlyAI.xcarchive/Products/Applications/BasedlyAI.app/BasedlyAI'>', hardenedRuntime='0'>'> to: /var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/entitlements~~~ngN10o
+2025-07-16 02:27:40 +0000 [MT] invoking codesign: <NSConcreteTask: 0x11197b6e0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    "-",
+    "--signature-size",
+    16000,
+    "--entitlements",
+    "/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/entitlements~~~ngN10o",
+    "--requirements",
+    "=designated => anchor apple generic and identifier \"com.colinilgen.basedlyai.ios2025\" and certificate leaf[subject.CN] = \"Apple Distribution: Colin Ilgen (V32QX8Q2VA)\" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */",
+    "--preserve-metadata=identifier,flags,runtime",
+    "--omit-adhoc-flag",
+    "--team-identifier",
+    V32QX8Q2VA,
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app"
+)'>
+2025-07-16 02:27:40 +0000 [MT] codesign output: /var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app: replacing existing signature
+/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app: signed app bundle with Mach-O thin (arm64) [com.colinilgen.basedlyai.ios2025]
+2025-07-16 02:27:40 +0000 [MT] Remote code signing '/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app' with signature slices '[<DVTCodeSignatureSlice: 0x111972e40; architecture='arm64', cmsDigest='<DVTCodeSignatureHash: 0x11198e570; digestAlgorithmDescription='sha256', cdHashHexEncoded='3572cebd385ba246fda97938660bc38cfea7f836d746741ca4df45f4bca4de78'>', codeSignatureHashes='{(
+    <DVTCodeSignatureHash: 0x11198e2b0; digestAlgorithmDescription='sha256', cdHashHexEncoded='3572cebd385ba246fda97938660bc38cfea7f836d746741ca4df45f4bca4de78'>
+)}', cmsHexEncoded=''>]' and configuration 'RemoteSigningToolConfiguration(path: <DVTFilePath:0x111946230:'/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app'>, signingCertificate: <DVTSigningCertificate: 0x111962220; name='Apple Distribution: Colin Ilgen (V32QX8Q2VA)', hash='F46AA4868B4F40500DA6F9789A460257298C1861', serialNumber='62F7BED20CD856073D2453D008FF8D64', certificateKinds='(
+    "1.2.840.113635.100.6.1.7",
+    "1.2.840.113635.100.6.1.4"
+), issueDate='2025-07-13 21:36:33 +0000''>, session: <DVTServicesAccountBasedSession: 0x111978f40; account='<DVTAppleIDBasedDeveloperAccount: 0x127078980; username='colin.ilgen@gmail.com'>'>, team: <DVTPortalTeam: 0x111975630; name='Colin Ilgen', teamID='V32QX8Q2VA', type='Individual', memberships='(
+    "<DVTPortalMembership: 0x111979fe0; programs='{(\n    <DVTPortalProgram: 0x141b5e5e0; <DVTPortalProgram: 0x141b5e5e0; identifier='Xcode.Portal.Program.iOS'>>\n)}'>",
+    "<DVTPortalMembership: 0x1119467d0; programs='{(\n    <DVTPortalProgram: 0x141b70ea0; <DVTPortalProgram: 0x141b70ea0; identifier='Xcode.Portal.Program.Mac'>>\n)}'>"
+)'>, codeResourcesDictionary: [AnyHashable("rules2"): {
+    ".*\\.dSYM($|/)" =     {
+        weight = 11;
+    };
+    "^(.*/)?\\.DS_Store$" =     {
+        omit = 1;
+        weight = 2000;
+    };
+    "^.*" = 1;
+    "^.*\\.lproj/" =     {
+        optional = 1;
+        weight = 1000;
+    };
+    "^.*\\.lproj/locversion.plist$" =     {
+        omit = 1;
+        weight = 1100;
+    };
+    "^Base\\.lproj/" =     {
+        weight = 1010;
+    };
+    "^Info\\.plist$" =     {
+        omit = 1;
+        weight = 20;
+    };
+    "^PkgInfo$" =     {
+        omit = 1;
+        weight = 20;
+    };
+    "^embedded\\.provisionprofile$" =     {
+        weight = 20;
+    };
+    "^version\\.plist$" =     {
+        weight = 20;
+    };
+}, AnyHashable("files"): {
+    "AppController.js" = {length = 20, bytes = 0x32567dc18c741edcd2f97e03f3c85beb00bbd617};
+    "AuthManager.js" = {length = 20, bytes = 0xf4dada6bc8f16e81b3137b3525553dd375025a6a};
+    "Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib" = {length = 20, bytes = 0x8307e0647e461573e10da66aacfeed86903473d8};
+    "Base.lproj/LaunchScreen.storyboardc/Info.plist" = {length = 20, bytes = 0x9f6b7c82c0e97c4e979211b7d69ec84094714f15};
+    "Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib" = {length = 20, bytes = 0x65580cd7e2b065c667c2181a23417b06dd5b6b67};
+    "Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib" = {length = 20, bytes = 0x8307e0647e461573e10da66aacfeed86903473d8};
+    "Base.lproj/Main.storyboardc/Info.plist" = {length = 20, bytes = 0x303aca16f156ae84dbd3e2846d04a105ca01be8e};
+    "Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib" = {length = 20, bytes = 0x5957bebbbbcb2dca871fd2226ddd2053f28785d7};
+    "BaseComponent.js" = {length = 20, bytes = 0x8371b68d5aaa0a4bd1e004e2e9917d32bfc8bb8f};
+    "ComponentManager.js" = {length = 20, bytes = 0xfcdf91de5b6a01d7d72a332baa98c2ca39462eed};
+    "DataManager.js" = {length = 20, bytes = 0xdbb0ec459541bf6a6619fbf890254c1d6582638b};
+    "DealCardComponent.js" = {length = 20, bytes = 0xa35fc68997f028cea0b9432282dd2584b273c300};
+    "DealsPageComponent.js" = {length = 20, bytes = 0x47f878dfc61e4f2d736fe3f59fddc4b8d928c913};
+    "DiscoveryPageComponent.js" = {length = 20, bytes = 0x60b960777b3bb00bb41c208180bc9406a49ca04e};
+    "HeroComponent.js" = {length = 20, bytes = 0x429f9e97e54c7424abd64cc6d0c7a1cb1c5dbf67};
+    "Info.plist" = {length = 20, bytes = 0x94ad221ddeaf4e4bc1423d1bec1b7b10eded1e02};
+    "LandingWeatherComponent.js" = {length = 20, bytes = 0x62bbf0299b5f3642461d4cd7fd0e34b82377a1a5};
+    "MemberPageComponent.js" = {length = 20, bytes = 0x8e56b7413c78fe151c0977ea75616b5ef442e68c};
+    "MessagesPageComponent.js" = {length = 20, bytes = 0xc6b637d3373b24eacf88c484f99b7a9a4811320b};
+    "NavigationComponent.js" = {length = 20, bytes = 0x938d2640d045e2b71012be5ad9a14e80d96b1a8a};
+    PkgInfo = {length = 20, bytes = 0x9f9eea0cfe2d65f2c3d6b092e375b40782d08f31};
+    "PolaroidsPageComponent.js" = {length = 20, bytes = 0x720766044e84a93803ffd3a1c9393a971162592f};
+    "RainbowCloudsComponent.js" = {length = 20, bytes = 0x79e8908437b6b0c2662f5a4d245d53f7bc9c159f};
+    "SearchBarComponent.js" = {length = 20, bytes = 0x29d6eafffea390d98e9ce47cb77e8875114ce448};
+    "SocialPageComponent.js" = {length = 20, bytes = 0x926e5bf64eb558083ff172244375842d973db62a};
+    "SplashPageComponent.js" = {length = 20, bytes = 0x93625711cfa205f251a3da8c8b99b5bfe7a2de0d};
+    "UIComponentManager.js" = {length = 20, bytes = 0x14489736b1890e3759f5c74801348f84390d8c68};
+    "WeatherAnimationComponent.js" = {length = 20, bytes = 0xccb9cea8344f737e58f847c2f5954ca69de342b9};
+    "app-icon-180.png" = {length = 20, bytes = 0xfb5784cd184fcbfede318a358fac71c95507eb75};
+    "basedly-icon-white-blue.svg" = {length = 20, bytes = 0xb858cb282617fb0956d960215c8e84d1ccf909c6};
+    "convert-icon.html" = {length = 20, bytes = 0x088436dfc6f8f4b9dfb8520d48027e29c073563d};
+    "deals.html" = {length = 20, bytes = 0xc8032ffd6121d301466eecbab44a2c9ec66a3b0e};
+    "discovery.html" = {length = 20, bytes = 0x4710449e8c810dd2d9a09a964f52c9b9bc2e356e};
+    "embedded.mobileprovision" = {length = 20, bytes = 0x17b89f7c3869dfdef6c688bf72b9f35296d2deac};
+    "favicon-16x16.png" = {length = 20, bytes = 0xe82a3a2c7aafdb4c5cd15fbc4e2534469ab15078};
+    "favicon-32x32.png" = {length = 20, bytes = 0xe5adc2df315093aabb8028eb74c4c108bf283e9e};
+    "generate_basedly_icons.html" = {length = 20, bytes = 0x82bd9d751a0ebe51a1dffe00bc99362bf3dbec10};
+    "index-modular.html" = {length = 20, bytes = 0x3a30df398540d2c14af557b47b4d0897e9486b58};
+    "index.html" = {length = 20, bytes = 0xf7f1145e3ccb2a870f402507f9dd70e3ca2193b7};
+    "legal.html" = {length = 20, bytes = 0xd33ff53a4db5745c8aa9b8ee644cd33c51372f2d};
+    "login.html" = {length = 20, bytes = 0xbf118f40deca2463900dfb1a81cf55316f3606fb};
+    "member.html" = {length = 20, bytes = 0xc3947353ab16a9e8aef7cfda48e2ae6ee22231e3};
+    "messages.html" = {length = 20, bytes = 0xf1d8d004542eb57f9b12b973b5573e46f48b601b};
+    "output.css" = {length = 20, bytes = 0xde6fec77dd2d86831efe7b75517828cc9f4d5549};
+    "polaroids.html" = {length = 20, bytes = 0xd0bcf04c236973f44053ae6971353800ea1eecbb};
+    "preview.html" = {length = 20, bytes = 0x64431d832b0cf2ee60501119d90b253ba532b93e};
+    "share.html" = {length = 20, bytes = 0xf4f34dfdb373c4d00a8469ab4ce35eae62ed2938};
+    "signup.html" = {length = 20, bytes = 0x408fbb595c96c815fef181a4e89f3b8fdf0f01e8};
+    "social.html" = {length = 20, bytes = 0x9c530767ca9c8d4c51bb07032a4a712477c2da5e};
+    "test.html" = {length = 20, bytes = 0xf572d396fae9206628714fb2ce00f72e94f2258f};
+}, AnyHashable("rules"): {
+    "^.*" = 1;
+    "^.*\\.lproj/" =     {
+        optional = 1;
+        weight = 1000;
+    };
+    "^.*\\.lproj/locversion.plist$" =     {
+        omit = 1;
+        weight = 1100;
+    };
+    "^Base\\.lproj/" =     {
+        weight = 1010;
+    };
+    "^version.plist$" = 1;
+}, AnyHashable("files2"): {
+    "AppController.js" =     {
+        hash2 = {length = 32, bytes = 0x2a536a83 de06c5f1 469cbd89 cc88e839 ... 2ac9b868 a6df55b5 };
+    };
+    "AuthManager.js" =     {
+        hash2 = {length = 32, bytes = 0x84b0c6a7 61fe8a24 ecf5238c 0f9e5fbe ... 1e3d8f88 e9335296 };
+    };
+    "Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib" =     {
+        hash2 = {length = 32, bytes = 0xcf6e24ae 431d4d99 84c2a9ad a6f0fb20 ... 22393f5a f0a73614 };
+    };
+    "Base.lproj/LaunchScreen.storyboardc/Info.plist" =     {
+        hash2 = {length = 32, bytes = 0x1f255d5c c53b531e 3f29a940 6a8df49a ... bd8374f7 07f7d5c8 };
+    };
+    "Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib" =     {
+        hash2 = {length = 32, bytes = 0x54f3637f 671feba5 f19e82ec 4f4a7fb4 ... 89aa571f c8f053e2 };
+    };
+    "Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib" =     {
+        hash2 = {length = 32, bytes = 0xcf6e24ae 431d4d99 84c2a9ad a6f0fb20 ... 22393f5a f0a73614 };
+    };
+    "Base.lproj/Main.storyboardc/Info.plist" =     {
+        hash2 = {length = 32, bytes = 0x3e9bdaa4 08d1eb6a e5e989b8 13a8644e ... 5de52a72 91e69aa4 };
+    };
+    "Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib" =     {
+        hash2 = {length = 32, bytes = 0x58ae479d 3f655dbf cfc76880 052cd362 ... 0e71f73f 0457b78c };
+    };
+    "BaseComponent.js" =     {
+        hash2 = {length = 32, bytes = 0xb0144e46 6c55c6b1 f8d4ffb1 0ca83a20 ... 95533a45 dba874b5 };
+    };
+    "ComponentManager.js" =     {
+        hash2 = {length = 32, bytes = 0xaf5415b5 e4e377a6 37a905c5 e40059c7 ... 23bd79e2 dff1e0f8 };
+    };
+    "DataManager.js" =     {
+        hash2 = {length = 32, bytes = 0xe22ec4f0 1b563b6e 547749cd 8998cb58 ... caed7033 1e336e38 };
+    };
+    "DealCardComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x2cfcca1a d35153d7 b9c0a545 3a4f57d1 ... 56c1b1c1 f12c5400 };
+    };
+    "DealsPageComponent.js" =     {
+        hash2 = {length = 32, bytes = 0xd80e7141 73ec20b3 963aa05e 4e0cd56e ... a2f03365 4a366287 };
+    };
+    "DiscoveryPageComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x8189740d ef528bb2 9fee7af2 2b73b50a ... 04fdd626 2e6d6b20 };
+    };
+    "HeroComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x9a6d2228 ec2a81a1 efe28c4b 104cf691 ... 24fb3bb6 cc77fe6f };
+    };
+    "LandingWeatherComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x1b1315e4 f6451900 7d69a446 f9e68317 ... 5c645b7a 00be8392 };
+    };
+    "MemberPageComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x2263b6ac c9600fe1 9b2af700 34cdeb0c ... d48c553d df7e70c7 };
+    };
+    "MessagesPageComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x4eeec811 55e53d67 54c86689 cc709401 ... 73846d9f dd4111fa };
+    };
+    "NavigationComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x57096fa9 50c9d8ae 43992aac 700eb869 ... ffae3c1d 6b11c3b5 };
+    };
+    "PolaroidsPageComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x59485ace 5c961de6 19a94f2e 099e6333 ... e18398f0 8a9d0a79 };
+    };
+    "RainbowCloudsComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x842fc614 0d19fbf9 abd33801 7d797448 ... ebd5a8fa 3c44260e };
+    };
+    "SearchBarComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x3025f16b 70bad39e 90dcc916 a02a0ab7 ... b0de52cb 1d3dcff3 };
+    };
+    "SocialPageComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x2d560d73 afcefcc9 fd822c79 d0dbbd69 ... e1b45f34 9ad0e2af };
+    };
+    "SplashPageComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x4b120b80 3353987f 9c778fce 01c837b1 ... 6189040c ffd1a311 };
+    };
+    "UIComponentManager.js" =     {
+        hash2 = {length = 32, bytes = 0xdaaaed43 425febc5 30f83b88 121f3854 ... d09afc68 63cb466f };
+    };
+    "WeatherAnimationComponent.js" =     {
+        hash2 = {length = 32, bytes = 0x2cecd039 58dac9a9 854c1c82 f2ff504d ... 6121b0ab be0f0069 };
+    };
+    "app-icon-180.png" =     {
+        hash2 = {length = 32, bytes = 0x6c81addd ca1a6e24 a74e3ec6 6195448f ... 1a13edf7 4358bf78 };
+    };
+    "basedly-icon-white-blue.svg" =     {
+        hash2 = {length = 32, bytes = 0x36a9e7f1 c95b82ff b99743e0 c5c4ce95 ... 4ef3cbfa b6145068 };
+    };
+    "convert-icon.html" =     {
+        hash2 = {length = 32, bytes = 0xf62e97a1 e8afca92 fed13696 8be49fa1 ... 657180d6 1729f283 };
+    };
+    "deals.html" =     {
+        hash2 = {length = 32, bytes = 0xdaf39f68 dbf49ff7 08466fc3 4bddf252 ... 377aa1e3 0f98e718 };
+    };
+    "discovery.html" =     {
+        hash2 = {length = 32, bytes = 0x4d9081e5 37cf40a9 08d484f4 fa158ece ... a06bf8ab d062183d };
+    };
+    "embedded.mobileprovision" =     {
+        hash2 = {length = 32, bytes = 0x2c90692c 38075834 efff0b34 6dfeeb95 ... 95968527 b8e5a491 };
+    };
+    "favicon-16x16.png" =     {
+        hash2 = {length = 32, bytes = 0x3245613c 9f83e307 0a9bd754 27aa45ac ... b7a8ac43 914b5727 };
+    };
+    "favicon-32x32.png" =     {
+        hash2 = {length = 32, bytes = 0x1d05cc04 5247696d 37b9c3c0 a43e1cd5 ... 28a664d8 9eb1472c };
+    };
+    "generate_basedly_icons.html" =     {
+        hash2 = {length = 32, bytes = 0x8a028deb 1c3d4afa d0734a5c 136b298d ... c538020e 9b061d83 };
+    };
+    "index-modular.html" =     {
+        hash2 = {length = 32, bytes = 0xed865010 263b01da 1850c652 3d6eb876 ... 7f9652c5 5085322f };
+    };
+    "index.html" =     {
+        hash2 = {length = 32, bytes = 0xe537987b 1330b0e9 941e817c 4ab0b4e1 ... 8fe287ee 12475711 };
+    };
+    "legal.html" =     {
+        hash2 = {length = 32, bytes = 0x2aaf3521 644bacce b81030cd 66110c93 ... 73fbf80b b5509e00 };
+    };
+    "login.html" =     {
+        hash2 = {length = 32, bytes = 0xf22fb043 9a4a984c 549e0331 5395c4ae ... 704a80ae 0feb37e5 };
+    };
+    "member.html" =     {
+        hash2 = {length = 32, bytes = 0x36e79b26 d2737603 4f51408a a9904546 ... 0a2010f5 224fd5b8 };
+    };
+    "messages.html" =     {
+        hash2 = {length = 32, bytes = 0x33f85655 173a784a 5b4d0bb2 e9f0928a ... 333ce5e9 1357d063 };
+    };
+    "output.css" =     {
+        hash2 = {length = 32, bytes = 0x9d77ead7 edb3e7ab aa5d042f 69afa67f ... 5ae1f62a 75efd72f };
+    };
+    "polaroids.html" =     {
+        hash2 = {length = 32, bytes = 0x592e403d c5d698ff d78f6c3d ea48b407 ... 6010a7b7 f5d8817d };
+    };
+    "preview.html" =     {
+        hash2 = {length = 32, bytes = 0x8d7b8483 5df3e9b5 30656540 1601dddb ... 7c509cc7 d910c0bf };
+    };
+    "share.html" =     {
+        hash2 = {length = 32, bytes = 0xa1b3eb5f 3ff90aa1 0dc16a8f af53dd81 ... 857dc5c6 799db3ce };
+    };
+    "signup.html" =     {
+        hash2 = {length = 32, bytes = 0x05f375c4 70274caf 964d9da5 91341a38 ... 56a837c5 a87da962 };
+    };
+    "social.html" =     {
+        hash2 = {length = 32, bytes = 0x812df0be 1a3d4eeb 0c9acca7 8d1b6c55 ... c84f43ca bac4e09c };
+    };
+    "test.html" =     {
+        hash2 = {length = 32, bytes = 0x5891b5b5 22d5df08 6d0ff0b1 10fbd9d2 ... 8286a2e8 46f6be03 };
+    };
+}], enableSignatureValidation: true, logAspect: <DVTLogAspect:0x117328740:IDEDistributionPipeline:level=verbose(3):effective-level=verbose(3)>)'
+2025-07-16 02:27:40 +0000 [MT] Sending request 41385F8B-305D-4CCE-AC48-F0836261BCDD to <https://developerservices2.apple.com/services/v1/certificates> for session <DVTServicesAccountBasedSession: 0x111978f40; account='<DVTAppleIDBasedDeveloperAccount: 0x127078980; username='colin.ilgen@gmail.com'>'>.
+Method: POST
+
+Headers:
+{
+    Accept = "application/vnd.api+json";
+    "Accept-Encoding" = "gzip, deflate";
+    "Content-Length" = 113;
+    "Content-Type" = "application/vnd.api+json";
+    DSESSIONID = 1uq4t1o3suq1qevnpu3f19q4tg6qra4ti868vof0o1v0lieqor9b;
+    "User-Agent" = Xcode;
+    "X-Apple-App-Info" = "com.apple.gs.xcode.auth";
+    "X-Apple-GS-Token" = "AAAABLwIAAAAAGh28aMRDWdzLnhjb2RlLmF1dGi9AEkqY8dx1k3U/IaqJJPqoYdOaZULZIe6agon7cZpE0l+Rn4c4rUEVcj7ABdJ5gcflkHqa55uIaIp5tScPJM/LUt5LxJhZXPzEv+2uoUQQVBvNOTv/NGa0sMSPOH5Cg23/TsoMwt2gTEqUVeqZpws0xM0V5L0";
+    "X-Apple-I-Identity-Id" = "000432-10-6683e47c-9e4f-475a-b17b-946fa9e6864f";
+    "X-HTTP-Method-Override" = GET;
+    "X-MMe-Client-Info" = "<Mac15,7> <macOS;15.5;24F74> <com.apple.AuthKit/1 (com.apple.dt.xcodebuild/23719)>";
+    "X-Mme-Device-Id" = "4939C41F-B759-5342-B173-BBBED868E8D1";
+    "X-Xcode-Version" = "16.4 (16F6)";
+}
+
+Payload:
+{"urlEncodedQueryParams":"teamId=V32QX8Q2VA&filter%5BserialNumber%5D=62F7BED20CD856073D2453D008FF8D64&limit=200"}
+2025-07-16 02:27:40 +0000 [MT] Received response for 41385F8B-305D-4CCE-AC48-F0836261BCDD @ <https://developerservices2.apple.com/services/v1/certificates>. Code = 0
+2025-07-16 02:27:40 +0000 [MT] Response payload: {
+  "data" : [ {
+    "type" : "certificates",
+    "id" : "LT82LXD2W5",
+    "attributes" : {
+      "requesterEmail" : "colin.ilgen@gmail.com",
+      "serialNumber" : "62F7BED20CD856073D2453D008FF8D64",
+      "certificateContent" : "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",
+      "displayName" : "Colin Ilgen",
+      "requesterLastName" : "Ilgen",
+      "csrContent" : null,
+      "machineName" : null,
+      "platform" : null,
+      "requesterFirstName" : "Colin",
+      "machineId" : null,
+      "name" : "Apple Distribution: Colin Ilgen",
+      "responseId" : "38b9d25f-ba20-42d6-b871-0c6b369b33c0",
+      "expirationDate" : "2026-07-13T21:36:32.000+00:00",
+      "certificateType" : "DISTRIBUTION_MANAGED"
+    },
+    "links" : {
+      "self" : "https://developerservices2.apple.com:443/services/v1/certificates/LT82LXD2W5"
+    }
+  } ],
+  "links" : {
+    "self" : "https://developerservices2.apple.com:443/services/v1/certificates?filter%5BserialNumber%5D=62F7BED20CD856073D2453D008FF8D64&limit=200"
+  },
+  "meta" : {
+    "paging" : {
+      "total" : 1,
+      "limit" : 200
+    }
+  }
+}
+
+2025-07-16 02:27:40 +0000 [MT] Sending request 82DD2D1A-31D5-470C-B489-E705E7C2DAF0 to <https://developerservices3.apple.com/services/v1/batch> for session <DVTServicesAccountBasedSession: 0x111978f40; account='<DVTAppleIDBasedDeveloperAccount: 0x127078980; username='colin.ilgen@gmail.com'>'>.
+Method: POST
+
+Headers:
+{
+    Accept = "application/vnd.api+json";
+    "Accept-Encoding" = "gzip, deflate";
+    "Content-Length" = 488;
+    "Content-Type" = "application/vnd.api+json";
+    DSESSIONID = 1uq4t1o3suq1qevnpu3f19q4tg6qra4ti868vof0o1v0lieqor9b;
+    "User-Agent" = Xcode;
+    "X-Apple-App-Info" = "com.apple.gs.xcode.auth";
+    "X-Apple-GS-Token" = "AAAABLwIAAAAAGh28aMRDWdzLnhjb2RlLmF1dGi9AEkqY8dx1k3U/IaqJJPqoYdOaZULZIe6agon7cZpE0l+Rn4c4rUEVcj7ABdJ5gcflkHqa55uIaIp5tScPJM/LUt5LxJhZXPzEv+2uoUQQVBvNOTv/NGa0sMSPOH5Cg23/TsoMwt2gTEqUVeqZpws0xM0V5L0";
+    "X-Apple-I-Identity-Id" = "000432-10-6683e47c-9e4f-475a-b17b-946fa9e6864f";
+    "X-MMe-Client-Info" = "<Mac15,7> <macOS;15.5;24F74> <com.apple.AuthKit/1 (com.apple.dt.xcodebuild/23719)>";
+    "X-Mme-Device-Id" = "4939C41F-B759-5342-B173-BBBED868E8D1";
+    "X-Xcode-Version" = "16.4 (16F6)";
+}
+
+Payload:
+{"data":{"attributes":{"resourceVersion":"1","teamId":"V32QX8Q2VA","resourceList":[{"data":{"relationships":{"bundleId":{"data":{"id":"4RAB8S9GJV","type":"bundleIds"}},"certificate":{"data":{"id":"LT82LXD2W5","type":"certificates"}}},"type":"codeSignatures","attributes":{"digestHash":"3572CEBD385BA246FDA97938660BC38CFEA7F836D746741CA4DF45F4BCA4DE78","name":"0","cdHashSha256":"3572CEBD385BA246FDA97938660BC38CFEA7F836D746741CA4DF45F4BCA4DE78","teamId":"V32QX8Q2VA"}}}]},"type":"batch"}}
+2025-07-16 02:27:40 +0000 [MT] Received response for 82DD2D1A-31D5-470C-B489-E705E7C2DAF0 @ <https://developerservices3.apple.com/services/v1/batch>. Code = 0
+2025-07-16 02:27:40 +0000 [MT] Response payload: {
+  "data" : {
+    "type" : "batch",
+    "id" : "fbbd42bb-7100-4d06-8a65-21aa2a9964ea",
+    "attributes" : {
+      "responseId" : "fbbd42bb-7100-4d06-8a65-21aa2a9964ea",
+      "resourceList" : [ {
+        "type" : "codeSignatures",
+        "id" : "5658b973-558f-458d-84e9-72fad990ed88",
+        "attributes" : {
+          "digestHash" : "3572CEBD385BA246FDA97938660BC38CFEA7F836D746741CA4DF45F4BCA4DE78",
+          "cdHashSha256" : "3572CEBD385BA246FDA97938660BC38CFEA7F836D746741CA4DF45F4BCA4DE78",
+          "signature" : "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",
+          "name" : "0",
+          "responseId" : "fbbd42bb-7100-4d06-8a65-21aa2a9964ea",
+          "cmsSignature" : "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",
+          "timestamp" : false
+        },
+        "relationships" : {
+          "bundleId" : {
+            "data" : {
+              "type" : "bundleIds",
+              "id" : "4RAB8S9GJV"
+            },
+            "links" : {
+              "self" : {
+                "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/5658b973-558f-458d-84e9-72fad990ed88/relationships/bundleId"
+              },
+              "related" : {
+                "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/5658b973-558f-458d-84e9-72fad990ed88/bundleId"
+              }
+            }
+          },
+          "certificate" : {
+            "data" : {
+              "type" : "certificates",
+              "id" : "LT82LXD2W5"
+            },
+            "links" : {
+              "self" : {
+                "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/5658b973-558f-458d-84e9-72fad990ed88/relationships/certificate"
+              },
+              "related" : {
+                "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/5658b973-558f-458d-84e9-72fad990ed88/certificate"
+              }
+            }
+          }
+        },
+        "links" : {
+          "self" : {
+            "href" : "https://developerservices3.apple.com:443/services/v1/codeSignatures/5658b973-558f-458d-84e9-72fad990ed88"
+          }
+        }
+      } ],
+      "resourceVersion" : "1"
+    },
+    "links" : {
+      "self" : "https://developerservices3.apple.com:443/services/v1/batch/fbbd42bb-7100-4d06-8a65-21aa2a9964ea"
+    }
+  },
+  "links" : {
+    "self" : "https://developerservices3.apple.com:443/services/v1/batch"
+  }
+}
+
+2025-07-16 02:27:40 +0000 [MT] Remote signature for /var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app (arch: arm64) is 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
+2025-07-16 02:27:40 +0000 [MT] invoking codesign: <NSConcreteTask: 0x1118bd8d0; launchPath='/usr/bin/codesign', arguments='(
+    "-e",
+    "--edit-cms",
+    "/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/cms~~~RntZlp",
+    "/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app"
+)'>
+2025-07-16 02:27:40 +0000 [MT] codesign output: 
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionZipODRItemStep
+2025-07-16 02:27:40 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionCreateIPAStep
+2025-07-16 02:27:40 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Symbols' '--link-dest' '/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K' '/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root'
+2025-07-16 02:27:40 +0000  Symbols/
+._Symbols
+            163 170%    2.04MB/s   00:00:00 (xfer#1, to-check=0/4)
+2025-07-16 02:27:40 +0000  Symbols/C08AFFB9-0259-34FE-A693-C84A5A18A9D8.symbols
+Symbols/._C08AFFB9-0259-34FE-A693-C84A5A18A9D8.symbols
+            163   1%  243.05KB/s   00:00:00 (xfer#2, to-check=2/4)
+2025-07-16 02:27:40 +0000 [MT] /usr/bin/rsync exited with 0
+2025-07-16 02:27:40 +0000 [MT] Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root' '/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Packages/BasedlyAI.ipa'
+2025-07-16 02:27:40 +0000  >>> Copying /var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root 
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/favicon-16x16.png ... 
+2025-07-16 02:27:40 +0000  520 bytes for ./Payload/BasedlyAI.app/favicon-16x16.png
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/_CodeSignature/CodeResources ... 
+2025-07-16 02:27:40 +0000  12947 bytes for ./Payload/BasedlyAI.app/_CodeSignature/CodeResources
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/DiscoveryPageComponent.js ... 
+2025-07-16 02:27:40 +0000  6722 bytes for ./Payload/BasedlyAI.app/DiscoveryPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/generate_basedly_icons.html ... 
+2025-07-16 02:27:40 +0000  11549 bytes for ./Payload/BasedlyAI.app/generate_basedly_icons.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/preview.html ... 
+2025-07-16 02:27:40 +0000  3745 bytes for ./Payload/BasedlyAI.app/preview.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/UIComponentManager.js ... 
+2025-07-16 02:27:40 +0000  67544 bytes for ./Payload/BasedlyAI.app/UIComponentManager.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/legal.html ... 
+2025-07-16 02:27:40 +0000  17716 bytes for ./Payload/BasedlyAI.app/legal.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/index.html ... 
+2025-07-16 02:27:40 +0000  66071 bytes for ./Payload/BasedlyAI.app/index.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/polaroids.html ... 
+2025-07-16 02:27:40 +0000  28630 bytes for ./Payload/BasedlyAI.app/polaroids.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/AuthManager.js ... 
+2025-07-16 02:27:40 +0000  5116 bytes for ./Payload/BasedlyAI.app/AuthManager.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/AppController.js ... 
+2025-07-16 02:27:40 +0000  20932 bytes for ./Payload/BasedlyAI.app/AppController.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/NavigationComponent.js ... 
+2025-07-16 02:27:40 +0000  9220 bytes for ./Payload/BasedlyAI.app/NavigationComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/deals.html ... 
+2025-07-16 02:27:40 +0000  81878 bytes for ./Payload/BasedlyAI.app/deals.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/MessagesPageComponent.js ... 
+2025-07-16 02:27:40 +0000  8499 bytes for ./Payload/BasedlyAI.app/MessagesPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/SearchBarComponent.js ... 
+2025-07-16 02:27:40 +0000  3485 bytes for ./Payload/BasedlyAI.app/SearchBarComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/RainbowCloudsComponent.js ... 
+2025-07-16 02:27:40 +0000  2700 bytes for ./Payload/BasedlyAI.app/RainbowCloudsComponent.js
+copying file ./Payload/BasedlyAI.app/login.html ... 
+2025-07-16 02:27:40 +0000  10776 bytes for ./Payload/BasedlyAI.app/login.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/index-modular.html ... 
+2025-07-16 02:27:40 +0000  31669 bytes for ./Payload/BasedlyAI.app/index-modular.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib ... 
+2025-07-16 02:27:40 +0000  960 bytes for ./Payload/BasedlyAI.app/Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib ... 
+2025-07-16 02:27:40 +0000  1225 bytes for ./Payload/BasedlyAI.app/Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/Base.lproj/Main.storyboardc/Info.plist ... 
+2025-07-16 02:27:40 +0000  258 bytes for ./Payload/BasedlyAI.app/Base.lproj/Main.storyboardc/Info.plist
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib ... 
+2025-07-16 02:27:40 +0000  1225 bytes for ./Payload/BasedlyAI.app/Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib ... 
+2025-07-16 02:27:40 +0000  924 bytes for ./Payload/BasedlyAI.app/Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/Base.lproj/LaunchScreen.storyboardc/Info.plist ... 
+2025-07-16 02:27:40 +0000  258 bytes for ./Payload/BasedlyAI.app/Base.lproj/LaunchScreen.storyboardc/Info.plist
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/SocialPageComponent.js ... 
+2025-07-16 02:27:40 +0000  6981 bytes for ./Payload/BasedlyAI.app/SocialPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/social.html ... 
+2025-07-16 02:27:40 +0000  45810 bytes for ./Payload/BasedlyAI.app/social.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/test.html ... 
+2025-07-16 02:27:40 +0000  6 bytes for ./Payload/BasedlyAI.app/test.html
+copying file ./Payload/BasedlyAI.app/BaseComponent.js ... 
+2025-07-16 02:27:40 +0000  2379 bytes for ./Payload/BasedlyAI.app/BaseComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/discovery.html ... 
+2025-07-16 02:27:40 +0000  73770 bytes for ./Payload/BasedlyAI.app/discovery.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/HeroComponent.js ... 
+2025-07-16 02:27:40 +0000  7767 bytes for ./Payload/BasedlyAI.app/HeroComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/messages.html ... 
+2025-07-16 02:27:40 +0000  22240 bytes for ./Payload/BasedlyAI.app/messages.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/BasedlyAI ... 
+2025-07-16 02:27:40 +0000  107712 bytes for ./Payload/BasedlyAI.app/BasedlyAI
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/member.html ... 
+2025-07-16 02:27:40 +0000  37559 bytes for ./Payload/BasedlyAI.app/member.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/app-icon-180.png ... 
+2025-07-16 02:27:40 +0000  5891 bytes for ./Payload/BasedlyAI.app/app-icon-180.png
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/DealCardComponent.js ... 
+2025-07-16 02:27:40 +0000  4187 bytes for ./Payload/BasedlyAI.app/DealCardComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/DataManager.js ... 
+2025-07-16 02:27:40 +0000  16277 bytes for ./Payload/BasedlyAI.app/DataManager.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/MemberPageComponent.js ... 
+2025-07-16 02:27:40 +0000  12986 bytes for ./Payload/BasedlyAI.app/MemberPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/LandingWeatherComponent.js ... 
+2025-07-16 02:27:40 +0000  12789 bytes for ./Payload/BasedlyAI.app/LandingWeatherComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/basedly-icon-white-blue.svg ... 
+2025-07-16 02:27:40 +0000  1 bytes for ./Payload/BasedlyAI.app/basedly-icon-white-blue.svg
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/DealsPageComponent.js ... 
+2025-07-16 02:27:40 +0000  19887 bytes for ./Payload/BasedlyAI.app/DealsPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/embedded.mobileprovision ... 
+2025-07-16 02:27:40 +0000  14360 bytes for ./Payload/BasedlyAI.app/embedded.mobileprovision
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/SplashPageComponent.js ... 
+2025-07-16 02:27:40 +0000  11248 bytes for ./Payload/BasedlyAI.app/SplashPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/output.css ... 
+2025-07-16 02:27:40 +0000  4042 bytes for ./Payload/BasedlyAI.app/output.css
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/convert-icon.html ... 
+2025-07-16 02:27:40 +0000  860 bytes for ./Payload/BasedlyAI.app/convert-icon.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/ComponentManager.js ... 
+2025-07-16 02:27:40 +0000  9211 bytes for ./Payload/BasedlyAI.app/ComponentManager.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/share.html ... 
+2025-07-16 02:27:40 +0000  12849 bytes for ./Payload/BasedlyAI.app/share.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/Info.plist ... 
+2025-07-16 02:27:40 +0000  1761 bytes for ./Payload/BasedlyAI.app/Info.plist
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/signup.html ... 
+2025-07-16 02:27:40 +0000  15220 bytes for ./Payload/BasedlyAI.app/signup.html
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/PkgInfo ... 
+2025-07-16 02:27:40 +0000  8 bytes for ./Payload/BasedlyAI.app/PkgInfo
+copying file ./Payload/BasedlyAI.app/favicon-32x32.png ... 
+2025-07-16 02:27:40 +0000  892 bytes for ./Payload/BasedlyAI.app/favicon-32x32.png
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/PolaroidsPageComponent.js ... 
+2025-07-16 02:27:40 +0000  24481 bytes for ./Payload/BasedlyAI.app/PolaroidsPageComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Payload/BasedlyAI.app/WeatherAnimationComponent.js ... 
+2025-07-16 02:27:40 +0000  18523 bytes for ./Payload/BasedlyAI.app/WeatherAnimationComponent.js
+2025-07-16 02:27:40 +0000  copying file ./Symbols/C08AFFB9-0259-34FE-A693-C84A5A18A9D8.symbols ... 
+2025-07-16 02:27:40 +0000  25092 bytes for ./Symbols/C08AFFB9-0259-34FE-A693-C84A5A18A9D8.symbols
+2025-07-16 02:27:40 +0000 [MT] /usr/bin/ditto exited with 0
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionAppStoreInformationStep
+2025-07-16 02:27:40 +0000 [MT] Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionGenerateProcessedDistributionItems
+2025-07-16 02:27:40 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x111946230:'/var/folders/ds/jwkwftvn6xl5qc5t6ycr13gm0000gn/T/XcodeDistPipeline.~~~rA7V1K/Root/Payload/BasedlyAI.app'>
+2025-07-16 02:27:40 +0000 [MT] Processing step: IDEDistributionCreateManifestStep
+2025-07-16 02:27:40 +0000 [MT] Skipping step: IDEDistributionCreateManifestStep because it said so

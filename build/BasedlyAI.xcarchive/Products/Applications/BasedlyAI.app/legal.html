@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Basedly Legal">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FFABDF">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <title>Legal Terms - Basedly</title>
+    
+    <link rel="stylesheet" href="./output.css?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --lux-hot-pink: #FFABDF;
+            --lux-beige: #F5F5DC;
+            --lux-black: #000;
+            --lux-white: #fff;
+            --lux-dark-gray: #111;
+        }
+        
+        body, html {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            background: var(--lux-black);
+            color: var(--lux-white);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .legal-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .legal-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+            border-bottom: 2px solid var(--lux-hot-pink);
+        }
+
+        .legal-header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--lux-hot-pink) 0%, var(--lux-white) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .legal-header p {
+            font-size: 1.2rem;
+            color: var(--lux-white);
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        .legal-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: var(--lux-dark-gray);
+            border-radius: 16px;
+            border-left: 4px solid var(--lux-hot-pink);
+        }
+
+        .legal-section h2 {
+            color: var(--lux-hot-pink);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .legal-section h3 {
+            color: var(--lux-white);
+            font-size: 1.3rem;
+            margin: 25px 0 15px 0;
+            letter-spacing: 1px;
+        }
+
+        .legal-section p {
+            margin-bottom: 15px;
+            color: var(--lux-white);
+            opacity: 0.9;
+        }
+
+        .legal-section ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+
+        .legal-section li {
+            margin-bottom: 10px;
+            color: var(--lux-white);
+            opacity: 0.9;
+        }
+
+        .legal-section strong {
+            color: var(--lux-hot-pink);
+        }
+
+        .waiver-highlight {
+            background: rgba(255, 171, 223, 0.1);
+            border: 2px solid var(--lux-hot-pink);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .waiver-highlight h4 {
+            color: var(--lux-hot-pink);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            background: var(--lux-dark-gray);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .contact-info h3 {
+            color: var(--lux-hot-pink);
+            margin-bottom: 15px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: var(--lux-hot-pink);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: var(--lux-hot-pink);
+            color: var(--lux-black);
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: var(--lux-white);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .legal-container {
+                padding: 20px 15px;
+            }
+            
+            .legal-header h1 {
+                font-size: 2rem;
+            }
+            
+            .legal-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="app-store-optimized">
+    <!-- iOS-Optimized Navigation -->
+    <nav style="padding: 12px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; -webkit-backdrop-filter: blur(10px);">
+        <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+            <div class="basedly-logo-container" style="flex-shrink: 0; cursor: pointer; padding: 8px 16px; border-radius: 12px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.1)';" onmouseout="this.style.transform='scale(1)';">
+                <div class="basedly-logo" style="font-size: 32px;">BASEDLY</div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <a href="index.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">HOME</a>
+                <a href="discovery.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">DISCOVERY</a>
+                <a href="deals.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">DEALS</a>
+                <a href="messages.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">MESSAGES</a>
+                <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">PLAN</a>
+                <a href="polaroids.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">📸 PHOTOS</a>
+                <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-radius: 0; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">MEMBER</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="legal-container">
+        <div class="legal-header">
+            <h1>Legal Terms</h1>
+            <p>Terms of Service, Privacy Policy, and User Agreements</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>📋 Terms of Service</h2>
+            <p><strong>Last updated:</strong> January 15, 2025</p>
+            
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing and using Basedly, you accept and agree to be bound by the terms and provision of this agreement.</p>
+            
+            <h3>2. Use License</h3>
+            <p>Permission is granted to temporarily download one copy of the materials on Basedly's website for personal, non-commercial transitory viewing only.</p>
+            
+            <h3>3. Disclaimer</h3>
+            <p>The materials on Basedly's website are provided on an 'as is' basis. Basedly makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>🔒 Privacy Policy</h2>
+            <p><strong>Last updated:</strong> January 15, 2025</p>
+            
+            <h3>1. Information We Collect</h3>
+            <ul>
+                <li>Personal information (name, email, phone number)</li>
+                <li>Usage data and analytics</li>
+                <li>Device information and location data</li>
+                <li>User-generated content and photos</li>
+            </ul>
+            
+            <h3>2. How We Use Your Information</h3>
+            <ul>
+                <li>To provide and maintain our service</li>
+                <li>To notify you about changes to our service</li>
+                <li>To provide customer support</li>
+                <li>To gather analysis or valuable information to improve our service</li>
+                <li>To monitor the usage of our service</li>
+            </ul>
+            
+            <h3>3. Data Security</h3>
+            <p>We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>📸 Polaroids & PhotoWall Usage Agreement</h2>
+            <p><strong>This agreement is required for all users of the Polaroids and PhotoWall features.</strong></p>
+            
+            <div class="waiver-highlight">
+                <h4>⚠️ IMPORTANT: By using Polaroids and PhotoWall, you agree to these terms</h4>
+                <p>This agreement is legally binding and forms part of your overall Terms of Service with Basedly.</p>
+            </div>
+            
+            <h3>1. Content Guidelines</h3>
+            <ul>
+                <li><strong>Ownership:</strong> You may only upload photos you own or have explicit permission to share</li>
+                <li><strong>Appropriateness:</strong> Content must be appropriate and not violate community guidelines</li>
+                <li><strong>Copyright:</strong> No copyrighted material without proper authorization</li>
+                <li><strong>Privacy:</strong> Respect privacy - don't share photos of others without consent</li>
+                <li><strong>No Harmful Content:</strong> No content that could harm, harass, or defame others</li>
+            </ul>
+            
+            <h3>2. Privacy & Data Usage</h3>
+            <ul>
+                <li><strong>Public Display:</strong> Photos may be stored and displayed publicly on the platform</li>
+                <li><strong>Location Data:</strong> Location data may be shared with other users</li>
+                <li><strong>Marketing Use:</strong> Content may be used for platform promotion and marketing</li>
+                <li><strong>Retention:</strong> Content may be retained even after account deletion for legal compliance</li>
+                <li><strong>Analytics:</strong> Usage data may be analyzed to improve the service</li>
+            </ul>
+            
+            <h3>3. Legal Responsibility</h3>
+            <ul>
+                <li><strong>User Responsibility:</strong> You are responsible for all content you upload</li>
+                <li><strong>Platform Liability:</strong> Basedly is not liable for user-generated content</li>
+                <li><strong>Enforcement:</strong> Violation of terms may result in content removal and account suspension</li>
+                <li><strong>Indemnification:</strong> You agree to indemnify Basedly against any claims related to your content</li>
+                <li><strong>Legal Compliance:</strong> Content must comply with all applicable laws and regulations</li>
+            </ul>
+            
+            <h3>4. Intellectual Property</h3>
+            <ul>
+                <li><strong>Ownership Retention:</strong> You retain ownership of your content</li>
+                <li><strong>Usage Rights:</strong> You grant Basedly worldwide, non-exclusive rights to use your content</li>
+                <li><strong>Sub-licensing:</strong> Basedly may sub-license content to partners for platform promotion</li>
+                <li><strong>Attribution:</strong> Basedly will provide appropriate attribution when possible</li>
+            </ul>
+            
+            <h3>5. Content Moderation</h3>
+            <ul>
+                <li><strong>Review Process:</strong> All content is subject to review and moderation</li>
+                <li><strong>Removal Rights:</strong> Basedly reserves the right to remove any content at any time</li>
+                <li><strong>Appeal Process:</strong> Users may appeal content removal decisions</li>
+                <li><strong>Reporting:</strong> Users can report inappropriate content for review</li>
+            </ul>
+        </div>
+
+        <div class="legal-section">
+            <h2>⚖️ Dispute Resolution</h2>
+            <h3>1. Governing Law</h3>
+            <p>These terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Basedly operates.</p>
+            
+            <h3>2. Arbitration</h3>
+            <p>Any disputes arising from these terms shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association.</p>
+            
+            <h3>3. Class Action Waiver</h3>
+            <p>You agree to resolve disputes individually and waive any right to participate in class action lawsuits.</p>
+        </div>
+
+        <div class="legal-section">
+            <h2>📝 Changes to Terms</h2>
+            <p>Basedly reserves the right to modify these terms at any time. Users will be notified of significant changes, and continued use constitutes acceptance of updated terms.</p>
+            
+            <h3>Notification Process</h3>
+            <ul>
+                <li>Email notifications for significant changes</li>
+                <li>In-app notifications for minor updates</li>
+                <li>Updated terms posted on the website</li>
+                <li>30-day grace period for major changes</li>
+            </ul>
+        </div>
+
+        <div class="contact-info">
+            <h3>📞 Contact Information</h3>
+            <p><strong>Legal Department:</strong> <a href="mailto:legal@basedly.com">legal@basedly.com</a></p>
+            <p><strong>Privacy Officer:</strong> <a href="mailto:privacy@basedly.com">privacy@basedly.com</a></p>
+            <p><strong>General Support:</strong> <a href="mailto:support@basedly.com">support@basedly.com</a></p>
+            <p><strong>Address:</strong> Basedly Inc., 123 Luxury Lane, Beverly Hills, CA 90210</p>
+            
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+    </main>
+
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./components/utils/AuthManager.js"></script>
+    
+    <script>
+        // Initialize auth manager
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.authManager) {
+                window.authManager.updateAuthUI();
+            }
+            
+            // GSAP Animations for legal sections
+            if (typeof gsap !== 'undefined') {
+                gsap.from('.legal-section', {
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: "power2.out"
+                });
+            }
+        });
+
+        // Navigation Functions
+        function navigateToHome() {
+            window.location.href = 'index.html';
+        }
+
+        function navigateToDiscovery() {
+            window.location.href = 'discovery.html';
+        }
+
+        function navigateToDeals() {
+            window.location.href = 'deals.html';
+        }
+
+        function navigateToMessages() {
+            window.location.href = 'messages.html';
+        }
+
+        function navigateToSocial() {
+            window.location.href = 'social.html';
+        }
+
+        function navigateToPolaroids() {
+            window.location.href = 'polaroids.html';
+        }
+
+        function navigateToMember() {
+            window.location.href = 'member.html';
+        }
+
+        function signOut() {
+            if (window.authManager) {
+                window.authManager.signOut();
+            }
+        }
+    </script>
+</body>
+</html> 

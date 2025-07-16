@@ -9,7 +9,7 @@ echo "🚀 Starting Basedly.AI iOS App Build and Submission Process..."
 
 # Configuration - Updated to match actual project structure
 PROJECT_NAME="BasedlyAI"
-SCHEME_NAME="BasedlyAI"
+SCHEME_NAME="BasedlyAIUITests"
 PROJECT_PATH="BasedlyAI/BasedlyAI.xcodeproj"
 ARCHIVE_NAME="BasedlyAI.xcarchive"
 IPA_NAME="BasedlyAI.ipa"
@@ -37,6 +37,10 @@ print_warning() {
 
 print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
+}
+
+print_info() {
+    echo -e "${BLUE}[INFO]${NC} $1"
 }
 
 # Check if Xcode command line tools are installed
@@ -122,6 +126,7 @@ build_archive() {
         CODE_SIGN_STYLE="Automatic" \
         DEVELOPMENT_TEAM="${TEAM_ID}" \
         PROVISIONING_PROFILE_SPECIFIER="" \
+        CODE_SIGN_IDENTITY="Apple Development" \
         -allowProvisioningUpdates \
         -allowProvisioningDeviceRegistration
     
@@ -168,9 +173,9 @@ upload_to_app_store() {
     
     # Use xcrun notarytool with API key
     xcrun notarytool submit "${EXPORT_PATH}/${IPA_NAME}" \
-        --apple-id "${APP_STORE_USERNAME}" \
-        --password "${APP_STORE_PASSWORD}" \
-        --team-id "${TEAM_ID}" \
+        --key-id "${APP_STORE_CONNECT_API_KEY_ID}" \
+        --issuer "${APP_STORE_CONNECT_API_ISSUER_ID}" \
+        --key "${APP_STORE_CONNECT_API_KEY_PATH}" \
         --wait
     
     if [ $? -eq 0 ]; then
@@ -194,23 +199,25 @@ main() {
     # Copy web files to iOS project
     copy_web_files
     
+    # Set default team ID if not provided
+    if [ -z "$TEAM_ID" ]; then
+        TEAM_ID="V32QX8Q2VA"
+    fi
+    
+    # Set API credentials
+    export APP_STORE_CONNECT_API_KEY_ID="Z5VN5G58DJ"
+    export APP_STORE_CONNECT_API_ISSUER_ID="8ce4ebb7-343c-40f8-9253-1621a15deb9b"
+    export APP_STORE_CONNECT_API_KEY_PATH="/Users/colinilgen/Library/Mobile Documents/com~apple~CloudDocs/AuthKey_Z5VN5G58DJ.p8"
+    
     # Check for required environment variables
-    if [ -z "$APP_STORE_USERNAME" ] || [ -z "$APP_STORE_PASSWORD" ] || [ -z "$TEAM_ID" ]; then
+    if [ -z "$APP_STORE_USERNAME" ] || [ -z "$APP_STORE_PASSWORD" ]; then
         print_warning "Environment variables not set. Please set:"
         echo "  export APP_STORE_USERNAME='your-apple-id@example.com'"
         echo "  export APP_STORE_PASSWORD='your-app-specific-password'"
         echo "  export TEAM_ID='V32QX8Q2VA'"
         echo ""
-        print_warning "For API Key method, also set:"
-        echo "  export APP_STORE_CONNECT_API_KEY_ID='your-key-id'"
-        echo "  export APP_STORE_CONNECT_API_ISSUER_ID='your-issuer-id'"
-        echo "  export APP_STORE_CONNECT_API_KEY_PATH='/path/to/AuthKey_XXXXXXXXXX.p8'"
-        echo ""
-        read -p "Do you want to continue with build only (without upload)? (y/n): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            exit 1
-        fi
+        print_info "Using API Key method with provided credentials..."
+        print_info "Building without upload..."
         UPLOAD_APP=false
     else
         UPLOAD_APP=true

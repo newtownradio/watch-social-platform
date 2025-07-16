@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Basedly">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#FFABDF">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <title>Basedly - AI-Powered Shopping Discovery</title>
+    
+    <link rel="stylesheet" href="./output.css?v=3">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Fredoka+One:wght@400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --lux-hot-pink: #FFABDF;
+            --lux-beige: #F5F5DC;
+            --lux-black: #000;
+            --lux-white: #fff;
+            --lux-dark-gray: #111;
+        }
+        
+        body, html {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--lux-black);
+            color: var(--lux-white);
+        }
+        
+        .share-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .share-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .share-title {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 900;
+            color: var(--lux-hot-pink);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(255, 171, 223, 0.6);
+        }
+        
+        .share-subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--lux-white);
+            opacity: 0.9;
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .feature-card {
+            background: var(--lux-dark-gray);
+            border: 2px solid var(--lux-hot-pink);
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 171, 223, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--lux-hot-pink);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+        
+        .feature-description {
+            color: var(--lux-white);
+            opacity: 0.8;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .feature-button {
+            background: var(--lux-hot-pink);
+            color: var(--lux-black);
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .feature-button:hover {
+            background: var(--lux-beige);
+            transform: scale(1.05);
+        }
+        
+        .share-footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 2px solid var(--lux-hot-pink);
+        }
+        
+        .share-footer p {
+            color: var(--lux-white);
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-link {
+            color: var(--lux-hot-pink);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            color: var(--lux-beige);
+            transform: scale(1.2);
+        }
+        
+        .basedly-logo-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border-radius: 50%;
+            background: rgba(255, 171, 223, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .basedly-logo-link:hover {
+            background: rgba(255, 171, 223, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .basedly-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .basedly-logo-link:hover .basedly-logo {
+            filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(300deg) !important;
+        }
+        
+        .main-cta {
+            background: linear-gradient(135deg, var(--lux-hot-pink), var(--lux-beige));
+            color: var(--lux-black);
+            border: none;
+            padding: 20px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        
+        .main-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 171, 223, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .share-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="share-container">
+        <div class="share-header">
+            <h1 class="share-title">BASEDLY</h1>
+            <p class="share-subtitle">AI-Powered Shopping Discovery Platform</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card" onclick="window.location.href='discovery.html'">
+                <div class="feature-icon">🔍</div>
+                <h3 class="feature-title">DISCOVERY</h3>
+                <p class="feature-description">Explore real-time luxury deals and exclusive drops from the world's most coveted brands</p>
+                <a href="discovery.html" class="feature-button">EXPLORE</a>
+            </div>
+            
+            <div class="feature-card" onclick="window.location.href='deals.html'">
+                <div class="feature-icon">💎</div>
+                <h3 class="feature-title">EXCLUSIVE DEALS</h3>
+                <p class="feature-description">Access limited-time offers and AI-powered product comparisons</p>
+                <a href="deals.html" class="feature-button">VIEW DEALS</a>
+            </div>
+            
+            <div class="feature-card" onclick="window.location.href='messages.html'">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">MESSAGES</h3>
+                <p class="feature-description">Stay connected with your shopping community and receive personalized alerts</p>
+                <a href="messages.html" class="feature-button">OPEN</a>
+            </div>
+            
+            <div class="feature-card" onclick="window.location.href='social.html'">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">SOCIAL PLANNING</h3>
+                <p class="feature-description">Plan shopping trips with friends and get AI-optimized routes</p>
+                <a href="social.html" class="feature-button">PLAN</a>
+            </div>
+            
+            <div class="feature-card" onclick="window.location.href='polaroids.html'">
+                <div class="feature-icon">📸</div>
+                <h3 class="feature-title">PHOTOS</h3>
+                <p class="feature-description">Share your shopping experiences with polaroid-style photos</p>
+                <a href="polaroids.html" class="feature-button">SHARE</a>
+            </div>
+            
+            <div class="feature-card" onclick="window.location.href='member.html'">
+                <div class="feature-icon">👤</div>
+                <h3 class="feature-title">MEMBER PROFILE</h3>
+                <p class="feature-description">Manage your preferences, settings, and subscription</p>
+                <a href="member.html" class="feature-button">MANAGE</a>
+            </div>
+        </div>
+        
+        <div class="share-footer">
+            <p>Experience the future of luxury shopping with AI-powered discovery</p>
+            <div class="social-links">
+                <a href="#" class="social-link" onclick="shareOnSocial('twitter')">🐦</a>
+                <a href="#" class="social-link" onclick="shareOnSocial('instagram')">📷</a>
+                <a href="#" class="social-link" onclick="shareOnSocial('facebook')">📘</a>
+                <a href="#" class="social-link" onclick="shareOnSocial('linkedin')">💼</a>
+                <a href="#" class="social-link basedly-logo-link" onclick="shareBasedly()">
+                    <img src="./assets/basedly-icon-white-blue.svg" alt="Basedly" class="basedly-logo" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
+                </a>
+            </div>
+            <a href="index.html" class="main-cta">START DISCOVERING</a>
+        </div>
+    </div>
+    
+    <script>
+        // Share functionality
+        function shareBasedly() {
+            const url = window.location.href;
+            const title = 'Basedly - AI-Powered Shopping Discovery';
+            const text = 'Check out Basedly - the future of luxury shopping with AI-powered discovery!';
+            
+            // Copy the main Basedly URL to clipboard
+            copyToClipboard('https://basedly.ai');
+            alert('Basedly link copied to clipboard! Share the future of luxury shopping.');
+        }
+        
+        function shareOnSocial(platform) {
+            const url = window.location.href;
+            const title = 'Basedly - AI-Powered Shopping Discovery';
+            const text = 'Check out Basedly - the future of luxury shopping with AI-powered discovery!';
+            
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+                    break;
+                case 'instagram':
+                    // Instagram doesn't support direct URL sharing, so we'll copy to clipboard
+                    copyToClipboard(url);
+                    alert('Link copied to clipboard! Share it on Instagram.');
+                    return;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+        
+        function copyToClipboard(text) {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text);
+            } else {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+            }
+        }
+        
+        // Add click handlers for feature cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            featureCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Add visual feedback
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

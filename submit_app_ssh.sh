@@ -6,9 +6,9 @@
 echo "🚀 Setting up SSH tunnel for BasedlyAI app submission..."
 
 # Check if we have the required files
-if [ ! -f "./BasedlyAI/BasedlyAI.ipa" ]; then
+if [ ! -f "./build/BasedlyAI.ipa" ]; then
     echo "❌ Error: BasedlyAI.ipa not found!"
-    echo "Please build the app first using: xcodebuild -archivePath ./BasedlyAI/BasedlyAI.xcarchive -exportPath ./BasedlyAI -exportOptionsPlist exportOptions.plist"
+    echo "Please build the app first using: ./build_basedly_ai.sh"
     exit 1
 fi
 
@@ -29,7 +29,7 @@ if [ $? -eq 0 ]; then
     # Use xcrun altool with tunnel
     xcrun altool --upload-app \
         --type ios \
-        --file "./BasedlyAI/BasedlyAI.ipa" \
+        --file "./build/BasedlyAI.ipa" \
         --username "colinilgen@apple.com" \
         --password "@env:APP_SPECIFIC_PASSWORD" \
         --verbose \

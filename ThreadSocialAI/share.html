@@ -154,6 +154,29 @@
             transform: scale(1.2);
         }
         
+        .basedly-logo-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border-radius: 50%;
+            background: rgba(255, 171, 223, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .basedly-logo-link:hover {
+            background: rgba(255, 171, 223, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .basedly-logo {
+            transition: all 0.3s ease;
+        }
+        
+        .basedly-logo-link:hover .basedly-logo {
+            filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(300deg) !important;
+        }
+        
         .main-cta {
             background: linear-gradient(135deg, var(--lux-hot-pink), var(--lux-beige));
             color: var(--lux-black);
@@ -221,11 +244,11 @@
                 <a href="social.html" class="feature-button">PLAN</a>
             </div>
             
-            <div class="feature-card" onclick="window.location.href='polaroids.html'">
-                <div class="feature-icon">📸</div>
-                <h3 class="feature-title">PHOTOS</h3>
-                <p class="feature-description">Share your shopping experiences with polaroid-style photos</p>
-                <a href="polaroids.html" class="feature-button">SHARE</a>
+            <div class="feature-card" onclick="window.location.href='fashion-nooks.html'">
+                                    <div class="feature-icon">🛍️</div>
+                                    <h3 class="feature-title">FASHION NOOKS</h3>
+                    <p class="feature-description">Pin and discover fashion inspiration, like Pinterest for style</p>
+                                    <a href="fashion-nooks.html" class="feature-button">EXPLORE</a>
             </div>
             
             <div class="feature-card" onclick="window.location.href='member.html'">
@@ -243,6 +266,9 @@
                 <a href="#" class="social-link" onclick="shareOnSocial('instagram')">📷</a>
                 <a href="#" class="social-link" onclick="shareOnSocial('facebook')">📘</a>
                 <a href="#" class="social-link" onclick="shareOnSocial('linkedin')">💼</a>
+                <a href="#" class="social-link basedly-logo-link" onclick="shareBasedly()">
+                    <img src="./assets/basedly-icon-white-blue.svg" alt="Basedly" class="basedly-logo" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
+                </a>
             </div>
             <a href="index.html" class="main-cta">START DISCOVERING</a>
         </div>
@@ -250,6 +276,16 @@
     
     <script>
         // Share functionality
+        function shareBasedly() {
+            const url = window.location.href;
+            const title = 'Basedly - AI-Powered Shopping Discovery';
+            const text = 'Check out Basedly - the future of luxury shopping with AI-powered discovery!';
+            
+            // Copy the main Basedly URL to clipboard
+            copyToClipboard('https://basedly.ai');
+            alert('Basedly link copied to clipboard! Share the future of luxury shopping.');
+        }
+        
         function shareOnSocial(platform) {
             const url = window.location.href;
             const title = 'Basedly - AI-Powered Shopping Discovery';

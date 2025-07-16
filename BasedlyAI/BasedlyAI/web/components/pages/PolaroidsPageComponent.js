@@ -1,6 +1,6 @@
 class PolaroidsPageComponent extends BaseComponent {
     constructor() {
-        super('PolaroidsPage');
+        super();
         this.polaroids = [];
         this.currentFilter = 'all';
         this.isUploading = false;
@@ -9,12 +9,9 @@ class PolaroidsPageComponent extends BaseComponent {
     }
 
     async initialize() {
-        console.log('PolaroidsPageComponent initialize() called');
         await this.loadPolaroids();
-        console.log('Polaroids loaded:', this.polaroids.length);
         this.setupEventListeners();
         this.checkWaiverStatus();
-        console.log('Waiver status checked:', this.waiverSigned);
         this.render();
     }
 
@@ -23,14 +20,10 @@ class PolaroidsPageComponent extends BaseComponent {
     }
 
     showWaiverModal() {
-        console.log('showWaiverModal() called');
         const modal = document.getElementById('waiver-modal');
         if (modal) {
-            console.log('Waiver modal found, showing it');
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
-        } else {
-            console.error('Waiver modal not found');
         }
     }
 
@@ -192,17 +185,11 @@ class PolaroidsPageComponent extends BaseComponent {
     }
 
     render() {
-        console.log('PolaroidsPageComponent render() called');
         const container = document.getElementById('polaroids-container');
-        if (!container) {
-            console.error('polaroids-container not found');
-            return;
-        }
-        console.log('Container found, waiver signed:', this.waiverSigned);
+        if (!container) return;
 
         // Check waiver status first
         if (!this.waiverSigned) {
-            console.log('Showing waiver modal');
             this.showWaiverModal();
             return;
         }

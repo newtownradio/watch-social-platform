@@ -6,9 +6,9 @@
 echo "🚀 Starting secure BasedlyAI app submission..."
 
 # Check if we have the required files
-if [ ! -f "./BasedlyAI/BasedlyAI.ipa" ]; then
+if [ ! -f "./build/BasedlyAI.ipa" ]; then
     echo "❌ Error: BasedlyAI.ipa not found!"
-    echo "Please build the app first using: xcodebuild -archivePath ./BasedlyAI/BasedlyAI.xcarchive -exportPath ./BasedlyAI -exportOptionsPlist exportOptions.plist"
+    echo "Please build the app first using: ./build_basedly_ai.sh"
     exit 1
 fi
 
@@ -20,12 +20,12 @@ if [ -z "$APP_SPECIFIC_PASSWORD" ]; then
     exit 1
 fi
 
-echo "✅ App file found: ./BasedlyAI/BasedlyAI.ipa"
+echo "✅ App file found: ./build/BasedlyAI.ipa"
 echo "🔐 Using app-specific password authentication"
 
 # Method 1: Try notarytool (modern approach)
 echo "📤 Attempting submission with notarytool..."
-xcrun notarytool submit "./BasedlyAI/BasedlyAI.ipa" \
+xcrun notarytool submit "./build/BasedlyAI.ipa" \
     --apple-id "colinilgen@apple.com" \
     --password "$APP_SPECIFIC_PASSWORD" \
     --team-id "V32QX8Q2VA" \
@@ -37,7 +37,7 @@ if [ $? -eq 0 ]; then
     
     # Staple the notarization ticket
     echo "🔒 Stapling notarization ticket to app..."
-    xcrun stapler staple "./BasedlyAI/BasedlyAI.ipa"
+    xcrun stapler staple "./build/BasedlyAI.ipa"
     
     if [ $? -eq 0 ]; then
         echo "✅ Notarization ticket stapled successfully!"
@@ -49,7 +49,7 @@ if [ $? -eq 0 ]; then
     echo "📱 Uploading to App Store Connect..."
     xcrun altool --upload-app \
         --type ios \
-        --file "./BasedlyAI/BasedlyAI.ipa" \
+        --file "./build/BasedlyAI.ipa" \
         --username "colinilgen@apple.com" \
         --password "$APP_SPECIFIC_PASSWORD" \
         --verbose \
@@ -72,7 +72,7 @@ else
     # Method 2: Fallback to altool
     xcrun altool --upload-app \
         --type ios \
-        --file "./BasedlyAI/BasedlyAI.ipa" \
+        --file "./build/BasedlyAI.ipa" \
         --username "colinilgen@apple.com" \
         --password "$APP_SPECIFIC_PASSWORD" \
         --verbose \

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basedly.AI Icon Generator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+            color: white;
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .header h1 {
+            font-size: 3em;
+            margin: 0;
+            background: linear-gradient(45deg, #ffffff, #f8f9fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            margin: 10px 0;
+        }
+        .icon-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+        .icon-preview {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            transform: scale(1);
+        }
+        .icon-preview:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        .icon-preview h3 {
+            margin: 0 0 15px 0;
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: bold;
+        }
+        .download-btn {
+            background: linear-gradient(45deg, #0066cc, #0099ff);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 102, 204, 0.3);
+        }
+        .download-btn:hover {
+            background: linear-gradient(45deg, #0052a3, #0077cc);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+        }
+        .download-btn:active {
+            transform: translateY(0);
+        }
+        .canvas-container {
+            position: relative;
+            display: inline-block;
+        }
+        .canvas-container::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #ffffff, #f8f9fa, #ffffff);
+            border-radius: 10px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .icon-preview:hover .canvas-container::before {
+            opacity: 1;
+        }
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .success-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+        .success-message.show {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Basedly.AI Icon Generator</h1>
+        <p>Creating beautiful app icons with the new Basedly.AI branding</p>
+    </div>
+    
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <p>Generating icons...</p>
+    </div>
+    
+    <div class="icon-container" id="iconContainer">
+        <!-- Icons will be generated here -->
+    </div>
+
+    <div class="success-message" id="successMessage">
+        Icon downloaded successfully! 🎉
+    </div>
+
+    <script>
+        const sizes = [20, 29, 40, 58, 60, 76, 80, 87, 120, 152, 167, 180, 1024];
+        
+        function createIconPreview(size) {
+            const preview = document.createElement('div');
+            preview.className = 'icon-preview';
+            preview.style.opacity = '0';
+            preview.style.transform = 'translateY(50px)';
+            
+            preview.innerHTML = `
+                <h3>${size}x${size}</h3>
+                <div class="canvas-container">
+                    <canvas id="canvas-${size}" width="${size}" height="${size}"></canvas>
+                </div>
+                <br><button class="download-btn" onclick="downloadIcon(${size})">Download</button>
+            `;
+            
+            return preview;
+        }
+        
+        function drawBasedlyIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Set background with gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#ffffff');
+            gradient.addColorStop(1, '#f8f9fa');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // Calculate scaling
+            const scale = size / 1024;
+            const padding = 50 * scale;
+            const availableWidth = size - (padding * 2);
+            const availableHeight = size - (padding * 2);
+            
+            // Set text properties
+            ctx.fillStyle = '#0066cc';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'top';
+            
+            // Draw "Basedly" text (serif font)
+            const basedlySize = Math.max(12, availableHeight * 0.4);
+            ctx.font = `bold ${basedlySize}px "Times New Roman", serif`;
+            
+            const basedlyText = "Basedly";
+            const basedlyMetrics = ctx.measureText(basedlyText);
+            const basedlyWidth = basedlyMetrics.width;
+            
+            // Position "Basedly" text
+            const basedlyX = padding + (availableWidth - basedlyWidth) / 2;
+            const basedlyY = padding + (availableHeight * 0.2);
+            
+            ctx.fillText(basedlyText, basedlyX, basedlyY);
+            
+            // Draw ".AI" text (pixelated/monospace font)
+            const aiSize = Math.max(8, availableHeight * 0.25);
+            ctx.font = `bold ${aiSize}px "Courier New", monospace`;
+            
+            const aiText = ".AI";
+            const aiMetrics = ctx.measureText(aiText);
+            const aiWidth = aiMetrics.width;
+            
+            // Position ".AI" text below and slightly to the right of "Basedly"
+            const aiX = basedlyX + (basedlyWidth - aiWidth) / 2 + (aiSize * 0.3);
+            const aiY = basedlyY + basedlySize + (aiSize * 0.2);
+            
+            ctx.fillText(aiText, aiX, aiY);
+        }
+        
+        function downloadIcon(size) {
+            const canvas = document.getElementById(`canvas-${size}`);
+            const link = document.createElement('a');
+            link.download = `AppIcon-${size}x${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+            
+            // Show success message with GSAP
+            const successMsg = document.getElementById('successMessage');
+            successMsg.textContent = `AppIcon-${size}x${size}.png downloaded! 🎉`;
+            successMsg.classList.add('show');
+            
+            gsap.to(successMsg, {
+                x: 0,
+                duration: 0.5,
+                ease: "back.out(1.7)"
+            });
+            
+            setTimeout(() => {
+                gsap.to(successMsg, {
+                    x: 400,
+                    duration: 0.5,
+                    ease: "back.in(1.7)",
+                    onComplete: () => successMsg.classList.remove('show')
+                });
+            }, 3000);
+        }
+        
+        function initializeIcons() {
+            const container = document.getElementById('iconContainer');
+            const loading = document.getElementById('loading');
+            
+            // Show loading
+            loading.style.display = 'block';
+            
+            // Create icon previews
+            sizes.forEach((size, index) => {
+                const preview = createIconPreview(size);
+                container.appendChild(preview);
+                
+                // Animate in with GSAP
+                gsap.to(preview, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    delay: index * 0.1,
+                    ease: "back.out(1.7)"
+                });
+            });
+            
+            // Generate icons after animation
+            setTimeout(() => {
+                sizes.forEach(size => {
+                    const canvas = document.getElementById(`canvas-${size}`);
+                    if (canvas) {
+                        drawBasedlyIcon(canvas, size);
+                    }
+                });
+                
+                // Hide loading
+                gsap.to(loading, {
+                    opacity: 0,
+                    duration: 0.5,
+                    onComplete: () => loading.style.display = 'none'
+                });
+                
+                // Add hover animations to icon previews
+                const previews = document.querySelectorAll('.icon-preview');
+                previews.forEach(preview => {
+                    preview.addEventListener('mouseenter', () => {
+                        gsap.to(preview, {
+                            scale: 1.05,
+                            duration: 0.3,
+                            ease: "power2.out"
+                        });
+                    });
+                    
+                    preview.addEventListener('mouseleave', () => {
+                        gsap.to(preview, {
+                            scale: 1,
+                            duration: 0.3,
+                            ease: "power2.out"
+                        });
+                    });
+                });
+            }, sizes.length * 100 + 500);
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', () => {
+            // Animate header
+            gsap.from('.header h1', {
+                y: -50,
+                opacity: 0,
+                duration: 1,
+                ease: "back.out(1.7)"
+            });
+            
+            gsap.from('.header p', {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                delay: 0.3,
+                ease: "power2.out"
+            });
+            
+            // Initialize icons
+            setTimeout(initializeIcons, 800);
+        });
+    </script>
+</body>
+</html> 
