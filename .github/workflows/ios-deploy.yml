@@ -19,10 +19,15 @@ jobs:
       with:
         xcode-version: 'latest-stable'
         
+    - name: List available schemes
+      run: |
+        cd BasedlyAI
+        xcodebuild -list
+        
     - name: Build and Archive
       run: |
         cd BasedlyAI
-        xcodebuild -project BasedlyAI.xcodeproj -scheme BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive archive
+        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive archive
         
     - name: Export IPA
       run: |
