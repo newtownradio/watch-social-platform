@@ -22,3 +22,4 @@ To deploy to App Store Connect, add these secrets to your GitHub repository:
 - Creates IPA file
 - Uploads to App Store Connect
 - Ready for TestFlight or App Store submission
+# Testing with new app-specific password - Wed Jul 16 08:30:13 PDT 2025
