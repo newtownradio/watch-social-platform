@@ -35,9 +35,6 @@ jobs:
         xcodebuild -exportArchive -archivePath BasedlyAI.xcarchive -exportPath ./build -exportOptionsPlist exportOptions.plist
         
     - name: Upload to App Store Connect
-      uses: apple-actions/upload-testflight@v1
-      with:
-        app-path: BasedlyAI/build/BasedlyAI.ipa
-        api-key: ${{ secrets.APP_STORE_CONNECT_API_KEY }}
-        api-key-id: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
-        api-issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }} 
+      run: |
+        cd BasedlyAI
+        xcrun altool --upload-app --type ios --file build/BasedlyAI.ipa --username ${{ secrets.APPLE_ID }} --password ${{ secrets.APP_SPECIFIC_PASSWORD }} 
