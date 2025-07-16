@@ -19,6 +19,15 @@ jobs:
       with:
         xcode-version: 'latest-stable'
         
+    - name: Set up Apple account
+      run: |
+        # Create Xcode preferences directory
+        mkdir -p ~/Library/Developer/Xcode/UserData
+        mkdir -p ~/Library/Developer/Xcode/UserData/IDEPreferencesController.xcuserstate
+        
+        # Add Apple account to Xcode
+        xcrun altool --signin-account ${{ secrets.APPLE_ID }} --password ${{ secrets.APP_SPECIFIC_PASSWORD }}
+        
     - name: Debug project structure
       run: |
         echo "=== Root Directory ==="
