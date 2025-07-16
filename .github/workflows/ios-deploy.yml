@@ -146,4 +146,4 @@ jobs:
     - name: Upload to App Store Connect
       run: |
         cd BasedlyAI
-        xcrun altool --upload-app --type ios --file build/BasedlyAI.ipa --username ${{ secrets.APPLE_ID }} --password ${{ secrets.APP_SPECIFIC_PASSWORD }} 
+        xcrun altool --upload-app --type ios --file build/ipa/BasedlyAI.ipa --username ${{ secrets.APPLE_ID }} --password ${{ secrets.APP_SPECIFIC_PASSWORD }} 
