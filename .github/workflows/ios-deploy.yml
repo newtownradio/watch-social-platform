@@ -19,6 +19,13 @@ jobs:
       with:
         xcode-version: 'latest-stable'
         
+    - name: Clean build directory
+      run: |
+        cd BasedlyAI
+        rm -rf build/
+        rm -rf DerivedData/
+        xcodebuild clean -project BasedlyAI.xcodeproj -target BasedlyAI
+        
     - name: Debug project structure
       run: |
         echo "=== Root Directory ==="
