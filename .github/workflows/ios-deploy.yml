@@ -41,7 +41,7 @@ jobs:
     - name: Try simple build first
       run: |
         cd BasedlyAI
-        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Debug build
+        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Debug -allowProvisioningUpdates -IPHONEOS_DEPLOYMENT_TARGET=18.2 build
         
     - name: Create export options
       run: |
@@ -68,7 +68,7 @@ jobs:
     - name: Build and Archive (if simple build succeeds)
       run: |
         cd BasedlyAI
-        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive archive
+        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive -allowProvisioningUpdates -IPHONEOS_DEPLOYMENT_TARGET=18.2 archive
         
     - name: Export IPA
       run: |
