@@ -40,6 +40,13 @@ jobs:
         rm -rf DerivedData/
         xcodebuild clean -project BasedlyAI.xcodeproj -target BasedlyAI
         
+    - name: Set deployment target in project
+      run: |
+        cd BasedlyAI
+        # Update deployment target in project.pbxproj
+        sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18\.5;/IPHONEOS_DEPLOYMENT_TARGET = 18.2;/g' BasedlyAI.xcodeproj/project.pbxproj
+        sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = "18\.5";/IPHONEOS_DEPLOYMENT_TARGET = "18.2";/g' BasedlyAI.xcodeproj/project.pbxproj
+        
     - name: Debug project structure
       run: |
         echo "=== Root Directory ==="
@@ -62,7 +69,7 @@ jobs:
     - name: Try simple build first (no signing)
       run: |
         cd BasedlyAI
-        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Debug -IPHONEOS_DEPLOYMENT_TARGET=18.2 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO build
+        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Debug IPHONEOS_DEPLOYMENT_TARGET=18.2 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO build
         
     - name: Create export options
       run: |
@@ -89,7 +96,7 @@ jobs:
     - name: Build and Archive (no signing)
       run: |
         cd BasedlyAI
-        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive -IPHONEOS_DEPLOYMENT_TARGET=18.2 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO archive
+        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive IPHONEOS_DEPLOYMENT_TARGET=18.2 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO archive
         
     - name: Export IPA (no signing)
       run: |
