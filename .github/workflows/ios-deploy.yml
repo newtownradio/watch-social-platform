@@ -22,6 +22,8 @@ jobs:
     - name: Force Xcode version
       run: |
         sudo xcode-select --switch /Applications/Xcode_15.4.app
+        sudo xcode-select --install || true
+        export DEVELOPER_DIR=/Applications/Xcode_15.4.app/Contents/Developer
         xcodebuild -version
         
     - name: Debug Xcode version
@@ -43,9 +45,25 @@ jobs:
     - name: Set deployment target in project
       run: |
         cd BasedlyAI
-        # Update deployment target in project.pbxproj
+        # Update deployment target in project.pbxproj - handle all variations
         sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18\.5;/IPHONEOS_DEPLOYMENT_TARGET = 18.2;/g' BasedlyAI.xcodeproj/project.pbxproj
         sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = "18\.5";/IPHONEOS_DEPLOYMENT_TARGET = "18.2";/g' BasedlyAI.xcodeproj/project.pbxproj
+        sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = 18\.5;/IPHONEOS_DEPLOYMENT_TARGET = 18.2;/g' BasedlyAI.xcodeproj/project.pbxproj
+        sed -i '' 's/IPHONEOS_DEPLOYMENT_TARGET = "18\.5";/IPHONEOS_DEPLOYMENT_TARGET = "18.2";/g' BasedlyAI.xcodeproj/project.pbxproj
+        # Also update any other deployment target references
+        sed -i '' 's/18\.5/18.2/g' BasedlyAI.xcodeproj/project.pbxproj
+        echo "=== Updated project.pbxproj deployment targets ==="
+        grep -n "IPHONEOS_DEPLOYMENT_TARGET" BasedlyAI.xcodeproj/project.pbxproj
+        
+    - name: Verify deployment target and Xcode version
+      run: |
+        cd BasedlyAI
+        echo "=== Current Xcode Version ==="
+        xcodebuild -version
+        echo "=== Current Xcode Path ==="
+        xcode-select -p
+        echo "=== Project Deployment Target ==="
+        xcodebuild -showBuildSettings -project BasedlyAI.xcodeproj -target BasedlyAI | grep IPHONEOS_DEPLOYMENT_TARGET
         
     - name: Debug project structure
       run: |
