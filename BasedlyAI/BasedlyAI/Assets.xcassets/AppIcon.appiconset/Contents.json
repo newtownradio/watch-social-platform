@@ -1,121 +1,115 @@
 {
   "images" : [
     {
-      "filename" : "AppIcon-20x20.png",
-      "idiom" : "iphone",
-      "scale" : "1x",
-      "size" : "20x20"
-    },
-    {
-      "filename" : "AppIcon-40x40.png",
+      "filename" : "UntitledB 4.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "AppIcon-60x60.png",
+      "filename" : "UntitledB 1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "AppIcon-29x29.png",
+      "filename" : "UntitledB 7.png",
       "idiom" : "iphone",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "AppIcon-58x58.png",
+      "filename" : "UntitledB 3.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "AppIcon-87x87.png",
+      "filename" : "BasedlyLOGO152x152 3.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "AppIcon-40x40.png",
-      "idiom" : "iphone",
-      "scale" : "1x",
-      "size" : "40x40"
-    },
-    {
-      "filename" : "AppIcon-80x80.png",
+      "filename" : "BasedlyLOGO152x152 5.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "AppIcon-120x120.png",
+      "filename" : "BasedlyLOGO152x152 2.png",
+      "idiom" : "iphone",
+      "scale" : "3x",
+      "size" : "40x40"
+    },
+    {
+      "filename" : "BasedlyLOGO152x152 1.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "AppIcon-180x180.png",
+      "filename" : "BasedlyLOGO180x180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "filename" : "AppIcon-20x20.png",
+      "filename" : "BasedlyAIlogo.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
-      "filename" : "AppIcon-40x40.png",
+      "filename" : "UntitledB 5.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "AppIcon-29x29.png",
+      "filename" : "UntitledB 8.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "AppIcon-58x58.png",
+      "filename" : "UntitledB 2.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "AppIcon-40x40.png",
+      "filename" : "UntitledB 6.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "AppIcon-80x80.png",
+      "filename" : "BasedlyLOGO152x152 4.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "AppIcon-76x76.png",
+      "filename" : "BasedlyLOGO152x152 6.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "AppIcon-152x152.png",
+      "filename" : "BasedlyLOGO152x152.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
-      "filename" : "AppIcon-167x167.png",
+      "filename" : "BasedlyLOGO167x167.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
-      "filename" : "AppIcon-1024x1024.png",
+      "filename" : "UntitledB.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"
