@@ -19,15 +19,6 @@ jobs:
       with:
         xcode-version: 'latest-stable'
         
-    - name: Set up Apple account
-      run: |
-        # Create Xcode preferences directory
-        mkdir -p ~/Library/Developer/Xcode/UserData
-        mkdir -p ~/Library/Developer/Xcode/UserData/IDEPreferencesController.xcuserstate
-        
-        # Add Apple account to Xcode
-        xcrun altool --signin-account ${{ secrets.APPLE_ID }} --password ${{ secrets.APP_SPECIFIC_PASSWORD }}
-        
     - name: Debug project structure
       run: |
         echo "=== Root Directory ==="
@@ -47,10 +38,10 @@ jobs:
         echo "=== Build Configurations ==="
         xcodebuild -showBuildSettings -project BasedlyAI.xcodeproj -target BasedlyAI
         
-    - name: Try simple build first
+    - name: Try simple build first (no signing)
       run: |
         cd BasedlyAI
-        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Debug -allowProvisioningUpdates -IPHONEOS_DEPLOYMENT_TARGET=18.2 PRODUCT_BUNDLE_IDENTIFIER=com.newtownradio.basedlyai build
+        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Debug -IPHONEOS_DEPLOYMENT_TARGET=18.2 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO build
         
     - name: Create export options
       run: |
@@ -61,9 +52,9 @@ jobs:
         <plist version="1.0">
         <dict>
             <key>method</key>
-            <string>app-store</string>
+            <string>development</string>
             <key>signingStyle</key>
-            <string>automatic</string>
+            <string>manual</string>
             <key>stripSwiftSymbols</key>
             <true/>
             <key>uploadBitcode</key>
@@ -74,12 +65,12 @@ jobs:
         </plist>
         EOF
         
-    - name: Build and Archive (if simple build succeeds)
+    - name: Build and Archive (no signing)
       run: |
         cd BasedlyAI
-        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive -allowProvisioningUpdates -IPHONEOS_DEPLOYMENT_TARGET=18.2 PRODUCT_BUNDLE_IDENTIFIER=com.newtownradio.basedlyai archive
+        xcodebuild -project BasedlyAI.xcodeproj -target BasedlyAI -configuration Release -archivePath BasedlyAI.xcarchive -IPHONEOS_DEPLOYMENT_TARGET=18.2 CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO CODE_SIGNING_ALLOWED=NO archive
         
-    - name: Export IPA
+    - name: Export IPA (no signing)
       run: |
         cd BasedlyAI
         xcodebuild -exportArchive -archivePath BasedlyAI.xcarchive -exportPath ./build -exportOptionsPlist exportOptions.plist
