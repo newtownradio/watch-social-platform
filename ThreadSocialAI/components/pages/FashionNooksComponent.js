@@ -20,97 +20,98 @@ class FashionNooksComponent extends BaseComponent {
             {
                 id: 1,
                 userId: 'fashionista1',
-                username: 'StyleQueen',
+                username: 'BarbieCore',
                 imageUrl: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=600&fit=crop',
-                title: 'Vintage Chanel Vibes',
-                description: 'Found this stunning vintage Chanel bag at the Basedly pop-up! The craftsmanship is incredible. #vintage #chanel #luxury',
-                category: 'accessories',
-                tags: ['vintage', 'chanel', 'luxury', 'handbag'],
-                likes: 124,
-                saves: 89,
-                comments: 23,
+                title: 'Barbie Summer Vibes',
+                description: 'Living my best Barbie life! This pink moment is giving major movie premiere energy. #barbiesummer #pink #y2k #barbiemovie',
+                category: 'trending',
+                tags: ['barbiesummer', 'pink', 'y2k', 'barbiemovie', 'trending'],
+                likes: 1247,
+                saves: 892,
+                comments: 234,
                 timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
-                price: '$2,800',
-                location: 'Soho, NYC'
+                price: '$280',
+                location: 'Malibu, CA'
             },
             {
                 id: 2,
                 userId: 'fashionista2',
-                username: 'TrendSetter',
+                username: 'SwiftieStyle',
                 imageUrl: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=600&fit=crop',
-                description: 'These designer sneakers are everything! Perfect blend of comfort and style. #sneakers #designer #streetstyle',
-                category: 'footwear',
-                tags: ['sneakers', 'designer', 'streetstyle', 'comfort'],
-                likes: 98,
-                saves: 156,
-                comments: 45,
+                title: 'Eras Tour Outfit',
+                description: 'Ready for the concert! This outfit is giving major folklore vibes. #taylorswift #erastour #folklore #concertfit',
+                category: 'concert',
+                tags: ['taylorswift', 'erastour', 'folklore', 'concertfit', 'swiftie'],
+                likes: 2156,
+                saves: 1890,
+                comments: 445,
                 timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000),
                 price: '$450',
-                location: 'Beverly Hills'
+                location: 'Nashville, TN'
             },
             {
                 id: 3,
                 userId: 'fashionista3',
-                username: 'GlamourGirl',
+                username: 'CoquetteCore',
                 imageUrl: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=400&h=600&fit=crop',
-                title: 'Gala Night Elegance',
-                description: 'Basedly AI recommended this stunning dress for the charity gala. Got so many compliments! #gala #elegance #ai-style',
-                category: 'dresses',
-                tags: ['gala', 'elegance', 'dress', 'ai-recommendation'],
-                likes: 231,
-                saves: 203,
-                comments: 67,
+                title: 'Coquette Aesthetic',
+                description: 'The coquette trend is everything! This dress is giving major Lana Del Rey energy. #coquette #lanadelrey #aesthetic #romantic',
+                category: 'aesthetic',
+                tags: ['coquette', 'lanadelrey', 'aesthetic', 'romantic', 'trending'],
+                likes: 3421,
+                saves: 2890,
+                comments: 567,
                 timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000),
-                price: '$1,200',
-                location: 'Rodeo Drive'
+                price: '$120',
+                location: 'Venice Beach'
             },
             {
                 id: 4,
                 userId: 'fashionista4',
-                username: 'StyleSquad',
+                username: 'MobWife',
                 imageUrl: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=600&fit=crop',
-                title: 'Shopping Spree Success',
-                description: 'Epic shopping day with the squad! Basedly made it so easy to find the perfect pieces. #squadgoals #shopping #fashion',
-                category: 'outfits',
-                tags: ['squadgoals', 'shopping', 'fashion', 'friends'],
-                likes: 342,
-                saves: 278,
-                comments: 89,
+                title: 'Mob Wife Aesthetic',
+                description: 'The mob wife trend is taking over! This outfit is giving major Sopranos energy. #mobwife #sopranos #90s #luxury',
+                category: 'trending',
+                tags: ['mobwife', 'sopranos', '90s', 'luxury', 'trending'],
+                likes: 1890,
+                saves: 1456,
+                comments: 289,
                 timestamp: new Date(Date.now() - 8 * 60 * 60 * 1000),
                 price: '$850',
-                location: 'Miami Beach'
+                location: 'Brooklyn, NY'
             },
             {
                 id: 5,
                 userId: 'fashionista5',
-                username: 'LuxuryLover',
+                username: 'CleanGirl',
                 imageUrl: 'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=600&fit=crop',
-                title: 'Exclusive Collection Access',
-                description: 'VIP access to the new collection thanks to Basedly! This piece is absolutely stunning. #exclusive #vip #newcollection',
-                category: 'luxury',
-                tags: ['exclusive', 'vip', 'newcollection', 'luxury'],
-                likes: 567,
-                saves: 445,
-                comments: 123,
+                title: 'Clean Girl Aesthetic',
+                description: 'The clean girl aesthetic is still going strong! This look is giving major Hailey Bieber vibes. #cleangirl #haileybieber #minimalist #trending',
+                category: 'aesthetic',
+                tags: ['cleangirl', 'haileybieber', 'minimalist', 'trending', 'aesthetic'],
+                likes: 2567,
+                saves: 2234,
+                comments: 423,
                 timestamp: new Date(Date.now() - 12 * 60 * 60 * 1000),
-                price: '$3,500',
-                location: 'Paris, France'
+                price: '$350',
+                location: 'Beverly Hills'
             },
             {
                 id: 6,
                 userId: 'fashionista6',
-                username: 'MinimalistMaven',
+                username: 'Y2KRevival',
                 imageUrl: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=400&h=600&fit=crop',
-                title: 'Minimalist Chic',
-                description: 'Less is more! This minimalist outfit is perfect for everyday elegance. #minimalist #chic #everyday',
-                category: 'minimalist',
-                tags: ['minimalist', 'chic', 'everyday', 'elegance'],
-                likes: 189,
-                saves: 234,
-                comments: 56,
+                title: 'Y2K Comeback',
+                description: 'The Y2K revival is real! This outfit is giving major Paris Hilton energy. #y2k #parishilton #2000s #nostalgia',
+                category: 'retro',
+                tags: ['y2k', 'parishilton', '2000s', 'nostalgia', 'retro'],
+                likes: 1890,
+                saves: 1678,
+                comments: 356,
                 timestamp: new Date(Date.now() - 16 * 60 * 60 * 1000),
-                price: '$320',
-                location: 'Downtown LA'
+                price: '$220',
+                location: 'Hollywood'
             }
         ];
     }
@@ -170,7 +171,7 @@ class FashionNooksComponent extends BaseComponent {
                 <!-- Header -->
                 <div class="fashion-nooks-header">
                     <h1>🛍️ Fashion Nooks</h1>
-                    <p>Discover and share your fashion inspiration, like Pinterest but for style</p>
+                    <p>Discover and share the latest fashion trends, viral moments, and pop culture style</p>
                 </div>
 
                 <!-- View Toggle -->
@@ -193,25 +194,25 @@ class FashionNooksComponent extends BaseComponent {
                 <!-- Category Filters -->
                 <div class="category-filters">
                     <button class="category-filter-btn lux-button-secondary active" data-category="all">
-                        🌟 All Styles
+                        🌟 All Trends
                     </button>
-                    <button class="category-filter-btn lux-button-secondary" data-category="accessories">
-                        👜 Accessories
+                    <button class="category-filter-btn lux-button-secondary" data-category="trending">
+                        🔥 Trending
                     </button>
-                    <button class="category-filter-btn lux-button-secondary" data-category="footwear">
-                        👟 Footwear
+                    <button class="category-filter-btn lux-button-secondary" data-category="aesthetic">
+                        ✨ Aesthetic
                     </button>
-                    <button class="category-filter-btn lux-button-secondary" data-category="dresses">
-                        👗 Dresses
+                    <button class="category-filter-btn lux-button-secondary" data-category="concert">
+                        🎵 Concert
                     </button>
-                    <button class="category-filter-btn lux-button-secondary" data-category="outfits">
-                        👔 Outfits
+                    <button class="category-filter-btn lux-button-secondary" data-category="retro">
+                        📼 Retro
                     </button>
-                    <button class="category-filter-btn lux-button-secondary" data-category="luxury">
-                        💎 Luxury
+                    <button class="category-filter-btn lux-button-secondary" data-category="viral">
+                        📱 Viral
                     </button>
-                    <button class="category-filter-btn lux-button-secondary" data-category="minimalist">
-                        ✨ Minimalist
+                    <button class="category-filter-btn lux-button-secondary" data-category="celebrity">
+                        👑 Celebrity
                     </button>
                 </div>
 
