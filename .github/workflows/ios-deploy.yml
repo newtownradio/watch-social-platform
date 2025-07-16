@@ -26,6 +26,8 @@ jobs:
         xcodebuild -list
         echo "=== Project Structure ==="
         ls -la
+        echo "=== Web Resources ==="
+        ls -la BasedlyAI/web/
         
     - name: Create export options
       run: |
