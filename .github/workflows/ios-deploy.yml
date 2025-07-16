@@ -17,13 +17,13 @@ jobs:
     - name: Set up Xcode
       uses: maxim-lobanov/setup-xcode@v1
       with:
-        xcode-version: '15.4'
+        xcode-version: '16.2'
         
     - name: Force Xcode version
       run: |
-        sudo xcode-select --switch /Applications/Xcode_15.4.app
+        sudo xcode-select --switch /Applications/Xcode_16.2.app
         sudo xcode-select --install || true
-        export DEVELOPER_DIR=/Applications/Xcode_15.4.app/Contents/Developer
+        export DEVELOPER_DIR=/Applications/Xcode_16.2.app/Contents/Developer
         xcodebuild -version
         
     - name: Debug Xcode version
@@ -54,6 +54,15 @@ jobs:
         sed -i '' 's/18\.5/18.2/g' BasedlyAI.xcodeproj/project.pbxproj
         echo "=== Updated project.pbxproj deployment targets ==="
         grep -n "IPHONEOS_DEPLOYMENT_TARGET" BasedlyAI.xcodeproj/project.pbxproj
+        
+    - name: Convert project format if needed
+      run: |
+        cd BasedlyAI
+        # Try to convert project format to be compatible
+        xcodebuild -project BasedlyAI.xcodeproj -resolvePackageDependencies || true
+        # Check project format version
+        echo "=== Project Format Version ==="
+        grep -A 5 -B 5 "objectVersion" BasedlyAI.xcodeproj/project.pbxproj || echo "No objectVersion found"
         
     - name: Verify deployment target and Xcode version
       run: |
