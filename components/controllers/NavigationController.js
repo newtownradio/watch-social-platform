@@ -83,9 +83,7 @@ class NavigationController {
             'discovery',
             'buysell',
             'messages',
-            'account',
-            'social',
-            'member'
+            'account'
         ];
         return validPages.includes(pageName);
     }
@@ -151,12 +149,6 @@ class NavigationController {
             case 'account':
                 this.navigateToAccount(options);
                 break;
-            case 'social':
-                this.navigateToSocial(options);
-                break;
-            case 'member':
-                this.navigateToMember(options);
-                break;
             default:
                 console.log(`No specific handler for page: ${pageName}`);
         }
@@ -165,64 +157,32 @@ class NavigationController {
     navigateToDiscovery(options = {}) {
         console.log('🔍 Navigating to Discovery page...');
         
-        // Check if we should load the page directly or use SPA navigation
-        if (options.loadDirect) {
-            window.location.href = 'discovery.html';
-        } else {
-            // For SPA navigation, we would load content dynamically
-            this.loadPageContent('discovery', options);
-        }
+        // Use direct navigation by default for Mario-themed pages
+        window.location.href = 'discovery.html';
     }
 
     navigateToBuySell(options = {}) {
         console.log('💰 Navigating to Buy/Sell page...');
         
-        if (options.loadDirect) {
-            window.location.href = 'buysell.html';
-        } else {
-            this.loadPageContent('buysell', options);
-        }
+        // Use direct navigation by default for Mario-themed pages
+        window.location.href = 'buysell.html';
     }
 
     navigateToMessages(options = {}) {
         console.log('💬 Navigating to Messages page...');
         
-        if (options.loadDirect) {
-            window.location.href = 'messages.html';
-        } else {
-            this.loadPageContent('messages', options);
-        }
+        // Use direct navigation by default for Mario-themed pages
+        window.location.href = 'messages.html';
     }
 
     navigateToAccount(options = {}) {
         console.log('👤 Navigating to Account page...');
         
-        if (options.loadDirect) {
-            window.location.href = 'account.html';
-        } else {
-            this.loadPageContent('account', options);
-        }
+        // Use direct navigation by default for Mario-themed pages
+        window.location.href = 'account.html';
     }
 
-    navigateToSocial(options = {}) {
-        console.log('🌐 Navigating to Social page...');
-        
-        if (options.loadDirect) {
-            window.location.href = 'social.html';
-        } else {
-            this.loadPageContent('social', options);
-        }
-    }
 
-    navigateToMember(options = {}) {
-        console.log('👥 Navigating to Member page...');
-        
-        if (options.loadDirect) {
-            window.location.href = 'member.html';
-        } else {
-            this.loadPageContent('member', options);
-        }
-    }
 
     loadPageContent(pageName, options = {}) {
         // For SPA navigation, this would load content dynamically

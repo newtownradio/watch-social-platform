@@ -1,0 +1,546 @@
+/* Comprehensive Responsive Design for Watch - Mario Theme */
+/* Covers iPhone, iPad, Desktop, Vision Pro, and all screen sizes */
+
+/* Base Mario Theme Variables */
+:root {
+    --mario-red: #E74C3C;
+    --mario-blue: #3498DB;
+    --mario-green: #27AE60;
+    --mario-yellow: #F1C40F;
+    --mario-brown: #8B4513;
+    --mario-sky: #87CEEB;
+    --mario-white: #FFFFFF;
+    --mario-cloud: #ECF0F1;
+    --mario-purple: #8E44AD;
+    --mario-orange: #FF4500;
+    --mario-gold: #FFD700;
+}
+
+/* Universal Responsive Utilities */
+.responsive-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.responsive-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.responsive-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Typography Scale */
+.responsive-text-xs { font-size: clamp(0.7rem, 2vw, 0.8rem); }
+.responsive-text-sm { font-size: clamp(0.8rem, 2.5vw, 1rem); }
+.responsive-text-base { font-size: clamp(1rem, 3vw, 1.2rem); }
+.responsive-text-lg { font-size: clamp(1.2rem, 3.5vw, 1.5rem); }
+.responsive-text-xl { font-size: clamp(1.5rem, 4vw, 2rem); }
+.responsive-text-2xl { font-size: clamp(2rem, 5vw, 2.5rem); }
+.responsive-text-3xl { font-size: clamp(2.5rem, 6vw, 3rem); }
+.responsive-text-4xl { font-size: clamp(3rem, 7vw, 4rem); }
+.responsive-text-5xl { font-size: clamp(4rem, 8vw, 5rem); }
+
+/* Button Responsive Sizing */
+.responsive-btn {
+    padding: clamp(12px, 3vw, 18px) clamp(20px, 4vw, 30px);
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
+    border-radius: 8px;
+    border: 3px solid #000;
+    box-shadow: 3px 3px 0px #000;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    min-width: fit-content;
+}
+
+.responsive-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 5px 5px 0px #000;
+}
+
+.responsive-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 2px 2px 0px #000;
+}
+
+/* iPhone SE, iPhone 6/7/8, iPhone X/XS/11 Pro */
+@media screen and (max-width: 375px) {
+    .responsive-container {
+        padding: 0 10px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .responsive-flex {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .responsive-btn {
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
+        padding: 14px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .nav-content {
+        padding: 12px 15px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-link {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    
+    .watch-logo {
+        font-size: 14px;
+    }
+}
+
+/* iPhone 6/7/8 Plus, iPhone XR/11, iPhone 12/13/14 */
+@media screen and (min-width: 376px) and (max-width: 428px) {
+    .responsive-container {
+        padding: 0 15px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .responsive-flex {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .responsive-btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+        padding: 16px 24px;
+        font-size: 1rem;
+    }
+    
+    .nav-content {
+        padding: 14px 20px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .nav-link {
+        font-size: 13px;
+        padding: 7px 14px;
+    }
+}
+
+/* iPhone 12/13/14 Pro Max, iPhone 15 Plus */
+@media screen and (min-width: 429px) and (max-width: 480px) {
+    .responsive-container {
+        padding: 0 20px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .responsive-flex {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .responsive-btn {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        padding: 18px 28px;
+        font-size: 1.1rem;
+    }
+}
+
+/* iPad Mini, Small Tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .responsive-container {
+        padding: 0 30px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .responsive-flex {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .responsive-btn {
+        min-width: 140px;
+        padding: 18px 24px;
+        font-size: 1rem;
+    }
+    
+    .nav-content {
+        padding: 16px 30px;
+    }
+    
+    .nav-links {
+        gap: 25px;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+
+/* iPad, iPad Air, iPad Pro 11" */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .responsive-container {
+        padding: 0 50px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr 250px;
+        gap: 30px;
+    }
+    
+    .responsive-flex {
+        gap: 20px;
+    }
+    
+    .responsive-btn {
+        min-width: 160px;
+        padding: 20px 30px;
+        font-size: 1.1rem;
+    }
+    
+    .nav-content {
+        padding: 18px 40px;
+    }
+    
+    .nav-links {
+        gap: 30px;
+    }
+    
+    .nav-link {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+}
+
+/* iPad Pro 12.9", Small Laptops */
+@media screen and (min-width: 1025px) and (max-width: 1366px) {
+    .responsive-container {
+        padding: 0 80px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr 300px;
+        gap: 40px;
+    }
+    
+    .responsive-flex {
+        gap: 25px;
+    }
+    
+    .responsive-btn {
+        min-width: 180px;
+        padding: 22px 35px;
+        font-size: 1.2rem;
+    }
+    
+    .nav-content {
+        padding: 20px 60px;
+    }
+    
+    .nav-links {
+        gap: 35px;
+    }
+    
+    .nav-link {
+        font-size: 15px;
+        padding: 12px 20px;
+    }
+}
+
+/* Desktop, Large Laptops */
+@media screen and (min-width: 1367px) and (max-width: 1920px) {
+    .responsive-container {
+        padding: 0 120px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr 350px;
+        gap: 50px;
+    }
+    
+    .responsive-flex {
+        gap: 30px;
+    }
+    
+    .responsive-btn {
+        min-width: 200px;
+        padding: 25px 40px;
+        font-size: 1.3rem;
+    }
+    
+    .nav-content {
+        padding: 24px 80px;
+    }
+    
+    .nav-links {
+        gap: 40px;
+    }
+    
+    .nav-link {
+        font-size: 16px;
+        padding: 14px 24px;
+    }
+}
+
+/* 4K, Ultra-wide, Large Displays */
+@media screen and (min-width: 1921px) {
+    .responsive-container {
+        padding: 0 160px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr 400px;
+        gap: 60px;
+    }
+    
+    .responsive-flex {
+        gap: 35px;
+    }
+    
+    .responsive-btn {
+        min-width: 220px;
+        padding: 28px 45px;
+        font-size: 1.4rem;
+    }
+    
+    .nav-content {
+        padding: 28px 120px;
+    }
+    
+    .nav-links {
+        gap: 45px;
+    }
+    
+    .nav-link {
+        font-size: 18px;
+        padding: 16px 28px;
+    }
+}
+
+/* Vision Pro and AR/VR Devices */
+@media screen and (min-width: 2000px) and (min-height: 2000px) {
+    .responsive-container {
+        padding: 0 200px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr 500px;
+        gap: 80px;
+    }
+    
+    .responsive-flex {
+        gap: 45px;
+    }
+    
+    .responsive-btn {
+        min-width: 250px;
+        padding: 32px 50px;
+        font-size: 1.6rem;
+        border-width: 4px;
+        box-shadow: 4px 4px 0px #000;
+    }
+    
+    .responsive-btn:hover {
+        transform: translateY(-4px);
+        box-shadow: 6px 6px 0px #000;
+    }
+    
+    .nav-content {
+        padding: 32px 160px;
+    }
+    
+    .nav-links {
+        gap: 50px;
+    }
+    
+    .nav-link {
+        font-size: 20px;
+        padding: 18px 32px;
+    }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+    .responsive-container {
+        padding: 0 20px;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .responsive-flex {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .responsive-btn {
+        min-width: 120px;
+        padding: 12px 18px;
+        font-size: 0.9rem;
+    }
+    
+    .nav-content {
+        padding: 8px 20px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-link {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .responsive-btn:hover { 
+        transform: none; 
+    }
+    .responsive-btn:active {
+        transform: translateY(-2px);
+        box-shadow: 3px 3px 0px #000;
+    }
+    .responsive-btn {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    
+    .nav-link:hover {
+        transform: none;
+    }
+    .nav-link:active {
+        transform: scale(0.95);
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .responsive-btn {
+        border-width: 2px;
+    }
+    .nav-link {
+        border-width: 1px;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .responsive-btn,
+    .nav-link,
+    .watch-logo-container {
+        transition: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --mario-sky: #2C3E50;
+        --mario-cloud: #34495E;
+        --mario-brown: #ECF0F1;
+    }
+    
+    body {
+        background: linear-gradient(135deg, var(--mario-sky) 0%, var(--mario-cloud) 100%);
+        color: var(--mario-brown);
+    }
+    
+    .nav-container {
+        background: var(--mario-purple);
+        border-bottom-color: var(--mario-orange);
+    }
+    
+    .main-content {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--mario-orange);
+        color: var(--mario-brown);
+    }
+}
+
+/* Print styles */
+@media print {
+    .nav-container,
+    .responsive-btn,
+    .post-actions {
+        display: none !important;
+    }
+    
+    .responsive-container {
+        padding: 0;
+        max-width: none;
+    }
+    
+    .responsive-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* Focus styles for accessibility */
+.responsive-btn:focus,
+.nav-link:focus {
+    outline: 3px solid var(--mario-yellow);
+    outline-offset: 2px;
+}
+
+/* Loading states */
+.responsive-btn.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.responsive-btn.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    margin: auto;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} 

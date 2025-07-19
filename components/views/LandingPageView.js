@@ -179,49 +179,393 @@ class LandingPageView {
                 font-family: Arial, sans-serif;
             }
 
-            /* Mobile First Responsive Design */
-            @media screen and (max-width: 480px) {
-                .hero { padding: 60px 15px; }
+            /* Comprehensive Responsive Design for All Devices */
+            
+            /* iPhone SE, iPhone 6/7/8, iPhone X/XS/11 Pro */
+            @media screen and (max-width: 375px) {
+                .hero { 
+                    padding: 40px 10px; 
+                    min-height: 100vh;
+                }
+                .hero h1 { 
+                    font-size: clamp(1.8rem, 8vw, 2.2rem); 
+                    margin-bottom: 20px;
+                }
+                .hero p { 
+                    font-size: clamp(0.9rem, 3vw, 1rem); 
+                    margin-bottom: 30px;
+                }
+                .mario-character { 
+                    font-size: clamp(2.5rem, 10vw, 3rem); 
+                    margin: 15px 0;
+                }
+                .cta-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 12px;
+                    margin-top: 30px;
+                }
+                .cta-button {
+                    width: 100%;
+                    max-width: 260px;
+                    text-align: center;
+                    padding: 14px 20px;
+                    font-size: 0.9rem;
+                }
+                .mario-elements {
+                    font-size: clamp(1.2rem, 4vw, 1.5rem);
+                    bottom: 15px;
+                }
+                .footer {
+                    font-size: 0.6rem;
+                    bottom: 5px;
+                }
+            }
+
+            /* iPhone 6/7/8 Plus, iPhone XR/11, iPhone 12/13/14 */
+            @media screen and (min-width: 376px) and (max-width: 428px) {
+                .hero { 
+                    padding: 50px 15px; 
+                    min-height: 100vh;
+                }
+                .hero h1 { 
+                    font-size: clamp(2rem, 8vw, 2.5rem); 
+                    margin-bottom: 25px;
+                }
+                .hero p { 
+                    font-size: clamp(1rem, 3vw, 1.1rem); 
+                    margin-bottom: 35px;
+                }
+                .mario-character { 
+                    font-size: clamp(3rem, 10vw, 3.5rem); 
+                    margin: 20px 0;
+                }
                 .cta-buttons {
                     flex-direction: column;
                     align-items: center;
                     gap: 15px;
+                    margin-top: 35px;
                 }
                 .cta-button {
                     width: 100%;
                     max-width: 280px;
                     text-align: center;
+                    padding: 16px 24px;
+                    font-size: 1rem;
+                }
+                .mario-elements {
+                    font-size: clamp(1.5rem, 4vw, 1.8rem);
+                    bottom: 20px;
                 }
             }
 
-            @media screen and (max-width: 768px) {
-                .hero { padding: 80px 20px; }
-                .cta-buttons { gap: 15px; }
+            /* iPhone 12/13/14 Pro Max, iPhone 15 Plus */
+            @media screen and (min-width: 429px) and (max-width: 480px) {
+                .hero { 
+                    padding: 60px 20px; 
+                    min-height: 100vh;
+                }
+                .hero h1 { 
+                    font-size: clamp(2.2rem, 8vw, 2.8rem); 
+                    margin-bottom: 30px;
+                }
+                .hero p { 
+                    font-size: clamp(1.1rem, 3vw, 1.2rem); 
+                    margin-bottom: 40px;
+                }
+                .mario-character { 
+                    font-size: clamp(3.5rem, 10vw, 4rem); 
+                    margin: 25px 0;
+                }
+                .cta-buttons {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 18px;
+                    margin-top: 40px;
+                }
+                .cta-button {
+                    width: 100%;
+                    max-width: 300px;
+                    text-align: center;
+                    padding: 18px 28px;
+                    font-size: 1.1rem;
+                }
             }
 
+            /* iPad Mini, Small Tablets */
+            @media screen and (min-width: 481px) and (max-width: 768px) {
+                .hero { 
+                    padding: 80px 30px; 
+                    min-height: 100vh;
+                }
+                .hero h1 { 
+                    font-size: clamp(2.5rem, 8vw, 3.2rem); 
+                    margin-bottom: 35px;
+                }
+                .hero p { 
+                    font-size: clamp(1.2rem, 3vw, 1.4rem); 
+                    margin-bottom: 45px;
+                }
+                .mario-character { 
+                    font-size: clamp(4rem, 10vw, 4.5rem); 
+                    margin: 30px 0;
+                }
+                .cta-buttons {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 20px;
+                    margin-top: 45px;
+                }
+                .cta-button {
+                    min-width: 140px;
+                    padding: 18px 24px;
+                    font-size: 1rem;
+                }
+            }
+
+            /* iPad, iPad Air, iPad Pro 11" */
             @media screen and (min-width: 769px) and (max-width: 1024px) {
-                .hero { padding: 120px 40px; }
-                .cta-buttons { gap: 25px; }
+                .hero { 
+                    padding: 120px 50px; 
+                    min-height: 100vh;
+                }
+                .hero h1 { 
+                    font-size: clamp(3rem, 8vw, 3.8rem); 
+                    margin-bottom: 40px;
+                }
+                .hero p { 
+                    font-size: clamp(1.4rem, 3vw, 1.6rem); 
+                    margin-bottom: 50px;
+                }
+                .mario-character { 
+                    font-size: clamp(4.5rem, 10vw, 5rem); 
+                    margin: 35px 0;
+                }
+                .cta-buttons {
+                    gap: 25px;
+                    margin-top: 50px;
+                }
+                .cta-button {
+                    min-width: 160px;
+                    padding: 20px 30px;
+                    font-size: 1.1rem;
+                }
             }
 
-            @media screen and (min-width: 1025px) {
-                .hero { padding: 150px 60px; }
-                .cta-buttons { gap: 30px; }
+            /* iPad Pro 12.9", Small Laptops */
+            @media screen and (min-width: 1025px) and (max-width: 1366px) {
+                .hero { 
+                    padding: 150px 80px; 
+                    min-height: 100vh;
+                }
+                .hero h1 { 
+                    font-size: clamp(3.5rem, 8vw, 4.2rem); 
+                    margin-bottom: 45px;
+                }
+                .hero p { 
+                    font-size: clamp(1.6rem, 3vw, 1.8rem); 
+                    margin-bottom: 55px;
+                }
+                .mario-character { 
+                    font-size: clamp(5rem, 10vw, 5.5rem); 
+                    margin: 40px 0;
+                }
+                .cta-buttons {
+                    gap: 30px;
+                    margin-top: 55px;
+                }
+                .cta-button {
+                    min-width: 180px;
+                    padding: 22px 35px;
+                    font-size: 1.2rem;
+                }
             }
 
-            /* Landscape orientation adjustments */
+            /* Desktop, Large Laptops */
+            @media screen and (min-width: 1367px) and (max-width: 1920px) {
+                .hero { 
+                    padding: 180px 120px; 
+                    min-height: 100vh;
+                }
+                .hero h1 { 
+                    font-size: clamp(4rem, 8vw, 4.8rem); 
+                    margin-bottom: 50px;
+                }
+                .hero p { 
+                    font-size: clamp(1.8rem, 3vw, 2rem); 
+                    margin-bottom: 60px;
+                }
+                .mario-character { 
+                    font-size: clamp(5.5rem, 10vw, 6rem); 
+                    margin: 45px 0;
+                }
+                .cta-buttons {
+                    gap: 35px;
+                    margin-top: 60px;
+                }
+                .cta-button {
+                    min-width: 200px;
+                    padding: 25px 40px;
+                    font-size: 1.3rem;
+                }
+            }
+
+            /* 4K, Ultra-wide, Large Displays */
+            @media screen and (min-width: 1921px) {
+                .hero { 
+                    padding: 220px 160px; 
+                    min-height: 100vh;
+                }
+                .hero h1 { 
+                    font-size: clamp(4.5rem, 8vw, 5.5rem); 
+                    margin-bottom: 60px;
+                }
+                .hero p { 
+                    font-size: clamp(2rem, 3vw, 2.4rem); 
+                    margin-bottom: 70px;
+                }
+                .mario-character { 
+                    font-size: clamp(6rem, 10vw, 7rem); 
+                    margin: 50px 0;
+                }
+                .cta-buttons {
+                    gap: 40px;
+                    margin-top: 70px;
+                }
+                .cta-button {
+                    min-width: 220px;
+                    padding: 28px 45px;
+                    font-size: 1.4rem;
+                }
+            }
+
+            /* Vision Pro and AR/VR Devices */
+            @media screen and (min-width: 2000px) and (min-height: 2000px) {
+                .hero { 
+                    padding: 300px 200px; 
+                    min-height: 100vh;
+                }
+                .hero h1 { 
+                    font-size: clamp(5rem, 8vw, 6rem); 
+                    margin-bottom: 70px;
+                }
+                .hero p { 
+                    font-size: clamp(2.2rem, 3vw, 2.6rem); 
+                    margin-bottom: 80px;
+                }
+                .mario-character { 
+                    font-size: clamp(7rem, 10vw, 8rem); 
+                    margin: 60px 0;
+                }
+                .cta-buttons {
+                    gap: 45px;
+                    margin-top: 80px;
+                }
+                .cta-button {
+                    min-width: 250px;
+                    padding: 32px 50px;
+                    font-size: 1.6rem;
+                    border-width: 4px;
+                    box-shadow: 4px 4px 0px #000;
+                }
+                .cta-button:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 6px 6px 0px #000;
+                }
+            }
+
+            /* Landscape orientation adjustments for mobile */
             @media screen and (orientation: landscape) and (max-height: 500px) {
-                .hero { padding: 40px 20px; }
-                .mario-character { font-size: clamp(2rem, 6vw, 3rem); }
-                .hero h1 { font-size: clamp(1.5rem, 6vw, 2.5rem); }
+                .hero { 
+                    padding: 30px 20px; 
+                    min-height: 100vh;
+                }
+                .mario-character { 
+                    font-size: clamp(2rem, 6vw, 2.5rem); 
+                    margin: 10px 0;
+                }
+                .hero h1 { 
+                    font-size: clamp(1.5rem, 6vw, 2rem); 
+                    margin-bottom: 15px;
+                }
+                .hero p { 
+                    font-size: clamp(0.9rem, 3vw, 1rem); 
+                    margin-bottom: 20px;
+                }
+                .cta-buttons {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    gap: 10px;
+                    margin-top: 20px;
+                }
+                .cta-button {
+                    min-width: 120px;
+                    padding: 12px 18px;
+                    font-size: 0.9rem;
+                }
+                .mario-elements {
+                    font-size: clamp(1rem, 3vw, 1.2rem);
+                    bottom: 10px;
+                }
+                .footer {
+                    font-size: 0.6rem;
+                    bottom: 5px;
+                }
             }
 
             /* Touch device optimizations */
             @media (hover: none) and (pointer: coarse) {
-                .cta-button:hover { transform: none; }
+                .cta-button:hover { 
+                    transform: none; 
+                }
                 .cta-button:active {
                     transform: translateY(-2px);
                     box-shadow: 3px 3px 0px #000;
+                }
+                .cta-button {
+                    -webkit-tap-highlight-color: transparent;
+                    touch-action: manipulation;
+                }
+            }
+
+            /* High DPI displays */
+            @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+                .cta-button {
+                    border-width: 2px;
+                }
+                .hero h1 {
+                    text-shadow: 2px 2px 0px #FFD700, 4px 4px 0px #FF6347;
+                }
+            }
+
+            /* Reduced motion preferences */
+            @media (prefers-reduced-motion: reduce) {
+                .mario-character,
+                .hero h1,
+                .clouds,
+                .mario-elements {
+                    animation: none;
+                }
+                .cta-button {
+                    transition: none;
+                }
+            }
+
+            /* Dark mode support */
+            @media (prefers-color-scheme: dark) {
+                .mario-world {
+                    background: 
+                        radial-gradient(circle at 20% 80%, #FFD700 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, #FF69B4 0%, transparent 50%),
+                        linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #8E44AD 100%);
+                }
+                .hero p {
+                    color: #ECF0F1;
+                    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+                }
+                .footer {
+                    color: #ECF0F1;
                 }
             }
         `;
@@ -327,22 +671,72 @@ class LandingPageView {
 
     getBreakpoint() {
         const width = window.innerWidth;
-        if (width <= 480) return 'mobile';
-        if (width <= 768) return 'tablet';
-        return 'desktop';
+        const height = window.innerHeight;
+        
+        // Vision Pro and AR/VR Devices
+        if (width >= 2000 && height >= 2000) return 'vision-pro';
+        
+        // 4K and Ultra-wide displays
+        if (width >= 1921) return '4k';
+        
+        // Desktop and Large Laptops
+        if (width >= 1367) return 'desktop';
+        
+        // iPad Pro 12.9" and Small Laptops
+        if (width >= 1025) return 'ipad-pro';
+        
+        // iPad, iPad Air, iPad Pro 11"
+        if (width >= 769) return 'ipad';
+        
+        // iPad Mini and Small Tablets
+        if (width >= 481) return 'tablet';
+        
+        // iPhone 12/13/14 Pro Max, iPhone 15 Plus
+        if (width >= 429) return 'iphone-plus';
+        
+        // iPhone 6/7/8 Plus, iPhone XR/11, iPhone 12/13/14
+        if (width >= 376) return 'iphone';
+        
+        // iPhone SE, iPhone 6/7/8, iPhone X/XS/11 Pro
+        return 'iphone-se';
     }
 
     updateResponsiveLayout() {
         // Update layout based on breakpoint
         if (this.elements.hero) {
             const hero = this.elements.hero;
+            const breakpoint = this.currentBreakpoint;
             
-            if (this.currentBreakpoint === 'mobile') {
-                hero.style.padding = '60px 15px';
-            } else if (this.currentBreakpoint === 'tablet') {
-                hero.style.padding = '80px 20px';
-            } else {
-                hero.style.padding = '150px 60px';
+            switch (breakpoint) {
+                case 'iphone-se':
+                    hero.style.padding = '40px 10px';
+                    break;
+                case 'iphone':
+                    hero.style.padding = '50px 15px';
+                    break;
+                case 'iphone-plus':
+                    hero.style.padding = '60px 20px';
+                    break;
+                case 'tablet':
+                    hero.style.padding = '80px 30px';
+                    break;
+                case 'ipad':
+                    hero.style.padding = '120px 50px';
+                    break;
+                case 'ipad-pro':
+                    hero.style.padding = '150px 80px';
+                    break;
+                case 'desktop':
+                    hero.style.padding = '180px 120px';
+                    break;
+                case '4k':
+                    hero.style.padding = '220px 160px';
+                    break;
+                case 'vision-pro':
+                    hero.style.padding = '300px 200px';
+                    break;
+                default:
+                    hero.style.padding = '150px 60px';
             }
         }
     }

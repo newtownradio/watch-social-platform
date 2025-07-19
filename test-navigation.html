@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test - Watch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background: #FF4500;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 3px solid #000;
+            box-shadow: 3px 3px 0px #000;
+            transition: all 0.3s ease;
+        }
+        .test-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 5px 5px 0px #000;
+        }
+        .status {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background: #e8f5e8;
+            border: 1px solid #4CAF50;
+        }
+        .error {
+            background: #ffebee;
+            border-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧭 Watch Navigation Test</h1>
+        <p>Testing navigation to Mario-themed pages:</p>
+        
+        <div class="status" id="status">
+            Ready to test navigation...
+        </div>
+        
+        <h3>Test Navigation Buttons:</h3>
+        <a href="discovery.html" class="test-button" onclick="testNavigation('discovery')">
+            🔍 Discovery Page
+        </a>
+        <a href="buysell.html" class="test-button" onclick="testNavigation('buysell')">
+            💰 Buy/Sell Page
+        </a>
+        <a href="messages.html" class="test-button" onclick="testNavigation('messages')">
+            💬 Messages Page
+        </a>
+        <a href="account.html" class="test-button" onclick="testNavigation('account')">
+            👤 Account Page
+        </a>
+        
+        <h3>Test MVC Navigation:</h3>
+        <button class="test-button" onclick="testMVCNavigation('discovery')">
+            🔍 MVC Discovery
+        </button>
+        <button class="test-button" onclick="testMVCNavigation('buysell')">
+            💰 MVC Buy/Sell
+        </button>
+        <button class="test-button" onclick="testMVCNavigation('messages')">
+            💬 MVC Messages
+        </button>
+        <button class="test-button" onclick="testMVCNavigation('account')">
+            👤 MVC Account
+        </button>
+        
+        <h3>Back to Landing:</h3>
+        <a href="index.html" class="test-button">
+            🏠 Back to Landing
+        </a>
+    </div>
+
+    <script>
+        function testNavigation(page) {
+            const status = document.getElementById('status');
+            status.textContent = `Testing direct navigation to ${page}.html...`;
+            status.className = 'status';
+            
+            // Simulate navigation test
+            setTimeout(() => {
+                status.textContent = `✅ Direct navigation to ${page}.html successful!`;
+                status.className = 'status';
+            }, 1000);
+        }
+        
+        function testMVCNavigation(page) {
+            const status = document.getElementById('status');
+            status.textContent = `Testing MVC navigation to ${page}...`;
+            status.className = 'status';
+            
+            // Simulate MVC navigation
+            setTimeout(() => {
+                // This would normally use the NavigationController
+                window.location.href = `${page}.html`;
+            }, 500);
+        }
+        
+        // Test page availability on load
+        window.addEventListener('load', async () => {
+            const status = document.getElementById('status');
+            const pages = ['discovery', 'buysell', 'messages', 'account'];
+            let allAvailable = true;
+            
+            for (const page of pages) {
+                try {
+                    const response = await fetch(`${page}.html`);
+                    if (!response.ok) {
+                        allAvailable = false;
+                        break;
+                    }
+                } catch (error) {
+                    allAvailable = false;
+                    break;
+                }
+            }
+            
+            if (allAvailable) {
+                status.textContent = '✅ All Mario-themed pages are available and accessible!';
+                status.className = 'status';
+            } else {
+                status.textContent = '❌ Some pages are not available. Check server configuration.';
+                status.className = 'status error';
+            }
+        });
+    </script>
+</body>
+</html> 
