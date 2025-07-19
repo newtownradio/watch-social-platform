@@ -103,7 +103,7 @@ class MarioLandingApp {
                 align-items: center;
             ">
                 <h1 style="color: #FF4500; margin-bottom: 20px;">🎮 Watch</h1>
-                <p style="color: #2C3E50; margin-bottom: 30px;">Level Up Socially!</p>
+    
                 <div style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
                     <a href="discovery.html" style="
                         padding: 12px 20px;

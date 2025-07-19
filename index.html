@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch - Level Up Socially!</title>
+    <title>Watch</title>
     <meta name="description" content="Watch - The ultimate social platform to level up your social game with Mario-themed fun!">
     <meta name="keywords" content="Watch, social platform, gaming, Mario theme, level up">
     <meta name="author" content="Watch Team">
@@ -79,12 +79,6 @@
         .loading-character {
             font-size: 4rem;
             margin-bottom: 20px;
-            animation: loadingJump 1s ease-in-out infinite;
-        }
-        
-        @keyframes loadingJump {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
         }
         
         .loading-text {
@@ -124,6 +118,21 @@
         .moving-nav, .floating-nav, .sticky-nav {
             display: none !important;
         }
+        
+        /* Hide any floating animation elements */
+        [style*="position: fixed"], [style*="position:fixed"] {
+            display: none !important;
+        }
+        
+        /* Hide any elements with high z-index that might be floating */
+        [style*="z-index: 1000"], [style*="z-index: 2000"], [style*="z-index: 10000"] {
+            display: none !important;
+        }
+        
+        /* Hide any animation components */
+        .weather-animation, .rainbow-clouds, .floating-elements {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -139,6 +148,95 @@
     <!-- Main App Container -->
     <div id="app-container">
         <!-- MVC components will render here -->
+    </div>
+    
+    <!-- Fallback content if MVC fails to load -->
+    <div id="fallback-content" style="display: none; text-align: center; padding: 50px 20px; font-family: 'Press Start 2P', cursive;">
+        <div style="font-size: 4rem; margin-bottom: 20px;">🎮</div>
+        <h1 style="color: #FF4500; margin-bottom: 20px; font-size: 2.5rem;">Watch</h1>
+
+        
+        <!-- Login Form -->
+        <div id="login-form" style="max-width: 300px; margin: 0 auto;">
+            <input type="text" id="name" placeholder="Name (for registration)" style="
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                border: 3px solid #000;
+                border-radius: 8px;
+                font-family: 'Press Start 2P', cursive;
+                font-size: 0.8rem;
+                background: white;
+                box-shadow: 3px 3px 0px #000;
+                display: none;
+            ">
+            <input type="email" id="email" placeholder="Email" style="
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 15px;
+                border: 3px solid #000;
+                border-radius: 8px;
+                font-family: 'Press Start 2P', cursive;
+                font-size: 0.8rem;
+                background: white;
+                box-shadow: 3px 3px 0px #000;
+            ">
+            <input type="password" id="password" placeholder="Password" style="
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 20px;
+                border: 3px solid #000;
+                border-radius: 8px;
+                font-family: 'Press Start 2P', cursive;
+                font-size: 0.8rem;
+                background: white;
+                box-shadow: 3px 3px 0px #000;
+            ">
+            <button id="login-btn" style="
+                width: 100%;
+                padding: 16px 32px;
+                background: linear-gradient(45deg, #FF4500, #FF6347);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                border: 4px solid #000;
+                box-shadow: 6px 6px 0px #000;
+                font-size: 1.2rem;
+                font-weight: bold;
+                text-shadow: 2px 2px 0px #000;
+                font-family: 'Press Start 2P', cursive;
+                cursor: pointer;
+
+            ">🎮 LOGIN</button>
+            <button id="register-btn" style="
+                width: 100%;
+                padding: 16px 32px;
+                background: linear-gradient(45deg, #3498DB, #2980B9);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                border: 4px solid #000;
+                box-shadow: 6px 6px 0px #000;
+                font-size: 1.2rem;
+                font-weight: bold;
+                text-shadow: 2px 2px 0px #000;
+                font-family: 'Press Start 2P', cursive;
+                cursor: pointer;
+                margin-top: 10px;
+                display: none;
+            ">🎮 REGISTER</button>
+        </div>
+        
+        <div style="margin-top: 30px; font-size: 1.5rem;">🍄 ⭐ 🎯 🏆</div>
+        <div style="margin-top: 20px; font-size: 0.8rem; color: #2C3E50;">© 2025 Watch</div>
+        
+        <!-- Error and Success Messages -->
+        <div id="fallback-error" style="display: none; color: #E74C3C; font-size: 0.7rem; text-align: center; margin-top: 10px; padding: 8px; background: rgba(231, 76, 60, 0.1); border-radius: 4px; border: 1px solid #E74C3C;"></div>
+        <div id="fallback-success" style="display: none; color: #27AE60; font-size: 0.7rem; text-align: center; margin-top: 10px; padding: 8px; background: rgba(39, 174, 96, 0.1); border-radius: 4px; border: 1px solid #27AE60;"></div>
+        <span id="fallback-reset" style="color: #3498DB; font-size: 0.6rem; text-decoration: underline; cursor: pointer; margin-top: 5px; display: block;">Forgot password? <a href="/reset-password.html" style="color: #3498DB;">Reset it here</a></span>
+        <div style="margin-top: 15px; font-size: 0.6rem; color: #7F8C8D; text-align: center;">
+            <a href="#" onclick="showRegisterForm()" style="color: #3498DB;">Create Account</a>
+        </div>
     </div>
 
     <!-- Scripts - Load in dependency order -->
@@ -201,10 +299,266 @@
         // Hide loading screen after a short delay
         setTimeout(() => {
             hideLoadingScreen();
-        }, 500);
+        }, 1000);
+        
+        // Force hide loading screen after 5 seconds as fallback
+        setTimeout(() => {
+            console.log('🔄 Force hiding loading screen...');
+            hideLoadingScreen();
+            
+            // Show fallback content if MVC didn't load
+            const appContainer = document.getElementById('app-container');
+            const fallbackContent = document.getElementById('fallback-content');
+            
+            if (appContainer && appContainer.children.length === 0) {
+                console.log('⚠️ MVC failed to load, showing fallback content');
+                if (fallbackContent) {
+                    fallbackContent.style.display = 'block';
+                    
+                    // Add login functionality to fallback
+                    const loginBtn = document.getElementById('login-btn');
+                    if (loginBtn) {
+                        loginBtn.addEventListener('click', handleFallbackLogin);
+                    }
+                    
+                    const resetLink = document.getElementById('fallback-reset');
+                    if (resetLink) {
+                        resetLink.addEventListener('click', handleResetPassword);
+                    }
+                    
+                    const registerBtn = document.getElementById('register-btn');
+                    if (registerBtn) {
+                        registerBtn.addEventListener('click', handleRegister);
+                    }
+                }
+            }
+        }, 5000);
+        
+        // Production login handler
+        // Registration handler
+        async function handleRegister() {
+            const name = document.getElementById('name')?.value;
+            const email = document.getElementById('email')?.value;
+            const password = document.getElementById('password')?.value;
+            const errorDiv = document.getElementById('fallback-error');
+            const successDiv = document.getElementById('fallback-success');
+            const registerBtn = document.getElementById('register-btn');
+            
+            // Hide previous messages
+            if (errorDiv) errorDiv.style.display = 'none';
+            if (successDiv) successDiv.style.display = 'none';
+            
+            // Validate inputs
+            if (!name || !email || !password) {
+                showFallbackError('Please fill in all fields');
+                return;
+            }
+            
+            if (!email.includes('@')) {
+                showFallbackError('Please enter a valid email address');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showFallbackError('Password must be at least 6 characters');
+                return;
+            }
+            
+            // Show loading state
+            if (registerBtn) {
+                registerBtn.textContent = '🔄 Creating account...';
+                registerBtn.disabled = true;
+            }
+            
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showFallbackSuccess('🎉 Account created! Please check your email to verify your account.');
+                    // Switch back to login mode
+                    setTimeout(() => {
+                        showLoginForm();
+                    }, 3000);
+                } else {
+                    showFallbackError('❌ ' + data.message);
+                }
+            } catch (error) {
+                showFallbackError('❌ Network error. Please try again.');
+            } finally {
+                // Reset button
+                if (registerBtn) {
+                    registerBtn.textContent = '🎮 REGISTER';
+                    registerBtn.disabled = false;
+                }
+            }
+        }
+
+        // Show registration form
+        function showRegisterForm() {
+            const nameInput = document.getElementById('name');
+            const loginBtn = document.getElementById('login-btn');
+            const registerBtn = document.getElementById('register-btn');
+            const createAccountLink = document.querySelector('a[onclick="showRegisterForm()"]');
+            
+            if (nameInput) nameInput.style.display = 'block';
+            if (loginBtn) loginBtn.style.display = 'none';
+            if (registerBtn) registerBtn.style.display = 'block';
+            if (createAccountLink) createAccountLink.textContent = 'Back to Login';
+            if (createAccountLink) createAccountLink.onclick = showLoginForm;
+        }
+
+        // Show login form
+        function showLoginForm() {
+            const nameInput = document.getElementById('name');
+            const loginBtn = document.getElementById('login-btn');
+            const registerBtn = document.getElementById('register-btn');
+            const createAccountLink = document.querySelector('a[onclick="showLoginForm()"]');
+            
+            if (nameInput) nameInput.style.display = 'none';
+            if (loginBtn) loginBtn.style.display = 'block';
+            if (registerBtn) registerBtn.style.display = 'none';
+            if (createAccountLink) createAccountLink.textContent = 'Create Account';
+            if (createAccountLink) createAccountLink.onclick = showRegisterForm;
+        }
+
+        async function handleFallbackLogin() {
+            console.log('🔐 Login button clicked!');
+            const email = document.getElementById('email')?.value;
+            const password = document.getElementById('password')?.value;
+            const errorDiv = document.getElementById('fallback-error');
+            const successDiv = document.getElementById('fallback-success');
+            const loginBtn = document.getElementById('login-btn');
+            
+            console.log('📧 Email:', email);
+            console.log('🔑 Password length:', password?.length);
+            
+            // Hide previous messages
+            if (errorDiv) errorDiv.style.display = 'none';
+            if (successDiv) successDiv.style.display = 'none';
+            
+            // Validate inputs
+            if (!email || !password) {
+                showFallbackError('Please enter both email and password');
+                return;
+            }
+            
+            if (!email.includes('@')) {
+                showFallbackError('Please enter a valid email address');
+                return;
+            }
+            
+            // Show loading state
+            if (loginBtn) {
+                loginBtn.textContent = '🔄 Logging in...';
+                loginBtn.disabled = true;
+            }
+            
+            try {
+                console.log('🌐 Sending login request to /api/auth/login');
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                console.log('📡 Response status:', response.status);
+                const data = await response.json();
+                console.log('📄 Response data:', data);
+                
+                if (data.success) {
+                    // Store token
+                    localStorage.setItem('watch_token', data.token);
+                    localStorage.setItem('watch_user', JSON.stringify(data.user));
+                    
+                    showFallbackSuccess('🎉 Login successful! Redirecting to Watch...');
+                    setTimeout(() => {
+                        window.location.href = 'discovery.html';
+                    }, 1500);
+                } else {
+                    showFallbackError('❌ ' + data.message);
+                }
+            } catch (error) {
+                console.error('❌ Login error:', error);
+                showFallbackError('❌ Network error. Please try again.');
+            } finally {
+                // Reset button
+                if (loginBtn) {
+                    loginBtn.textContent = '🎮 LOGIN';
+                    loginBtn.disabled = false;
+                }
+            }
+        }
+        
+        function showFallbackError(message) {
+            const errorDiv = document.getElementById('fallback-error');
+            if (errorDiv) {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            }
+        }
+        
+        function showFallbackSuccess(message) {
+            const successDiv = document.getElementById('fallback-success');
+            if (successDiv) {
+                successDiv.textContent = message;
+                successDiv.style.display = 'block';
+            }
+        }
+        
+        async function handleResetPassword() {
+            const email = document.getElementById('email')?.value;
+            if (email && email.includes('@')) {
+                // Show loading state
+                const resetLink = document.getElementById('fallback-reset');
+                if (resetLink) {
+                    resetLink.textContent = 'Sending...';
+                    resetLink.style.pointerEvents = 'none';
+                }
+                
+                try {
+                    const response = await fetch('/api/auth/reset-request', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        showFallbackSuccess('📧 ' + data.message);
+                    } else {
+                        showFallbackError('❌ ' + data.message);
+                    }
+                } catch (error) {
+                    showFallbackError('❌ Network error. Please try again.');
+                } finally {
+                    // Reset the link
+                    if (resetLink) {
+                        resetLink.textContent = 'Forgot password? Reset it here';
+                        resetLink.style.pointerEvents = 'auto';
+                    }
+                }
+            } else {
+                showFallbackError('Please enter a valid email address first');
+            }
+        }
         
         // Ensure buttons work after app initialization
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('🎮 DOM Content Loaded - Watch app initializing...');
+            
             // Add direct button event listeners as fallback
             setTimeout(() => {
                 const buttons = document.querySelectorAll('.cta-button, [data-tab-navigation], [data-cta-action]');
@@ -266,36 +620,50 @@
         window.addEventListener('error', function(e) {
             console.error('Script loading error:', e);
             
-            // Show error message
-            const errorDiv = document.createElement('div');
-            errorDiv.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: rgba(255, 0, 0, 0.9);
-                color: white;
-                padding: 20px;
-                border-radius: 10px;
-                text-align: center;
-                z-index: 10000;
-                font-family: Arial, sans-serif;
-            `;
-            errorDiv.innerHTML = `
-                <h3>🚨 Loading Error</h3>
-                <p>Failed to load Watch app components.</p>
-                <button onclick="location.reload()" style="
-                    background: #FF4500;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    margin-top: 10px;
-                ">Retry</button>
-            `;
-            document.body.appendChild(errorDiv);
+            // Hide loading screen
+            hideLoadingScreen();
+            
+            // Show fallback content
+            const fallbackContent = document.getElementById('fallback-content');
+            if (fallbackContent) {
+                fallbackContent.style.display = 'block';
+                
+                // Add login functionality to fallback
+                const loginBtn = document.getElementById('login-btn');
+                if (loginBtn) {
+                    loginBtn.addEventListener('click', handleFallbackLogin);
+                }
+                
+                const resetLink = document.getElementById('fallback-reset');
+                if (resetLink) {
+                    resetLink.addEventListener('click', handleResetPassword);
+                }
+            }
         });
+        
+        // Check if app initialized properly after 3 seconds
+        setTimeout(() => {
+            if (!window.marioLandingApp || !window.marioLandingApp.isReady()) {
+                console.log('⚠️ App not ready, showing fallback content');
+                hideLoadingScreen();
+                
+                const fallbackContent = document.getElementById('fallback-content');
+                if (fallbackContent) {
+                    fallbackContent.style.display = 'block';
+                    
+                    // Add login functionality to fallback
+                    const loginBtn = document.getElementById('login-btn');
+                    if (loginBtn) {
+                        loginBtn.addEventListener('click', handleFallbackLogin);
+                    }
+                    
+                    const resetLink = document.getElementById('fallback-reset');
+                    if (resetLink) {
+                        resetLink.addEventListener('click', handleResetPassword);
+                    }
+                }
+            }
+        }, 3000);
     </script>
 
     <!-- Performance monitoring -->

@@ -50,13 +50,10 @@ class LandingPageView {
                     radial-gradient(circle at 20% 50%, rgba(255,255,255,0.8) 0%, transparent 50%),
                     radial-gradient(circle at 80% 30%, rgba(255,255,255,0.6) 0%, transparent 50%),
                     radial-gradient(circle at 50% 70%, rgba(255,255,255,0.7) 0%, transparent 50%);
-                animation: float 6s ease-in-out infinite;
+
             }
 
-            @keyframes float {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-10px); }
-            }
+
 
             .hero {
                 text-align: center;
@@ -70,13 +67,10 @@ class LandingPageView {
                 margin-bottom: 30px;
                 color: #FF4500;
                 text-shadow: 3px 3px 0px #FFD700, 6px 6px 0px #FF6347;
-                animation: bounce 2s ease-in-out infinite;
+
             }
 
-            @keyframes bounce {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-10px); }
-            }
+
 
             .hero p {
                 font-size: clamp(1rem, 3vw, 1.2rem);
@@ -89,15 +83,10 @@ class LandingPageView {
             .mario-character {
                 font-size: clamp(3rem, 10vw, 4rem);
                 margin: 20px 0;
-                animation: jump 3s ease-in-out infinite;
+
             }
 
-            @keyframes jump {
-                0%, 100% { transform: translateY(0) rotate(0deg); }
-                25% { transform: translateY(-20px) rotate(5deg); }
-                50% { transform: translateY(-40px) rotate(0deg); }
-                75% { transform: translateY(-20px) rotate(-5deg); }
-            }
+
 
             .cta-buttons {
                 display: flex;
@@ -158,13 +147,10 @@ class LandingPageView {
                 text-shadow: 2px 2px 0px #000;
                 position: relative;
                 overflow: hidden;
-                animation: marioPulse 2s ease-in-out infinite;
+
             }
             
-            @keyframes marioPulse {
-                0%, 100% { transform: scale(1); }
-                50% { transform: scale(1.05); }
-            }
+
             
             .cta-button.mario-primary::before {
                 content: '';
@@ -199,6 +185,69 @@ class LandingPageView {
             .cta-button:active {
                 transform: translateY(-1px);
                 box-shadow: 2px 2px 0px #000;
+            }
+            
+            .login-form {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .mario-input {
+                width: 100%;
+                padding: 12px;
+                border: 3px solid #000;
+                border-radius: 8px;
+                font-family: 'Press Start 2P', cursive;
+                font-size: 0.8rem;
+                background: white;
+                box-shadow: 3px 3px 0px #000;
+                color: #2C3E50;
+            }
+            
+            .mario-input:focus {
+                outline: none;
+                border-color: #FF4500;
+                box-shadow: 3px 3px 0px #FF4500;
+            }
+            
+            .mario-input::placeholder {
+                color: #95A5A6;
+            }
+            
+            .error-message {
+                color: #E74C3C;
+                font-size: 0.7rem;
+                text-align: center;
+                margin-top: 10px;
+                padding: 8px;
+                background: rgba(231, 76, 60, 0.1);
+                border-radius: 4px;
+                border: 1px solid #E74C3C;
+                display: none;
+            }
+            
+            .success-message {
+                color: #27AE60;
+                font-size: 0.7rem;
+                text-align: center;
+                margin-top: 10px;
+                padding: 8px;
+                background: rgba(39, 174, 96, 0.1);
+                border-radius: 4px;
+                border: 1px solid #27AE60;
+                display: none;
+            }
+            
+            .reset-password-link {
+                color: #3498DB;
+                font-size: 0.6rem;
+                text-decoration: underline;
+                cursor: pointer;
+                margin-top: 5px;
+                display: block;
             }
 
             .mario-elements {
@@ -654,12 +703,19 @@ class LandingPageView {
             <div class="hero">
                 <div class="mario-character">🎮</div>
                 <h1>Watch</h1>
-                <p>Level Up Socially!</p>
+                
                 
                 <div class="cta-buttons">
-                    <button class="cta-button mario-primary" data-cta-action="discovery" data-tab-navigation="discovery">
-                        🎮 ENTER
-                    </button>
+                    <div class="login-form">
+                        <input type="email" class="mario-input" id="email" placeholder="Email">
+                        <input type="password" class="mario-input" id="password" placeholder="Password">
+                        <button class="cta-button mario-primary" id="login-btn" data-cta-action="login">
+                            🎮 LOGIN
+                        </button>
+                        <div class="error-message" id="error-message"></div>
+                        <div class="success-message" id="success-message"></div>
+                        <span class="reset-password-link" id="reset-password-link">Forgot password? Reset it here</span>
+                    </div>
                 </div>
                 
                 <div class="mario-elements">
@@ -799,6 +855,15 @@ class LandingPageView {
                 this.handleButtonClick(button);
             });
             
+            // Special handling for login button
+            if (button.id === 'login-btn') {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    this.handleLogin();
+                });
+            }
+            
             // Touch events for mobile - improved for iPhone
             button.addEventListener('touchstart', (e) => {
                 e.preventDefault();
@@ -901,6 +966,55 @@ class LandingPageView {
                     }
                 }
             }, 100);
+        }
+    }
+    
+    handleLogin() {
+        const email = document.getElementById('email')?.value;
+        const password = document.getElementById('password')?.value;
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+        
+        // Hide previous messages
+        if (errorMessage) errorMessage.style.display = 'none';
+        if (successMessage) successMessage.style.display = 'none';
+        
+        // Validate inputs
+        if (!email || !password) {
+            this.showError('Please enter both email and password');
+            return;
+        }
+        
+        if (!email.includes('@')) {
+            this.showError('Please enter a valid email address');
+            return;
+        }
+        
+        // Simple authentication (demo purposes)
+        // In a real app, this would call an API
+        if (email === 'demo@watch.com' && password === 'password123') {
+            this.showSuccess('Login successful! Redirecting...');
+            setTimeout(() => {
+                window.location.href = 'discovery.html';
+            }, 1500);
+        } else {
+            this.showError('Invalid email or password. Please try again or reset your password.');
+        }
+    }
+    
+    showError(message) {
+        const errorMessage = document.getElementById('error-message');
+        if (errorMessage) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+        }
+    }
+    
+    showSuccess(message) {
+        const successMessage = document.getElementById('success-message');
+        if (successMessage) {
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
         }
     }
 

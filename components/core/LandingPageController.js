@@ -7,10 +7,8 @@ class LandingPageController {
         this.view = new LandingPageView();
         this.currentTab = 'discovery';
         this.isInitialized = false;
-        this.animationController = new AnimationController();
-        this.navigationController = new NavigationController();
-        
-        this.init();
+        this.animationController = null;
+        this.navigationController = null;
     }
 
     async init() {
@@ -23,14 +21,23 @@ class LandingPageController {
             // Initialize view
             this.view.initialize();
             
+            // Initialize controllers if they exist
+            if (typeof AnimationController !== 'undefined') {
+                this.animationController = new AnimationController();
+                this.animationController.initialize();
+            } else {
+                console.warn('⚠️ AnimationController not available');
+            }
+            
+            if (typeof NavigationController !== 'undefined') {
+                this.navigationController = new NavigationController();
+                this.navigationController.initialize();
+            } else {
+                console.warn('⚠️ NavigationController not available');
+            }
+            
             // Set up event listeners
             this.setupEventListeners();
-            
-            // Initialize animation controller
-            this.animationController.initialize();
-            
-            // Initialize navigation controller
-            this.navigationController.initialize();
             
             // Render initial state
             this.renderLandingPage();
@@ -80,7 +87,9 @@ class LandingPageController {
     renderLandingPage() {
         const pageData = this.model.getPageData();
         this.view.render(pageData);
-        this.animationController.startAnimations();
+        if (this.animationController) {
+            this.animationController.startAnimations();
+        }
     }
 
     navigateToTab(tabName) {
@@ -96,10 +105,14 @@ class LandingPageController {
         this.view.updateActiveTab(tabName);
         
         // Handle navigation
-        this.navigationController.navigateToPage(tabName);
+        if (this.navigationController) {
+            this.navigationController.navigateToPage(tabName);
+        }
         
         // Trigger animations
-        this.animationController.triggerTabTransition(tabName);
+        if (this.animationController) {
+            this.animationController.triggerTabTransition(tabName);
+        }
     }
 
     handleCTAAction(action) {
@@ -125,15 +138,21 @@ class LandingPageController {
 
     handleResize() {
         this.view.handleResize();
-        this.animationController.handleResize();
+        if (this.animationController) {
+            this.animationController.handleResize();
+        }
     }
 
     handleTouchStart(e) {
-        this.animationController.handleTouchStart(e);
+        if (this.animationController) {
+            this.animationController.handleTouchStart(e);
+        }
     }
 
     handleTouchEnd(e) {
-        this.animationController.handleTouchEnd(e);
+        if (this.animationController) {
+            this.animationController.handleTouchEnd(e);
+        }
     }
 
     // Public API methods
@@ -151,8 +170,12 @@ class LandingPageController {
     }
 
     destroy() {
-        this.animationController.destroy();
-        this.navigationController.destroy();
+        if (this.animationController) {
+            this.animationController.destroy();
+        }
+        if (this.navigationController) {
+            this.navigationController.destroy();
+        }
         this.view.destroy();
         this.model.destroy();
         this.isInitialized = false;

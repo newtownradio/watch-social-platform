@@ -6,7 +6,7 @@ class LandingPageModel {
         this.currentTab = 'discovery';
         this.pageData = {
             appName: 'Watch',
-            tagline: 'Level Up Socially!',
+            tagline: '',
             theme: 'mario',
             tabs: [
                 {

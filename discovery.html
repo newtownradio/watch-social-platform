@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch - Discovery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="responsive-mario.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset and Mario Bros Theme */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,36 +13,36 @@
         }
         
         :root {
-            --mario-red: #E74C3C;
-            --mario-blue: #3498DB;
-            --mario-green: #27AE60;
-            --mario-yellow: #F1C40F;
-            --mario-brown: #8B4513;
-            --mario-sky: #87CEEB;
-            --mario-white: #FFFFFF;
-            --mario-cloud: #ECF0F1;
-        }
-        
-        html, body {
-            height: 100%;
-            width: 100%;
+            --game-red: #E74C3C;
+            --game-blue: #3498DB;
+            --game-green: #27AE60;
+            --game-yellow: #F1C40F;
+            --game-brown: #8B4513;
+            --game-sky: #87CEEB;
+            --game-white: #FFFFFF;
+            --game-cloud: #ECF0F1;
+            --game-purple: #9B59B6;
+            --game-orange: #E67E22;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C8D;
+            --background: #F8F9FA;
+            --surface: #FFFFFF;
+            --border: #BDC3C7;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
         
         body {
-            background: linear-gradient(135deg, var(--mario-sky) 0%, var(--mario-cloud) 100%);
-            font-family: 'Press Start 2P', 'Courier New', monospace;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--game-sky) 0%, var(--game-cloud) 100%);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: var(--mario-brown);
             min-height: 100vh;
-            overflow-x: hidden;
-            margin: 0;
-            padding: 0;
         }
         
         /* Navigation */
         .nav-container {
-            background: var(--mario-blue);
-            border-bottom: 4px solid var(--mario-red);
+            background: var(--game-blue);
+            border-bottom: 4px solid var(--game-red);
             position: fixed;
             top: 0;
             width: 100%;
@@ -53,7 +51,7 @@
         }
         
         .nav-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -61,37 +59,39 @@
             padding: 16px 24px;
         }
         
-        .watch-logo-container {
+        .logo-container {
             display: flex;
             align-items: center;
             cursor: pointer;
             padding: 12px 16px;
             border-radius: 50%;
-            background: var(--mario-red);
+            background: var(--game-red);
             transition: all 0.3s ease;
-            border: 3px solid var(--mario-white);
+            border: 3px solid var(--game-white);
         }
         
-        .watch-logo-container:hover {
-            background: var(--mario-green);
+        .logo-container:hover {
+            background: var(--game-green);
             transform: scale(1.05);
         }
         
-        .watch-logo {
-            font-size: 16px;
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
             font-weight: 700;
-            color: var(--mario-white);
+            color: var(--game-white);
             letter-spacing: 1px;
         }
         
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 32px;
+            align-items: center;
         }
         
         .nav-link {
             text-decoration: none;
-            color: var(--mario-white);
+            color: var(--game-white);
             font-weight: 500;
             font-size: 14px;
             transition: all 0.3s ease;
@@ -101,196 +101,407 @@
         }
         
         .nav-link:hover {
-            color: var(--mario-yellow);
-            border-color: var(--mario-yellow);
+            color: var(--game-yellow);
+            border-color: var(--game-yellow);
             background: rgba(241, 196, 15, 0.1);
         }
         
         .nav-link.active {
-            color: var(--mario-yellow);
-            border-color: var(--mario-yellow);
+            color: var(--game-yellow);
+            border-color: var(--game-yellow);
             background: rgba(241, 196, 15, 0.1);
         }
         
-        /* Main Container */
-        .discovery-container {
-            max-width: 1400px;
-            margin: 100px auto 0;
-            padding: 0 24px;
-            display: grid;
-            grid-template-columns: 1fr 300px;
-            gap: 30px;
+        .logout-btn {
+            background: var(--game-red);
+            color: var(--game-white);
+            border: 2px solid var(--game-white);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        
+        .logout-btn:hover {
+            background: var(--game-green);
+            transform: scale(1.05);
+        }
+        
+        /* Main Layout */
+        .main-layout {
+            display: flex;
+            margin-top: 100px;
+            min-height: calc(100vh - 100px);
+        }
+        
+        /* Right Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--game-white);
+            border-left: 4px solid var(--game-green);
+            padding: 24px;
+            position: fixed;
+            right: 0;
+            top: 100px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            box-shadow: -4px 0 20px rgba(39, 174, 96, 0.2);
+            z-index: 100;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 32px;
+        }
+        
+        .sidebar-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--game-green);
+            margin-bottom: 16px;
+            text-align: center;
+            border-bottom: 2px solid var(--game-green);
+            padding-bottom: 8px;
+        }
+        
+        .social-icons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--game-cloud);
+            border: 2px solid var(--game-green);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+        
+        .social-item:hover {
+            background: var(--game-yellow);
+            border-color: var(--game-brown);
+            transform: translateX(5px);
+        }
+        
+        .social-icon {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .social-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .quick-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .quick-action {
+            padding: 10px 16px;
+            background: var(--game-blue);
+            color: var(--game-white);
+            border: 2px solid var(--game-white);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .quick-action:hover {
+            background: var(--game-green);
+            transform: scale(1.02);
         }
         
         /* Main Content */
         .main-content {
-            background: var(--mario-white);
-            border: 4px solid var(--mario-red);
-            border-radius: 16px;
-            padding: 30px;
-            box-shadow: 0 8px 30px rgba(231, 76, 60, 0.2);
-            position: relative;
+            flex: 1;
+            margin-right: 280px;
+            padding: 24px;
+            max-width: calc(100vw - 280px);
         }
         
-        .main-content::before {
-            content: '🎮';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 30px;
-            background: var(--mario-white);
-            padding: 0 10px;
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--game-blue);
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 0px var(--game-white);
+        }
+        
+        .page-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
         }
         
         /* Post Creation */
         .post-creation {
-            background: var(--mario-cloud);
-            border: 3px solid var(--mario-blue);
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 30px;
+            background: var(--game-white);
+            border: 4px solid var(--game-red);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 30px rgba(231, 76, 60, 0.2);
+            position: relative;
+        }
+        
+        .post-creation::before {
+            content: '💬';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 30px;
+            background: var(--game-white);
+            padding: 0 10px;
         }
         
         .post-input-container {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            gap: 16px;
             margin-bottom: 20px;
         }
         
         .user-avatar {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: var(--mario-red);
+            background: var(--game-red);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: var(--mario-white);
-            border: 2px solid var(--mario-white);
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
             flex-shrink: 0;
+            border: 3px solid var(--game-white);
         }
         
         .post-input {
             flex: 1;
             padding: 12px 16px;
-            border: 3px solid var(--mario-blue);
+            border: 3px solid var(--game-blue);
             border-radius: 8px;
             font-size: 14px;
             outline: none;
             transition: border-color 0.3s ease;
-            font-family: Arial, sans-serif;
-            min-height: 50px;
-            background: var(--mario-white);
+            resize: none;
+            min-height: 60px;
+            font-family: inherit;
+            background: var(--game-cloud);
         }
         
         .post-input:focus {
-            border-color: var(--mario-green);
+            border-color: var(--game-green);
         }
         
         .post-actions {
             display: flex;
             gap: 12px;
             align-items: center;
-            flex-wrap: wrap;
+            justify-content: space-between;
         }
         
-        .post-type-btn {
-            background: var(--mario-blue);
-            color: var(--mario-white);
-            border: 2px solid var(--mario-white);
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 11px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .action-buttons {
             display: flex;
-            align-items: center;
-            gap: 4px;
+            gap: 8px;
         }
         
-        .post-type-btn:hover {
-            background: var(--mario-yellow);
-            color: var(--mario-brown);
+        .action-btn {
+            background: var(--game-blue);
+            color: var(--game-white);
+            border: 2px solid var(--game-white);
+            font-size: 16px;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            background: var(--game-green);
+            transform: scale(1.05);
         }
         
         .post-btn {
-            background: var(--mario-red);
-            color: var(--mario-white);
-            border: 2px solid var(--mario-white);
+            background: var(--game-green);
+            color: var(--game-white);
+            border: 3px solid var(--game-white);
             padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 12px;
+            border-radius: 8px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
         }
         
         .post-btn:hover {
-            background: var(--mario-green);
+            background: var(--game-yellow);
+            color: var(--game-brown);
             transform: translateY(-2px);
         }
         
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--mario-brown);
+        .post-btn:disabled {
+            background: var(--border);
+            cursor: not-allowed;
+            transform: none;
         }
         
-        .empty-state-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            display: block;
+        /* Posts Feed */
+        .posts-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
         
-        .empty-state-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            color: var(--mario-blue);
-        }
-        
-        .empty-state-text {
-            font-size: 0.9rem;
-            color: var(--mario-brown);
-            font-family: Arial, sans-serif;
-            line-height: 1.5;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            background: var(--mario-white);
-            border: 4px solid var(--mario-green);
+        .post-card {
+            background: var(--game-white);
+            border: 4px solid var(--game-blue);
             border-radius: 16px;
             padding: 20px;
-            box-shadow: 0 8px 30px rgba(39, 174, 96, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.2);
             position: relative;
-            height: fit-content;
         }
         
-        .sidebar::before {
+        .post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(52, 152, 219, 0.3);
+        }
+        
+        .post-card::before {
             content: '⭐';
             position: absolute;
             top: -15px;
             left: 20px;
             font-size: 30px;
-            background: var(--mario-white);
+            background: var(--game-white);
             padding: 0 10px;
         }
         
-        .sidebar h3 {
-            font-size: 16px;
-            color: var(--mario-green);
-            margin-bottom: 20px;
-            text-align: center;
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
         }
         
+        .post-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--game-blue);
+        }
+        
+        .post-time {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .post-content {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+        
+        .post-content a {
+            color: var(--game-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .post-content a:hover {
+            text-decoration: underline;
+            color: var(--game-green);
+        }
+        
+        .post-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .post-actions-bar {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            padding-top: 16px;
+            border-top: 3px solid var(--game-blue);
+        }
+        
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 2px solid transparent;
+        }
+        
+        .action-item:hover {
+            background: var(--game-cloud);
+            color: var(--game-blue);
+            border-color: var(--game-blue);
+        }
+        
+        .action-item.liked {
+            color: var(--game-red);
+            background: rgba(231, 76, 60, 0.1);
+        }
+        
+        /* Trending Section */
         .trending-section {
-            margin-bottom: 20px;
+            background: var(--game-white);
+            border: 4px solid var(--game-green);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 24px;
+            box-shadow: 0 8px 30px rgba(39, 174, 96, 0.2);
+            position: relative;
+        }
+        
+        .trending-section::before {
+            content: '🔥';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 30px;
+            background: var(--game-white);
+            padding: 0 10px;
+        }
+        
+        .trending-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--game-green);
+            margin-bottom: 16px;
+            text-align: center;
         }
         
         .trending-item {
@@ -298,151 +509,318 @@
             align-items: center;
             gap: 12px;
             padding: 12px;
-            background: var(--mario-cloud);
-            border: 2px solid var(--mario-blue);
+            background: var(--game-cloud);
+            border: 2px solid var(--game-green);
             border-radius: 8px;
             margin-bottom: 10px;
-            transition: all 0.3s ease;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .trending-item:last-child {
+            margin-bottom: 0;
         }
         
         .trending-item:hover {
-            background: var(--mario-yellow);
-            border-color: var(--mario-brown);
+            background: var(--game-yellow);
+            border-color: var(--game-brown);
             transform: translateX(5px);
         }
         
-        .trending-icon {
-            font-size: 20px;
-            width: 30px;
-            text-align: center;
+        .trending-number {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--game-green);
+            min-width: 24px;
         }
         
         .trending-content {
             flex: 1;
         }
         
-        .trending-title {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--mario-blue);
+        .trending-topic {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
             margin-bottom: 2px;
         }
         
         .trending-stats {
-            font-size: 10px;
-            color: var(--mario-brown);
-            font-family: Arial, sans-serif;
-        }
-        
-        .social-connections {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .connection-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px;
-            background: var(--mario-cloud);
-            border: 2px solid var(--mario-blue);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .connection-item:hover {
-            background: var(--mario-yellow);
-            border-color: var(--mario-brown);
-        }
-        
-        .connection-icon {
-            font-size: 18px;
-            width: 30px;
-            text-align: center;
-        }
-        
-        .connection-info {
-            flex: 1;
-        }
-        
-        .connection-name {
             font-size: 12px;
-            font-weight: 600;
-            color: var(--mario-blue);
-            margin-bottom: 2px;
+            color: var(--text-secondary);
         }
         
-        .connection-status {
-            font-size: 10px;
-            color: var(--mario-brown);
-            font-family: Arial, sans-serif;
-        }
-        
-        .connection-toggle {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid var(--mario-brown);
-            background: var(--mario-white);
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        
-        .connection-toggle.active {
-            background: var(--mario-green);
-            border-color: var(--mario-green);
-        }
-        
-        .connection-toggle.active::after {
-            content: '✓';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: var(--mario-white);
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .discovery-container {
-                grid-template-columns: 1fr;
-                gap: 20px;
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .main-content {
+                padding: 20px;
             }
             
+            .post-creation {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 1024px) {
             .sidebar {
-                order: 2;
+                width: 240px;
             }
             
             .main-content {
-                order: 1;
+                margin-right: 240px;
+                max-width: calc(100vw - 240px);
+                padding: 16px;
+            }
+            
+            .nav-content {
+                padding: 12px 20px;
             }
             
             .nav-links {
                 gap: 20px;
             }
+        }
+        
+        @media (max-width: 768px) {
+            .main-layout {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                border-left: none;
+                border-bottom: 4px solid var(--game-green);
+                padding: 16px;
+            }
+            
+            .main-content {
+                margin-right: 0;
+                max-width: 100%;
+                padding: 16px;
+            }
+            
+            .nav-content {
+                padding: 12px 16px;
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .nav-links {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
             
             .nav-link {
                 font-size: 12px;
+                padding: 6px 10px;
+            }
+            
+            .logo {
+                font-size: 12px;
+            }
+            
+            .page-title {
+                font-size: 16px;
+            }
+            
+            .page-subtitle {
+                font-size: 14px;
+            }
+            
+            .post-creation {
+                padding: 16px;
+            }
+            
+            .post-input-container {
+                flex-direction: column;
+                gap: 12px;
             }
             
             .post-actions {
                 flex-direction: column;
                 align-items: stretch;
+                gap: 12px;
             }
             
-            .trending-section,
-            .social-connections {
-                margin-bottom: 15px;
+            .action-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
             }
             
-            .trending-item,
-            .connection-item {
-                padding: 10px;
+            .action-btn {
+                padding: 6px 10px;
+                font-size: 14px;
+            }
+            
+            .post-card {
+                padding: 16px;
+            }
+            
+            .post-actions-bar {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+            
+            .trending-section {
+                padding: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-content {
+                padding: 8px 12px;
+            }
+            
+            .nav-links {
+                gap: 8px;
+            }
+            
+            .nav-link {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+            
+            .logo {
+                font-size: 11px;
+            }
+            
+            .sidebar {
+                padding: 12px;
+            }
+            
+            .sidebar-title {
+                font-size: 12px;
+            }
+            
+            .social-item {
+                padding: 8px;
+                gap: 8px;
+            }
+            
+            .social-name {
+                font-size: 12px;
+            }
+            
+            .quick-action {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            .main-content {
+                padding: 12px;
+            }
+            
+            .page-title {
+                font-size: 14px;
+            }
+            
+            .page-subtitle {
+                font-size: 12px;
+            }
+            
+            .post-creation {
+                padding: 12px;
+            }
+            
+            .post-input {
+                min-height: 50px;
+                font-size: 13px;
+            }
+            
+            .post-card {
+                padding: 12px;
+            }
+            
+            .post-content {
+                font-size: 13px;
+            }
+            
+            .action-item {
+                font-size: 12px;
+                padding: 6px 8px;
+            }
+            
+            .trending-section {
+                padding: 12px;
+            }
+            
+            .trending-title {
+                font-size: 14px;
+            }
+            
+            .trending-item {
+                padding: 8px;
+            }
+            
+            .trending-topic {
+                font-size: 12px;
+            }
+            
+            .trending-stats {
+                font-size: 11px;
+            }
+        }
+        
+        /* Vision OS Support */
+        @media (min-width: 2000px) {
+            .main-content {
+                max-width: 1400px;
+                margin-right: 320px;
+            }
+            
+            .sidebar {
+                width: 320px;
+            }
+            
+            .page-title {
+                font-size: 32px;
+            }
+            
+            .page-subtitle {
+                font-size: 20px;
+            }
+            
+            .post-creation {
+                padding: 32px;
+            }
+            
+            .post-card {
+                padding: 28px;
+            }
+            
+            .trending-section {
+                padding: 28px;
+            }
+        }
+        
+        /* Tablet Landscape */
+        @media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+            .sidebar {
+                width: 200px;
+            }
+            
+            .main-content {
+                margin-right: 200px;
+                max-width: calc(100vw - 200px);
+            }
+        }
+        
+        /* High DPI Displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .logo {
+                font-weight: 800;
+            }
+            
+            .sidebar-title {
+                font-weight: 700;
+            }
+            
+            .page-title {
+                font-weight: 800;
             }
         }
     </style>
@@ -451,261 +829,449 @@
     <!-- Navigation -->
     <nav class="nav-container">
         <div class="nav-content">
-            <div class="watch-logo-container" onclick="navigateToHome()">
-                <div class="watch-logo">Watch</div>
+            <div class="logo-container" onclick="navigateToHome()">
+                <div class="logo">Watch</div>
             </div>
             
             <div class="nav-links">
-                <a href="discovery.html" class="nav-link active">DISCOVERY</a>
-                <a href="buysell.html" class="nav-link">BUY / SELL</a>
-                <a href="messages.html" class="nav-link">MESSAGES</a>
-                <a href="account.html" class="nav-link">ACCOUNT</a>
+                <a href="#" data-navigate="discovery" class="nav-link active">Discovery</a>
+                <a href="#" data-navigate="buysell" class="nav-link">Buy & Sell</a>
+                <a href="#" data-navigate="messages" class="nav-link">Messages</a>
+                <a href="#" data-navigate="account" class="nav-link">Account</a>
+                <button data-logout class="logout-btn">Logout</button>
             </div>
         </div>
     </nav>
 
-    <div class="discovery-container">
+    <div class="main-layout">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Social Links</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-item" onclick="shareToSocial('twitter')">
+                        <div class="social-icon">🐦</div>
+                        <div class="social-name">Twitter</div>
+                    </a>
+                    <a href="#" class="social-item" onclick="shareToSocial('facebook')">
+                        <div class="social-icon">📘</div>
+                        <div class="social-name">Facebook</div>
+                    </a>
+                    <a href="#" class="social-item" onclick="shareToSocial('instagram')">
+                        <div class="social-icon">📷</div>
+                        <div class="social-name">Instagram</div>
+                    </a>
+                    <a href="#" class="social-item" onclick="shareToSocial('linkedin')">
+                        <div class="social-icon">💼</div>
+                        <div class="social-name">LinkedIn</div>
+                    </a>
+                    <a href="#" class="social-item" onclick="shareToSocial('youtube')">
+                        <div class="social-icon">📺</div>
+                        <div class="social-name">YouTube</div>
+                    </a>
+                    <a href="#" class="social-item" onclick="shareToSocial('tiktok')">
+                        <div class="social-icon">🎵</div>
+                        <div class="social-name">TikTok</div>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Quick Actions</h3>
+                <div class="quick-actions">
+                    <div class="quick-action" onclick="createNewPost()">Create Post</div>
+                    <div class="quick-action" onclick="viewTrending()">Trending</div>
+                    <div class="quick-action" onclick="viewFollowing()">Following</div>
+                    <div class="quick-action" onclick="viewBookmarks()">Bookmarks</div>
+                </div>
+            </div>
+        </div>
+
         <!-- Main Content -->
         <div class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Discovery</h1>
+                <p class="page-subtitle">Discover amazing content and connect with others</p>
+            </div>
+            
             <!-- Post Creation -->
             <div class="post-creation">
                 <div class="post-input-container">
-                    <div class="user-avatar">U</div>
-                    <input type="text" class="post-input" placeholder="Share your style..." id="postInput">
+                    <div class="user-avatar" id="userAvatar">D</div>
+                    <textarea 
+                        class="post-input" 
+                        placeholder="What's on your mind? You can add text, links, and more!" 
+                        id="postInput"
+                        rows="3"
+                    ></textarea>
                 </div>
                 <div class="post-actions">
-                    <button class="post-type-btn" onclick="addPhoto()">
-                        📷 Photo
-                    </button>
-                    <button class="post-type-btn" onclick="addVideo()">
-                        🎥 Video
-                    </button>
-                    <button class="post-type-btn" onclick="addLink()">
-                        🔗 Link
-                    </button>
-                    <button class="post-type-btn" onclick="addText()">
-                        📝 Text
-                    </button>
-                    <button class="post-btn" onclick="createPost()">
-                        Post
-                    </button>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="addImage()">📷</button>
+                        <button class="action-btn" onclick="addVideo()">🎥</button>
+                        <button class="action-btn" onclick="addLocation()">📍</button>
+                        <button class="action-btn" onclick="addEmoji()">😊</button>
+                        <button class="action-btn" onclick="addLink()">🔗</button>
+                    </div>
+                    <button class="post-btn" onclick="createPost()" id="postBtn" disabled>Post</button>
                 </div>
             </div>
             
-            <!-- Empty State -->
-            <div class="empty-state" id="emptyState">
-                <span class="empty-state-icon">📸✨</span>
-                <div class="empty-state-title">No posts yet</div>
-                <div class="empty-state-text">Be the first to share your style and inspire others</div>
+            <!-- Posts Feed -->
+            <div class="posts-feed" id="postsFeed">
+                <!-- Sample Post 1 -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="user-avatar">S</div>
+                        <div>
+                            <div class="post-author">Sarah Chen</div>
+                            <div class="post-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Just found this amazing vintage jacket at the local thrift store! Perfect condition and only $25. The quality is incredible - definitely a steal! 🧥✨
+                        <br><br>
+                        Check out my latest blog post about sustainable fashion: <a href="https://example.com/sustainable-fashion" target="_blank">Sustainable Fashion Guide</a>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="action-item" onclick="toggleLike(this)">
+                            <span>❤️</span>
+                            <span>24</span>
+                        </div>
+                        <div class="action-item" onclick="showComments()">
+                            <span>💬</span>
+                            <span>8</span>
+                        </div>
+                        <div class="action-item" onclick="sharePost()">
+                            <span>📤</span>
+                            <span>Share</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample Post 2 -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="user-avatar">M</div>
+                        <div>
+                            <div class="post-author">Mike Johnson</div>
+                            <div class="post-time">4 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Looking to sell my gaming setup. RTX 3080, Ryzen 7, 32GB RAM. Moving to a new city and need to downsize. DM me if interested! 🎮
+                        <br><br>
+                        Specs and photos: <a href="https://example.com/gaming-setup" target="_blank">Gaming Setup Details</a>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="action-item" onclick="toggleLike(this)">
+                            <span>❤️</span>
+                            <span>12</span>
+                        </div>
+                        <div class="action-item" onclick="showComments()">
+                            <span>💬</span>
+                            <span>15</span>
+                        </div>
+                        <div class="action-item" onclick="sharePost()">
+                            <span>📤</span>
+                            <span>Share</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sample Post 3 -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <div class="user-avatar">E</div>
+                        <div>
+                            <div class="post-author">Emma Wilson</div>
+                            <div class="post-time">6 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        Finally finished my home office setup! The new standing desk and monitor arm make such a difference. Productivity levels are through the roof! 💻✨
+                        <br><br>
+                        Here's the setup guide I followed: <a href="https://example.com/home-office-setup" target="_blank">Home Office Setup Guide</a>
+                    </div>
+                    <div class="post-actions-bar">
+                        <div class="action-item" onclick="toggleLike(this)">
+                            <span>❤️</span>
+                            <span>31</span>
+                        </div>
+                        <div class="action-item" onclick="showComments()">
+                            <span>💬</span>
+                            <span>6</span>
+                        </div>
+                        <div class="action-item" onclick="sharePost()">
+                            <span>📤</span>
+                            <span>Share</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <!-- Posts Feed (hidden initially) -->
-            <div class="posts-feed" id="postsFeed" style="display: none;">
-                <!-- Posts will be added here dynamically -->
-            </div>
-        </div>
-        
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h3>Trending Now</h3>
+            <!-- Trending Section -->
             <div class="trending-section">
-                <div class="trending-item">
-                    <div class="trending-icon">🔥</div>
+                <h3 class="trending-title">Trending Now</h3>
+                <div class="trending-item" onclick="viewTrending('vintage')">
+                    <div class="trending-number">1</div>
                     <div class="trending-content">
-                        <div class="trending-title">Street Style</div>
-                        <div class="trending-stats">2.4k posts</div>
+                        <div class="trending-topic">#VintageFashion</div>
+                        <div class="trending-stats">1.2K posts</div>
                     </div>
                 </div>
-                <div class="trending-item">
-                    <div class="trending-icon">⚡</div>
+                <div class="trending-item" onclick="viewTrending('gaming')">
+                    <div class="trending-number">2</div>
                     <div class="trending-content">
-                        <div class="trending-title">Vintage Finds</div>
-                        <div class="trending-stats">1.8k posts</div>
+                        <div class="trending-topic">#GamingSetup</div>
+                        <div class="trending-stats">856 posts</div>
                     </div>
                 </div>
-                <div class="trending-item">
-                    <div class="trending-icon">💎</div>
+                <div class="trending-item" onclick="viewTrending('homeoffice')">
+                    <div class="trending-number">3</div>
                     <div class="trending-content">
-                        <div class="trending-title">Luxury Fashion</div>
-                        <div class="trending-stats">956 posts</div>
+                        <div class="trending-topic">#HomeOffice</div>
+                        <div class="trending-stats">642 posts</div>
                     </div>
                 </div>
-            </div>
-            
-            <h3 style="margin-top: 30px;">Connect Social</h3>
-            <div class="social-connections">
-                <div class="connection-item">
-                    <div class="connection-icon instagram">📷</div>
-                    <div class="connection-info">
-                        <div class="connection-name">Instagram</div>
-                        <div class="connection-status">Connected</div>
+                <div class="trending-item" onclick="viewTrending('thrift')">
+                    <div class="trending-number">4</div>
+                    <div class="trending-content">
+                        <div class="trending-topic">#ThriftFinds</div>
+                        <div class="trending-stats">534 posts</div>
                     </div>
-                    <div class="connection-toggle active"></div>
                 </div>
-                <div class="connection-item">
-                    <div class="connection-icon tiktok">🎵</div>
-                    <div class="connection-info">
-                        <div class="connection-name">TikTok</div>
-                        <div class="connection-status">Not Connected</div>
+                <div class="trending-item" onclick="viewTrending('tech')">
+                    <div class="trending-number">5</div>
+                    <div class="trending-content">
+                        <div class="trending-topic">#TechDeals</div>
+                        <div class="trending-stats">421 posts</div>
                     </div>
-                    <div class="connection-toggle"></div>
-                </div>
-                <div class="connection-item">
-                    <div class="connection-icon youtube">📺</div>
-                    <div class="connection-info">
-                        <div class="connection-name">YouTube</div>
-                        <div class="connection-status">Connected</div>
-                    </div>
-                    <div class="connection-toggle active"></div>
-                </div>
-                <div class="connection-item">
-                    <div class="connection-icon twitter">🐦</div>
-                    <div class="connection-info">
-                        <div class="connection-name">Twitter</div>
-                        <div class="connection-status">Not Connected</div>
-                    </div>
-                    <div class="connection-toggle"></div>
-                </div>
-                <div class="connection-item">
-                    <div class="connection-icon pinterest">📌</div>
-                    <div class="connection-info">
-                        <div class="connection-name">Pinterest</div>
-                        <div class="connection-status">Connected</div>
-                    </div>
-                    <div class="connection-toggle active"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function navigateToHome() {
-            window.location.href = 'index.html';
-        }
-        
-        function createPost() {
-            const input = document.getElementById('postInput');
-            const text = input.value.trim();
+        // Authentication check
+        function checkAuth() {
+            const token = localStorage.getItem('watch_token');
+            const user = localStorage.getItem('watch_user');
             
-            if (text) {
-                addPost(text);
-                input.value = '';
-                showPostsFeed();
+            if (!token || !user) {
+                window.location.href = '/working-login';
+                return;
+            }
+            
+            // Update user info
+            try {
+                const userData = JSON.parse(user);
+                updateUserInfo(userData);
+            } catch (error) {
+                console.error('Error parsing user data:', error);
             }
         }
         
-        function addPhoto() {
-            alert('📷 Photo upload feature coming soon!');
+        function updateUserInfo(user) {
+            const userAvatar = document.getElementById('userAvatar');
+            if (userAvatar) {
+                userAvatar.textContent = user?.name ? user.name.charAt(0).toUpperCase() : 'U';
+            }
+        }
+        
+        // Navigation functions
+        function navigateToPage(page) {
+            window.location.href = `/${page}`;
+        }
+        
+        function navigateToHome() {
+            window.location.href = '/';
+        }
+        
+        function logout() {
+            localStorage.removeItem('watch_token');
+            localStorage.removeItem('watch_user');
+            window.location.href = '/working-login';
+        }
+        
+        // Social media functions
+        function shareToSocial(platform) {
+            const currentUrl = window.location.href;
+            const text = 'Check out this amazing content on Watch!';
+            
+            let shareUrl = '';
+            switch(platform) {
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(currentUrl)}`;
+                    break;
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+                    break;
+                case 'instagram':
+                    alert('Instagram sharing requires the Instagram app. Please share manually!');
+                    return;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`;
+                    break;
+                case 'youtube':
+                    alert('YouTube sharing feature coming soon!');
+                    return;
+                case 'tiktok':
+                    alert('TikTok sharing feature coming soon!');
+                    return;
+            }
+            
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+        
+        // Quick action functions
+        function createNewPost() {
+            document.getElementById('postInput').focus();
+        }
+        
+        function viewTrending() {
+            document.querySelector('.trending-section').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function viewFollowing() {
+            alert('Following feed coming soon!');
+        }
+        
+        function viewBookmarks() {
+            alert('Bookmarks feature coming soon!');
+        }
+        
+        // Post functions
+        function createPost() {
+            const input = document.getElementById('postInput');
+            const content = input.value.trim();
+            
+            if (content) {
+                const postsFeed = document.getElementById('postsFeed');
+                const now = new Date();
+                const timeString = 'Just now';
+                
+                // Process content for links
+                const processedContent = processLinks(content);
+                
+                const postDiv = document.createElement('div');
+                postDiv.className = 'post-card';
+                postDiv.innerHTML = `
+                    <div class="post-header">
+                        <div class="user-avatar">D</div>
+                        <div>
+                            <div class="post-author">Demo User</div>
+                            <div class="post-time">${timeString}</div>
+                        </div>
+                    </div>
+                    <div class="post-content">${processedContent}</div>
+                    <div class="post-actions-bar">
+                        <div class="action-item" onclick="toggleLike(this)">
+                            <span>❤️</span>
+                            <span>0</span>
+                        </div>
+                        <div class="action-item" onclick="showComments()">
+                            <span>💬</span>
+                            <span>0</span>
+                        </div>
+                        <div class="action-item" onclick="sharePost()">
+                            <span>📤</span>
+                            <span>Share</span>
+                        </div>
+                    </div>
+                `;
+                
+                postsFeed.insertBefore(postDiv, postsFeed.firstChild);
+                input.value = '';
+                updatePostButton();
+            }
+        }
+        
+        function processLinks(content) {
+            // Convert URLs to clickable links
+            const urlRegex = /(https?:\/\/[^\s]+)/g;
+            return content.replace(urlRegex, '<a href="$1" target="_blank">$1</a>');
+        }
+        
+        function updatePostButton() {
+            const input = document.getElementById('postInput');
+            const button = document.getElementById('postBtn');
+            button.disabled = !input.value.trim();
+        }
+        
+        function toggleLike(element) {
+            element.classList.toggle('liked');
+            const likeCount = element.querySelector('span:last-child');
+            const currentCount = parseInt(likeCount.textContent);
+            likeCount.textContent = element.classList.contains('liked') ? currentCount + 1 : currentCount - 1;
+        }
+        
+        function showComments() {
+            alert('Comments feature coming soon!');
+        }
+        
+        function sharePost() {
+            alert('Share feature coming soon!');
+        }
+        
+        function addImage() {
+            alert('Image upload feature coming soon!');
         }
         
         function addVideo() {
-            alert('🎥 Video upload feature coming soon!');
+            alert('Video upload feature coming soon!');
+        }
+        
+        function addLocation() {
+            alert('Location feature coming soon!');
+        }
+        
+        function addEmoji() {
+            alert('Emoji picker coming soon!');
         }
         
         function addLink() {
-            alert('🔗 Link sharing feature coming soon!');
+            const input = document.getElementById('postInput');
+            const url = prompt('Enter URL:');
+            if (url) {
+                input.value += (input.value ? ' ' : '') + url;
+                input.focus();
+            }
         }
         
-        function addText() {
-            alert('📝 Text post with custom fonts coming soon!');
+        function viewTrending(topic) {
+            alert(`Viewing trending posts for #${topic}`);
         }
         
-        function connectSocial(platform) {
-            alert(`🔗 Connecting to ${platform}... Feature coming soon!`);
-        }
-        
-        // Add event listeners for trending items
+        // Add event listeners
         document.addEventListener('DOMContentLoaded', function() {
-            const trendingItems = document.querySelectorAll('.trending-item');
-            trendingItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const title = this.querySelector('.trending-title').textContent;
-                    alert(`🔥 Exploring ${title} trends... Feature coming soon!`);
+            checkAuth();
+            
+            // Navigation event listeners
+            const navLinks = document.querySelectorAll('[data-navigate]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-navigate');
+                    navigateToPage(page);
                 });
             });
             
-            // Add event listeners for connection toggles
-            const connectionItems = document.querySelectorAll('.connection-item');
-            connectionItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    const toggle = this.querySelector('.connection-toggle');
-                    const status = this.querySelector('.connection-status');
-                    const name = this.querySelector('.connection-name').textContent;
-                    
-                    if (toggle.classList.contains('active')) {
-                        toggle.classList.remove('active');
-                        status.textContent = 'Not Connected';
-                        status.style.color = 'var(--mario-brown)';
-                    } else {
-                        toggle.classList.add('active');
-                        status.textContent = 'Connected';
-                        status.style.color = 'var(--mario-green)';
-                    }
+            // Logout event listener
+            const logoutBtn = document.querySelector('[data-logout]');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    logout();
                 });
-            });
-        });
-        
-        function addPost(content) {
-            const postsFeed = document.getElementById('postsFeed');
+            }
             
-            const postDiv = document.createElement('div');
-            postDiv.className = 'post';
-            postDiv.style.cssText = `
-                background: var(--mario-cloud);
-                border: 3px solid var(--mario-blue);
-                border-radius: 12px;
-                padding: 20px;
-                margin-bottom: 20px;
-                transition: all 0.3s ease;
-            `;
-            
-            const now = new Date();
-            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            
-            postDiv.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--mario-red); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--mario-white); border: 2px solid var(--mario-white);">U</div>
-                    <div>
-                        <div style="font-size: 14px; font-weight: 600; color: var(--mario-blue); margin: 0;">User</div>
-                        <div style="font-size: 10px; color: var(--mario-brown); font-family: Arial, sans-serif;">${timeString}</div>
-                    </div>
-                </div>
-                <div style="font-size: 14px; line-height: 1.6; margin-bottom: 15px; font-family: Arial, sans-serif;">${content}</div>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <button onclick="likePost(this)" style="background: none; border: none; color: var(--mario-brown); font-size: 12px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 4px; padding: 6px 10px; border-radius: 4px;">👍 Like</button>
-                    <button onclick="commentPost(this)" style="background: none; border: none; color: var(--mario-brown); font-size: 12px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 4px; padding: 6px 10px; border-radius: 4px;">💬 Comment</button>
-                    <button onclick="sharePost(this)" style="background: none; border: none; color: var(--mario-brown); font-size: 12px; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 4px; padding: 6px 10px; border-radius: 4px;">🔄 Share</button>
-                </div>
-            `;
-            
-            postsFeed.appendChild(postDiv);
-        }
-        
-        function showPostsFeed() {
-            const emptyState = document.getElementById('emptyState');
-            const postsFeed = document.getElementById('postsFeed');
-            
-            emptyState.style.display = 'none';
-            postsFeed.style.display = 'block';
-        }
-        
-        function likePost(button) {
-            button.style.background = 'var(--mario-yellow)';
-            button.style.color = 'var(--mario-brown)';
-        }
-        
-        function commentPost(button) {
-            alert('💬 Comment feature coming soon!');
-        }
-        
-        function sharePost(button) {
-            alert('🔄 Share feature coming soon!');
-        }
-        
-        // Handle Enter key in post input
-        document.getElementById('postInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                createPost();
+            // Post input listener
+            const postInput = document.getElementById('postInput');
+            if (postInput) {
+                postInput.addEventListener('input', updatePostButton);
             }
         });
     </script>

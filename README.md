@@ -1,4 +1,4 @@
-# BasedlyAI iOS App - Updated Wed Jul 16 07:33:40 PDT 2025
+# Watch - Updated Wed Jul 16 07:33:40 PDT 2025
 
 ## GitHub Actions Setup
 
@@ -14,7 +14,7 @@ To deploy to App Store Connect, add these secrets to your GitHub repository:
 2. Sign in with your Apple ID
 3. Go to "Security" → "App-Specific Passwords"
 4. Click "Generate Password"
-5. Name it "BasedlyAI GitHub Actions"
+5. Name it "Watch GitHub Actions"
 6. Copy the generated password
 
 ## Build Process:

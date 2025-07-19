@@ -3,35 +3,58 @@ const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
+const auth = require('./auth');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
-// Security middleware
+// Security middleware - disabled for development to fix network errors
 app.use(helmet({
-    contentSecurityPolicy: {
-        directives: {
-            defaultSrc: ["'self'"],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-            fontSrc: ["'self'", "https://fonts.gstatic.com"],
-            scriptSrc: ["'self'", "'unsafe-inline'"],
-            imgSrc: ["'self'", "data:", "https:"],
-        },
-    },
+    contentSecurityPolicy: false,
+    crossOriginEmbedderPolicy: false,
+    crossOriginOpenerPolicy: false,
+    crossOriginResourcePolicy: false
 }));
 
 // Compression middleware
 app.use(compression());
 
-// CORS middleware
-app.use(cors());
+// CORS middleware - more explicit configuration
+app.use(cors({
+    origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://localhost:3000', 'http://127.0.0.1:3000'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+}));
+
+// Additional CORS headers for API endpoints
+app.use('/api', (req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+});
 
 // Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files
-app.use(express.static(path.join(__dirname)));
+// Serve static files with proper MIME types
+app.use(express.static(path.join(__dirname), {
+    setHeaders: (res, path) => {
+        if (path.endsWith('.js')) {
+            res.setHeader('Content-Type', 'application/javascript');
+        } else if (path.endsWith('.css')) {
+            res.setHeader('Content-Type', 'text/css');
+        } else if (path.endsWith('.html')) {
+            res.setHeader('Content-Type', 'text/html');
+        }
+    }
+}));
 
 // Health check endpoint for Azure
 app.get('/health', (req, res) => {
@@ -51,7 +74,95 @@ app.get('/api/status', (req, res) => {
         theme: 'Mario',
         architecture: 'MVC',
         status: 'running',
+        timestamp: new Date().toISOString(),
+        userCount: auth.getUserCount(),
+        users: auth.getAllUsers()
+    });
+});
+
+// Debug endpoint to check users
+app.get('/api/debug/users', (req, res) => {
+    res.json({
+        userCount: auth.getUserCount(),
+        users: auth.getAllUsers(),
         timestamp: new Date().toISOString()
+    });
+});
+
+// Authentication API endpoints
+app.post('/api/auth/register', async (req, res) => {
+    try {
+        const { email, password, name } = req.body;
+        const result = await auth.registerUser(email, password, name);
+        res.json(result);
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+});
+
+app.post('/api/auth/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const result = await auth.loginUser(email, password);
+        res.json(result);
+    } catch (error) {
+        res.status(401).json({ success: false, message: error.message });
+    }
+});
+
+app.post('/api/auth/reset-request', async (req, res) => {
+    try {
+        const { email } = req.body;
+        const result = await auth.requestPasswordReset(email);
+        res.json(result);
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+});
+
+app.post('/api/auth/reset-password', async (req, res) => {
+    try {
+        const { token, password } = req.body;
+        const result = await auth.resetPassword(token, password);
+        res.json(result);
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+});
+
+app.get('/api/auth/verify/:token', async (req, res) => {
+    try {
+        const { token } = req.params;
+        const result = await auth.verifyEmail(token);
+        res.json(result);
+    } catch (error) {
+        res.status(400).json({ success: false, message: error.message });
+    }
+});
+
+// Middleware to verify JWT token
+const authenticateToken = (req, res, next) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
+
+    if (!token) {
+        return res.status(401).json({ success: false, message: 'Access token required' });
+    }
+
+    try {
+        const user = auth.verifyToken(token);
+        req.user = user;
+        next();
+    } catch (error) {
+        return res.status(403).json({ success: false, message: 'Invalid token' });
+    }
+};
+
+// Protected route example
+app.get('/api/user/profile', authenticateToken, (req, res) => {
+    res.json({
+        success: true,
+        user: req.user
     });
 });
 
@@ -85,11 +196,60 @@ app.get('/member', (req, res) => {
     res.sendFile(path.join(__dirname, 'member.html'));
 });
 
-// Catch-all route for SPA navigation
+app.get('/reset-password', (req, res) => {
+    res.sendFile(path.join(__dirname, 'reset-password.html'));
+});
+
+app.get('/test-login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'test-login.html'));
+});
+
+app.get('/simple-login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'simple-login.html'));
+});
+
+app.get('/working-login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'working-login.html'));
+});
+
+app.get('/test-login-simple', (req, res) => {
+    res.sendFile(path.join(__dirname, 'test-login-simple.html'));
+});
+
+app.get('/debug-login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'debug-login.html'));
+});
+
+app.get('/minimal-test', (req, res) => {
+    res.sendFile(path.join(__dirname, 'minimal-test.html'));
+});
+
+app.get('/user-test', (req, res) => {
+    res.sendFile(path.join(__dirname, 'user-test.html'));
+});
+
+app.get('/login-test', (req, res) => {
+    res.sendFile(path.join(__dirname, 'login-test.html'));
+});
+
+app.get('/messages', (req, res) => {
+    res.sendFile(path.join(__dirname, 'messages.html'));
+});
+
+app.get('/account', (req, res) => {
+    res.sendFile(path.join(__dirname, 'account.html'));
+});
+
+// Catch-all route for SPA navigation (but not for static files)
 app.get('*', (req, res) => {
     // Check if it's an API request
     if (req.path.startsWith('/api/')) {
         return res.status(404).json({ error: 'API endpoint not found' });
+    }
+    
+    // Check if it's a static file request
+    if (req.path.includes('.') && !req.path.endsWith('.html')) {
+        return res.status(404).send('File not found');
     }
     
     // For other routes, serve the main page (SPA behavior)

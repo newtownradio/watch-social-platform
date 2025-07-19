@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch - Mario Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mario-red: #E74C3C;
+            --mario-blue: #3498DB;
+            --mario-green: #27AE60;
+            --mario-yellow: #F1C40F;
+            --mario-brown: #8B4513;
+            --mario-sky: #87CEEB;
+            --mario-white: #FFFFFF;
+            --mario-cloud: #ECF0F1;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background: linear-gradient(135deg, var(--mario-sky) 0%, var(--mario-green) 50%, var(--mario-yellow) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+        
+        .login-container {
+            background: var(--mario-white);
+            padding: 40px;
+            border-radius: 16px;
+            border: 4px solid var(--mario-brown);
+            box-shadow: 8px 8px 0px var(--mario-brown);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+
+        
+        h1 {
+            color: var(--mario-red);
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 0px var(--mario-yellow);
+        }
+        
+        .mario-input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 3px solid var(--mario-brown);
+            border-radius: 8px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            background: var(--mario-white);
+            box-shadow: 3px 3px 0px var(--mario-brown);
+            transition: all 0.3s ease;
+        }
+        
+        .mario-input:focus {
+            outline: none;
+            border-color: var(--mario-blue);
+            box-shadow: 3px 3px 0px var(--mario-blue);
+            transform: translateY(-2px);
+        }
+        
+        .mario-button {
+            width: 100%;
+            padding: 18px 32px;
+            background: linear-gradient(45deg, var(--mario-red), #FF6347);
+            color: var(--mario-white);
+            border: none;
+            border-radius: 8px;
+            border: 4px solid var(--mario-brown);
+            box-shadow: 6px 6px 0px var(--mario-brown);
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: 'Press Start 2P', cursive;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 0px var(--mario-brown);
+        }
+        
+        .mario-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 8px 8px 0px var(--mario-brown);
+        }
+        
+        .mario-button:active {
+            transform: translateY(-1px);
+            box-shadow: 4px 4px 0px var(--mario-brown);
+        }
+        
+        .mario-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .message {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            border: 2px solid;
+        }
+        
+        .error { 
+            background: rgba(231, 76, 60, 0.1); 
+            border-color: var(--mario-red); 
+            color: var(--mario-red); 
+        }
+        
+        .success { 
+            background: rgba(39, 174, 96, 0.1); 
+            border-color: var(--mario-green); 
+            color: var(--mario-green); 
+        }
+        
+        .demo-info {
+            margin-top: 25px;
+            font-size: 0.6rem;
+            color: var(--mario-brown);
+            background: rgba(139, 69, 19, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            border: 2px solid var(--mario-brown);
+        }
+        
+        .watch-logo {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .logo-text {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #D2691E;
+            text-shadow: 2px 2px 0px #8B4513;
+            letter-spacing: 2px;
+        }
+        
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        @keyframes drift {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(calc(100vw + 100px)); }
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    
+    <div class="login-container">
+
+        
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <input type="email" id="email" class="mario-input" placeholder="Email" value="demo@watch.com" required>
+            <input type="password" id="password" class="mario-input" placeholder="Password" value="pw123" required>
+            <button type="submit" id="loginButton" class="mario-button">LOGIN</button>
+        </form>
+        
+        <div id="message" class="message" style="display: none;"></div>
+        
+
+        
+        <div class="watch-logo">
+            <div class="logo-text">Watch</div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let isLoggingIn = false;
+        
+        // Handle form submission
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            if (isLoggingIn) {
+                console.log('Already logging in, ignoring click');
+                return;
+            }
+            
+            console.log('🔐 Form submitted - login started');
+            performLogin();
+        }
+        
+        // Perform the actual login
+        async function performLogin() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('message');
+            const button = document.getElementById('loginButton');
+            
+            console.log('📧 Email:', email);
+            console.log('🔑 Password:', password);
+            
+            // Validate inputs
+            if (!email || !password) {
+                showMessage('Please enter both email and password', 'error');
+                return;
+            }
+            
+            if (!email.includes('@')) {
+                showMessage('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Set loading state
+            isLoggingIn = true;
+            button.textContent = '🔄 Logging in...';
+            button.disabled = true;
+            messageDiv.style.display = 'none';
+            
+            try {
+                console.log('🌐 Making API request to /api/auth/login');
+                
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                console.log('📡 Response status:', response.status);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                console.log('📄 Response data:', data);
+                
+                if (data.success) {
+                    console.log('✅ Login successful!');
+                    showMessage('🎉 Login successful! Redirecting to Watch...', 'success');
+                    
+                    // Store authentication data
+                    localStorage.setItem('watch_token', data.token);
+                    localStorage.setItem('watch_user', JSON.stringify(data.user));
+                    
+                    // Redirect after a short delay
+                    setTimeout(() => {
+                        console.log('🔄 Redirecting to /discovery');
+                        window.location.href = '/discovery';
+                    }, 1500);
+                    
+                } else {
+                    console.log('❌ Login failed:', data.message);
+                    showMessage('❌ ' + data.message, 'error');
+                }
+                
+            } catch (error) {
+                console.error('❌ Login error:', error);
+                showMessage('❌ Network error: ' + error.message, 'error');
+            } finally {
+                // Reset loading state
+                isLoggingIn = false;
+                button.textContent = 'LOGIN';
+                button.disabled = false;
+            }
+        }
+        
+        // Show message function
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+        }
+        
+        // Test API on page load
+        window.addEventListener('load', async () => {
+            console.log('🧪 Testing API connection...');
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                console.log('📊 API Status:', data);
+                console.log('✅ API is working correctly');
+            } catch (error) {
+                console.error('❌ API test failed:', error);
+                showMessage('❌ Cannot connect to server', 'error');
+            }
+        });
+        
+        // Also add click handler as backup
+        document.getElementById('loginButton').addEventListener('click', function(e) {
+            console.log('🎯 Button clicked directly');
+            if (!isLoggingIn) {
+                performLogin();
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -4,41 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch - Messages</title>
-    <link rel="stylesheet" href="./output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --mario-red: #E74C3C;
-            --mario-blue: #3498DB;
-            --mario-green: #27AE60;
-            --mario-yellow: #F1C40F;
-            --mario-brown: #8B4513;
-            --mario-sky: #87CEEB;
-            --mario-white: #FFFFFF;
-            --mario-cloud: #ECF0F1;
-            --encrypted-green: #27AE60;
-            --warning-orange: #F39C12;
-        }
-        
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            --game-red: #E74C3C;
+            --game-blue: #3498DB;
+            --game-green: #27AE60;
+            --game-yellow: #F1C40F;
+            --game-brown: #8B4513;
+            --game-sky: #87CEEB;
+            --game-white: #FFFFFF;
+            --game-cloud: #ECF0F1;
+            --game-purple: #9B59B6;
+            --game-orange: #E67E22;
+            --text-primary: #2C3E50;
+            --text-secondary: #7F8C8D;
+            --background: #F8F9FA;
+            --surface: #FFFFFF;
+            --border: #BDC3C7;
+            --shadow: rgba(0, 0, 0, 0.1);
         }
         
         body {
-            background: linear-gradient(135deg, var(--mario-sky) 0%, var(--mario-cloud) 100%);
-            font-family: 'Press Start 2P', cursive;
-            margin: 0;
-            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--game-sky) 0%, var(--game-cloud) 100%);
+            color: var(--text-primary);
             line-height: 1.6;
-            color: var(--mario-brown);
             min-height: 100vh;
         }
         
         /* Navigation */
         .nav-container {
-            background: var(--mario-blue);
-            border-bottom: 4px solid var(--mario-red);
+            background: var(--game-blue);
+            border-bottom: 4px solid var(--game-red);
             position: fixed;
             top: 0;
             width: 100%;
@@ -47,7 +51,7 @@
         }
         
         .nav-content {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -55,37 +59,39 @@
             padding: 16px 24px;
         }
         
-        .watch-logo-container {
+        .logo-container {
             display: flex;
             align-items: center;
             cursor: pointer;
             padding: 12px 16px;
             border-radius: 50%;
-            background: var(--mario-red);
+            background: var(--game-red);
             transition: all 0.3s ease;
-            border: 3px solid var(--mario-white);
+            border: 3px solid var(--game-white);
         }
         
-        .watch-logo-container:hover {
-            background: var(--mario-green);
+        .logo-container:hover {
+            background: var(--game-green);
             transform: scale(1.05);
         }
         
-        .watch-logo {
-            font-size: 16px;
+        .logo {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
             font-weight: 700;
-            color: var(--mario-white);
+            color: var(--game-white);
             letter-spacing: 1px;
         }
         
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 32px;
+            align-items: center;
         }
         
         .nav-link {
             text-decoration: none;
-            color: var(--mario-white);
+            color: var(--game-white);
             font-weight: 500;
             font-size: 14px;
             transition: all 0.3s ease;
@@ -95,86 +101,157 @@
         }
         
         .nav-link:hover {
-            color: var(--mario-yellow);
-            border-color: var(--mario-yellow);
+            color: var(--game-yellow);
+            border-color: var(--game-yellow);
             background: rgba(241, 196, 15, 0.1);
         }
         
         .nav-link.active {
-            color: var(--mario-yellow);
-            border-color: var(--mario-yellow);
+            color: var(--game-yellow);
+            border-color: var(--game-yellow);
             background: rgba(241, 196, 15, 0.1);
         }
         
-        /* Main Container */
-        .messages-container {
-            max-width: 1400px;
+        .logout-btn {
+            background: var(--game-red);
+            color: var(--game-white);
+            border: 2px solid var(--game-white);
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        
+        .logout-btn:hover {
+            background: var(--game-green);
+            transform: scale(1.05);
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
             margin: 100px auto 0;
             padding: 0 24px;
             display: grid;
-            grid-template-columns: 300px 1fr;
+            grid-template-columns: 1fr 2fr;
             gap: 24px;
-            height: calc(100vh - 120px);
+            min-height: calc(100vh - 120px);
         }
         
-        /* Sidebar */
-        .sidebar {
-            background: var(--mario-white);
-            border: 4px solid var(--mario-green);
+        /* Conversations List */
+        .conversations-panel {
+            background: var(--game-white);
+            border: 4px solid var(--game-green);
             border-radius: 16px;
-            padding: 20px;
+            overflow: hidden;
             box-shadow: 0 8px 30px rgba(39, 174, 96, 0.2);
             position: relative;
         }
         
-        .sidebar::before {
+        .conversations-panel::before {
             content: '💬';
             position: absolute;
             top: -15px;
             left: 20px;
             font-size: 30px;
-            background: var(--mario-white);
+            background: var(--game-white);
             padding: 0 10px;
+            z-index: 1;
         }
         
-        .sidebar h2 {
+        .conversations-header {
+            padding: 20px;
+            border-bottom: 3px solid var(--game-green);
+            background: var(--game-cloud);
+        }
+        
+        .conversations-title {
+            font-family: 'Press Start 2P', cursive;
             font-size: 16px;
-            color: var(--mario-green);
-            margin-bottom: 20px;
+            font-weight: 600;
+            color: var(--game-green);
+            margin-bottom: 8px;
             text-align: center;
         }
         
-        .contact-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .conversations-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-align: center;
         }
         
-        .contact-item {
-            padding: 12px;
-            margin-bottom: 8px;
-            background: var(--mario-cloud);
-            border: 2px solid var(--mario-green);
-            border-radius: 8px;
+        .conversation-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-bottom: 2px solid var(--game-cloud);
             cursor: pointer;
             transition: all 0.3s ease;
+        }
+        
+        .conversation-item:hover {
+            background: var(--game-yellow);
+            border-color: var(--game-brown);
+        }
+        
+        .conversation-item.active {
+            background: var(--game-green);
+            border-left: 4px solid var(--game-yellow);
+        }
+        
+        .conversation-item.active .conversation-name,
+        .conversation-item.active .conversation-preview,
+        .conversation-item.active .conversation-time {
+            color: var(--game-white);
+        }
+        
+        .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--game-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+            border: 3px solid var(--game-white);
+        }
+        
+        .conversation-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .conversation-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--game-blue);
+            margin-bottom: 4px;
+        }
+        
+        .conversation-preview {
+            font-size: 13px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .conversation-time {
             font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
         }
         
-        .contact-item:hover {
-            background: var(--mario-yellow);
-            border-color: var(--mario-brown);
-        }
-        
-        .contact-item.active {
-            background: var(--mario-green);
-            color: var(--mario-white);
-        }
-        
-        /* Chat Area */
-        .chat-area {
-            background: var(--mario-white);
-            border: 4px solid var(--mario-blue);
+        /* Chat Panel */
+        .chat-panel {
+            background: var(--game-white);
+            border: 4px solid var(--game-blue);
             border-radius: 16px;
             display: flex;
             flex-direction: column;
@@ -182,47 +259,48 @@
             position: relative;
         }
         
-        .chat-area::before {
+        .chat-panel::before {
             content: '🔒';
             position: absolute;
             top: -15px;
             left: 20px;
             font-size: 30px;
-            background: var(--mario-white);
+            background: var(--game-white);
             padding: 0 10px;
+            z-index: 1;
         }
         
         .chat-header {
             padding: 20px;
-            border-bottom: 3px solid var(--mario-blue);
-            background: var(--mario-cloud);
-            border-radius: 12px 12px 0 0;
+            border-bottom: 3px solid var(--game-blue);
+            background: var(--game-cloud);
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
         
-        .chat-header h3 {
+        .chat-title {
             font-size: 16px;
-            color: var(--mario-blue);
-            margin: 0;
+            font-weight: 600;
+            color: var(--game-blue);
         }
         
-        .encryption-status {
-            font-size: 10px;
-            color: var(--encrypted-green);
-            margin-top: 8px;
-            font-family: Arial, sans-serif;
+        .chat-status {
+            font-size: 13px;
+            color: var(--text-secondary);
         }
         
-        .messages-list {
+        .chat-messages {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
-            background: var(--mario-white);
+            min-height: 400px;
+            background: var(--game-white);
         }
         
         .message {
             margin-bottom: 16px;
             display: flex;
-            align-items: flex-start;
             gap: 12px;
         }
         
@@ -230,50 +308,41 @@
             flex-direction: row-reverse;
         }
         
-        .message-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--mario-red);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            color: var(--mario-white);
-            border: 2px solid var(--mario-white);
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+            border: 2px solid var(--game-white);
         }
         
-        .message-content {
-            background: var(--mario-cloud);
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 2px solid var(--mario-blue);
-            max-width: 70%;
-            font-size: 12px;
-            font-family: Arial, sans-serif;
+        .message.received .message-content {
+            background: var(--game-cloud);
+            color: var(--text-primary);
+            border-color: var(--game-blue);
         }
         
         .message.sent .message-content {
-            background: var(--mario-green);
-            color: var(--mario-white);
-            border-color: var(--mario-green);
+            background: var(--game-green);
+            color: var(--game-white);
+            border-color: var(--game-green);
         }
         
         .message-time {
-            font-size: 10px;
-            color: var(--mario-brown);
+            font-size: 11px;
+            color: var(--text-secondary);
             margin-top: 4px;
-            font-family: Arial, sans-serif;
+            text-align: right;
         }
         
-        .message-input-area {
+        .chat-input {
             padding: 20px;
-            border-top: 3px solid var(--mario-blue);
-            background: var(--mario-cloud);
-            border-radius: 0 0 12px 12px;
+            border-top: 3px solid var(--game-blue);
+            background: var(--game-cloud);
         }
         
-        .message-input-container {
+        .input-container {
             display: flex;
             gap: 12px;
             align-items: flex-end;
@@ -282,66 +351,89 @@
         .message-input {
             flex: 1;
             padding: 12px 16px;
-            border: 3px solid var(--mario-blue);
-            border-radius: 8px;
+            border: 3px solid var(--game-blue);
+            border-radius: 24px;
             font-size: 14px;
             outline: none;
+            transition: border-color 0.3s ease;
             resize: none;
-            font-family: Arial, sans-serif;
-            min-height: 60px;
+            min-height: 44px;
+            max-height: 120px;
+            background: var(--game-white);
         }
         
         .message-input:focus {
-            border-color: var(--mario-green);
+            border-color: var(--game-green);
         }
         
         .send-btn {
-            background: var(--mario-green);
-            color: var(--mario-white);
-            border: 3px solid var(--mario-white);
+            background: var(--game-green);
+            color: var(--game-white);
+            border: 3px solid var(--game-white);
             padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 12px;
+            border-radius: 24px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
         }
         
         .send-btn:hover {
-            background: var(--mario-yellow);
-            color: var(--mario-brown);
+            background: var(--game-yellow);
+            color: var(--game-brown);
+            transform: scale(1.05);
         }
         
-        .encryption-notice {
-            background: var(--mario-yellow);
-            border: 3px solid var(--mario-brown);
-            border-radius: 8px;
-            padding: 12px;
-            margin-top: 12px;
+        .send-btn:disabled {
+            background: var(--border);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-secondary);
             text-align: center;
         }
         
-        .encryption-notice p {
-            font-size: 10px;
-            color: var(--mario-brown);
-            margin: 0;
-            font-family: Arial, sans-serif;
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
         }
         
-        /* Responsive */
+        .empty-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+        
+        .empty-text {
+            font-size: 14px;
+            max-width: 300px;
+        }
+        
         @media (max-width: 768px) {
-            .messages-container {
+            .main-container {
                 grid-template-columns: 1fr;
-                height: auto;
+                gap: 16px;
             }
             
-            .sidebar {
-                order: 2;
+            .nav-links {
+                gap: 16px;
             }
             
-            .chat-area {
-                order: 1;
-                height: 60vh;
+            .nav-link {
+                font-size: 13px;
+                padding: 6px 12px;
             }
         }
     </style>
@@ -350,199 +442,237 @@
     <!-- Navigation -->
     <nav class="nav-container">
         <div class="nav-content">
-            <div class="watch-logo-container" onclick="navigateToDiscovery()">
-                <div class="watch-logo">Watch</div>
+            <div class="logo-container" onclick="navigateToHome()">
+                <div class="logo">Watch</div>
             </div>
             
             <div class="nav-links">
-                <a href="discovery.html" class="nav-link">Discovery</a>
-                <a href="buysell.html" class="nav-link">Buy / Sell</a>
-                <a href="messages.html" class="nav-link active">Messages</a>
-                <a href="account.html" class="nav-link">Account</a>
+                <a href="#" data-navigate="discovery" class="nav-link">Discovery</a>
+                <a href="#" data-navigate="buysell" class="nav-link">Buy & Sell</a>
+                <a href="#" data-navigate="messages" class="nav-link active">Messages</a>
+                <a href="#" data-navigate="account" class="nav-link">Account</a>
+                <button data-logout class="logout-btn">Logout</button>
             </div>
         </div>
     </nav>
 
-    <div class="messages-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <h2>💬 Contacts</h2>
-            <ul class="contact-list" id="contactList">
-                <li class="contact-item active" onclick="selectContact('pixelgamer')">🎯 PixelGamer</li>
-                <li class="contact-item" onclick="selectContact('retrorunner')">🏃 RetroRunner</li>
-                <li class="contact-item" onclick="selectContact('arcadeace')">🎮 ArcadeAce</li>
-                <li class="contact-item" onclick="selectContact('digitaldude')">💻 DigitalDude</li>
-                <li class="contact-item" onclick="selectContact('techtrekker')">🚀 TechTrekker</li>
-            </ul>
-        </div>
-
-        <!-- Chat Area -->
-        <div class="chat-area">
-            <div class="chat-header">
-                <h3 id="currentContact">🎯 PixelGamer</h3>
-                <div class="encryption-status">🔒 End-to-End Encrypted</div>
+    <div class="main-container">
+        <!-- Conversations List -->
+        <div class="conversations-panel">
+            <div class="conversations-header">
+                <div class="conversations-title">Messages</div>
+                <div class="conversations-subtitle">3 conversations</div>
             </div>
             
-            <div class="messages-list" id="messagesList">
-                <!-- Messages will be populated by JavaScript -->
-            </div>
-            
-            <div class="message-input-area">
-                <div class="message-input-container">
-                    <textarea class="message-input" id="messageInput" placeholder="Type your encrypted message..." onkeypress="handleKeyPress(event)"></textarea>
-                    <button class="send-btn" onclick="sendMessage()">🚀 Send</button>
+            <div class="conversation-item active" onclick="selectConversation('sarah')">
+                <div class="avatar">S</div>
+                <div class="conversation-info">
+                    <div class="conversation-name">Sarah Chen</div>
+                    <div class="conversation-preview">Thanks for the recommendation!</div>
+                    <div class="conversation-time">2 min ago</div>
                 </div>
-                <div class="encryption-notice">
-                    <p>🔒 All messages are encrypted with AES-256. Only you and the recipient can read them.</p>
+            </div>
+            
+            <div class="conversation-item" onclick="selectConversation('mike')">
+                <div class="avatar">M</div>
+                <div class="conversation-info">
+                    <div class="conversation-name">Mike Johnson</div>
+                    <div class="conversation-preview">Are you still interested in the jacket?</div>
+                    <div class="conversation-time">1 hour ago</div>
+                </div>
+            </div>
+            
+            <div class="conversation-item" onclick="selectConversation('emma')">
+                <div class="avatar">E</div>
+                <div class="conversation-info">
+                    <div class="conversation-name">Emma Wilson</div>
+                    <div class="conversation-preview">Love your latest post!</div>
+                    <div class="conversation-time">3 hours ago</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat Panel -->
+        <div class="chat-panel">
+            <div class="chat-header">
+                <div class="avatar">S</div>
+                <div>
+                    <div class="chat-title">Sarah Chen</div>
+                    <div class="chat-status">Online</div>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message received">
+                    <div class="avatar">S</div>
+                    <div>
+                        <div class="message-content">Hey! I saw your post about the vintage jacket. Do you still have it available?</div>
+                        <div class="message-time">2:30 PM</div>
+                    </div>
+                </div>
+                
+                <div class="message sent">
+                    <div class="avatar">U</div>
+                    <div>
+                        <div class="message-content">Hi Sarah! Yes, it's still available. Are you interested?</div>
+                        <div class="message-time">2:32 PM</div>
+                    </div>
+                </div>
+                
+                <div class="message received">
+                    <div class="avatar">S</div>
+                    <div>
+                        <div class="message-content">Definitely! What's your asking price?</div>
+                        <div class="message-time">2:33 PM</div>
+                    </div>
+                </div>
+                
+                <div class="message sent">
+                    <div class="avatar">U</div>
+                    <div>
+                        <div class="message-content">I'm asking $85. It's in excellent condition!</div>
+                        <div class="message-time">2:35 PM</div>
+                    </div>
+                </div>
+                
+                <div class="message received">
+                    <div class="avatar">S</div>
+                    <div>
+                        <div class="message-content">That sounds perfect! Thanks for the recommendation!</div>
+                        <div class="message-time">2:38 PM</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input">
+                <div class="input-container">
+                    <textarea 
+                        class="message-input" 
+                        placeholder="Type a message..." 
+                        id="messageInput"
+                        rows="1"
+                    ></textarea>
+                    <button class="send-btn" onclick="sendMessage()">Send</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        let currentContact = 'pixelgamer';
-        let encryptionKey = 'watch-secure-key-2024';
-        
-        function navigateToDiscovery() {
-            window.location.href = 'discovery.html';
+        // Authentication check
+        function checkAuth() {
+            const token = localStorage.getItem('watch_token');
+            const user = localStorage.getItem('watch_user');
+            
+            if (!token || !user) {
+                window.location.href = '/working-login';
+                return;
+            }
         }
         
-        function selectContact(contact) {
-            currentContact = contact;
-            
-            // Update active contact
-            document.querySelectorAll('.contact-item').forEach(item => {
+        // Navigation functions
+        function navigateToPage(page) {
+            window.location.href = `/${page}`;
+        }
+        
+        function navigateToHome() {
+            window.location.href = '/';
+        }
+        
+        function logout() {
+            localStorage.removeItem('watch_token');
+            localStorage.removeItem('watch_user');
+            window.location.href = '/working-login';
+        }
+        
+        // Chat functions
+        function selectConversation(name) {
+            // Update active conversation
+            document.querySelectorAll('.conversation-item').forEach(item => {
                 item.classList.remove('active');
             });
-            event.target.classList.add('active');
+            event.currentTarget.classList.add('active');
             
             // Update chat header
-            const contactNames = {
-                'pixelgamer': '🎯 PixelGamer',
-                'retrorunner': '🏃 RetroRunner',
-                'arcadeace': '🎮 ArcadeAce',
-                'digitaldude': '💻 DigitalDude',
-                'techtrekker': '🚀 TechTrekker'
-            };
-            document.getElementById('currentContact').textContent = contactNames[contact];
+            const chatTitle = document.querySelector('.chat-title');
+            chatTitle.textContent = name === 'sarah' ? 'Sarah Chen' : 
+                                   name === 'mike' ? 'Mike Johnson' : 'Emma Wilson';
             
-            // Load messages for this contact
-            loadMessages(contact);
-        }
-        
-        function loadMessages(contact) {
-            const messagesList = document.getElementById('messagesList');
-            messagesList.innerHTML = '';
-            
-            // Demo messages for each contact
-            const demoMessages = {
-                'pixelgamer': [
-                    { text: 'Hey! How\'s the gaming setup coming along?', sent: false, time: '10:30 AM' },
-                    { text: 'Just finished building my new PC! RGB everything!', sent: true, time: '10:32 AM' },
-                    { text: 'That sounds amazing! Send me pics when you can! 🎮', sent: false, time: '10:35 AM' }
-                ],
-                'retrorunner': [
-                    { text: 'Found some amazing retro games at the flea market today!', sent: false, time: '9:15 AM' },
-                    { text: 'Nice! What did you score?', sent: true, time: '9:20 AM' },
-                    { text: 'Got a mint condition NES with 20 games!', sent: false, time: '9:25 AM' }
-                ],
-                'arcadeace': [
-                    { text: 'Just hit a new high score on Pac-Man! 🎯', sent: false, time: '11:00 AM' },
-                    { text: 'That\'s awesome! What was your score?', sent: true, time: '11:05 AM' },
-                    { text: '1,247,890! Personal best!', sent: false, time: '11:10 AM' }
-                ],
-                'digitaldude': [
-                    { text: 'Working on a new coding project. Game development is intense! 💻', sent: false, time: '8:45 AM' },
-                    { text: 'What kind of game are you building?', sent: true, time: '8:50 AM' },
-                    { text: 'A retro-style platformer with modern mechanics!', sent: false, time: '8:55 AM' }
-                ],
-                'techtrekker': [
-                    { text: 'Just got the latest VR headset! The graphics are incredible! 🚀', sent: false, time: '12:30 PM' },
-                    { text: 'Which one did you get?', sent: true, time: '12:35 PM' },
-                    { text: 'Meta Quest 3! The mixed reality is mind-blowing!', sent: false, time: '12:40 PM' }
-                ]
-            };
-            
-            const messages = demoMessages[contact] || [];
-            messages.forEach(message => {
-                addMessageToChat(message.text, message.sent, message.time);
-            });
-        }
-        
-        function addMessageToChat(text, sent, time) {
-            const messagesList = document.getElementById('messagesList');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${sent ? 'sent' : ''}`;
-            
-            const avatar = sent ? '🎯' : getContactAvatar(currentContact);
-            
-            messageDiv.innerHTML = `
-                <div class="message-avatar">${avatar}</div>
-                <div class="message-content">
-                    <div>${encryptDecrypt(text, encryptionKey)}</div>
-                    <div class="message-time">${time}</div>
+            // Clear messages for demo
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.innerHTML = `
+                <div class="message received">
+                    <div class="avatar">${name.charAt(0).toUpperCase()}</div>
+                    <div>
+                        <div class="message-content">Hi there! How are you doing?</div>
+                        <div class="message-time">Just now</div>
+                    </div>
                 </div>
             `;
-            
-            messagesList.appendChild(messageDiv);
-            messagesList.scrollTop = messagesList.scrollHeight;
-        }
-        
-        function getContactAvatar(contact) {
-            const avatars = {
-                'pixelgamer': '🎯',
-                'retrorunner': '🏃',
-                'arcadeace': '🎮',
-                'digitaldude': '💻',
-                'techtrekker': '🚀'
-            };
-            return avatars[contact] || '🎯';
         }
         
         function sendMessage() {
             const input = document.getElementById('messageInput');
-            const text = input.value.trim();
+            const message = input.value.trim();
             
-            if (text) {
+            if (message) {
+                const chatMessages = document.getElementById('chatMessages');
                 const now = new Date();
-                const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
                 
-                addMessageToChat(text, true, time);
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message sent';
+                messageDiv.innerHTML = `
+                    <div class="avatar">U</div>
+                    <div>
+                        <div class="message-content">${message}</div>
+                        <div class="message-time">${timeString}</div>
+                    </div>
+                `;
+                
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
                 input.value = '';
-                
-                // Simulate reply after 2 seconds
-                setTimeout(() => {
-                    const replies = [
-                        'That\'s awesome! 🎮',
-                        'I\'ll check that out!',
-                        'Thanks for sharing!',
-                        'Love it! 💖',
-                        'Great find!',
-                        'Can\'t wait to see it!',
-                        'That sounds amazing!',
-                        'Keep me updated!'
-                    ];
-                    const randomReply = replies[Math.floor(Math.random() * replies.length)];
-                    const replyTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-                    addMessageToChat(randomReply, false, replyTime);
-                }, 2000);
             }
         }
         
-        function handleKeyPress(event) {
-            if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
+        // Auto-resize textarea
+        document.getElementById('messageInput').addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+        });
+        
+        // Send message on Enter
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
                 sendMessage();
             }
-        }
+        });
         
-        function encryptDecrypt(text, key) {
-            // Simple encryption simulation
-            return text;
-        }
-        
-        // Load initial messages
-        loadMessages('pixelgamer');
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            
+            // Navigation event listeners
+            const navLinks = document.querySelectorAll('[data-navigate]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-navigate');
+                    navigateToPage(page);
+                });
+            });
+            
+            // Logout event listener
+            const logoutBtn = document.querySelector('[data-logout]');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    logout();
+                });
+            }
+        });
     </script>
 </body>
 </html> 

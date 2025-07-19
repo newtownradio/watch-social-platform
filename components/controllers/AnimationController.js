@@ -62,16 +62,7 @@ class AnimationController {
                 }
             }
 
-            .power-up-float {
-                animation: powerUpFloat 3s ease-in-out infinite;
-            }
 
-            @keyframes powerUpFloat {
-                0%, 100% { transform: translateY(0) rotate(0deg); }
-                25% { transform: translateY(-15px) rotate(5deg); }
-                50% { transform: translateY(-30px) rotate(0deg); }
-                75% { transform: translateY(-15px) rotate(-5deg); }
-            }
 
             .mario-jump {
                 animation: marioJump 0.6s ease-out;
@@ -93,23 +84,9 @@ class AnimationController {
                 100% { transform: translateY(0) scale(1); }
             }
 
-            .cloud-drift {
-                animation: cloudDrift 20s linear infinite;
-            }
 
-            @keyframes cloudDrift {
-                0% { transform: translateX(-100%); }
-                100% { transform: translateX(100vw); }
-            }
 
-            .star-twinkle {
-                animation: starTwinkle 2s ease-in-out infinite;
-            }
 
-            @keyframes starTwinkle {
-                0%, 100% { opacity: 1; transform: scale(1); }
-                50% { opacity: 0.5; transform: scale(1.2); }
-            }
         `;
     }
 
@@ -129,18 +106,11 @@ class AnimationController {
     }
 
     startCloudAnimations() {
-        const clouds = document.querySelector('.clouds');
-        if (clouds) {
-            clouds.classList.add('cloud-drift');
-        }
+        // Cloud animations disabled
     }
 
     startPowerUpAnimations() {
-        const powerUps = document.querySelectorAll('.mario-elements span');
-        powerUps.forEach((powerUp, index) => {
-            powerUp.style.animationDelay = `${index * 0.5}s`;
-            powerUp.classList.add('power-up-float');
-        });
+        // Power-up animations disabled
     }
 
     startCharacterAnimations() {

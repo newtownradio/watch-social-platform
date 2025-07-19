@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Watch - Buy / Sell</title>
-    <link rel="stylesheet" href="./output.css">
+    <title>Watch - Buy & Sell</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         :root {
             --mario-red: #E74C3C;
             --mario-blue: #3498DB;
@@ -18,15 +23,9 @@
             --mario-cloud: #ECF0F1;
         }
         
-        * {
-            box-sizing: border-box;
-        }
-        
         body {
             background: linear-gradient(135deg, var(--mario-sky) 0%, var(--mario-cloud) 100%);
-            font-family: 'Press Start 2P', cursive;
-            margin: 0;
-            padding: 0;
+            font-family: 'Press Start 2P', 'Courier New', monospace;
             line-height: 1.6;
             color: var(--mario-brown);
             min-height: 100vh;
@@ -103,294 +102,133 @@
             background: rgba(241, 196, 15, 0.1);
         }
         
-        /* Main Container */
-        .buysell-container {
-            max-width: 1400px;
-            margin: 100px auto 0;
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 120px auto 40px;
             padding: 0 24px;
         }
         
-        /* Section Headers */
-        .section-header {
+        .page-header {
             text-align: center;
             margin-bottom: 40px;
         }
         
-        .section-title {
-            font-size: 24px;
-            font-weight: 700;
+        .page-title {
+            font-size: 2rem;
             color: var(--mario-red);
-            margin-bottom: 16px;
-            text-shadow: 2px 2px 0px var(--mario-white);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px var(--mario-yellow);
         }
         
-        .section-subtitle {
-            font-size: 14px;
+        .page-subtitle {
+            font-size: 1rem;
             color: var(--mario-brown);
-            max-width: 600px;
-            margin: 0 auto;
             font-family: Arial, sans-serif;
         }
         
-        /* Buy Section */
-        .buy-section {
-            background: var(--mario-white);
-            border: 4px solid var(--mario-red);
-            border-radius: 16px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 8px 30px rgba(231, 76, 60, 0.2);
-            position: relative;
-        }
-        
-        .buy-section::before {
-            content: '🛒';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 30px;
-            background: var(--mario-white);
-            padding: 0 10px;
-        }
-        
-        .comparison-form {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 32px;
-            flex-wrap: wrap;
-        }
-        
-        .form-input {
-            flex: 1;
-            min-width: 200px;
-            padding: 16px 20px;
-            border: 3px solid var(--mario-blue);
-            border-radius: 12px;
-            font-size: 16px;
-            outline: none;
-            transition: border-color 0.3s ease;
-            font-family: Arial, sans-serif;
-        }
-        
-        .form-input:focus {
-            border-color: var(--mario-green);
-        }
-        
-        .compare-btn {
-            background: var(--mario-green);
-            color: var(--mario-white);
-            border: 3px solid var(--mario-white);
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-        
-        .compare-btn:hover {
-            background: var(--mario-yellow);
-            color: var(--mario-brown);
-            transform: translateY(-2px);
-        }
-        
-        .comparison-results {
+        .content-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-            margin-top: 32px;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
         }
         
-        .deal-card {
-            background: var(--mario-white);
-            border: 3px solid var(--mario-blue);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.2);
-        }
-        
-        .deal-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.3);
-            border-color: var(--mario-green);
-        }
-        
-        .deal-image {
-            width: 100%;
-            height: 200px;
-            background: var(--mario-cloud);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-        }
-        
-        .deal-content {
-            padding: 20px;
-        }
-        
-        .deal-title {
-            font-size: 16px;
-            font-weight: 700;
-            color: var(--mario-red);
-            margin-bottom: 8px;
-        }
-        
-        .deal-price {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--mario-green);
-            margin-bottom: 8px;
-        }
-        
-        .deal-store {
-            font-size: 12px;
-            color: var(--mario-brown);
-            margin-bottom: 12px;
-            font-family: Arial, sans-serif;
-        }
-        
-        .buy-btn {
-            background: var(--mario-red);
-            color: var(--mario-white);
-            border: 2px solid var(--mario-white);
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        
-        .buy-btn:hover {
-            background: var(--mario-yellow);
-            color: var(--mario-brown);
-        }
-        
-        /* Sell Section */
-        .sell-section {
+        .content-card {
             background: var(--mario-white);
             border: 4px solid var(--mario-green);
             border-radius: 16px;
-            padding: 40px;
-            margin-bottom: 40px;
+            padding: 30px;
+            text-align: center;
             box-shadow: 0 8px 30px rgba(39, 174, 96, 0.2);
-            position: relative;
-        }
-        
-        .sell-section::before {
-            content: '💰';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 30px;
-            background: var(--mario-white);
-            padding: 0 10px;
-        }
-        
-        .sell-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 32px;
-        }
-        
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .form-label {
-            font-size: 12px;
-            color: var(--mario-brown);
-            margin-bottom: 8px;
-            font-family: Arial, sans-serif;
-        }
-        
-        .form-input, .form-textarea {
-            padding: 12px 16px;
-            border: 3px solid var(--mario-green);
-            border-radius: 8px;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.3s ease;
-            font-family: Arial, sans-serif;
-        }
-        
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        
-        .form-input:focus, .form-textarea:focus {
-            border-color: var(--mario-blue);
-        }
-        
-        .sell-btn {
-            background: var(--mario-green);
-            color: var(--mario-white);
-            border: 3px solid var(--mario-white);
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
         
-        .sell-btn:hover {
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(39, 174, 96, 0.3);
+        }
+        
+        .card-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--mario-green);
+            margin-bottom: 15px;
+        }
+        
+        .card-description {
+            font-size: 0.9rem;
+            color: var(--mario-brown);
+            font-family: Arial, sans-serif;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        
+        .card-button {
+            background: var(--mario-green);
+            color: var(--mario-white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid var(--mario-white);
+        }
+        
+        .card-button:hover {
             background: var(--mario-yellow);
             color: var(--mario-brown);
             transform: translateY(-2px);
         }
         
-        /* Disclaimer */
-        .disclaimer {
-            background: var(--mario-yellow);
-            border: 3px solid var(--mario-brown);
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 32px;
+        .coming-soon {
+            background: var(--mario-cloud);
+            border: 4px solid var(--mario-blue);
+            border-radius: 16px;
+            padding: 40px;
             text-align: center;
+            margin-top: 40px;
         }
         
-        .disclaimer h3 {
-            font-size: 14px;
-            color: var(--mario-brown);
-            margin-bottom: 12px;
+        .coming-soon-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
         
-        .disclaimer p {
-            font-size: 12px;
+        .coming-soon-title {
+            font-size: 1.5rem;
+            color: var(--mario-blue);
+            margin-bottom: 15px;
+        }
+        
+        .coming-soon-text {
+            font-size: 1rem;
             color: var(--mario-brown);
             font-family: Arial, sans-serif;
-            line-height: 1.5;
+            line-height: 1.6;
         }
         
-        /* Responsive */
         @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
             .nav-links {
                 gap: 20px;
             }
             
             .nav-link {
                 font-size: 12px;
-                padding: 6px 12px;
             }
             
-            .section-title {
-                font-size: 20px;
-            }
-            
-            .comparison-form {
-                flex-direction: column;
-            }
-            
-            .sell-form {
-                grid-template-columns: 1fr;
+            .page-title {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -399,169 +237,111 @@
     <!-- Navigation -->
     <nav class="nav-container">
         <div class="nav-content">
-            <div class="watch-logo-container" onclick="navigateToDiscovery()">
+            <div class="watch-logo-container" onclick="navigateToHome()">
                 <div class="watch-logo">Watch</div>
             </div>
             
             <div class="nav-links">
-                <a href="discovery.html" class="nav-link">Discovery</a>
-                <a href="buysell.html" class="nav-link active">Buy / Sell</a>
-                <a href="messages.html" class="nav-link">Messages</a>
-                <a href="account.html" class="nav-link">Account</a>
+                <a href="#" data-navigate="discovery" class="nav-link">DISCOVERY</a>
+                <a href="#" data-navigate="buysell" class="nav-link active">BUY / SELL</a>
+                <a href="#" data-navigate="messages" class="nav-link">MESSAGES</a>
+                <a href="#" data-navigate="account" class="nav-link">ACCOUNT</a>
+                <button data-logout class="nav-link" style="background: none; border: none; cursor: pointer; color: var(--mario-white); font-weight: 500; font-size: 14px; transition: all 0.3s ease; padding: 8px 16px; border-radius: 6px; border: 2px solid transparent;">LOGOUT</button>
             </div>
         </div>
     </nav>
 
-    <div class="buysell-container">
-        <div class="section-header">
-            <h1 class="section-title">Buy / Sell Marketplace</h1>
-            <p class="section-subtitle">Find the best deals and sell your items with AI-powered price matching</p>
+    <div class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">Buy & Sell</h1>
+            <p class="page-subtitle">Trade fashion items with the Watch community</p>
         </div>
-
-        <!-- Buy Section -->
-        <div class="buy-section">
-            <h2 class="section-title"> Find Best Deals</h2>
-            <div class="comparison-form">
-                <input type="text" class="form-input" placeholder="Search for products..." id="searchInput">
-                <button class="compare-btn" onclick="comparePrices()">🔍 Compare Prices</button>
+        
+        <div class="content-grid">
+            <div class="content-card">
+                <div class="card-icon">🛒</div>
+                <h3 class="card-title">Buy Items</h3>
+                <p class="card-description">Browse through thousands of fashion items from verified sellers in the Watch community.</p>
+                <button class="card-button" onclick="startShopping()">Start Shopping</button>
             </div>
             
-            <div class="comparison-results" id="comparisonResults">
-                <!-- Results will be populated by JavaScript -->
+            <div class="content-card">
+                <div class="card-icon">💰</div>
+                <h3 class="card-title">Sell Items</h3>
+                <p class="card-description">List your fashion items and reach thousands of potential buyers in the Watch marketplace.</p>
+                <button class="card-button" onclick="startSelling()">Start Selling</button>
             </div>
         </div>
-
-        <!-- Sell Section -->
-        <div class="sell-section">
-            <h2 class="section-title"> Sell Your Items</h2>
-            <form class="sell-form" id="sellForm">
-                <div class="form-group">
-                    <label class="form-label">Item Name</label>
-                    <input type="text" class="form-input" placeholder="Enter item name" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Price</label>
-                    <input type="number" class="form-input" placeholder="Enter price" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Category</label>
-                    <select class="form-input" required>
-                        <option value="">Select category</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="electronics">Electronics</option>
-                        <option value="home">Home & Garden</option>
-                        <option value="sports">Sports</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Condition</label>
-                    <select class="form-input" required>
-                        <option value="">Select condition</option>
-                        <option value="new">New</option>
-                        <option value="like-new">Like New</option>
-                        <option value="good">Good</option>
-                        <option value="fair">Fair</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Description</label>
-                    <textarea class="form-textarea" placeholder="Describe your item..." required></textarea>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Contact Info</label>
-                    <input type="text" class="form-input" placeholder="Phone or email" required>
-                </div>
-            </form>
-            
-            <button class="sell-btn" onclick="submitListing()"> List Item for Sale</button>
-            
-            <div class="disclaimer">
-                <h3>⚠️ Important Notice</h3>
-                <p>Users are responsible for their own transactions. Watch is not liable for any issues between buyers and sellers. Always meet in safe, public locations and verify items before purchase.</p>
-            </div>
+        
+        <div class="coming-soon">
+            <div class="coming-soon-icon">🚀</div>
+            <h2 class="coming-soon-title">Marketplace Coming Soon!</h2>
+            <p class="coming-soon-text">
+                We're building an amazing marketplace experience for the Watch community. 
+                Soon you'll be able to buy and sell fashion items with secure payments, 
+                verified sellers, and a seamless shopping experience.
+            </p>
         </div>
     </div>
 
     <script>
-        function navigateToDiscovery() {
-            window.location.href = 'discovery.html';
-        }
-        
-        function comparePrices() {
-            const searchTerm = document.getElementById('searchInput').value;
-            if (!searchTerm) {
-                alert('Please enter a search term');
+        // Authentication check
+        function checkAuth() {
+            const token = localStorage.getItem('watch_token');
+            const user = localStorage.getItem('watch_user');
+            
+            if (!token || !user) {
+                window.location.href = '/working-login';
                 return;
             }
-            
-            // Simulate AI price comparison
-            const results = [
-                {
-                    title: 'Nintendo Switch OLED',
-                    price: '$299.99',
-                    store: 'GameStop',
-                    savings: 'Save $50',
-                    emoji: '🎮'
-                },
-                {
-                    title: 'Nintendo Switch OLED',
-                    price: '$349.99',
-                    store: 'Best Buy',
-                    savings: 'Regular Price',
-                    emoji: '🎮'
-                },
-                {
-                    title: 'Nintendo Switch OLED',
-                    price: '$279.99',
-                    store: 'Amazon',
-                    savings: 'Save $70',
-                    emoji: '🎮'
-                }
-            ];
-            
-            displayResults(results);
         }
         
-        function displayResults(results) {
-            const container = document.getElementById('comparisonResults');
-            container.innerHTML = '';
+        // Navigation functions
+        function navigateToPage(page) {
+            window.location.href = `/${page}`;
+        }
+        
+        function navigateToHome() {
+            window.location.href = '/';
+        }
+        
+        function logout() {
+            localStorage.removeItem('watch_token');
+            localStorage.removeItem('watch_user');
+            window.location.href = '/working-login';
+        }
+        
+        function startShopping() {
+            alert('🛒 Shopping feature coming soon!');
+        }
+        
+        function startSelling() {
+            alert('💰 Selling feature coming soon!');
+        }
+        
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
             
-            results.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'deal-card';
-                card.innerHTML = `
-                    <div class="deal-image">${item.emoji}</div>
-                    <div class="deal-content">
-                        <div class="deal-title">${item.title}</div>
-                        <div class="deal-price">${item.price}</div>
-                        <div class="deal-store">${item.store}</div>
-                        <div class="deal-store" style="color: var(--mario-green); font-weight: bold;">${item.savings}</div>
-                        <button class="buy-btn" onclick="buyItem('${item.store}')">Buy Now</button>
-                    </div>
-                `;
-                container.appendChild(card);
+            // Navigation event listeners
+            const navLinks = document.querySelectorAll('[data-navigate]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-navigate');
+                    navigateToPage(page);
+                });
             });
-        }
-        
-        function buyItem(store) {
-            alert(`Redirecting to ${store} to complete purchase...`);
-        }
-        
-        function submitListing() {
-            const form = document.getElementById('sellForm');
-            if (form.checkValidity()) {
-                alert(' Your item has been listed! Buyers will contact you directly.');
-                form.reset();
-            } else {
-                alert('Please fill in all required fields');
+            
+            // Logout event listener
+            const logoutBtn = document.querySelector('[data-logout]');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    logout();
+                });
             }
-        }
+        });
     </script>
 </body>
 </html> 

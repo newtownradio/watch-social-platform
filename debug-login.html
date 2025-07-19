@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .debug-info {
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <h2>Debug Login Test</h2>
+    
+    <div class="debug-info" id="debugInfo">
+        Loading debug info...
+    </div>
+    
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" value="demo@watch.com" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" value="pw123" required>
+        </div>
+        <button type="submit">Test Login</button>
+        <button type="button" onclick="testAPI()">Test API Status</button>
+        <button type="button" onclick="testCORS()">Test CORS</button>
+    </form>
+    
+    <div id="message" class="message" style="display: none;"></div>
+
+    <script>
+        // Debug info
+        function updateDebugInfo() {
+            const debugInfo = document.getElementById('debugInfo');
+            debugInfo.textContent = `URL: ${window.location.href}
+Protocol: ${window.location.protocol}
+Host: ${window.location.host}
+User Agent: ${navigator.userAgent}
+Timestamp: ${new Date().toISOString()}`;
+        }
+        
+        // Test API status
+        async function testAPI() {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = 'Testing API status...';
+            messageDiv.className = 'message info';
+            messageDiv.style.display = 'block';
+            
+            try {
+                console.log('Testing API status...');
+                const response = await fetch('/api/status');
+                console.log('API Status Response:', response);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('API Status Data:', data);
+                
+                messageDiv.textContent = `✅ API Status Test Successful!
+Status: ${response.status}
+Headers: ${JSON.stringify(Object.fromEntries(response.headers.entries()), null, 2)}
+Data: ${JSON.stringify(data, null, 2)}`;
+                messageDiv.className = 'message success';
+                
+            } catch (error) {
+                console.error('API Status Test Failed:', error);
+                messageDiv.textContent = `❌ API Status Test Failed: ${error.message}`;
+                messageDiv.className = 'message error';
+            }
+        }
+        
+        // Test CORS
+        async function testCORS() {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = 'Testing CORS...';
+            messageDiv.className = 'message info';
+            messageDiv.style.display = 'block';
+            
+            try {
+                console.log('Testing CORS...');
+                const response = await fetch('/api/status', {
+                    method: 'OPTIONS',
+                    headers: {
+                        'Origin': window.location.origin,
+                        'Access-Control-Request-Method': 'GET',
+                        'Access-Control-Request-Headers': 'Content-Type'
+                    }
+                });
+                
+                console.log('CORS Response:', response);
+                const headers = Object.fromEntries(response.headers.entries());
+                
+                messageDiv.textContent = `✅ CORS Test Results:
+Status: ${response.status}
+Headers: ${JSON.stringify(headers, null, 2)}`;
+                messageDiv.className = 'message success';
+                
+            } catch (error) {
+                console.error('CORS Test Failed:', error);
+                messageDiv.textContent = `❌ CORS Test Failed: ${error.message}`;
+                messageDiv.className = 'message error';
+            }
+        }
+        
+        // Login form handler
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageDiv = document.getElementById('message');
+            
+            messageDiv.textContent = 'Testing login...';
+            messageDiv.className = 'message info';
+            messageDiv.style.display = 'block';
+            
+            try {
+                console.log('Testing login with:', { email, password });
+                
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Origin': window.location.origin
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                console.log('Login Response:', response);
+                console.log('Response Headers:', Object.fromEntries(response.headers.entries()));
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                console.log('Login Data:', data);
+                
+                if (data.success) {
+                    messageDiv.textContent = `✅ Login Successful!
+Token: ${data.token.substring(0, 50)}...
+User: ${JSON.stringify(data.user, null, 2)}`;
+                    messageDiv.className = 'message success';
+                } else {
+                    messageDiv.textContent = `❌ Login Failed: ${data.message}`;
+                    messageDiv.className = 'message error';
+                }
+                
+            } catch (error) {
+                console.error('Login Test Failed:', error);
+                messageDiv.textContent = `❌ Login Test Failed: ${error.message}
+Stack: ${error.stack}`;
+                messageDiv.className = 'message error';
+            }
+        });
+        
+        // Initialize
+        window.addEventListener('load', () => {
+            updateDebugInfo();
+            console.log('Debug page loaded');
+        });
+    </script>
+</body>
+</html> 

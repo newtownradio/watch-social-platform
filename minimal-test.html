@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minimal Login Test</title>
+</head>
+<body>
+    <h1>Minimal Login Test</h1>
+    <button onclick="testLogin()">Test Login</button>
+    <div id="result"></div>
+
+    <script>
+        async function testLogin() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                console.log('Starting login test...');
+                
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'demo@watch.com',
+                        password: 'pw123'
+                    })
+                });
+                
+                console.log('Response received:', response);
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+                
+                if (data.success) {
+                    resultDiv.innerHTML = 'SUCCESS! Login worked. Token: ' + data.token.substring(0, 20) + '...';
+                    resultDiv.style.color = 'green';
+                } else {
+                    resultDiv.innerHTML = 'FAILED: ' + data.message;
+                    resultDiv.style.color = 'red';
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                resultDiv.innerHTML = 'ERROR: ' + error.message;
+                resultDiv.style.color = 'red';
+            }
+        }
+        
+        // Test on page load
+        window.onload = function() {
+            console.log('Page loaded, testing API...');
+            fetch('/api/status')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('API Status:', data);
+                    document.getElementById('result').innerHTML = 'API Status: ' + JSON.stringify(data);
+                })
+                .catch(error => {
+                    console.error('API Status Error:', error);
+                    document.getElementById('result').innerHTML = 'API Error: ' + error.message;
+                });
+        };
+    </script>
+</body>
+</html> 

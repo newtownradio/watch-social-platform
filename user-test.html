@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Account Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>User Account Test</h1>
+    
+    <div class="test-section">
+        <h3>1. Check Server Status</h3>
+        <button onclick="checkServer()">Check Server</button>
+        <div id="serverResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>2. Check User Accounts</h3>
+        <button onclick="checkUsers()">List Users</button>
+        <div id="usersResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>3. Test Login API</h3>
+        <button onclick="testLogin()">Test Login (demo@watch.com / pw123)</button>
+        <button onclick="testWrongPassword()">Test Wrong Password</button>
+        <div id="loginResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>4. Test Login Form</h3>
+        <form id="loginForm">
+            <p><strong>Email:</strong> <input type="email" id="email" value="demo@watch.com" required></p>
+            <p><strong>Password:</strong> <input type="password" id="password" value="pw123" required></p>
+            <button type="submit">Submit Login Form</button>
+        </form>
+        <div id="formResult" class="result"></div>
+    </div>
+
+    <script>
+        function showResult(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `result ${type}`;
+        }
+        
+        async function checkServer() {
+            try {
+                const response = await fetch('/api/status');
+                const data = await response.json();
+                showResult('serverResult', `✅ Server is running!\n${JSON.stringify(data, null, 2)}`, 'success');
+            } catch (error) {
+                showResult('serverResult', `❌ Server error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function checkUsers() {
+            try {
+                const response = await fetch('/api/debug/users');
+                const data = await response.json();
+                showResult('usersResult', `✅ Users found:\n${JSON.stringify(data, null, 2)}`, 'success');
+            } catch (error) {
+                showResult('usersResult', `❌ Error checking users: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testLogin() {
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'demo@watch.com',
+                        password: 'pw123'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showResult('loginResult', `✅ Login successful!\nToken: ${data.token.substring(0, 50)}...\nUser: ${JSON.stringify(data.user, null, 2)}`, 'success');
+                } else {
+                    showResult('loginResult', `❌ Login failed: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                showResult('loginResult', `❌ Network error: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testWrongPassword() {
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: 'demo@watch.com',
+                        password: 'wrongpassword'
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (!data.success) {
+                    showResult('loginResult', `✅ Correctly rejected wrong password: ${data.message}`, 'success');
+                } else {
+                    showResult('loginResult', `❌ Should have rejected wrong password!`, 'error');
+                }
+            } catch (error) {
+                showResult('loginResult', `❌ Network error: ${error.message}`, 'error');
+            }
+        }
+        
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    showResult('formResult', `✅ Form login successful!\nToken: ${data.token.substring(0, 50)}...\nUser: ${JSON.stringify(data.user, null, 2)}`, 'success');
+                } else {
+                    showResult('formResult', `❌ Form login failed: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                showResult('formResult', `❌ Form network error: ${error.message}`, 'error');
+            }
+        });
+        
+        // Auto-run server check on page load
+        window.onload = function() {
+            checkServer();
+        };
+    </script>
+</body>
+</html> 
