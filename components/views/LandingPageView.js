@@ -122,6 +122,15 @@ class LandingPageView {
                 white-space: nowrap;
                 min-width: fit-content;
                 cursor: pointer;
+                /* Mobile touch improvements */
+                -webkit-tap-highlight-color: transparent;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                touch-action: manipulation;
+                min-height: 44px; /* iOS minimum touch target */
             }
 
             .cta-button::before {
@@ -759,22 +768,32 @@ class LandingPageView {
             // Click event
             button.addEventListener('click', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 this.handleButtonClick(button);
             });
             
-            // Touch events for mobile
+            // Touch events for mobile - improved for iPhone
             button.addEventListener('touchstart', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 button.style.transform = 'translateY(-2px)';
                 button.style.boxShadow = '4px 4px 0px #000';
-            });
+                button.style.opacity = '0.8';
+            }, { passive: false });
+            
+            button.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+            }, { passive: false });
             
             button.addEventListener('touchend', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 button.style.transform = 'translateY(0)';
                 button.style.boxShadow = '3px 3px 0px #000';
+                button.style.opacity = '1';
                 this.handleButtonClick(button);
-            });
+            }, { passive: false });
             
             // Keyboard accessibility
             button.addEventListener('keydown', (e) => {
@@ -783,9 +802,29 @@ class LandingPageView {
                     this.handleButtonClick(button);
                 }
             });
+            
+            // Mouse events for desktop
+            button.addEventListener('mousedown', (e) => {
+                e.preventDefault();
+                button.style.transform = 'translateY(-1px)';
+                button.style.boxShadow = '2px 2px 0px #000';
+            });
+            
+            button.addEventListener('mouseup', (e) => {
+                e.preventDefault();
+                button.style.transform = '';
+                button.style.boxShadow = '';
+            });
+            
+            button.addEventListener('mouseleave', (e) => {
+                e.preventDefault();
+                button.style.transform = '';
+                button.style.boxShadow = '';
+                button.style.opacity = '1';
+            });
         });
         
-        console.log('✅ Button event listeners set up');
+        console.log('✅ Button event listeners set up for mobile and desktop');
     }
     
     handleButtonClick(button) {
@@ -804,11 +843,36 @@ class LandingPageView {
             button.style.boxShadow = '';
         }, 150);
         
-        // Navigate to the appropriate page
+        // Navigate to the appropriate page with multiple fallbacks
         if (tabNavigation) {
             // Small delay to show the button press effect
             setTimeout(() => {
-                window.location.href = `${tabNavigation}.html`;
+                try {
+                    // Try MVC navigation first
+                    if (window.marioLandingApp && window.marioLandingApp.getController()) {
+                        const controller = window.marioLandingApp.getController();
+                        if (controller && controller.navigateToTab) {
+                            controller.navigateToTab(tabNavigation);
+                            return;
+                        }
+                    }
+                    
+                    // Fallback to direct navigation
+                    console.log(`🌐 Navigating to: ${tabNavigation}.html`);
+                    window.location.href = `${tabNavigation}.html`;
+                    
+                } catch (error) {
+                    console.error('Navigation error:', error);
+                    
+                    // Final fallback
+                    try {
+                        window.location = `${tabNavigation}.html`;
+                    } catch (finalError) {
+                        console.error('Final navigation fallback failed:', finalError);
+                        // Show error message
+                        alert(`Navigation failed. Please try clicking the ${tabNavigation} button again.`);
+                    }
+                }
             }, 100);
         }
     }
