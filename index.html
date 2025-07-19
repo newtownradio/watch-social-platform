@@ -16,9 +16,18 @@
     <!-- Google Fonts for Mario theme -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
-    <!-- Critical CSS inlined for faster loading -->
+    <!-- Base styles -->
+    <link rel="stylesheet" href="output.css">
+    <link rel="stylesheet" href="responsive-mario.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="components/MarioLandingApp.js" as="script">
+    <link rel="preload" href="components/core/LandingPageController.js" as="script">
+    <link rel="preload" href="components/models/LandingPageModel.js" as="script">
+    <link rel="preload" href="components/views/LandingPageView.js" as="script">
+    
     <style>
-        /* Critical CSS for immediate render */
+        /* Critical CSS for initial render */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -47,268 +56,259 @@
             color: var(--mario-brown);
         }
         
-        .mario-world {
-            min-height: 100vh;
-            position: relative;
-            background: 
-                radial-gradient(circle at 20% 80%, #FFD700 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, #FF69B4 0%, transparent 50%),
-                linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #FFB6C1 100%);
-            font-family: 'Press Start 2P', cursive;
-            margin: 0;
-            color: #8B4513;
-            overflow-x: hidden;
-        }
-        
-        .clouds {
-            position: absolute;
-            top: 20px;
+        .loading-screen {
+            position: fixed;
+            top: 0;
             left: 0;
             width: 100%;
-            height: 100px;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.8) 0%, transparent 50%),
-                radial-gradient(circle at 80% 30%, rgba(255,255,255,0.6) 0%, transparent 50%),
-                radial-gradient(circle at 50% 70%, rgba(255,255,255,0.7) 0%, transparent 50%);
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .hero h1 {
-            font-size: clamp(2rem, 8vw, 4rem);
-            margin-bottom: 30px;
-            color: #FF4500;
-            text-shadow: 3px 3px 0px #FFD700, 6px 6px 0px #FF6347;
-            animation: bounce 2s ease-in-out infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .hero p {
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            margin-bottom: 40px;
-            font-family: Arial, sans-serif;
-            color: #2C3E50;
-            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
-        }
-        
-        .mario-character {
-            font-size: clamp(3rem, 10vw, 4rem);
-            margin: 20px 0;
-            animation: jump 3s ease-in-out infinite;
-        }
-        
-        @keyframes jump {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            25% { transform: translateY(-20px) rotate(5deg); }
-            50% { transform: translateY(-40px) rotate(0deg); }
-            75% { transform: translateY(-20px) rotate(-5deg); }
-        }
-        
-        .cta-buttons {
+            height: 100%;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #FFB6C1 100%);
             display: flex;
-            gap: clamp(10px, 2vw, 20px);
+            flex-direction: column;
             justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 40px;
-            padding: 0 10px;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
         }
         
-        .cta-button {
-            padding: clamp(12px, 3vw, 18px) clamp(20px, 4vw, 30px);
-            font-size: clamp(0.8rem, 2.5vw, 1rem);
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: 3px solid #000;
-            box-shadow: 3px 3px 0px #000;
-            position: relative;
+        .loading-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-character {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: loadingJump 1s ease-in-out infinite;
+        }
+        
+        @keyframes loadingJump {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            color: #FF4500;
+            text-shadow: 2px 2px 0px #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .loading-progress {
+            width: 200px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
             overflow: hidden;
-            white-space: nowrap;
-            min-width: fit-content;
-            cursor: pointer;
-            background: var(--mario-red);
-            color: white;
+            border: 2px solid #000;
         }
         
-        .cta-button.secondary { background: var(--mario-blue); }
-        .cta-button.tertiary { background: var(--mario-green); }
-        .cta-button.quaternary { background: #FF69B4; }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 5px 5px 0px #000;
+        .loading-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #FF4500, #FFD700);
+            width: 0%;
+            transition: width 0.3s ease;
         }
         
-        .cta-button:active {
-            transform: translateY(-1px);
-            box-shadow: 2px 2px 0px #000;
+        /* Hide any navbar on the splash page */
+        .navbar, nav, .navigation, .nav-bar {
+            display: none !important;
         }
         
-        .mario-elements {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            animation: slide 4s ease-in-out infinite;
+        /* Ensure no top navigation appears */
+        header, .header, .top-nav, .top-navigation {
+            display: none !important;
         }
         
-        @keyframes slide {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
-        }
-        
-        .footer {
-            position: absolute;
-            bottom: 10px;
-            left: 0;
-            width: 100%;
-            text-align: center;
-            font-size: clamp(0.7rem, 2vw, 0.9rem);
-            color: #2C3E50;
-            font-family: Arial, sans-serif;
-        }
-        
-        /* Responsive Design */
-        @media screen and (max-width: 375px) {
-            .hero { padding: 40px 10px; }
-            .cta-buttons { flex-direction: column; gap: 15px; }
-            .cta-button { width: 100%; max-width: 260px; }
-        }
-        
-        @media screen and (min-width: 376px) and (max-width: 428px) {
-            .hero { padding: 50px 15px; }
-            .cta-buttons { flex-direction: column; gap: 18px; }
-            .cta-button { width: 100%; max-width: 280px; }
-        }
-        
-        @media screen and (min-width: 429px) and (max-width: 480px) {
-            .hero { padding: 60px 20px; }
-            .cta-buttons { flex-direction: column; gap: 20px; }
-            .cta-button { width: 100%; max-width: 300px; }
-        }
-        
-        @media screen and (min-width: 481px) and (max-width: 768px) {
-            .hero { padding: 80px 30px; }
-            .cta-buttons { flex-direction: row; flex-wrap: wrap; gap: 15px; }
-        }
-        
-        @media screen and (min-width: 769px) {
-            .hero { padding: 120px 50px; }
-        }
-        
-        /* Touch optimizations */
-        @media (hover: none) and (pointer: coarse) {
-            .cta-button:hover { transform: none; }
-            .cta-button:active { transform: translateY(-2px); }
-            .cta-button { min-height: 44px; touch-action: manipulation; }
+        /* Hide any moving elements at the top */
+        .moving-nav, .floating-nav, .sticky-nav {
+            display: none !important;
         }
     </style>
 </head>
 <body>
-    <!-- Optimized Mario World - No loading screen needed -->
-    <div class="mario-world">
-        <div class="clouds"></div>
-        
-        <div class="hero">
-            <div class="mario-character">🎮</div>
-            <h1>Watch</h1>
-            <p>Level Up Socially!</p>
-            
-            <div class="cta-buttons">
-                <button class="cta-button" onclick="navigateTo('discovery')">
-                    🔍 Watch
-                </button>
-                <button class="cta-button secondary" onclick="navigateTo('buysell')">
-                    💰 Buy/Sell
-                </button>
-                <button class="cta-button tertiary" onclick="navigateTo('messages')">
-                    💬 Messages
-                </button>
-                <button class="cta-button quaternary" onclick="navigateTo('account')">
-                    👤 Account
-                </button>
-            </div>
-            
-            <div class="mario-elements">
-                🍄 ⭐ 🎯 🏆
-            </div>
-        </div>
-        
-        <div class="footer">
-            © 2025 Watch
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-character">🎮</div>
+        <div class="loading-text">Loading Watch...</div>
+        <div class="loading-progress">
+            <div class="loading-bar" id="loading-bar"></div>
         </div>
     </div>
 
-    <!-- Minimal JavaScript for navigation -->
+    <!-- Main App Container -->
+    <div id="app-container">
+        <!-- MVC components will render here -->
+    </div>
+
+    <!-- Scripts - Load in dependency order -->
     <script>
-        function navigateTo(page) {
-            console.log(`🎮 Navigating to: ${page}`);
-            
-            // Add visual feedback
-            event.target.style.transform = 'translateY(-1px)';
-            event.target.style.boxShadow = '2px 2px 0px #000';
-            
-            // Reset after animation
-            setTimeout(() => {
-                event.target.style.transform = '';
-                event.target.style.boxShadow = '';
-            }, 150);
-            
-            // Navigate to page
-            setTimeout(() => {
-                window.location.href = `${page}.html`;
-            }, 100);
+        // Loading progress simulation
+        let loadingProgress = 0;
+        const loadingBar = document.getElementById('loading-bar');
+        const loadingScreen = document.getElementById('loading-screen');
+        
+        function updateLoadingProgress(progress) {
+            loadingProgress = progress;
+            if (loadingBar) {
+                loadingBar.style.width = `${progress}%`;
+            }
         }
         
-        // Add touch event handling for mobile
-        document.addEventListener('DOMContentLoaded', function() {
-            const buttons = document.querySelectorAll('.cta-button');
-            
-            buttons.forEach(button => {
-                button.addEventListener('touchstart', function(e) {
-                    e.preventDefault();
-                    this.style.transform = 'translateY(-2px)';
-                    this.style.boxShadow = '4px 4px 0px #000';
-                });
-                
-                button.addEventListener('touchend', function(e) {
-                    e.preventDefault();
-                    this.style.transform = 'translateY(0)';
-                    this.style.boxShadow = '3px 3px 0px #000';
-                });
-                
-                // Keyboard accessibility
-                button.addEventListener('keydown', function(e) {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        this.click();
-                    }
-                });
-            });
-        });
+        function hideLoadingScreen() {
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.remove();
+                }, 500);
+            }
+        }
         
-        // Performance monitoring
+        // Start loading progress
+        updateLoadingProgress(10);
+    </script>
+
+    <!-- Load MVC Components -->
+    <script src="components/models/LandingPageModel.js"></script>
+    <script>
+        updateLoadingProgress(30);
+    </script>
+    
+    <script src="components/views/LandingPageView.js"></script>
+    <script>
+        updateLoadingProgress(50);
+    </script>
+    
+    <script src="components/controllers/AnimationController.js"></script>
+    <script>
+        updateLoadingProgress(70);
+    </script>
+    
+    <script src="components/controllers/NavigationController.js"></script>
+    <script>
+        updateLoadingProgress(85);
+    </script>
+    
+    <script src="components/core/LandingPageController.js"></script>
+    <script>
+        updateLoadingProgress(95);
+    </script>
+    
+    <script src="components/MarioLandingApp.js"></script>
+    <script>
+        updateLoadingProgress(100);
+        
+        // Hide loading screen after a short delay
+        setTimeout(() => {
+            hideLoadingScreen();
+        }, 500);
+        
+        // Ensure buttons work after app initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add direct button event listeners as fallback
+            setTimeout(() => {
+                const buttons = document.querySelectorAll('.cta-button, [data-tab-navigation], [data-cta-action]');
+                console.log('🔍 Found buttons:', buttons.length);
+                
+                buttons.forEach(button => {
+                    // Remove any existing listeners to avoid duplicates
+                    button.replaceWith(button.cloneNode(true));
+                });
+                
+                // Re-query after cloning
+                const freshButtons = document.querySelectorAll('.cta-button, [data-tab-navigation], [data-cta-action]');
+                
+                freshButtons.forEach(button => {
+                    const tabNavigation = button.getAttribute('data-tab-navigation');
+                    const ctaAction = button.getAttribute('data-cta-action');
+                    
+                    console.log('🎮 Setting up button:', { tabNavigation, ctaAction });
+                    
+                    // Add click event
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('🎯 Button clicked:', { tabNavigation, ctaAction });
+                        
+                        if (tabNavigation) {
+                            console.log('🌐 Navigating to:', tabNavigation + '.html');
+                            window.location.href = tabNavigation + '.html';
+                        }
+                    });
+                    
+                    // Add touch events for mobile
+                    button.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        button.style.transform = 'translateY(-2px)';
+                        button.style.opacity = '0.8';
+                    }, { passive: false });
+                    
+                    button.addEventListener('touchend', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        button.style.transform = '';
+                        button.style.opacity = '1';
+                        
+                        if (tabNavigation) {
+                            console.log('🌐 Touch navigating to:', tabNavigation + '.html');
+                            window.location.href = tabNavigation + '.html';
+                        }
+                    }, { passive: false });
+                });
+            }, 1000); // Wait for app to fully initialize
+        });
+    </script>
+
+    <!-- Error handling -->
+    <script>
+        // Global error handler for script loading
+        window.addEventListener('error', function(e) {
+            console.error('Script loading error:', e);
+            
+            // Show error message
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 0, 0, 0.9);
+                color: white;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                z-index: 10000;
+                font-family: Arial, sans-serif;
+            `;
+            errorDiv.innerHTML = `
+                <h3>🚨 Loading Error</h3>
+                <p>Failed to load Watch app components.</p>
+                <button onclick="location.reload()" style="
+                    background: #FF4500;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    margin-top: 10px;
+                ">Retry</button>
+            `;
+            document.body.appendChild(errorDiv);
+        });
+    </script>
+
+    <!-- Performance monitoring -->
+    <script>
+        // Monitor page load performance
         window.addEventListener('load', function() {
             if ('performance' in window) {
                 const perfData = performance.getEntriesByType('navigation')[0];
-                console.log('🚀 Page load time:', perfData.loadEventEnd - perfData.navigationStart, 'ms');
+                console.log('📊 Page load performance:', {
+                    domContentLoaded: perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart,
+                    loadComplete: perfData.loadEventEnd - perfData.loadEventStart,
+                    total: perfData.loadEventEnd - perfData.navigationStart
+                });
             }
         });
     </script>
