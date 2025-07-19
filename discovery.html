@@ -289,36 +289,122 @@
             text-align: center;
         }
         
-        .social-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+        .trending-section {
+            margin-bottom: 20px;
         }
         
-        .social-btn {
+        .trending-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 8px;
-            padding: 15px 10px;
-            background: var(--mario-white);
+            gap: 12px;
+            padding: 12px;
+            background: var(--mario-cloud);
             border: 2px solid var(--mario-blue);
             border-radius: 8px;
-            text-decoration: none;
-            color: var(--mario-brown);
-            font-size: 10px;
+            margin-bottom: 10px;
             transition: all 0.3s ease;
             cursor: pointer;
         }
         
-        .social-btn:hover {
+        .trending-item:hover {
             background: var(--mario-yellow);
             border-color: var(--mario-brown);
-            transform: translateY(-2px);
+            transform: translateX(5px);
         }
         
-        .social-icon {
+        .trending-icon {
             font-size: 20px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .trending-content {
+            flex: 1;
+        }
+        
+        .trending-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--mario-blue);
+            margin-bottom: 2px;
+        }
+        
+        .trending-stats {
+            font-size: 10px;
+            color: var(--mario-brown);
+            font-family: Arial, sans-serif;
+        }
+        
+        .social-connections {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .connection-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--mario-cloud);
+            border: 2px solid var(--mario-blue);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .connection-item:hover {
+            background: var(--mario-yellow);
+            border-color: var(--mario-brown);
+        }
+        
+        .connection-icon {
+            font-size: 18px;
+            width: 30px;
+            text-align: center;
+        }
+        
+        .connection-info {
+            flex: 1;
+        }
+        
+        .connection-name {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--mario-blue);
+            margin-bottom: 2px;
+        }
+        
+        .connection-status {
+            font-size: 10px;
+            color: var(--mario-brown);
+            font-family: Arial, sans-serif;
+        }
+        
+        .connection-toggle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--mario-brown);
+            background: var(--mario-white);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .connection-toggle.active {
+            background: var(--mario-green);
+            border-color: var(--mario-green);
+        }
+        
+        .connection-toggle.active::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--mario-white);
+            font-size: 12px;
+            font-weight: bold;
         }
         
         /* Responsive */
@@ -349,8 +435,14 @@
                 align-items: stretch;
             }
             
-            .social-grid {
-                grid-template-columns: 1fr;
+            .trending-section,
+            .social-connections {
+                margin-bottom: 15px;
+            }
+            
+            .trending-item,
+            .connection-item {
+                padding: 10px;
             }
         }
     </style>
@@ -415,28 +507,73 @@
         
         <!-- Sidebar -->
         <div class="sidebar">
-            <h3>Connect Your Social Media</h3>
-            <div class="social-grid">
-                <button class="social-btn" onclick="connectSocial('instagram')">
-                    <span class="social-icon">📷</span>
-                    <span>Instagram</span>
-                </button>
-                <button class="social-btn" onclick="connectSocial('tiktok')">
-                    <span class="social-icon">🎵</span>
-                    <span>TikTok</span>
-                </button>
-                <button class="social-btn" onclick="connectSocial('youtube')">
-                    <span class="social-icon">📺</span>
-                    <span>YouTube</span>
-                </button>
-                <button class="social-btn" onclick="connectSocial('twitter')">
-                    <span class="social-icon">🐦</span>
-                    <span>Twitter</span>
-                </button>
-                <button class="social-btn" onclick="connectSocial('pinterest')">
-                    <span class="social-icon">📌</span>
-                    <span>Pinterest</span>
-                </button>
+            <h3>Trending Now</h3>
+            <div class="trending-section">
+                <div class="trending-item">
+                    <div class="trending-icon">🔥</div>
+                    <div class="trending-content">
+                        <div class="trending-title">Street Style</div>
+                        <div class="trending-stats">2.4k posts</div>
+                    </div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-icon">⚡</div>
+                    <div class="trending-content">
+                        <div class="trending-title">Vintage Finds</div>
+                        <div class="trending-stats">1.8k posts</div>
+                    </div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-icon">💎</div>
+                    <div class="trending-content">
+                        <div class="trending-title">Luxury Fashion</div>
+                        <div class="trending-stats">956 posts</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px;">Connect Social</h3>
+            <div class="social-connections">
+                <div class="connection-item">
+                    <div class="connection-icon instagram">📷</div>
+                    <div class="connection-info">
+                        <div class="connection-name">Instagram</div>
+                        <div class="connection-status">Connected</div>
+                    </div>
+                    <div class="connection-toggle active"></div>
+                </div>
+                <div class="connection-item">
+                    <div class="connection-icon tiktok">🎵</div>
+                    <div class="connection-info">
+                        <div class="connection-name">TikTok</div>
+                        <div class="connection-status">Not Connected</div>
+                    </div>
+                    <div class="connection-toggle"></div>
+                </div>
+                <div class="connection-item">
+                    <div class="connection-icon youtube">📺</div>
+                    <div class="connection-info">
+                        <div class="connection-name">YouTube</div>
+                        <div class="connection-status">Connected</div>
+                    </div>
+                    <div class="connection-toggle active"></div>
+                </div>
+                <div class="connection-item">
+                    <div class="connection-icon twitter">🐦</div>
+                    <div class="connection-info">
+                        <div class="connection-name">Twitter</div>
+                        <div class="connection-status">Not Connected</div>
+                    </div>
+                    <div class="connection-toggle"></div>
+                </div>
+                <div class="connection-item">
+                    <div class="connection-icon pinterest">📌</div>
+                    <div class="connection-info">
+                        <div class="connection-name">Pinterest</div>
+                        <div class="connection-status">Connected</div>
+                    </div>
+                    <div class="connection-toggle active"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -476,6 +613,37 @@
         function connectSocial(platform) {
             alert(`🔗 Connecting to ${platform}... Feature coming soon!`);
         }
+        
+        // Add event listeners for trending items
+        document.addEventListener('DOMContentLoaded', function() {
+            const trendingItems = document.querySelectorAll('.trending-item');
+            trendingItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.trending-title').textContent;
+                    alert(`🔥 Exploring ${title} trends... Feature coming soon!`);
+                });
+            });
+            
+            // Add event listeners for connection toggles
+            const connectionItems = document.querySelectorAll('.connection-item');
+            connectionItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const toggle = this.querySelector('.connection-toggle');
+                    const status = this.querySelector('.connection-status');
+                    const name = this.querySelector('.connection-name').textContent;
+                    
+                    if (toggle.classList.contains('active')) {
+                        toggle.classList.remove('active');
+                        status.textContent = 'Not Connected';
+                        status.style.color = 'var(--mario-brown)';
+                    } else {
+                        toggle.classList.add('active');
+                        status.textContent = 'Connected';
+                        status.style.color = 'var(--mario-green)';
+                    }
+                });
+            });
+        });
         
         function addPost(content) {
             const postsFeed = document.getElementById('postsFeed');
