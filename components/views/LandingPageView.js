@@ -592,6 +592,9 @@ class LandingPageView {
             marioElements: this.container.querySelector('.mario-elements')
         };
         
+        // Add direct event listeners to buttons
+        this.setupButtonEventListeners();
+        
         this.isRendered = true;
         console.log('✅ Landing page rendered successfully');
     }
@@ -748,6 +751,66 @@ class LandingPageView {
         }
         this.elements = {};
         this.isRendered = false;
+    }
+
+    setupButtonEventListeners() {
+        // Add click event listeners to all CTA buttons
+        this.elements.ctaButtons.forEach(button => {
+            // Click event
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.handleButtonClick(button);
+            });
+            
+            // Touch events for mobile
+            button.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                button.style.transform = 'translateY(-2px)';
+                button.style.boxShadow = '4px 4px 0px #000';
+            });
+            
+            button.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                button.style.transform = 'translateY(0)';
+                button.style.boxShadow = '3px 3px 0px #000';
+                this.handleButtonClick(button);
+            });
+            
+            // Keyboard accessibility
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.handleButtonClick(button);
+                }
+            });
+        });
+        
+        console.log('✅ Button event listeners set up');
+    }
+    
+    handleButtonClick(button) {
+        const action = button.getAttribute('data-cta-action');
+        const tabNavigation = button.getAttribute('data-tab-navigation');
+        
+        console.log(`🎮 Button clicked: ${action} -> ${tabNavigation}`);
+        
+        // Add visual feedback
+        button.style.transform = 'translateY(-1px)';
+        button.style.boxShadow = '2px 2px 0px #000';
+        
+        // Reset after animation
+        setTimeout(() => {
+            button.style.transform = '';
+            button.style.boxShadow = '';
+        }, 150);
+        
+        // Navigate to the appropriate page
+        if (tabNavigation) {
+            // Small delay to show the button press effect
+            setTimeout(() => {
+                window.location.href = `${tabNavigation}.html`;
+            }, 100);
+        }
     }
 
     destroy() {
