@@ -1,0 +1,33 @@
+# Cloudflare Pages Build Configuration
+name: Watch.style Deployment
+
+# Build settings
+build:
+  command: echo "No build required - static files"
+  output: ThreadSocialAI
+  environment:
+    NODE_VERSION: 18
+
+# Environment variables
+env:
+  NODE_ENV: production
+
+# Cache settings - force fresh content
+headers:
+  - path: /*
+    headers:
+      - name: Cache-Control
+        value: "no-cache, no-store, must-revalidate"
+      - name: Pragma
+        value: "no-cache"
+      - name: Expires
+        value: "0"
+
+# Functions (if needed later)
+functions:
+  directory: functions
+
+# Custom domains
+custom_domains:
+  - watch.style
+  - www.watch.style 

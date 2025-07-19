@@ -1,0 +1,15 @@
+[Unit]
+Description=Watch.style Backend Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/watch.style/backend
+Environment=PATH=/var/www/watch.style/backend/venv/bin
+ExecStart=/var/www/watch.style/backend/venv/bin/python app.py
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target 

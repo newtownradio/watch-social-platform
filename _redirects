@@ -1,0 +1,7 @@
+# Cloudflare Pages Redirects
+# Handle client-side routing
+/*    /index.html   200
+
+# Force HTTPS
+http://watch.style/* https://watch.style/:splat 301
+http://www.watch.style/* https://www.watch.style/:splat 301 

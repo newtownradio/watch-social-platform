@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basedly AI - App Icon Generator</title>
+    <style>
+        body {
+            font-family: 'Space Grotesk', Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #FFABDF;
+            text-align: center;
+            font-size: 48px;
+            margin-bottom: 40px;
+        }
+        
+        .icon-generator {
+            background: #111;
+            border: 2px solid #FFABDF;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .upload-section {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .upload-btn {
+            background: #FFABDF;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 10px;
+        }
+        
+        .upload-btn:hover {
+            background: #F5F5DC;
+        }
+        
+        .preview-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .icon-preview {
+            background: #000;
+            border: 1px solid #F5F5DC;
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        .icon-preview img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        
+        .icon-preview h3 {
+            color: #FFABDF;
+            margin: 10px 0;
+        }
+        
+        .icon-preview p {
+            color: #F5F5DC;
+            font-size: 12px;
+            margin: 5px 0;
+        }
+        
+        .generate-btn {
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-radius: 4px;
+            margin: 10px;
+        }
+        
+        .generate-btn:hover {
+            background: #45a049;
+        }
+        
+        .download-section {
+            background: #111;
+            border: 2px solid #F5F5DC;
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .download-item {
+            background: #000;
+            border: 1px solid #FFABDF;
+            padding: 15px;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .download-item:hover {
+            background: rgba(255, 171, 223, 0.1);
+        }
+        
+        .download-item img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .download-item h4 {
+            color: #FFABDF;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        
+        .download-item p {
+            color: #F5F5DC;
+            font-size: 11px;
+            margin: 0;
+        }
+        
+        .instructions {
+            background: #111;
+            border: 2px solid #F5F5DC;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .instructions h2 {
+            color: #FFABDF;
+            margin-bottom: 20px;
+        }
+        
+        .instructions ul {
+            color: #F5F5DC;
+            line-height: 1.6;
+        }
+        
+        .instructions li {
+            margin-bottom: 10px;
+        }
+        
+        .code-block {
+            background: #000;
+            border: 1px solid #FFABDF;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #F5F5DC;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Basedly AI App Icon Generator</h1>
+        
+        <div class="icon-generator">
+            <h2 style="color: #FFABDF; text-align: center; margin-bottom: 30px;">Upload Your App Icon</h2>
+            
+            <div class="upload-section">
+                <input type="file" id="iconInput" class="file-input" accept="image/*">
+                <button class="upload-btn" onclick="document.getElementById('iconInput').click()">📁 Choose Icon Image</button>
+                <p style="color: #F5F5DC; margin-top: 10px;">Recommended: 1024x1024 PNG with transparent background</p>
+                
+                <!-- Default Watch Logo Option -->
+                <div style="margin-top: 20px; padding: 20px; background: rgba(255, 171, 223, 0.1); border-radius: 8px;">
+                    <h3 style="color: #FFABDF; margin-bottom: 15px;">Or Use Default Watch Logo</h3>
+                    <button class="upload-btn" onclick="useDefaultWatchLogo()">🎨 Use Watch Logo</button>
+                    <p style="color: #F5F5DC; font-size: 12px; margin-top: 10px;">This will generate icons using the Watch logo design</p>
+                </div>
+            </div>
+            
+            <div class="preview-section" id="previewSection">
+                <div class="icon-preview">
+                    <h3>Original</h3>
+                    <canvas id="originalCanvas" width="200" height="200"></canvas>
+                    <p>1024x1024</p>
+                </div>
+                
+                <div class="icon-preview">
+                    <h3>Favicon</h3>
+                    <canvas id="faviconCanvas" width="200" height="200"></canvas>
+                    <p>32x32</p>
+                </div>
+                
+                <div class="icon-preview">
+                    <h3>App Icon</h3>
+                    <canvas id="appIconCanvas" width="200" height="200"></canvas>
+                    <p>180x180</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center;">
+                <button class="generate-btn" onclick="generateAllIcons()">🎨 Generate All Icons</button>
+                <button class="generate-btn" onclick="downloadAllIcons()">📥 Download All</button>
+            </div>
+        </div>
+        
+        <div class="download-section">
+            <h2 style="color: #F5F5DC; text-align: center; margin-bottom: 30px;">Generated Icons</h2>
+            
+            <div class="download-grid" id="downloadGrid">
+                <!-- Icons will be generated here -->
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h2>📋 Implementation Instructions</h2>
+            
+            <h3 style="color: #FFABDF;">1. Favicon Implementation</h3>
+            <p style="color: #F5F5DC;">Add these lines to your HTML &lt;head&gt; section:</p>
+            <div class="code-block">
+&lt;link rel="icon" type="image/x-icon" href="assets/favicon.ico"&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png"&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="assets/app-icon-180.png"&gt;
+&lt;link rel="manifest" href="manifest.json"&gt;
+            </div>
+            
+            <h3 style="color: #FFABDF;">2. iOS App Icons</h3>
+            <p style="color: #F5F5DC;">Place the generated iOS icons in your Xcode project:</p>
+            <ul>
+                <li>Copy all generated iOS icons to <code>Assets.xcassets/AppIcon.appiconset/</code></li>
+                <li>Update <code>Contents.json</code> to reference the new icon files</li>
+                <li>Clean and rebuild your Xcode project</li>
+            </ul>
+            
+            <h3 style="color: #FFABDF;">3. Social Media Icons</h3>
+            <p style="color: #F5F5DC;">Use these meta tags for social sharing:</p>
+            <div class="code-block">
+&lt;meta property="og:image" content="assets/social-share-1200x630.png"&gt;
+&lt;meta property="og:image:width" content="1200"&gt;
+&lt;meta property="og:image:height" content="630"&gt;
+&lt;meta name="twitter:image" content="assets/social-share-1200x630.png"&gt;
+            </div>
+            
+            <h3 style="color: #FFABDF;">4. File Structure</h3>
+            <p style="color: #F5F5DC;">Organize your icons in this structure:</p>
+            <div class="code-block">
+assets/
+├── favicon.ico
+├── favicon-16x16.png
+├── favicon-32x32.png
+├── app-icon-180.png
+├── social-share-1200x630.png
+└── ios-icons/
+    ├── icon-20x20.png
+    ├── icon-29x29.png
+    ├── icon-40x40.png
+    ├── icon-58x58.png
+    ├── icon-60x60.png
+    ├── icon-76x76.png
+    ├── icon-80x80.png
+    ├── icon-87x87.png
+    ├── icon-120x120.png
+    ├── icon-152x152.png
+    ├── icon-167x167.png
+    └── icon-1024x1024.png
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let originalImage = null;
+        const iconSizes = {
+            favicon: [16, 32],
+            appIcon: [180],
+            ios: [20, 29, 40, 58, 60, 76, 80, 87, 120, 152, 167, 1024],
+            social: [1200, 630]
+        };
+
+        document.getElementById('iconInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    originalImage = new Image();
+                    originalImage.onload = function() {
+                        previewIcons();
+                    };
+                    originalImage.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function previewIcons() {
+            if (!originalImage) return;
+            
+            // Preview original
+            const originalCanvas = document.getElementById('originalCanvas');
+            const originalCtx = originalCanvas.getContext('2d');
+            originalCtx.clearRect(0, 0, 200, 200);
+            originalCtx.drawImage(originalImage, 0, 0, 200, 200);
+            
+            // Preview favicon
+            const faviconCanvas = document.getElementById('faviconCanvas');
+            const faviconCtx = faviconCanvas.getContext('2d');
+            faviconCtx.clearRect(0, 0, 200, 200);
+            faviconCtx.drawImage(originalImage, 0, 0, 200, 200);
+            
+            // Preview app icon
+            const appIconCanvas = document.getElementById('appIconCanvas');
+            const appIconCtx = appIconCanvas.getContext('2d');
+            appIconCtx.clearRect(0, 0, 200, 200);
+            appIconCtx.drawImage(originalImage, 0, 0, 200, 200);
+        }
+
+        function generateAllIcons() {
+            if (!originalImage) {
+                alert('Please upload an image first!');
+                return;
+            }
+            
+            generateDownloadGrid();
+            showNotification('All icons generated successfully!', 'success');
+        }
+
+        function generateDownloadGrid() {
+            const grid = document.getElementById('downloadGrid');
+            grid.innerHTML = '';
+            
+            // Favicon icons
+            iconSizes.favicon.forEach(size => {
+                addDownloadItem(`favicon-${size}x${size}.png`, size, 'Favicon');
+            });
+            
+            // App icon
+            iconSizes.appIcon.forEach(size => {
+                addDownloadItem(`app-icon-${size}x${size}.png`, size, 'App Icon');
+            });
+            
+            // iOS icons
+            iconSizes.ios.forEach(size => {
+                addDownloadItem(`ios-icon-${size}x${size}.png`, size, 'iOS');
+            });
+            
+            // Social share
+            addDownloadItem('social-share-1200x630.png', '1200x630', 'Social Share');
+        }
+
+        function addDownloadItem(filename, size, category) {
+            const grid = document.getElementById('downloadGrid');
+            const item = document.createElement('div');
+            item.className = 'download-item';
+            item.onclick = () => downloadIcon(filename, size);
+            
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const ctx = canvas.getContext('2d');
+            
+            if (typeof size === 'number') {
+                ctx.drawImage(originalImage, 0, 0, 32, 32);
+            } else {
+                // For social share, create a preview
+                ctx.fillStyle = '#FFABDF';
+                ctx.fillRect(0, 0, 32, 32);
+                ctx.fillStyle = '#000';
+                ctx.font = '8px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText('SOCIAL', 16, 16);
+            }
+            
+            item.innerHTML = `
+                <img src="${canvas.toDataURL()}" alt="${filename}">
+                <h4>${filename}</h4>
+                <p>${size}px - ${category}</p>
+            `;
+            
+            grid.appendChild(item);
+        }
+
+        function downloadIcon(filename, size) {
+            if (!originalImage) return;
+            
+            const canvas = document.createElement('canvas');
+            if (typeof size === 'number') {
+                canvas.width = size;
+                canvas.height = size;
+            } else {
+                // Social share size
+                canvas.width = 1200;
+                canvas.height = 630;
+            }
+            
+            const ctx = canvas.getContext('2d');
+            
+            if (typeof size === 'number') {
+                ctx.drawImage(originalImage, 0, 0, size, size);
+            } else {
+                // Use enhanced social share image
+                const socialCanvas = createSocialShareImage();
+                ctx.drawImage(socialCanvas, 0, 0);
+            }
+            
+            // Download
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        function downloadAllIcons() {
+            if (!originalImage) {
+                alert('Please upload an image first!');
+                return;
+            }
+            
+            // Download all icons
+            [...iconSizes.favicon, ...iconSizes.appIcon, ...iconSizes.ios].forEach(size => {
+                setTimeout(() => {
+                    downloadIcon(`icon-${size}x${size}.png`, size);
+                }, size * 10);
+            });
+            
+            // Download social share
+            setTimeout(() => {
+                downloadIcon('social-share-1200x630.png', '1200x630');
+            }, 5000);
+            
+            showNotification('Downloading all icons...', 'info');
+        }
+
+        function showNotification(message, type) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#4CAF50' : '#FFABDF'};
+                color: #000;
+                padding: 16px 24px;
+                border-radius: 8px;
+                font-weight: 600;
+                z-index: 1000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Use default Watch logo
+        function useDefaultWatchLogo() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1024;
+            canvas.height = 1024;
+            const ctx = canvas.getContext('2d');
+            
+            // Create dark blue circle background
+            ctx.fillStyle = '#1e3a8a'; // Dark blue/indigo color
+            ctx.beginPath();
+            ctx.arc(512, 512, 450, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Add white "Watch" text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 120px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('Watch', 512, 512);
+            
+            // Convert canvas to image
+            const dataURL = canvas.toDataURL('image/png');
+            originalImage = new Image();
+            originalImage.onload = function() {
+                previewIcons();
+                generateDownloadGrid();
+                showNotification('Watch logo generated successfully!', 'success');
+            };
+            originalImage.src = dataURL;
+        }
+
+        // Enhanced social share generation with Watch logo
+        function createSocialShareImage() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 1200;
+            canvas.height = 630;
+            const ctx = canvas.getContext('2d');
+            
+            // Background
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, 1200, 630);
+            
+            // Add gradient overlay
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 630);
+            gradient.addColorStop(0, '#1e3a8a');
+            gradient.addColorStop(1, '#FFABDF');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 630);
+            
+            // Add Watch logo in center
+            const logoSize = 200;
+            const logoX = (1200 - logoSize) / 2;
+            const logoY = (630 - logoSize) / 2 - 50;
+            
+            // Logo circle
+            ctx.fillStyle = '#1e3a8a';
+            ctx.beginPath();
+            ctx.arc(logoX + logoSize/2, logoY + logoSize/2, logoSize/2, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Logo text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = 'bold 48px serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('Watch', logoX + logoSize/2, logoY + logoSize/2);
+            
+            // App name
+            ctx.fillStyle = '#FFABDF';
+            ctx.font = 'bold 72px Space Grotesk';
+            ctx.textAlign = 'center';
+            ctx.fillText('Basedly AI', 600, logoY + logoSize + 100);
+            
+            // Tagline
+            ctx.fillStyle = '#F5F5DC';
+            ctx.font = '32px Space Grotesk';
+            ctx.fillText('Luxury Shopping Community', 600, logoY + logoSize + 160);
+            
+            return canvas;
+        }
+    </script>
+</body>
+</html> 

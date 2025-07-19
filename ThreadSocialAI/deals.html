@@ -197,31 +197,19 @@
     </style>
 </head>
 <body>
-    <!-- iOS-Optimized Navigation -->
-    <nav style="padding: 12px 0; border-bottom: 2px solid var(--lux-hot-pink); background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; -webkit-backdrop-filter: blur(10px);">
-        <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 20px;">
-            <a href="index.html" style="font-size: 28px; font-weight: 900; color: var(--lux-hot-pink); text-transform: uppercase; letter-spacing: 3px; text-decoration: none;">BASEDLY</a>
-            
-            <div style="display: flex; align-items: center; gap: 16px;">
-                <a href="discovery.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDiscovery()">DISCOVERY</a>
-                <a href="deals.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; border-bottom: 2px solid var(--lux-hot-pink); transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToDeals()">DEALS</a>
-                <a href="messages.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMessages()">MESSAGES</a>
-                <a href="social.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToSocial()">PLAN</a>
-                <a href="fashion-nooks.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToFashionNooks()">🛍️ NOOKS</a>
-                <a href="member.html" style="color: var(--lux-white); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;" onclick="navigateToMember()">MEMBER</a>
-                
-                <!-- Authentication Section -->
-                <div class="auth-button sign-in-button" style="display: flex; align-items: center;">
-                    <a href="login.html" style="color: var(--lux-hot-pink); text-decoration: none; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; transition: all 0.3s ease; -webkit-tap-highlight-color: transparent;">SIGN IN</a>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="watch-logo-container" onclick="navigateToDiscovery()">
+                <div class="watch-logo">Watch</div>
                 </div>
                 
-                <!-- User Menu (shown when logged in) -->
-                <div class="user-menu" style="display: none; align-items: center; gap: 12px;">
-                    <div class="user-avatar" style="display: none; cursor: pointer;" onclick="navigateToProfile()">
-                        <!-- User avatar will be populated by AuthManager -->
-                    </div>
-                    <button class="sign-out-button" onclick="signOut()" style="background: none; border: none; color: var(--lux-hot-pink); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; font-size: 12px; padding: 6px 8px; cursor: pointer; transition: all 0.3s ease;">SIGN OUT</button>
-                </div>
+            <div class="nav-links">
+                <a href="discovery.html" class="nav-link">Discovery</a>
+                <a href="deals.html" class="nav-link active">Deals</a>
+                <a href="plan.html" class="nav-link">Plan</a>
+                <a href="messages.html" class="nav-link">Messages</a>
+                <a href="account.html" class="nav-link">Account</a>
             </div>
         </div>
     </nav>
@@ -1013,26 +1001,26 @@
             });
             event.target.classList.add('active');
             
-            let filteredDeals = deals;
-            
-            if (category === 'trending') {
-                filteredDeals = deals.filter(deal => deal.trending);
-            } else if (category === 'exclusive') {
-                filteredDeals = deals.filter(deal => deal.exclusive);
+                let filteredDeals = deals;
+                
+                if (category === 'trending') {
+                    filteredDeals = deals.filter(deal => deal.trending);
+                } else if (category === 'exclusive') {
+                    filteredDeals = deals.filter(deal => deal.exclusive);
             } else if (category === 'favorites') {
                 filteredDeals = deals.filter(deal => isDealFavorited(deal.id));
-            } else if (category !== 'all') {
-                filteredDeals = deals.filter(deal => deal.category === category);
+                } else if (category !== 'all') {
+                    filteredDeals = deals.filter(deal => deal.category === category);
+                }
+                
+                const dealsGrid = document.getElementById('deals-grid');
+                dealsGrid.innerHTML = '';
+                
+                filteredDeals.forEach(deal => {
+                    const dealCard = createDealCard(deal);
+                    dealsGrid.appendChild(dealCard);
+                });
             }
-            
-            const dealsGrid = document.getElementById('deals-grid');
-            dealsGrid.innerHTML = '';
-            
-            filteredDeals.forEach(deal => {
-                const dealCard = createDealCard(deal);
-                dealsGrid.appendChild(dealCard);
-            });
-        }
 
         // Search deals
         function searchDeals() {

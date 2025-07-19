@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch - Sell</title>
+    <link rel="stylesheet" href="./output.css">
+    <style>
+        :root {
+            --tropical-blue: #87CEEB;
+            --light-tropical-blue: #B0E0E6;
+            --clean-white: #FFFFFF;
+            --light-hot-pink: #FF69B4;
+            --stylish-beige: #F5F5DC;
+            --soft-gray: #F8F9FA;
+        }
+        
+        body {
+            background: var(--clean-white);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation styles */
+        .nav-container {
+            background: var(--clean-white);
+            border-bottom: 1px solid #E1E8ED;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .nav-content {
+            max-width: 975px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+        }
+        
+        .watch-logo-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 50%;
+            background: var(--tropical-blue);
+            transition: all 0.3s ease;
+        }
+        
+        .watch-logo-container:hover {
+            background: var(--light-tropical-blue);
+            transform: scale(1.05);
+        }
+        
+        .watch-logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--clean-white);
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #262626;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: var(--stylish-beige);
+        }
+        
+        /* Sell page specific styles */
+        .sell-container {
+            max-width: 800px;
+            margin: 80px auto 0;
+            padding: 0 20px;
+        }
+        
+        .sell-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .sell-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: #262626;
+            margin-bottom: 16px;
+        }
+        
+        .sell-subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 32px;
+        }
+        
+        .sell-form {
+            background: white;
+            border: 1px solid #E1E8ED;
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .form-section {
+            margin-bottom: 32px;
+        }
+        
+        .form-section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #262626;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #262626;
+            margin-bottom: 8px;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #E1E8ED;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--tropical-blue);
+        }
+        
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-select {
+            background: white;
+        }
+        
+        .image-upload-area {
+            border: 2px dashed #E1E8ED;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .image-upload-area:hover {
+            border-color: var(--tropical-blue);
+            background: rgba(135, 206, 235, 0.05);
+        }
+        
+        .image-upload-area.dragover {
+            border-color: var(--light-hot-pink);
+            background: rgba(255, 105, 180, 0.05);
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: #8E8E93;
+            margin-bottom: 16px;
+        }
+        
+        .upload-text {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .upload-hint {
+            font-size: 14px;
+            color: #8E8E93;
+        }
+        
+        .image-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+        
+        .preview-item {
+            position: relative;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #FAFAFA;
+        }
+        
+        .preview-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .remove-image {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .price-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .currency-select {
+            width: 80px;
+            padding: 12px;
+            border: 2px solid #E1E8ED;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .price-input {
+            flex: 1;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        
+        .category-option {
+            padding: 12px;
+            border: 2px solid #E1E8ED;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .category-option:hover {
+            border-color: var(--tropical-blue);
+            background: rgba(135, 206, 235, 0.05);
+        }
+        
+        .category-option.selected {
+            border-color: var(--light-hot-pink);
+            background: rgba(255, 105, 180, 0.1);
+            color: var(--light-hot-pink);
+        }
+        
+        .condition-options {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .condition-option {
+            padding: 8px 16px;
+            border: 2px solid #E1E8ED;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            font-size: 14px;
+        }
+        
+        .condition-option:hover {
+            border-color: var(--tropical-blue);
+        }
+        
+        .condition-option.selected {
+            border-color: var(--light-hot-pink);
+            background: var(--light-hot-pink);
+            color: white;
+        }
+        
+        .ai-suggestions {
+            background: linear-gradient(135deg, var(--tropical-blue), var(--light-hot-pink));
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            color: white;
+        }
+        
+        .ai-suggestion-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .ai-suggestion-item {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .ai-suggestion-item:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-top: 32px;
+        }
+        
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: var(--light-hot-pink);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #FF1493;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #666;
+            border: 2px solid #E1E8ED;
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--tropical-blue);
+            color: var(--tropical-blue);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sell-container {
+                padding: 0 16px;
+            }
+            
+            .sell-form {
+                padding: 24px;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="watch-logo-container" onclick="navigateToDiscovery()">
+                <div class="watch-logo">Watch</div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="discovery.html" class="nav-link">Discovery</a>
+                <a href="sell.html" class="nav-link active">Sell</a>
+                <a href="plan.html" class="nav-link">Plan</a>
+                <a href="messages.html" class="nav-link">Messages</a>
+                <a href="account.html" class="nav-link">Account</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="sell-container">
+        <div class="sell-header">
+            <h1 class="sell-title">Sell Your Items</h1>
+            <p class="sell-subtitle">Reach fashion enthusiasts and get the best price for your items</p>
+        </div>
+
+        <!-- AI Suggestions -->
+        <div class="ai-suggestions">
+            <div class="ai-suggestion-title">
+                🤖 AI Suggestions
+            </div>
+            <div class="ai-suggestion-item" onclick="applySuggestion('price')">
+                💡 Based on similar items, we suggest pricing around $150-200
+            </div>
+            <div class="ai-suggestion-item" onclick="applySuggestion('category')">
+                🏷️ This looks like it belongs in "Accessories" category
+            </div>
+            <div class="ai-suggestion-item" onclick="applySuggestion('tags')">
+                📝 Popular tags: vintage, luxury, designer
+            </div>
+        </div>
+
+        <form class="sell-form" id="sellForm">
+            <!-- Basic Information -->
+            <div class="form-section">
+                <div class="form-section-title">
+                    �� Basic Information
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Item Title</label>
+                    <input type="text" class="form-input" id="itemTitle" placeholder="e.g., Vintage Chanel Classic Flap Bag" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-input form-textarea" id="itemDescription" placeholder="Describe your item in detail... Include brand, condition, measurements, etc." required></textarea>
+                </div>
+            </div>
+
+            <!-- Images -->
+            <div class="form-section">
+                <div class="form-section-title">
+                    📸 Photos
+                </div>
+                
+                <div class="image-upload-area" id="imageUpload" onclick="triggerImageUpload()">
+                    <div class="upload-icon">📷</div>
+                    <div class="upload-text">Click to upload photos or drag & drop</div>
+                    <div class="upload-hint">Up to 10 photos • Max 5MB each</div>
+                </div>
+                
+                <input type="file" id="imageInput" multiple accept="image/*" style="display: none;">
+                
+                <div class="image-preview" id="imagePreview"></div>
+            </div>
+
+            <!-- Pricing -->
+            <div class="form-section">
+                <div class="form-section-title">
+                    💰 Pricing
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Price</label>
+                    <div class="price-input-group">
+                        <select class="currency-select" id="currency">
+                            <option value="USD">$</option>
+                            <option value="EUR">€</option>
+                            <option value="GBP">£</option>
+                        </select>
+                        <input type="number" class="form-input price-input" id="price" placeholder="0.00" min="0" step="0.01" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Original Price (Optional)</label>
+                    <input type="number" class="form-input" id="originalPrice" placeholder="What was the original retail price?" min="0" step="0.01">
+                </div>
+            </div>
+
+            <!-- Category & Condition -->
+            <div class="form-section">
+                <div class="form-section-title">
+                    🏷️ Category & Condition
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <div class="category-grid">
+                        <div class="category-option" data-category="bags">👜 Bags</div>
+                        <div class="category-option" data-category="shoes">👠 Shoes</div>
+                        <div class="category-option" data-category="clothing">👗 Clothing</div>
+                        <div class="category-option" data-category="accessories">�� Accessories</div>
+                        <div class="category-option" data-category="jewelry">💎 Jewelry</div>
+                        <div class="category-option" data-category="watches">⌚ Watches</div>
+                        <div class="category-option" data-category="beauty">💄 Beauty</div>
+                        <div class="category-option" data-category="other">📦 Other</div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Condition</label>
+                    <div class="condition-options">
+                        <div class="condition-option" data-condition="new">New</div>
+                        <div class="condition-option" data-condition="like-new">Like New</div>
+                        <div class="condition-option" data-condition="excellent">Excellent</div>
+                        <div class="condition-option" data-condition="good">Good</div>
+                        <div class="condition-option" data-condition="fair">Fair</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shipping & Location -->
+            <div class="form-section">
+                <div class="form-section-title">
+                    📦 Shipping & Location
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Location</label>
+                    <input type="text" class="form-input" id="location" placeholder="City, State/Country" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Shipping Options</label>
+                    <div class="condition-options">
+                        <div class="condition-option" data-shipping="free">Free Shipping</div>
+                        <div class="condition-option" data-shipping="calculated">Calculated</div>
+                        <div class="condition-option" data-shipping="local">Local Pickup</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="saveDraft()">Save Draft</button>
+                <button type="submit" class="btn btn-primary">List Item for Sale</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let uploadedImages = [];
+        let selectedCategory = '';
+        let selectedCondition = '';
+        let selectedShipping = '';
+
+        function navigateToDiscovery() {
+            window.location.href = 'discovery.html';
+        }
+
+        function triggerImageUpload() {
+            document.getElementById('imageInput').click();
+        }
+
+        function handleImageUpload(event) {
+            const files = event.target.files;
+            for (let file of files) {
+                if (uploadedImages.length >= 10) break;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImages.push({
+                        id: Date.now() + Math.random(),
+                        src: e.target.result,
+                        file: file
+                    });
+                    renderImagePreview();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function renderImagePreview() {
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+            
+            uploadedImages.forEach((image, index) => {
+                const item = document.createElement('div');
+                item.className = 'preview-item';
+                item.innerHTML = `
+                    <img src="${image.src}" class="preview-image" alt="Preview">
+                    <button class="remove-image" onclick="removeImage(${index})">×</button>
+                `;
+                preview.appendChild(item);
+            });
+        }
+
+        function removeImage(index) {
+            uploadedImages.splice(index, 1);
+            renderImagePreview();
+        }
+
+        function applySuggestion(type) {
+            switch(type) {
+                case 'price':
+                    document.getElementById('price').value = '175';
+                    break;
+                case 'category':
+                    selectCategory('accessories');
+                    break;
+                case 'tags':
+                    const description = document.getElementById('itemDescription');
+                    description.value += '\n\n#vintage #luxury #designer';
+                    break;
+            }
+        }
+
+        function selectCategory(category) {
+            document.querySelectorAll('.category-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('selected');
+            selectedCategory = category;
+        }
+
+        function selectCondition(condition) {
+            document.querySelectorAll('.condition-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`[data-condition="${condition}"]`).classList.add('selected');
+            selectedCondition = condition;
+        }
+
+        function selectShipping(shipping) {
+            document.querySelectorAll('[data-shipping]').forEach(option => {
+                option.classList.remove('selected');
+            });
+            document.querySelector(`[data-shipping="${shipping}"]`).classList.add('selected');
+            selectedShipping = shipping;
+        }
+
+        function saveDraft() {
+            const formData = getFormData();
+            localStorage.setItem('sellDraft', JSON.stringify(formData));
+            alert('Draft saved successfully!');
+        }
+
+        function getFormData() {
+            return {
+                title: document.getElementById('itemTitle').value,
+                description: document.getElementById('itemDescription').value,
+                price: document.getElementById('price').value,
+                originalPrice: document.getElementById('originalPrice').value,
+                currency: document.getElementById('currency').value,
+                location: document.getElementById('location').value,
+                category: selectedCategory,
+                condition: selectedCondition,
+                shipping: selectedShipping,
+                images: uploadedImages
+            };
+        }
+
+        // Event listeners
+        document.getElementById('imageInput').addEventListener('change', handleImageUpload);
+        
+        document.querySelectorAll('.category-option').forEach(option => {
+            option.addEventListener('click', () => selectCategory(option.dataset.category));
+        });
+        
+        document.querySelectorAll('.condition-option').forEach(option => {
+            option.addEventListener('click', () => selectCondition(option.dataset.condition));
+        });
+        
+        document.querySelectorAll('[data-shipping]').forEach(option => {
+            option.addEventListener('click', () => selectShipping(option.dataset.shipping));
+        });
+        
+        document.getElementById('sellForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedCategory || !selectedCondition || !selectedShipping) {
+                alert('Please select category, condition, and shipping options');
+                return;
+            }
+            
+            if (uploadedImages.length === 0) {
+                alert('Please upload at least one photo');
+                return;
+            }
+            
+            const formData = getFormData();
+            console.log('Listing item:', formData);
+            
+            // Simulate listing creation
+            alert('Item listed successfully! Your listing is now live.');
+            
+            // Reset form
+            this.reset();
+            uploadedImages = [];
+            renderImagePreview();
+            document.querySelectorAll('.category-option, .condition-option, [data-shipping]').forEach(option => {
+                option.classList.remove('selected');
+            });
+        });
+
+        // Drag and drop functionality
+        const uploadArea = document.getElementById('imageUpload');
+        
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            handleImageUpload({ target: { files: e.dataTransfer.files } });
+        });
+    </script>
+</body>
+</html> 
