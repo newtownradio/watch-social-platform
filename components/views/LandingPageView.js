@@ -148,10 +148,48 @@ class LandingPageView {
                 left: 100%;
             }
 
-            .cta-button.primary { background: #FF4500; color: white; }
-            .cta-button.secondary { background: #4169E1; color: white; }
-            .cta-button.tertiary { background: #32CD32; color: white; }
-            .cta-button.quaternary { background: #FF69B4; color: white; }
+            .cta-button.mario-primary { 
+                background: linear-gradient(45deg, #FF4500, #FF6347);
+                color: white;
+                font-size: clamp(1rem, 3vw, 1.3rem);
+                padding: clamp(16px, 4vw, 24px) clamp(32px, 6vw, 48px);
+                border: 4px solid #000;
+                box-shadow: 6px 6px 0px #000;
+                text-shadow: 2px 2px 0px #000;
+                position: relative;
+                overflow: hidden;
+                animation: marioPulse 2s ease-in-out infinite;
+            }
+            
+            @keyframes marioPulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+            
+            .cta-button.mario-primary::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+                transition: left 0.8s;
+            }
+            
+            .cta-button.mario-primary:hover::before {
+                left: 100%;
+            }
+            
+            .cta-button.mario-primary:hover {
+                transform: translateY(-4px) scale(1.02);
+                box-shadow: 8px 8px 0px #000;
+            }
+            
+            .cta-button.mario-primary:active {
+                transform: translateY(-2px) scale(0.98);
+                box-shadow: 4px 4px 0px #000;
+            }
 
             .cta-button:hover {
                 transform: translateY(-3px);
@@ -211,15 +249,14 @@ class LandingPageView {
                 .cta-buttons {
                     flex-direction: column;
                     align-items: center;
-                    gap: 12px;
                     margin-top: 30px;
                 }
-                .cta-button {
+                .cta-button.mario-primary {
                     width: 100%;
-                    max-width: 260px;
+                    max-width: 300px;
                     text-align: center;
-                    padding: 14px 20px;
-                    font-size: 0.9rem;
+                    padding: 18px 32px;
+                    font-size: 1.1rem;
                 }
                 .mario-elements {
                     font-size: clamp(1.2rem, 4vw, 1.5rem);
@@ -252,15 +289,14 @@ class LandingPageView {
                 .cta-buttons {
                     flex-direction: column;
                     align-items: center;
-                    gap: 15px;
                     margin-top: 35px;
                 }
-                .cta-button {
+                .cta-button.mario-primary {
                     width: 100%;
-                    max-width: 280px;
+                    max-width: 320px;
                     text-align: center;
-                    padding: 16px 24px;
-                    font-size: 1rem;
+                    padding: 20px 36px;
+                    font-size: 1.2rem;
                 }
                 .mario-elements {
                     font-size: clamp(1.5rem, 4vw, 1.8rem);
@@ -621,17 +657,8 @@ class LandingPageView {
                 <p>Level Up Socially!</p>
                 
                 <div class="cta-buttons">
-                    <button class="cta-button primary" data-cta-action="watch" data-tab-navigation="discovery">
-                        🔍 Watch
-                    </button>
-                    <button class="cta-button secondary" data-cta-action="buysell" data-tab-navigation="buysell">
-                        💰 Buy/Sell
-                    </button>
-                    <button class="cta-button tertiary" data-cta-action="messages" data-tab-navigation="messages">
-                        💬 Messages
-                    </button>
-                    <button class="cta-button quaternary" data-cta-action="account" data-tab-navigation="account">
-                        👤 Account
+                    <button class="cta-button mario-primary" data-cta-action="discovery" data-tab-navigation="discovery">
+                        🎮 ENTER
                     </button>
                 </div>
                 
