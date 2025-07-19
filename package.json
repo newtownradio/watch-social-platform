@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
+    "mvc": "node server-mvc.js",
+    "mvc-dev": "nodemon server-mvc.js",
+    "serve": "node server-mvc.js",
     "build": "echo 'Build complete'",
     "test": "jest"
   },

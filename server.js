@@ -13,7 +13,7 @@ app.use(helmet());
 app.use(compression());
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'ThreadSocialAI')));
+app.use(express.static(__dirname));
 
 // Health check
 app.get('/health', (req, res) => {
@@ -27,7 +27,7 @@ app.get('/api/status', (req, res) => {
 
 // Serve static files
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'ThreadSocialAI', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Error handling

@@ -1,0 +1,262 @@
+/* Watch - Pure Black & Hot Pink Theme */
+:root {
+    --watch-hot-pink: #FF1493;
+    --watch-white: #FFFFFF;
+    --watch-black: #000000;
+    --watch-gray: #2F2F2F;
+    --watch-dark-gray: #1A1A1A;
+    --tropical-blue: #87CEEB; /* Light blue for logo */
+    --light-tropical-blue: #B0E0E6; /* Lighter blue for hover */
+    --clean-white: #FFFFFF; /* White for logo text */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Space Grotesk', Arial, sans-serif;
+    background: var(--watch-black);
+    color: var(--watch-white);
+    min-height: 100vh;
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: var(--watch-white);
+}
+
+h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 1.5px;
+    margin-bottom: 1.25rem;
+    color: var(--watch-white);
+}
+
+h3 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    color: var(--watch-white);
+}
+
+p {
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+    color: var(--watch-white);
+}
+
+/* Buttons - Black & Hot Pink Only */
+.lux-button {
+    background: var(--watch-hot-pink);
+    color: var(--watch-white);
+    border: none;
+    padding: clamp(16px, 3vw, 24px) clamp(24px, 4vw, 40px);
+    font-size: clamp(14px, 2.5vw, 18px);
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lux-button:hover {
+    background: var(--watch-white);
+    color: var(--watch-hot-pink);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+}
+
+.lux-button-secondary {
+    background: transparent;
+    color: var(--watch-hot-pink);
+    border: 2px solid var(--watch-hot-pink);
+    padding: clamp(16px, 3vw, 24px) clamp(24px, 4vw, 40px);
+    font-size: clamp(14px, 2.5vw, 18px);
+    font-weight: 700;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 25px;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lux-button-secondary:hover {
+    background: var(--watch-hot-pink);
+    color: var(--watch-white);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 20, 147, 0.4);
+}
+
+/* Navigation - Black with Hot Pink */
+.nav-container {
+    background: var(--watch-black);
+    border-bottom: 2px solid var(--watch-hot-pink);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: clamp(12px, 2vw, 20px) 0;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4vw, 40px);
+}
+
+.watch-logo-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 50%;
+    background: var(--tropical-blue); /* Light blue background */
+    transition: all 0.3s ease;
+}
+
+.watch-logo-container:hover {
+    background: var(--light-tropical-blue);
+    transform: scale(1.05);
+}
+
+.watch-logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--clean-white); /* White text on light blue background */
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2vw, 20px);
+}
+
+.nav-link {
+    font-size: clamp(12px, 2vw, 14px);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--watch-white);
+    text-decoration: none;
+    padding: clamp(8px, 2vw, 12px) clamp(12px, 2.5vw, 16px);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--watch-hot-pink);
+    transform: translateY(-2px);
+}
+
+.nav-link.active {
+    background: var(--watch-hot-pink);
+    color: var(--watch-white);
+}
+
+/* Cards */
+.card {
+    background: var(--watch-dark-gray);
+    border: 1px solid var(--watch-hot-pink);
+    border-radius: 20px;
+    padding: clamp(20px, 4vw, 30px);
+    margin-bottom: clamp(20px, 4vw, 30px);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    background: var(--watch-gray);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+}
+
+/* Form Elements */
+input, textarea, select {
+    background: var(--watch-dark-gray);
+    border: 2px solid var(--watch-hot-pink);
+    border-radius: 12px;
+    padding: clamp(12px, 2.5vw, 16px);
+    font-size: clamp(16px, 2.5vw, 18px);
+    color: var(--watch-white);
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--watch-white);
+    box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);
+}
+
+/* Links */
+a {
+    color: var(--watch-hot-pink);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--watch-white);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .card {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .lux-button, .lux-button-secondary {
+        padding: 16px 24px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+}
+

@@ -28,7 +28,7 @@ class AppController {
         // Define all application routes
         this.routes.set('index', {
             path: 'index.html',
-            title: 'Watch - The Future of Shopping',
+            title: 'Watch',
             component: 'HomeComponent',
             navActive: 'home'
         });

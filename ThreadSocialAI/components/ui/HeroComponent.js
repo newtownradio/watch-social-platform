@@ -26,7 +26,7 @@ class HeroComponent extends BaseComponent {
 
         const title = document.createElement('h1');
         title.className = 'hero-title';
-        title.textContent = data.title || 'The Future of Shopping';
+        title.textContent = data.title || 'Watch';
 
         logoContainer.appendChild(title);
         section.appendChild(logoContainer);

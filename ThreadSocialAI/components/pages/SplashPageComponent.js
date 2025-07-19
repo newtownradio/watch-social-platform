@@ -62,7 +62,7 @@ class SplashPageComponent extends BaseComponent {
 
         const heroTitle = document.createElement('h1');
         heroTitle.className = 'hero-title';
-        heroTitle.textContent = 'The Future of Shopping';
+        heroTitle.textContent = 'Watch';
 
         heroContainer.appendChild(heroTitle);
         heroContent.appendChild(heroContainer);

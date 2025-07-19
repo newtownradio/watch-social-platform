@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch - Discovery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Mario Bros Theme */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            --mario-red: #E74C3C;
+            --mario-blue: #3498DB;
+            --mario-green: #27AE60;
+            --mario-yellow: #F1C40F;
+            --mario-brown: #8B4513;
+            --mario-sky: #87CEEB;
+            --mario-white: #FFFFFF;
+            --mario-cloud: #ECF0F1;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--mario-sky) 0%, var(--mario-cloud) 100%);
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+            line-height: 1.6;
+            color: var(--mario-brown);
+            min-height: 100vh;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navigation */
+        .nav-container {
+            background: var(--mario-blue);
+            border-bottom: 4px solid var(--mario-red);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+        
+        .watch-logo-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 50%;
+            background: var(--mario-red);
+            transition: all 0.3s ease;
+            border: 3px solid var(--mario-white);
+        }
+        
+        .watch-logo-container:hover {
+            background: var(--mario-green);
+            transform: scale(1.05);
+        }
+        
+        .watch-logo {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--mario-white);
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--mario-white);
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            color: var(--mario-yellow);
+            border-color: var(--mario-yellow);
+            background: rgba(241, 196, 15, 0.1);
+        }
+        
+        .nav-link.active {
+            color: var(--mario-yellow);
+            border-color: var(--mario-yellow);
+            background: rgba(241, 196, 15, 0.1);
+        }
+        
+        /* Main Container */
+        .discovery-container {
+            max-width: 1400px;
+            margin: 100px auto 0;
+            padding: 0 24px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            background: var(--mario-white);
+            border: 4px solid var(--mario-red);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(231, 76, 60, 0.2);
+            position: relative;
+        }
+        
+        .main-content::before {
+            content: '🎮';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 30px;
+            background: var(--mario-white);
+            padding: 0 10px;
+        }
+        
+        /* Post Creation */
+        .post-creation {
+            background: var(--mario-cloud);
+            border: 3px solid var(--mario-blue);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .post-input-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--mario-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: var(--mario-white);
+            border: 2px solid var(--mario-white);
+            flex-shrink: 0;
+        }
+        
+        .post-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 3px solid var(--mario-blue);
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+            font-family: Arial, sans-serif;
+            min-height: 50px;
+            background: var(--mario-white);
+        }
+        
+        .post-input:focus {
+            border-color: var(--mario-green);
+        }
+        
+        .post-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .post-btn {
+            background: var(--mario-green);
+            color: var(--mario-white);
+            border: 2px solid var(--mario-white);
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .post-btn:hover {
+            background: var(--mario-yellow);
+            color: var(--mario-brown);
+        }
+        
+        .post-type-btn {
+            background: var(--mario-blue);
+            color: var(--mario-white);
+            border: 2px solid var(--mario-white);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .post-type-btn:hover {
+            background: var(--mario-yellow);
+            color: var(--mario-brown);
+        }
+        
+        /* Posts Feed */
+        .posts-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .post {
+            background: var(--mario-cloud);
+            border: 3px solid var(--mario-blue);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .post:hover {
+            border-color: var(--mario-green);
+            transform: translateY(-2px);
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+        
+        .post-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--mario-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--mario-white);
+            border: 2px solid var(--mario-white);
+            flex-shrink: 0;
+        }
+        
+        .post-user-info {
+            flex: 1;
+        }
+        
+        .post-username {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--mario-blue);
+            margin: 0;
+        }
+        
+        .post-time {
+            font-size: 10px;
+            color: var(--mario-brown);
+            font-family: Arial, sans-serif;
+        }
+        
+        .post-content {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .post-actions-bar {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .action-btn {
+            background: none;
+            border: none;
+            color: var(--mario-brown);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 10px;
+            border-radius: 4px;
+        }
+        
+        .action-btn:hover {
+            background: var(--mario-yellow);
+            color: var(--mario-brown);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background: var(--mario-white);
+            border: 4px solid var(--mario-green);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 30px rgba(39, 174, 96, 0.2);
+            position: relative;
+            height: fit-content;
+        }
+        
+        .sidebar::before {
+            content: '🔗';
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 30px;
+            background: var(--mario-white);
+            padding: 0 10px;
+        }
+        
+        .sidebar h3 {
+            font-size: 16px;
+            color: var(--mario-green);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: var(--mario-cloud);
+            border: 2px solid var(--mario-green);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--mario-brown);
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: var(--mario-yellow);
+            border-color: var(--mario-brown);
+        }
+        
+        .social-icon {
+            font-size: 18px;
+        }
+        
+        /* Loading animation */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--mario-brown);
+        }
+        
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--mario-blue);
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .discovery-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .sidebar {
+                order: 2;
+            }
+            
+            .main-content {
+                order: 1;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .nav-link {
+                font-size: 12px;
+            }
+            
+            .post-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="watch-logo-container" onclick="navigateToDiscovery()">
+                <div class="watch-logo">Watch</div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="discovery.html" class="nav-link active">Discovery</a>
+                <a href="buysell.html" class="nav-link">Buy / Sell</a>
+                <a href="messages.html" class="nav-link">Messages</a>
+                <a href="account.html" class="nav-link">Account</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="discovery-container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Post Creation -->
+            <div class="post-creation">
+                <div class="post-input-container">
+                    <div class="user-avatar">🎯</div>
+                    <input type="text" class="post-input" placeholder="What's happening in the gaming world?" id="postInput">
+                </div>
+                <div class="post-actions">
+                    <button class="post-btn" onclick="createPost()">
+                        🚀 Post
+                    </button>
+                    <button class="post-type-btn" onclick="addPhoto()">
+                        📷 Photo
+                    </button>
+                    <button class="post-type-btn" onclick="addVideo()">
+                        🎥 Video
+                    </button>
+                    <button class="post-type-btn" onclick="addLink()">
+                        🔗 Link
+                    </button>
+                    <button class="post-type-btn" onclick="addText()">
+                        📝 Text
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Posts Feed -->
+            <div class="posts-feed" id="postsFeed">
+                <div class="loading">Loading posts...</div>
+            </div>
+        </div>
+        
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h3>🔗 Connect</h3>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <span class="social-icon">🎮</span>
+                    <span>Gaming Network</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span class="social-icon">🏆</span>
+                    <span>Leaderboards</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span class="social-icon">🎯</span>
+                    <span>Challenges</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span class="social-icon">🏪</span>
+                    <span>Marketplace</span>
+                </a>
+                <a href="#" class="social-link">
+                    <span class="social-icon">💬</span>
+                    <span>Community</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigateToDiscovery() {
+            window.location.href = 'discovery.html';
+        }
+        
+        function createPost() {
+            const input = document.getElementById('postInput');
+            const text = input.value.trim();
+            
+            if (text) {
+                addPost(text);
+                input.value = '';
+            }
+        }
+        
+        function addPhoto() {
+            alert('📷 Photo upload feature coming soon!');
+        }
+        
+        function addVideo() {
+            alert('🎥 Video upload feature coming soon!');
+        }
+        
+        function addLink() {
+            alert('🔗 Link sharing feature coming soon!');
+        }
+        
+        function addText() {
+            alert('📝 Text post with custom fonts coming soon!');
+        }
+        
+        function addPost(content) {
+            const postsFeed = document.getElementById('postsFeed');
+            
+            // Remove loading message if it exists
+            const loading = postsFeed.querySelector('.loading');
+            if (loading) {
+                loading.remove();
+            }
+            
+            const postDiv = document.createElement('div');
+            postDiv.className = 'post';
+            
+            const now = new Date();
+            const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            
+            postDiv.innerHTML = `
+                <div class="post-header">
+                    <div class="post-avatar">🎯</div>
+                    <div class="post-user-info">
+                        <div class="post-username">PixelGamer</div>
+                        <div class="post-time">${timeString}</div>
+                    </div>
+                </div>
+                <div class="post-content">${content}</div>
+                <div class="post-actions-bar">
+                    <button class="action-btn" onclick="likePost(this)">
+                        👍 Like
+                    </button>
+                    <button class="action-btn" onclick="commentPost(this)">
+                        💬 Comment
+                    </button>
+                    <button class="action-btn" onclick="sharePost(this)">
+                        🔄 Share
+                    </button>
+                </div>
+            `;
+            
+            postsFeed.insertBefore(postDiv, postsFeed.firstChild);
+        }
+        
+        function likePost(button) {
+            button.style.background = 'var(--mario-yellow)';
+            button.style.color = 'var(--mario-brown)';
+        }
+        
+        function commentPost(button) {
+            alert('💬 Comment feature coming soon!');
+        }
+        
+        function sharePost(button) {
+            alert('🔄 Share feature coming soon!');
+        }
+        
+        // Load demo posts
+        window.onload = function() {
+            setTimeout(() => {
+                const demoPosts = [
+                    'Just discovered an amazing retro game collection at the local arcade! 🎮',
+                    'Building my dream gaming setup - RGB everything! 💻',
+                    'Hit a new personal best score on my favorite classic game! 🏆',
+                    'Anyone else excited for the new indie game releases this month? 🚀',
+                    'The gaming community is incredible - so many helpful tips and tricks! 💖'
+                ];
+                
+                demoPosts.forEach(post => {
+                    addPost(post);
+                });
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
