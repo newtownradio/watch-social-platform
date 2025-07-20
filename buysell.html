@@ -254,22 +254,29 @@
     <div class="main-container">
         <div class="page-header">
             <h1 class="page-title">Buy & Sell</h1>
-            <p class="page-subtitle">Trade fashion items with the Watch community</p>
+            <p class="page-subtitle">Trade any items with the Watch community</p>
         </div>
         
         <div class="content-grid">
             <div class="content-card">
                 <div class="card-icon">🛒</div>
                 <h3 class="card-title">Buy Items</h3>
-                <p class="card-description">Browse through thousands of fashion items from verified sellers in the Watch community.</p>
+                <p class="card-description">Browse through thousands of items from verified sellers in the Watch community. Find great deals on electronics, collectibles, home goods, and more.</p>
                 <button class="card-button" onclick="startShopping()">Start Shopping</button>
             </div>
             
             <div class="content-card">
                 <div class="card-icon">💰</div>
                 <h3 class="card-title">Sell Items</h3>
-                <p class="card-description">List your fashion items and reach thousands of potential buyers in the Watch marketplace.</p>
+                <p class="card-description">List your items and reach thousands of potential buyers in the Watch marketplace. Sell anything from gadgets to furniture to collectibles.</p>
                 <button class="card-button" onclick="startSelling()">Start Selling</button>
+            </div>
+            
+            <div class="content-card">
+                <div class="card-icon">🔄</div>
+                <h3 class="card-title">Trade Items</h3>
+                <p class="card-description">Exchange items directly with other users. No cash needed - just find someone who wants what you have and has what you want.</p>
+                <button class="card-button" onclick="startTrading()">Start Trading</button>
             </div>
         </div>
         
@@ -278,8 +285,8 @@
             <h2 class="coming-soon-title">Marketplace Coming Soon!</h2>
             <p class="coming-soon-text">
                 We're building an amazing marketplace experience for the Watch community. 
-                Soon you'll be able to buy and sell fashion items with secure payments, 
-                verified sellers, and a seamless shopping experience.
+                Soon you'll be able to buy, sell, and trade any items with secure payments, 
+                verified sellers, and a seamless experience. Small transaction fees apply to help keep the platform running smoothly.
             </p>
         </div>
     </div>
@@ -312,11 +319,15 @@
         }
         
         function startShopping() {
-            alert('🛒 Shopping feature coming soon!');
+            alert('🛒 Shopping feature coming soon!\n\nBrowse and buy items from verified sellers with secure payments.');
         }
         
         function startSelling() {
-            alert('💰 Selling feature coming soon!');
+            alert('💰 Selling feature coming soon!\n\nList your items and reach thousands of buyers. Small transaction fee applies.');
+        }
+        
+        function startTrading() {
+            alert('🔄 Trading feature coming soon!\n\nExchange items directly with other users. No cash needed!');
         }
         
         // Add event listeners

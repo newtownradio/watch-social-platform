@@ -163,24 +163,17 @@
             margin-bottom: 40px;
         }
         
+        /* Remove floating emojis from account sections */
         .account-section {
             background: var(--game-white);
             border: 4px solid var(--game-blue);
             border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 8px 30px rgba(52, 152, 219, 0.2);
+            margin-bottom: 24px;
             position: relative;
         }
         
-        .account-section::before {
-            content: '⚙️';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 30px;
-            background: var(--game-white);
-            padding: 0 10px;
-        }
+        /* Remove the ::before pseudo-element */
         
         .section-title {
             font-family: 'Press Start 2P', cursive;
@@ -254,24 +247,17 @@
             margin-bottom: 40px;
         }
         
+        /* Remove floating emojis from legal sections */
         .legal-section {
             background: var(--game-white);
             border: 4px solid var(--game-green);
             border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 8px 30px rgba(39, 174, 96, 0.2);
+            margin-bottom: 24px;
             position: relative;
         }
         
-        .legal-section::before {
-            content: '📋';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 30px;
-            background: var(--game-white);
-            padding: 0 10px;
-        }
+        /* Remove the ::before pseudo-element */
         
         .legal-title {
             font-family: 'Press Start 2P', cursive;
@@ -311,23 +297,14 @@
         /* Contact Section */
         .contact-section {
             background: var(--game-white);
-            border: 4px solid var(--game-purple);
+            border: 4px solid var(--game-red);
             border-radius: 16px;
             padding: 24px;
-            text-align: center;
-            box-shadow: 0 8px 30px rgba(155, 89, 182, 0.2);
+            margin-bottom: 24px;
             position: relative;
         }
         
-        .contact-section::before {
-            content: '📧';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 30px;
-            background: var(--game-white);
-            padding: 0 10px;
-        }
+        /* Remove the ::before pseudo-element */
         
         .contact-title {
             font-family: 'Press Start 2P', cursive;

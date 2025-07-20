@@ -254,7 +254,7 @@
             color: var(--text-secondary);
         }
         
-        /* Post Creation */
+        /* Post Creation - Completely remove the floating speech bubble emoji */
         .post-creation {
             background: var(--game-white);
             border: 4px solid var(--game-red);
@@ -265,14 +265,9 @@
             position: relative;
         }
         
+        /* Completely remove this entire ::before rule */
         .post-creation::before {
-            content: '💬';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 30px;
-            background: var(--game-white);
-            padding: 0 10px;
+            display: none;
         }
         
         .post-input-container {
@@ -390,15 +385,7 @@
             box-shadow: 0 12px 40px rgba(52, 152, 219, 0.3);
         }
         
-        .post-card::before {
-            content: '⭐';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 30px;
-            background: var(--game-white);
-            padding: 0 10px;
-        }
+        /* Remove the ::before pseudo-element that was creating the floating star */
         
         .post-header {
             display: flex;
@@ -485,15 +472,7 @@
             position: relative;
         }
         
-        .trending-section::before {
-            content: '🔥';
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-size: 30px;
-            background: var(--game-white);
-            padding: 0 10px;
-        }
+        /* Remove the ::before pseudo-element that was creating the floating fire */
         
         .trending-title {
             font-family: 'Press Start 2P', cursive;

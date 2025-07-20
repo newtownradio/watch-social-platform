@@ -701,7 +701,6 @@ class LandingPageView {
             <div class="clouds"></div>
             
             <div class="hero">
-                <div class="mario-character">🎮</div>
                 <h1>Watch</h1>
                 
                 
@@ -710,7 +709,7 @@ class LandingPageView {
                         <input type="email" class="mario-input" id="email" placeholder="Email">
                         <input type="password" class="mario-input" id="password" placeholder="Password">
                         <button class="cta-button mario-primary" id="login-btn" data-cta-action="login">
-                            🎮 LOGIN
+                            LOGIN
                         </button>
                         <div class="error-message" id="error-message"></div>
                         <div class="success-message" id="success-message"></div>
