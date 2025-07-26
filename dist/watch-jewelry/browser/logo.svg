@@ -1,0 +1,13 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Purple circular background -->
+  <circle cx="60" cy="60" r="55" fill="#4A148C" stroke="#6A1B9A" stroke-width="2"/>
+  
+  <!-- Inner circle for depth -->
+  <circle cx="60" cy="60" r="45" fill="#4A148C" opacity="0.9"/>
+  
+  <!-- "W" text -->
+  <text x="60" y="70" font-family="Georgia, serif" font-size="28" font-weight="bold" text-anchor="middle" fill="white" letter-spacing="1">W</text>
+  
+  <!-- Subtle accent line -->
+  <line x1="40" y1="80" x2="80" y2="80" stroke="white" stroke-width="1" opacity="0.3"/>
+</svg> 

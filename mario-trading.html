@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch - Mario Trading Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mario-trading-theme.css">
+</head>
+<body>
+    <!-- Cloud Decorations -->
+    <div class="cloud-decoration"></div>
+    <div class="cloud-decoration"></div>
+    <div class="cloud-decoration"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="watch-logo-container" onclick="navigateToHome()">
+                <div class="watch-logo">Watch</div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" data-navigate="discovery" class="nav-link">DISCOVERY</a>
+                <a href="#" data-navigate="buysell" class="nav-link active">TRADING</a>
+                <a href="#" data-navigate="messages" class="nav-link">MESSAGES</a>
+                <a href="#" data-navigate="account" class="nav-link">ACCOUNT</a>
+                <a href="#" data-navigate="legal" class="nav-link">LEGAL</a>
+                <button data-logout class="nav-link" style="background: none; border: none; cursor: pointer; color: var(--mario-white); font-weight: 500; font-size: 14px; transition: all 0.3s ease; padding: 8px 16px; border-radius: 6px; border: 2px solid transparent;">LOGOUT</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">🎮 Mario Trading Platform</h1>
+            <p class="page-subtitle">Level up your trading game with our 25% platform fee system!</p>
+            
+            <!-- User Stats -->
+            <div class="user-stats flex-center mt-20">
+                <div class="coin-display" onclick="showCoinDetails()">
+                    💰
+                </div>
+                <div class="user-info ml-20">
+                    <div class="coin-value">$1,250.00</div>
+                    <div class="user-level">Level 5 Trader</div>
+                </div>
+                <div class="level-indicator">XP: 750/1000</div>
+            </div>
+        </div>
+
+        <!-- Trading Dashboard -->
+        <div class="trading-dashboard">
+            <!-- Quick Actions -->
+            <div class="quick-actions flex-center mb-20">
+                <button class="mario-btn primary" onclick="showBuyModal()">
+                    🛒 BUY ITEMS
+                </button>
+                <button class="mario-btn success" onclick="showSellModal()">
+                    💸 SELL ITEMS
+                </button>
+                <button class="mario-btn warning" onclick="showTradeModal()">
+                    🔄 TRADE ITEMS
+                </button>
+                <button class="mario-btn secondary" onclick="showMarketplace()">
+                <button class="mario-btn info" onclick="window.location.href='/swipe-trading'">
+                    💫 SWIPE TRADE
+                </button>                    🏪 MARKETPLACE
+                </button>
+            </div>
+
+            <!-- Fee Calculator -->
+            <div class="fee-calculator mario-form mb-20">
+                <h2 class="text-center mb-20">💰 Platform Fee Calculator</h2>
+                <div class="grid grid-3 gap-20">
+                    <div class="form-group">
+                        <label class="form-label">Item Price ($)</label>
+                        <input type="number" id="itemPrice" class="mario-input" placeholder="Enter price" oninput="calculateFee()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Platform Fee (25%)</label>
+                        <div class="fee-display">
+                            <span id="platformFee" class="coin-value">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Total Cost</label>
+                        <div class="total-display">
+                            <span id="totalCost" class="coin-value">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="power-up mt-20">
+                    <p class="text-center">⚡ <strong>Power Up:</strong> Our 25% platform fee ensures secure transactions and platform maintenance!</p>
+                </div>
+            </div>
+
+            <!-- Recent Transactions -->
+            <div class="recent-transactions mb-20">
+                <h2 class="text-center mb-20">📊 Recent Trading Activity</h2>
+                <div class="transactions-grid">
+                    <div class="trading-card profit">
+                        <div class="trading-card-header">
+                            <h3 class="trading-card-title">🎮 Nintendo Switch</h3>
+                            <span class="trading-card-status profit">PROFIT</span>
+                        </div>
+                        <div class="transaction-details">
+                            <p><strong>Price:</strong> $299.99</p>
+                            <p><strong>Platform Fee:</strong> $75.00 (25%)</p>
+                            <p><strong>Seller Payout:</strong> $224.99</p>
+                            <p><strong>Status:</strong> Completed</p>
+                        </div>
+                        <div class="transaction-actions mt-10">
+                            <button class="mario-btn primary">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="trading-card loss">
+                        <div class="trading-card-header">
+                            <h3 class="trading-card-title">🎯 Trading Card Set</h3>
+                            <span class="trading-card-status loss">PENDING</span>
+                        </div>
+                        <div class="transaction-details">
+                            <p><strong>Price:</strong> $150.00</p>
+                            <p><strong>Platform Fee:</strong> $37.50 (25%)</p>
+                            <p><strong>Seller Payout:</strong> $112.50</p>
+                            <p><strong>Status:</strong> Awaiting Payment</p>
+                        </div>
+                        <div class="transaction-actions mt-10">
+                            <button class="mario-btn warning">Complete Payment</button>
+                        </div>
+                    </div>
+
+                    <div class="trading-card">
+                        <div class="trading-card-header">
+                            <h3 class="trading-card-title">🎲 Board Game Collection</h3>
+                            <span class="trading-card-status pending">TRADE</span>
+                        </div>
+                        <div class="transaction-details">
+                            <p><strong>Item A Value:</strong> $200.00</p>
+                            <p><strong>Item B Value:</strong> $180.00</p>
+                            <p><strong>Total Fees:</strong> $95.00 (25% each)</p>
+                            <p><strong>Status:</strong> Negotiating</p>
+                        </div>
+                        <div class="transaction-actions mt-10">
+                            <button class="mario-btn success">Accept Trade</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketplace Preview -->
+            <div class="marketplace-preview">
+                <h2 class="text-center mb-20">🏪 Featured Items</h2>
+                <div class="marketplace-grid">
+                    <div class="item-card">
+                        <div class="item-image">🎮</div>
+                        <h3 class="item-title">Super Mario Odyssey</h3>
+                        <div class="item-price">$45.00</div>
+                        <p class="item-description">Complete in box, excellent condition. Includes all original materials.</p>
+                        <div class="item-actions">
+                            <button class="mario-btn primary">Buy Now</button>
+                            <button class="mario-btn secondary">Make Offer</button>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-image">🎯</div>
+                        <h3 class="item-title">Pokemon Trading Cards</h3>
+                        <div class="item-price">$120.00</div>
+                        <p class="item-description">Rare holographic collection. Mint condition cards from 1999.</p>
+                        <div class="item-actions">
+                            <button class="mario-btn primary">Buy Now</button>
+                            <button class="mario-btn secondary">Make Offer</button>
+                        </div>
+                    </div>
+
+                    <div class="item-card">
+                        <div class="item-image">🎲</div>
+                        <h3 class="item-title">Settlers of Catan</h3>
+                        <div class="item-price">$35.00</div>
+                        <p class="item-description">Classic board game. All pieces included, like new condition.</p>
+                        <div class="item-actions">
+                            <button class="mario-btn primary">Buy Now</button>
+                            <button class="mario-btn secondary">Make Offer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buy Modal -->
+    <div id="buyModal" class="mario-modal">
+        <div class="mario-modal-content">
+            <div class="mario-modal-header">
+                <h2 class="mario-modal-title">🛒 Buy Item</h2>
+                <span class="mario-modal-close" onclick="closeModal('buyModal')">&times;</span>
+            </div>
+            <div class="mario-form">
+                <div class="form-group">
+                    <label class="form-label">Item Name</label>
+                    <input type="text" class="mario-input" placeholder="Enter item name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Item Price ($)</label>
+                    <input type="number" class="mario-input" placeholder="Enter price" oninput="calculateModalFee()">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Platform Fee (25%)</label>
+                    <div class="fee-display">
+                        <span id="modalFee" class="coin-value">$0.00</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Total Cost</label>
+                    <div class="total-display">
+                        <span id="modalTotal" class="coin-value">$0.00</span>
+                    </div>
+                </div>
+                <div class="flex-center mt-20">
+                    <button class="mario-btn success" onclick="processBuy()">Confirm Purchase</button>
+                    <button class="mario-btn secondary" onclick="closeModal('buyModal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sell Modal -->
+    <div id="sellModal" class="mario-modal">
+        <div class="mario-modal-content">
+            <div class="mario-modal-header">
+                <h2 class="mario-modal-title">💸 Sell Item</h2>
+                <span class="mario-modal-close" onclick="closeModal('sellModal')">&times;</span>
+            </div>
+            <div class="mario-form">
+                <div class="form-group">
+                    <label class="form-label">Item Name</label>
+                    <input type="text" class="mario-input" placeholder="Enter item name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Item Price ($)</label>
+                    <input type="number" class="mario-input" placeholder="Enter price" oninput="calculateSellPayout()">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Platform Fee (25%)</label>
+                    <div class="fee-display">
+                        <span id="sellFee" class="coin-value">$0.00</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Your Payout (75%)</label>
+                    <div class="payout-display">
+                        <span id="sellPayout" class="coin-value">$0.00</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Item Description</label>
+                    <textarea class="mario-input" rows="3" placeholder="Describe your item"></textarea>
+                </div>
+                <div class="flex-center mt-20">
+                    <button class="mario-btn success" onclick="processSell()">List Item</button>
+                    <button class="mario-btn secondary" onclick="closeModal('sellModal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trade Modal -->
+    <div id="tradeModal" class="mario-modal">
+        <div class="mario-modal-content">
+            <div class="mario-modal-header">
+                <h2 class="mario-modal-title">🔄 Trade Items</h2>
+                <span class="mario-modal-close" onclick="closeModal('tradeModal')">&times;</span>
+            </div>
+            <div class="mario-form">
+                <div class="grid grid-2 gap-20">
+                    <div>
+                        <h3 class="text-center mb-10">Your Item</h3>
+                        <div class="form-group">
+                            <label class="form-label">Item Name</label>
+                            <input type="text" class="mario-input" placeholder="Your item">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Item Value ($)</label>
+                            <input type="number" class="mario-input" placeholder="Value" oninput="calculateTradeFees()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Your Fee (25%)</label>
+                            <div class="fee-display">
+                                <span id="tradeFee1" class="coin-value">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-center mb-10">Their Item</h3>
+                        <div class="form-group">
+                            <label class="form-label">Item Name</label>
+                            <input type="text" class="mario-input" placeholder="Their item">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Item Value ($)</label>
+                            <input type="number" class="mario-input" placeholder="Value" oninput="calculateTradeFees()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Their Fee (25%)</label>
+                            <div class="fee-display">
+                                <span id="tradeFee2" class="coin-value">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="power-up mt-20">
+                    <p class="text-center">⚡ <strong>Trade Power:</strong> Both users pay 25% fee based on their item's value!</p>
+                </div>
+                <div class="flex-center mt-20">
+                    <button class="mario-btn success" onclick="processTrade()">Propose Trade</button>
+                    <button class="mario-btn secondary" onclick="closeModal('tradeModal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notifications -->
+    <div id="notificationContainer"></div>
+
+    <script>
+        // Authentication check
+        function checkAuth() {
+            const token = localStorage.getItem('watch_token');
+            const user = localStorage.getItem('watch_user');
+            
+            if (!token || !user) {
+                window.location.href = '/working-login';
+                return;
+            }
+        }
+
+        // Navigation functions
+        function navigateToPage(page) {
+            window.location.href = `/${page}`;
+        }
+
+        function navigateToHome() {
+            window.location.href = '/';
+        }
+
+        function logout() {
+            localStorage.removeItem('watch_token');
+            localStorage.removeItem('watch_user');
+            window.location.href = '/working-login';
+        }
+
+        // Fee calculations
+        function calculateFee() {
+            const price = parseFloat(document.getElementById('itemPrice').value) || 0;
+            const fee = price * 0.25;
+            const total = price + fee;
+            
+            document.getElementById('platformFee').textContent = `$${fee.toFixed(2)}`;
+            document.getElementById('totalCost').textContent = `$${total.toFixed(2)}`;
+        }
+
+        function calculateModalFee() {
+            const price = parseFloat(document.querySelector('#buyModal input[type="number"]').value) || 0;
+            const fee = price * 0.25;
+            const total = price + fee;
+            
+            document.getElementById('modalFee').textContent = `$${fee.toFixed(2)}`;
+            document.getElementById('modalTotal').textContent = `$${total.toFixed(2)}`;
+        }
+
+        function calculateSellPayout() {
+            const price = parseFloat(document.querySelector('#sellModal input[type="number"]').value) || 0;
+            const fee = price * 0.25;
+            const payout = price - fee;
+            
+            document.getElementById('sellFee').textContent = `$${fee.toFixed(2)}`;
+            document.getElementById('sellPayout').textContent = `$${payout.toFixed(2)}`;
+        }
+
+        function calculateTradeFees() {
+            const value1 = parseFloat(document.querySelectorAll('#tradeModal input[type="number"]')[0].value) || 0;
+            const value2 = parseFloat(document.querySelectorAll('#tradeModal input[type="number"]')[1].value) || 0;
+            
+            const fee1 = value1 * 0.25;
+            const fee2 = value2 * 0.25;
+            
+            document.getElementById('tradeFee1').textContent = `$${fee1.toFixed(2)}`;
+            document.getElementById('tradeFee2').textContent = `$${fee2.toFixed(2)}`;
+        }
+
+        // Modal functions
+        function showBuyModal() {
+            document.getElementById('buyModal').style.display = 'block';
+        }
+
+        function showSellModal() {
+            document.getElementById('sellModal').style.display = 'block';
+        }
+
+        function showTradeModal() {
+            document.getElementById('tradeModal').style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function showMarketplace() {
+            navigateToPage('buysell');
+        }
+
+        // Process functions
+        function processBuy() {
+            showNotification('Purchase successful! 🎉', 'success');
+            closeModal('buyModal');
+        }
+
+        function processSell() {
+            showNotification('Item listed successfully! 💰', 'success');
+            closeModal('sellModal');
+        }
+
+        function processTrade() {
+            showNotification('Trade proposal sent! 🔄', 'success');
+            closeModal('tradeModal');
+        }
+
+        function showCoinDetails() {
+            showNotification('Your balance: $1,250.00 💰', 'info');
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `mario-notification ${type}`;
+            notification.textContent = message;
+            
+            document.getElementById('notificationContainer').appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            
+            // Navigation event listeners
+            const navLinks = document.querySelectorAll('[data-navigate]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-navigate');
+                    navigateToPage(page);
+                });
+            });
+            
+            // Logout event listener
+            const logoutBtn = document.querySelector('[data-logout]');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    logout();
+                });
+            }
+
+            // Close modals when clicking outside
+            window.addEventListener('click', function(e) {
+                const modals = document.querySelectorAll('.mario-modal');
+                modals.forEach(modal => {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

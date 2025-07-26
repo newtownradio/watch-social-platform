@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch - Mario Trading Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mario-trading-theme.css">
+    <style>
+        /* Additional landing page styles */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            padding: 40px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            color: var(--mario-red);
+            margin-bottom: 30px;
+            text-shadow: 4px 4px 0px var(--mario-yellow), 8px 8px 0px var(--mario-blue);
+            animation: marioJump 4s ease-in-out infinite;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--mario-brown);
+            font-family: var(--ui-font);
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: var(--mario-radius);
+            border: 3px solid var(--mario-blue);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .feature-section {
+            padding: 80px 0;
+            background: var(--mario-white);
+            border-top: var(--mario-border);
+            border-bottom: var(--mario-border);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .feature-card {
+            background: var(--mario-white);
+            border: 3px solid var(--mario-purple);
+            border-radius: var(--mario-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--mario-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--mario-gradient);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(155, 89, 182, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: powerUp 3s ease-in-out infinite;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            color: var(--mario-purple);
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .feature-description {
+            color: var(--mario-brown);
+            font-family: var(--ui-font);
+            line-height: 1.6;
+        }
+
+        .stats-section {
+            background: var(--mario-gradient);
+            padding: 60px 0;
+            color: var(--mario-white);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            animation: levelUp 2s ease-in-out infinite;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .cta-section {
+            padding: 80px 0;
+            background: var(--mario-cloud);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            color: var(--mario-red);
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 0px var(--mario-yellow);
+        }
+
+        .cta-description {
+            font-size: 1.1rem;
+            color: var(--mario-brown);
+            font-family: var(--ui-font);
+            margin-bottom: 40px;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .floating-coin {
+            position: absolute;
+            font-size: 2rem;
+            animation: coinSpin 4s linear infinite;
+        }
+
+        .floating-coin:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-coin:nth-child(2) {
+            top: 40%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .floating-coin:nth-child(3) {
+            top: 60%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .floating-coin:nth-child(4) {
+            top: 30%;
+            right: 25%;
+            animation-delay: 3s;
+        }
+
+        .mario-character {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            animation: marioRun 2s linear infinite;
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="watch-logo-container" onclick="navigateToHome()">
+                <div class="watch-logo">Watch</div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" data-navigate="discovery" class="nav-link">DISCOVERY</a>
+                <a href="#" data-navigate="mario-trading" class="nav-link">TRADING</a>
+                <a href="#" data-navigate="messages" class="nav-link">MESSAGES</a>
+                <a href="#" data-navigate="account" class="nav-link">ACCOUNT</a>
+                <a href="#" data-navigate="legal" class="nav-link">LEGAL</a>
+                <button data-logout class="nav-link" style="background: none; border: none; cursor: pointer; color: var(--mario-white); font-weight: 500; font-size: 14px; transition: all 0.3s ease; padding: 8px 16px; border-radius: 6px; border: 2px solid transparent;">LOGOUT</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="floating-elements">
+            <div class="floating-coin">💰</div>
+            <div class="floating-coin">🎮</div>
+            <div class="floating-coin">🎯</div>
+            <div class="floating-coin">🎲</div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">🎮 Watch Trading Platform</h1>
+            <p class="hero-subtitle">
+                Level up your trading game! Buy, sell, and trade items with our secure 25% platform fee system. 
+                Join thousands of traders in the ultimate Mario-style marketplace experience!
+            </p>
+            <div class="hero-buttons">
+                <button class="mario-btn primary" onclick="navigateToPage('mario-trading')">
+                    🚀 START TRADING
+                </button>
+                <button class="mario-btn secondary" onclick="showFeatures()">
+                    📖 LEARN MORE
+                </button>
+                <button class="mario-btn success" onclick="navigateToPage('working-login')">
+                    👤 SIGN UP
+                </button>
+            </div>
+        </div>
+        
+        <div class="mario-character">🏃‍♂️</div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="feature-section">
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 class="feature-title">25% Platform Fee</h3>
+                <p class="feature-description">
+                    Transparent 25% fee on all transactions ensures secure payments, 
+                    platform maintenance, and excellent customer support.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3 class="feature-title">Secure Trading</h3>
+                <p class="feature-description">
+                    Advanced security measures protect your transactions with 
+                    encrypted payments and verified user accounts.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Fast Transactions</h3>
+                <p class="feature-description">
+                    Lightning-fast processing with instant notifications and 
+                    real-time status updates for all your trades.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Smart Matching</h3>
+                <p class="feature-description">
+                    Intelligent algorithm matches you with the best buyers and sellers 
+                    for optimal trading opportunities.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Mobile Friendly</h3>
+                <p class="feature-description">
+                    Trade anywhere, anytime with our responsive design that works 
+                    perfectly on all devices and screen sizes.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3 class="feature-title">Gaming Experience</h3>
+                <p class="feature-description">
+                    Enjoy a fun, Mario-themed interface with animations, 
+                    achievements, and a rewarding trading experience.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">Active Traders</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">$2.5M</div>
+                <div class="stat-label">Total Volume</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">50,000+</div>
+                <div class="stat-label">Items Traded</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Level Up?</h2>
+            <p class="cta-description">
+                Join the Watch trading community today and start your journey to becoming 
+                a trading champion! Experience the most fun and secure trading platform ever created.
+            </p>
+            <div class="hero-buttons">
+                <button class="mario-btn primary" onclick="navigateToPage('mario-trading')">
+                    🎮 START TRADING NOW
+                </button>
+                <button class="mario-btn success" onclick="navigateToPage('working-login')">
+                    👤 CREATE ACCOUNT
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--mario-brown); color: var(--mario-white); padding: 40px 0; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+            <p style="font-family: var(--ui-font); margin-bottom: 20px;">
+                © 2024 Watch Trading Platform. All rights reserved.
+            </p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <a href="#" style="color: var(--mario-white); text-decoration: none;">Privacy Policy</a>
+                <a href="#" style="color: var(--mario-white); text-decoration: none;">Terms of Service</a>
+                <a href="#" style="color: var(--mario-white); text-decoration: none;">Support</a>
+                <a href="#" style="color: var(--mario-white); text-decoration: none;">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Authentication check
+        function checkAuth() {
+            const token = localStorage.getItem('watch_token');
+            const user = localStorage.getItem('watch_user');
+            
+            if (!token || !user) {
+                // Allow access to landing page without redirect
+                return;
+            }
+        }
+
+        // Navigation functions
+        function navigateToPage(page) {
+            window.location.href = `/${page}`;
+        }
+
+        function navigateToHome() {
+            window.location.href = '/';
+        }
+
+        function logout() {
+            localStorage.removeItem('watch_token');
+            localStorage.removeItem('watch_user');
+            window.location.href = '/working-login';
+        }
+
+        function showFeatures() {
+            document.querySelector('.feature-section').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            
+            // Navigation event listeners
+            const navLinks = document.querySelectorAll('[data-navigate]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-navigate');
+                    navigateToPage(page);
+                });
+            });
+            
+            // Logout event listener
+            const logoutBtn = document.querySelector('[data-logout]');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    logout();
+                });
+            }
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

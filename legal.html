@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch - Legal Agreements</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        :root {
+            --mario-red: #E74C3C;
+            --mario-blue: #3498DB;
+            --mario-green: #27AE60;
+            --mario-yellow: #F1C40F;
+            --mario-brown: #8B4513;
+            --mario-sky: #87CEEB;
+            --mario-white: #FFFFFF;
+            --mario-cloud: #ECF0F1;
+            --mario-purple: #9B59B6;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--mario-sky) 0%, var(--mario-cloud) 100%);
+            font-family: 'Press Start 2P', 'Courier New', monospace;
+            line-height: 1.6;
+            color: var(--mario-brown);
+            min-height: 100vh;
+        }
+        
+        /* Navigation */
+        .nav-container {
+            background: var(--mario-blue);
+            border-bottom: 4px solid var(--mario-red);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(52, 152, 219, 0.3);
+        }
+        
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+        }
+        
+        .watch-logo-container {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 12px 16px;
+            border-radius: 50%;
+            background: var(--mario-red);
+            transition: all 0.3s ease;
+            border: 3px solid var(--mario-white);
+        }
+        
+        .watch-logo-container:hover {
+            background: var(--mario-green);
+            transform: scale(1.05);
+        }
+        
+        .watch-logo {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--mario-white);
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--mario-white);
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            color: var(--mario-yellow);
+            border-color: var(--mario-yellow);
+            background: rgba(241, 196, 15, 0.1);
+        }
+        
+        .nav-link.active {
+            color: var(--mario-yellow);
+            border-color: var(--mario-yellow);
+            background: rgba(241, 196, 15, 0.1);
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1200px;
+            margin: 120px auto 40px;
+            padding: 0 24px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            color: var(--mario-red);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px var(--mario-yellow);
+        }
+        
+        .page-subtitle {
+            font-size: 1rem;
+            color: var(--mario-brown);
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+        }
+        
+        .legal-notice {
+            background: var(--mario-yellow);
+            border: 3px solid var(--mario-red);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+        }
+        
+        .legal-notice h3 {
+            color: var(--mario-red);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .legal-notice p {
+            color: var(--mario-brown);
+            font-family: Arial, sans-serif;
+            font-size: 0.9rem;
+        }
+        
+        /* Agreements Container */
+        .agreements-container {
+            background: var(--mario-white);
+            border: 4px solid var(--mario-purple);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(155, 89, 182, 0.2);
+        }
+        
+        .agreements-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .agreements-title {
+            font-size: 1.5rem;
+            color: var(--mario-purple);
+        }
+        
+        .agreements-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .action-btn {
+            background: var(--mario-purple);
+            color: var(--mario-white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--mario-white);
+        }
+        
+        .action-btn:hover {
+            background: var(--mario-blue);
+            transform: translateY(-2px);
+        }
+        
+        .action-btn.secondary {
+            background: var(--mario-cloud);
+            color: var(--mario-brown);
+            border-color: var(--mario-brown);
+        }
+        
+        /* Agreement Items */
+        .agreement-item {
+            border: 3px solid var(--mario-cloud);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .agreement-item:hover {
+            border-color: var(--mario-purple);
+            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.2);
+        }
+        
+        .agreement-item.signed {
+            border-color: var(--mario-green);
+            background: rgba(39, 174, 96, 0.05);
+        }
+        
+        .agreement-item.pending {
+            border-color: var(--mario-yellow);
+            background: rgba(241, 196, 15, 0.05);
+        }
+        
+        .agreement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .agreement-header h3 {
+            font-size: 1.1rem;
+            color: var(--mario-purple);
+        }
+        
+        .agreement-status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        .agreement-status.signed {
+            background: var(--mario-green);
+            color: var(--mario-white);
+        }
+        
+        .agreement-status.pending {
+            background: var(--mario-yellow);
+            color: var(--mario-brown);
+        }
+        
+        .agreement-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+            color: var(--mario-brown);
+        }
+        
+        .agreement-type {
+            background: var(--mario-cloud);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .agreement-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .view-btn, .sign-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .view-btn {
+            background: var(--mario-blue);
+            color: var(--mario-white);
+        }
+        
+        .view-btn:hover {
+            background: var(--mario-purple);
+        }
+        
+        .sign-btn {
+            background: var(--mario-green);
+            color: var(--mario-white);
+        }
+        
+        .sign-btn:hover {
+            background: var(--mario-blue);
+            transform: translateY(-2px);
+        }
+        
+        .signed-date {
+            font-size: 0.8rem;
+            color: var(--mario-green);
+            font-weight: bold;
+        }
+        
+        /* No Agreements */
+        .no-agreements {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .no-agreements h3 {
+            color: var(--mario-purple);
+            margin-bottom: 15px;
+        }
+        
+        .no-agreements p {
+            color: var(--mario-brown);
+            font-family: Arial, sans-serif;
+            margin-bottom: 20px;
+        }
+        
+        .generate-btn {
+            background: var(--mario-purple);
+            color: var(--mario-white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .generate-btn:hover {
+            background: var(--mario-blue);
+            transform: translateY(-2px);
+        }
+        
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-content {
+            background: var(--mario-white);
+            margin: 5% auto;
+            padding: 30px;
+            border: 4px solid var(--mario-purple);
+            border-radius: 16px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .modal-title {
+            font-size: 1.3rem;
+            color: var(--mario-purple);
+        }
+        
+        .close {
+            color: var(--mario-red);
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: var(--mario-brown);
+        }
+        
+        /* Agreement Details */
+        .agreement-details h2 {
+            color: var(--mario-purple);
+            margin-bottom: 20px;
+        }
+        
+        .agreement-info {
+            background: var(--mario-cloud);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .agreement-info p {
+            margin-bottom: 8px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .agreement-sections {
+            margin-bottom: 20px;
+        }
+        
+        .agreement-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 2px solid var(--mario-cloud);
+            border-radius: 8px;
+        }
+        
+        .agreement-section h3 {
+            color: var(--mario-purple);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .agreement-section p {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .agreement-signature {
+            background: var(--mario-green);
+            color: var(--mario-white);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .agreement-signature h3 {
+            margin-bottom: 10px;
+        }
+        
+        .agreement-signature p {
+            margin-bottom: 5px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .agreement-signature code {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .agreements-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+            
+            .agreement-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            
+            .agreement-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .agreement-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .nav-link {
+                font-size: 12px;
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="watch-logo-container" onclick="navigateToHome()">
+                <div class="watch-logo">Watch</div>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#" data-navigate="discovery" class="nav-link">DISCOVERY</a>
+                <a href="#" data-navigate="buysell" class="nav-link">BUY / SELL</a>
+                <a href="#" data-navigate="messages" class="nav-link">MESSAGES</a>
+                <a href="#" data-navigate="account" class="nav-link">ACCOUNT</a>
+                <a href="#" data-navigate="legal" class="nav-link active">LEGAL</a>
+                <button data-logout class="nav-link" style="background: none; border: none; cursor: pointer; color: var(--mario-white); font-weight: 500; font-size: 14px; transition: all 0.3s ease; padding: 8px 16px; border-radius: 6px; border: 2px solid transparent;">LOGOUT</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="page-header">
+            <h1 class="page-title">Legal Agreements</h1>
+            <p class="page-subtitle">Review and sign your Watch platform agreements</p>
+            
+            <div class="legal-notice">
+                <h3>⚖️ Important Legal Information</h3>
+                <p>These agreements govern your use of the Watch platform. Please read them carefully before signing. 
+                By signing these agreements, you acknowledge that you have read, understood, and agree to be bound by their terms.</p>
+            </div>
+        </div>
+        
+        <!-- Agreements Container -->
+        <div class="agreements-container">
+            <div class="agreements-header">
+                <h2 class="agreements-title">📋 Your Agreements</h2>
+                <div class="agreements-actions">
+                    <button class="action-btn" data-generate-agreements>Generate New</button>
+                    <button class="action-btn secondary" data-bulk-sign>Sign All Pending</button>
+                </div>
+            </div>
+            
+            <div id="agreements-container">
+                <!-- Agreements will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Compliance Modal -->
+    <div id="compliance-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">⚠️ Required Agreements</h2>
+                <span class="close" onclick="legalComponent.closeModal('compliance-modal')">&times;</span>
+            </div>
+            <div id="compliance-modal-content">
+                <p>You need to sign the required agreements to continue using the Watch platform.</p>
+                <div id="agreements-container">
+                    <!-- Agreements will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agreement View Modal -->
+    <div id="agreement-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">📄 Agreement Details</h2>
+                <span class="close" onclick="legalComponent.closeModal('agreement-modal')">&times;</span>
+            </div>
+            <div id="agreement-modal-content">
+                <!-- Agreement content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="legal-component.js"></script>
+    <script>
+        // Authentication check
+        function checkAuth() {
+            const token = localStorage.getItem('watch_token');
+            const user = localStorage.getItem('watch_user');
+            
+            if (!token || !user) {
+                window.location.href = '/working-login';
+                return;
+            }
+        }
+        
+        // Navigation functions
+        function navigateToPage(page) {
+            window.location.href = `/${page}`;
+        }
+        
+        function navigateToHome() {
+            window.location.href = '/';
+        }
+        
+        function logout() {
+            localStorage.removeItem('watch_token');
+            localStorage.removeItem('watch_user');
+            window.location.href = '/working-login';
+        }
+        
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            
+            // Navigation event listeners
+            const navLinks = document.querySelectorAll('[data-navigate]');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-navigate');
+                    navigateToPage(page);
+                });
+            });
+            
+            // Logout event listener
+            const logoutBtn = document.querySelector('[data-logout]');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    logout();
+                });
+            }
+            
+            // Load user agreements on page load
+            legalComponent.loadUserAgreements();
+        });
+    </script>
+</body>
+</html> 

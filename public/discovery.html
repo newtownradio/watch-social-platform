@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 AI Discovery - WATCH Trading Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/mario-theme.css">
+    <style>
+        .discovery-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .ai-search-section {
+            background: var(--mario-white);
+            padding: 30px;
+            border-radius: 15px;
+            border: 4px solid var(--mario-black);
+            box-shadow: 5px 5px 0 var(--mario-black);
+            margin-bottom: 30px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            border: 3px solid var(--mario-black);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: var(--mario-light-blue);
+        }
+        
+        .search-button {
+            background: var(--mario-red);
+            color: var(--mario-white);
+            padding: 15px 30px;
+            border: 3px solid var(--mario-black);
+            border-radius: 8px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 var(--mario-black);
+            transition: all 0.3s ease;
+        }
+        
+        .search-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 5px 5px 0 var(--mario-black);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .product-card {
+            background: var(--mario-white);
+            padding: 25px;
+            border-radius: 15px;
+            border: 4px solid var(--mario-black);
+            box-shadow: 5px 5px 0 var(--mario-black);
+            transition: transform 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .product-icon {
+            font-size: 32px;
+        }
+        
+        .product-name {
+            font-size: 16px;
+            color: var(--mario-red);
+            font-weight: bold;
+        }
+        
+        .product-price {
+            font-size: 24px;
+            color: var(--mario-green);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .product-change {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .product-change.positive {
+            color: var(--mario-green);
+        }
+        
+        .product-change.negative {
+            color: var(--mario-red);
+        }
+        
+        .product-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 10px;
+            background: var(--mario-light-blue);
+            border-radius: 8px;
+            border: 2px solid var(--mario-black);
+        }
+        
+        .stat-value {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--mario-dark);
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            color: var(--mario-dark);
+        }
+        
+        .ai-insights {
+            background: var(--mario-yellow);
+            padding: 20px;
+            border-radius: 10px;
+            border: 3px solid var(--mario-black);
+            margin-top: 20px;
+        }
+        
+        .insights-title {
+            font-size: 14px;
+            color: var(--mario-black);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .insights-text {
+            font-size: 12px;
+            color: var(--mario-dark);
+            line-height: 1.4;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 16px;
+            color: var(--mario-blue);
+        }
+        
+        .search-examples {
+            margin-top: 20px;
+        }
+        
+        .example-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .example-tag {
+            background: var(--mario-blue);
+            color: var(--mario-white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 10px;
+            cursor: pointer;
+            border: 2px solid var(--mario-black);
+            transition: all 0.3s ease;
+        }
+        
+        .example-tag:hover {
+            background: var(--mario-red);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- Cloud Decorations -->
+    <div class="cloud-decoration"></div>
+    <div class="cloud-decoration"></div>
+    <div class="cloud-decoration"></div>
+    
+    <!-- Coin Decorations -->
+    <div class="coin-decoration">🪙</div>
+    <div class="coin-decoration">🪙</div>
+    <div class="coin-decoration">🪙</div>
+    <div class="coin-decoration">🪙</div>
+    
+
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+        <div class="nav-content">
+            <div class="watch-logo-container">
+                <div class="watch-logo">WATCH</div>
+            </div>
+            <ul class="nav-tabs">
+                <li><a href="/" class="nav-tab">🏠 Home</a></li>
+                <li><a href="/trade" class="nav-tab">💰 Trade</a></li>
+                <li><a href="/swipe" class="nav-tab">👆 Swipe</a></li>
+                <li><a href="/messages" class="nav-tab">💬 Messages</a></li>
+                <li><a href="/notifications" class="nav-tab">🔔 Notifications</a></li>
+                <li><a href="/account" class="nav-tab">👤 Account</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="discovery-container">
+        <h1 class="hero-title" style="text-align: center; margin-bottom: 30px;">🔍 AI-Powered Discovery</h1>
+        
+        <!-- AI Search Section -->
+        <div class="ai-search-section">
+            <h2 style="color: var(--mario-red); margin-bottom: 20px; text-shadow: 2px 2px 0 var(--mario-black);">
+                🤖 AI Research
+            </h2>
+            <p style="color: var(--mario-dark); margin-bottom: 20px; font-size: 14px;">
+                Compare stocks, ETFs, and investment products with AI insights
+            </p>
+            
+            <input type="text" 
+                   class="search-input" 
+                   id="searchInput" 
+                   placeholder="Compare: AAPL vs MSFT, or 'Best tech ETFs 2024'"
+                   value="Compare: AAPL vs MSFT vs GOOGL">
+            
+            <button class="search-button" onclick="performAISearch()">
+                🔍 AI Research
+            </button>
+            
+            <div class="search-examples">
+                <p style="font-size: 12px; color: var(--mario-dark); margin-bottom: 10px;">Try these examples:</p>
+                <div class="example-tags">
+                    <span class="example-tag" onclick="setSearch('Compare: AAPL vs MSFT vs GOOGL')">AAPL vs MSFT vs GOOGL</span>
+                    <span class="example-tag" onclick="setSearch('Best tech ETFs 2024')">Best Tech ETFs</span>
+                    <span class="example-tag" onclick="setSearch('Tesla vs Rivian vs Lucid')">Tesla vs Rivian</span>
+                    <span class="example-tag" onclick="setSearch('S&P 500 vs NASDAQ performance')">S&P 500 vs NASDAQ</span>
+                    <span class="example-tag" onclick="setSearch('Crypto: Bitcoin vs Ethereum')">BTC vs ETH</span>
+                    <span class="example-tag" onclick="setSearch('Dividend stocks: JNJ vs PG vs KO')">Dividend Stocks</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" style="display: none;">
+            <h2 style="color: var(--mario-blue); margin-bottom: 20px; text-shadow: 2px 2px 0 var(--mario-black);">
+                📊 AI Analysis Results
+            </h2>
+            
+            <div class="comparison-grid" id="comparisonGrid">
+                <!-- Results will be populated here -->
+            </div>
+        </div>
+
+        <!-- Loading Section -->
+                    <div id="loadingSection" class="loading" style="display: none;">
+            <div style="font-size: 48px; margin-bottom: 20px;">🤖</div>
+            <p>AI is analyzing your request...</p>
+            <p style="font-size: 12px; color: var(--mario-dark);">Gathering market data and insights</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">🎮 WATCH Trading Platform - AI Discovery</p>
+            <div class="social-links">
+                <a href="#" class="social-link">📱</a>
+                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link">📘</a>
+                <a href="#" class="social-link">📷</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sample data for demonstration
+        const sampleData = {
+            'Compare: AAPL vs MSFT vs GOOGL': {
+                products: [
+                    {
+                        name: 'Apple Inc.',
+                        symbol: 'AAPL',
+                        price: '$185.92',
+                        change: '+2.45%',
+                        changeType: 'positive',
+                        icon: '🍎',
+                        stats: {
+                            'Market Cap': '$2.9T',
+                            'P/E Ratio': '29.5',
+                            'Dividend': '0.5%',
+                            'Beta': '1.28'
+                        },
+                        insights: 'Strong iPhone sales and services growth. High valuation but solid fundamentals.'
+                    },
+                    {
+                        name: 'Microsoft Corp.',
+                        symbol: 'MSFT',
+                        price: '$378.85',
+                        change: '+1.87%',
+                        changeType: 'positive',
+                        icon: '🪟',
+                        stats: {
+                            'Market Cap': '$2.8T',
+                            'P/E Ratio': '35.2',
+                            'Dividend': '0.8%',
+                            'Beta': '0.88'
+                        },
+                        insights: 'Cloud computing leader with strong Azure growth. Excellent cash flow and AI integration.'
+                    },
+                    {
+                        name: 'Alphabet Inc.',
+                        symbol: 'GOOGL',
+                        price: '$142.56',
+                        change: '+3.12%',
+                        changeType: 'positive',
+                        icon: '🔍',
+                        stats: {
+                            'Market Cap': '$1.8T',
+                            'P/E Ratio': '24.1',
+                            'Dividend': '0.0%',
+                            'Beta': '1.05'
+                        },
+                        insights: 'Advertising recovery and AI innovation. YouTube and cloud services growing rapidly.'
+                    }
+                ]
+            }
+        };
+
+        function setSearch(query) {
+            document.getElementById('searchInput').value = query;
+        }
+
+        function performAISearch() {
+            const query = document.getElementById('searchInput').value;
+            if (!query.trim()) return;
+
+            // Show loading
+            document.getElementById('loadingSection').style.display = 'block';
+            document.getElementById('resultsSection').style.display = 'none';
+
+            // Simulate AI processing
+            setTimeout(() => {
+                document.getElementById('loadingSection').style.display = 'none';
+                document.getElementById('resultsSection').style.display = 'block';
+                
+                // Use sample data or generate mock data
+                const data = sampleData[query] || generateMockData(query);
+                displayResults(data);
+            }, 3000);
+        }
+
+        function generateMockData(query) {
+            const companies = ['AAPL', 'MSFT', 'GOOGL', 'TSLA', 'AMZN', 'META', 'NVDA', 'NFLX'];
+            const names = ['Apple Inc.', 'Microsoft Corp.', 'Alphabet Inc.', 'Tesla Inc.', 'Amazon.com', 'Meta Platforms', 'NVIDIA Corp.', 'Netflix Inc.'];
+            const icons = ['🍎', '🪟', '🔍', '🚗', '📦', '📘', '🎮', '📺'];
+            
+            const products = [];
+            const numProducts = Math.min(3, Math.floor(Math.random() * 4) + 2);
+            
+            for (let i = 0; i < numProducts; i++) {
+                const index = Math.floor(Math.random() * companies.length);
+                const change = (Math.random() - 0.5) * 6;
+                const changeType = change >= 0 ? 'positive' : 'negative';
+                
+                products.push({
+                    name: names[index],
+                    symbol: companies[index],
+                    price: `$${(Math.random() * 300 + 50).toFixed(2)}`,
+                    change: `${change >= 0 ? '+' : ''}${change.toFixed(2)}%`,
+                    changeType: changeType,
+                    icon: icons[index],
+                    stats: {
+                        'Market Cap': `${(Math.random() * 2 + 0.5).toFixed(1)}T`,
+                        'P/E Ratio': (Math.random() * 30 + 15).toFixed(1),
+                        'Dividend': `${(Math.random() * 2).toFixed(1)}%`,
+                        'Beta': (Math.random() * 1.5 + 0.5).toFixed(2)
+                    },
+                    insights: generateInsight(companies[index])
+                });
+            }
+            
+            return { products };
+        }
+
+        function generateInsight(symbol) {
+            const insights = [
+                'Strong fundamentals with solid growth prospects.',
+                'Innovation leader in their sector with expanding market share.',
+                'Excellent cash flow and strong balance sheet.',
+                'Recovery play with upside potential in current market.',
+                'AI integration driving future growth opportunities.',
+                'Market leader with competitive advantages.',
+                'Undervalued relative to peers with growth catalysts.',
+                'Dividend growth story with stable earnings.'
+            ];
+            return insights[Math.floor(Math.random() * insights.length)];
+        }
+
+        function displayResults(data) {
+            const grid = document.getElementById('comparisonGrid');
+            grid.innerHTML = '';
+
+            data.products.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                card.innerHTML = `
+                    <div class="product-header">
+                        <span class="product-icon">${product.icon}</span>
+                        <div>
+                            <div class="product-name">${product.name}</div>
+                            <div style="font-size: 12px; color: var(--mario-dark);">${product.symbol}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-price">${product.price}</div>
+                    <div class="product-change ${product.changeType}">${product.change}</div>
+                    
+                    <div class="product-stats">
+                        ${Object.entries(product.stats).map(([key, value]) => `
+                            <div class="stat-item">
+                                <div class="stat-value">${value}</div>
+                                <div class="stat-label">${key}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div class="ai-insights">
+                        <div class="insights-title">🤖 AI Insight</div>
+                        <div class="insights-text">${product.insights}</div>
+                    </div>
+                `;
+                
+                grid.appendChild(card);
+            });
+        }
+
+        // Auto-search on page load
+        window.onload = function() {
+            setTimeout(() => {
+                performAISearch();
+            }, 1000);
+        };
+    </script>
+</body>
+</html> 
