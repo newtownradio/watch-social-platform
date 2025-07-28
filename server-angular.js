@@ -13,6 +13,12 @@ const DB_FILE = path.join(__dirname, 'data', 'demo_requests.json');
 
 // Initialize database file if it doesn't exist
 function initializeDatabase() {
+  // Create data directory if it doesn't exist
+  const dataDir = path.dirname(DB_FILE);
+  if (!fs.existsSync(dataDir)) {
+    fs.mkdirSync(dataDir, { recursive: true });
+  }
+  
   if (!fs.existsSync(DB_FILE)) {
     const initialData = {
       requests: [],
